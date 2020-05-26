@@ -1,9 +1,14 @@
-//const processPostback = require('../processes/postback');
-//const processMessage = require('../processes/messages');
+const processPostback = require('../../processes/postback');
+const processMessage = require('../../processes/messages');
 const express = require('express');
 const router = express.Router();
 
-  router.get('/', function(req, res) {
+
+  router.get('/' , (req,res) => {
+    res.send("@ GET /  verify ")
+  });
+  
+  router.get('/hook', function(req, res) {
     if (req.query['hub.verify_token'] === process.env.VERIFY_TOKEN){
        console.log('webhook verified');
        res.status(200).send(req.query['hub.challenge']);
@@ -13,7 +18,7 @@ const router = express.Router();
      }
   });
 
-  router.post('/', function(req, res) {
+  router.post('/hook', function(req, res) {
     //checking for page subscription.
     if (req.body.object === 'page'){
 

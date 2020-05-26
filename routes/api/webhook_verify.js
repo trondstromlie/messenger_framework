@@ -1,5 +1,5 @@
-const processPostback = require('../processes/postback');
-const processMessage = require('../processes/messages');
+//const processPostback = require('../processes/postback');
+//const processMessage = require('../processes/messages');
 const express = require('express');
 const router = express.Router();
 
@@ -13,7 +13,7 @@ const router = express.Router();
      }
   });
 
-  app.post('/', function(req, res) {
+  router.post('/', function(req, res) {
     //checking for page subscription.
     if (req.body.object === 'page'){
 

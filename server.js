@@ -1,17 +1,23 @@
 const express = require('express');
 const connectDb = require('./config/db');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3000;
 
 
 
 const app = express();
+
 //connect to database
 connectDb();
 
 
 //init middleware
 app.use(express.json({ extended:false }));
+app.use(morgan('dev')); // log every request to the console.
+app.use(bodyParser.urlencoded({ extended:false }));
+app.use(bodyParser.json());
 
 //blanc index
 

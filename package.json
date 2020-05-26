@@ -1,11 +1,15 @@
 {
+  "engines":{
+    "node":"12.16.3"
+  },
   "name": "phonestatus1",
   "version": "1.0.0",
   "description": "log status anf gps from android",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "start" : "node server"
   },
   "author": "Trond Strøm Lie",
   "license": "ISC",

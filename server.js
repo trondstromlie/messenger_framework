@@ -24,6 +24,9 @@ app.use("/api/user", require("./routes/api/user"));
 app.use("/api/status", require("./routes/api/status"));
 app.use("/api/serviceupdate", require("./routes/api/serviceupdate"));
 
+//API route for the messenger web_hook
+app.use("api/webhook_verify", require("./routes/api/webhook_verify"));
+
 
 
 //start server

@@ -9,8 +9,11 @@ module.exports = function processMessage(event) {
           fields: "first_name"
         },
         method: "GET"
+      } (error,res,body) =>{
+        let fields = JSON.parse(body);
+        console.log(fields);
       });
-  console.log(id_fields); 
+
 
     if (!event.message.is_echo) {
       const message = event.message;

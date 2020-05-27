@@ -7,18 +7,19 @@ const http = require('http');
 
 
   router.get('/' , (req,res) => {
-    res.send("@ GET /  verify ")
+    const queryObject = url.parse(req.url,true).query;
+    console.log(queryObject);
+    res.send("@ GET /  verify " + queryObject.id);
   });
 
 
   router.get('/hook', function(req, res) {
     const queryObject = url.parse(req.url,true).query;
-    console.log(queryObject);
+    console.log(queryObject.hub.veryfy_token);
     console.log(process.env.VERYFY_TOKEN);
-    console.log(req.query['hub.veryfy_token']);
-    if (req.query['hub.verify_token'] === process.env.VERIFY_TOKEN){
+    if (queryObject.hub.veryfy_token === process.env.VERIFY_TOKEN){
        console.log('webhook verified');
-       res.status(200).send(req.query['hub.challenge']);
+       res.status(200).send(queryObject.hub.challenge);
     } else {
         console.error('verification failed. Token mismatch.');
         res.sendStatus(403);

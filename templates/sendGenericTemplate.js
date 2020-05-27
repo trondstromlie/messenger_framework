@@ -1,21 +1,13 @@
 const request = require('request');
 module.exports = function sendGenericTemplate(recipientId, respBody) {
    console.log(respBody);
-   const nutritionalValue = [];
-   for (let i = 0; i < respBody.length; i++) { // I dont like using forEach
-      let obj = {
-             "title":respBody[i].food_name,
-             "image_url": respBody[i].thumbnail,
-             "subtitle": 'Total Calories: ' +     respBody[i].total_calories + "\n" + 'protein: ' + respBody[i].protein + "\n" + 'Carbohydrates: ' + respBody[i].total_carbohydrate,
-            }
-            nutritionalValue.push(obj);
-         }
+   message[{"title":"hei på deg","subtitle":"fint å se deg"},{"title":"bra bra","subtitle":"velfig bra bra"}];
          let messageData = {
          "attachment": {
          "type": "template",
          "payload": {
                "template_type": "generic",
-               "elements": nutritionalValue
+               "elements": message
             }
          }
       }
@@ -27,9 +19,13 @@ request({
          recipient: {id: recipientId},
          message: messageData,
       }
-    }, function(error, response, body){
+    },
+    function(error, response, body){
          if (error) {
            console.log("Error sending message: " + response.error)
           }
-     })
-  }
+     }
+
+   );
+ }
+ 

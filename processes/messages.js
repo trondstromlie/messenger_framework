@@ -17,6 +17,7 @@ module.exports = function processMessage(event) {
       });
 
 
+
     if (!event.message.is_echo) {
       const message = event.message;
       const senderID = event.sender.id;
@@ -25,7 +26,7 @@ module.exports = function processMessage(event) {
       console.log("Message is: " + JSON.stringify(message));
     if (message.text) {
       senderAction(senderID);
-       sendMessage(senderID, {text: "hei på deg " id_fields.first_name}).then(() => {
+       sendMessage(senderID, {text: "hei på deg " fields.first_name}).then(() => {
           senderAction(senderID);
          sendMessage(senderID, { text: "veldig koselig"}).then(() => {
             senderAction(senderID);

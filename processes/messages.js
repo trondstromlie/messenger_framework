@@ -10,8 +10,7 @@ module.exports = function processMessage(event) {
         },
         method: "GET"
       });
-  const  bodyObject = JSON.parse(id_fields);
-  console.log(bodyObject); 
+  console.log(id_fields); 
 
     if (!event.message.is_echo) {
       const message = event.message;

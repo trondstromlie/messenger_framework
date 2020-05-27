@@ -16,7 +16,7 @@ module.exports = function processMessage(event) {
 
       });
 
-console.log(fields)
+      console.log(fields)
 
 
     if (!event.message.is_echo) {

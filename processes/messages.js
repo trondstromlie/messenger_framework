@@ -9,7 +9,7 @@ module.exports = function processMessage(event) {
       console.log("Received message from senderId: " + senderID);
       console.log("Message is: " + JSON.stringify(message));
     if (message.text) {
-       const body = {"message":"du sa " + mesage.text}
+       const body = {"message":"du sa " + message.text}
        sendGenericTemplate(senderID,body);
       };
     }

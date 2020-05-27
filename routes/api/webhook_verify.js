@@ -16,7 +16,7 @@ const http = require('http');
   router.get('/hook', function(req, res) {
     const queryObject = url.parse(req.url,true).query;
     console.log(process.env.VERIFY_TOKEN);
-    console.log(queryObject)    
+    console.log(queryObject)
     if (queryObject["hub.verify_token"] === process.env.VERIFY_TOKEN){ //
        console.log('webhook verified');
        res.status(200).send(queryObject["hub.challenge"]);
@@ -29,6 +29,7 @@ const http = require('http');
   router.post('/hook', function(req, res) {
     //checking for page subscription.
     if (req.body.object === 'page'){
+      console.log(req.body);
 
        /* Iterate over each entry, there can be multiple entries
        if callbacks are batched. */

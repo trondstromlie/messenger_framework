@@ -1,6 +1,5 @@
 const request = require('request');
 module.exports = function sendGenericTemplate(recipientId, respBody) {
-   console.log(respBody);
 
   const id_fields = request({ url: "https://graph.facebook.com/v2.6/" + recipientId,
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN,
@@ -8,7 +7,8 @@ module.exports = function sendGenericTemplate(recipientId, respBody) {
         },
         method: "GET"
       });
-  console.log(id_fields);    
+  let bodyObject = JSON.parse(id_fields);
+  console.log(bodyObject);    
 
 
    const message = [{"title":"hei på deg","subtitle":respBody["msg"]}];

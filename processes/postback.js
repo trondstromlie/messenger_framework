@@ -17,7 +17,7 @@ module.exports = function processPostback(event) {
           console.error("Error getting user name: " + error);
       } else {
           let bodyObject = JSON.parse(body);
-          console.log(bodyObject);
+          //console.log(bodyObject);
           name = bodyObject.first_name;
           greeting = "Hello " + name  + ". ";
      }

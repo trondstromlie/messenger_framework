@@ -9,7 +9,7 @@ module.exports = function processMessage(event) {
           fields: "first_name"
         },
         method: "GET"
-      } (error,res,body) =>{
+      }, (error,res,body) =>{
         let fields = JSON.parse(body);
         console.log(fields);
       });

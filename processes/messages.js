@@ -12,10 +12,10 @@ module.exports = function processMessage(event) {
         method: "GET"
       }, (error,res,body) =>{
         let fields = JSON.parse(body);
-        console.log(fields);
+
         return fields;
       });
-
+  console.log(id_fields);
 
 
     if (!event.message.is_echo) {
@@ -26,7 +26,7 @@ module.exports = function processMessage(event) {
       console.log("Message is: " + JSON.stringify(message));
     if (message.text) {
       senderAction(senderID);
-       sendMessage(senderID, {text: "hei på deg " fields.first_name}).then(() => {
+       sendMessage(senderID, {text: "hei på deg "}).then(() => {
           senderAction(senderID);
          sendMessage(senderID, { text: "veldig koselig"}).then(() => {
             senderAction(senderID);

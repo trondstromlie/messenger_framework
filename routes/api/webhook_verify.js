@@ -11,6 +11,7 @@ const router = express.Router();
 
   router.get('/hook', function(req, res) {
     console.log(process.env.VERYFY_TOKEN);
+    console.log(req.query['hub.veryfy_token']);
     if (req.query['hub.verify_token'] === process.env.VERIFY_TOKEN){
        console.log('webhook verified');
        res.status(200).send(req.query['hub.challenge']);

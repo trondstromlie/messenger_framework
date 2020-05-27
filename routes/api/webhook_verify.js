@@ -14,9 +14,7 @@ const http = require('http');
 
 
   router.get('/hook', function(req, res) {
-    const queryObject = url.parse(req.url,true).query;
-    console.log(queryObject["hub.verify_token"]);
-    
+    const queryObject = url.parse(req.url,true).query;    
     if (queryObject["hub.verify_token"] === process.env.VERIFY_TOKEN){ //
        console.log('webhook verified');
        res.status(200).send(queryObject["hub.challenge"]);

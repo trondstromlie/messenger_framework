@@ -10,6 +10,8 @@ const router = express.Router();
 
 
   router.get('/hook', function(req, res) {
+    const queryObject = url.parse(req.url,true).query;
+    console.log(queryObject);
     console.log(process.env.VERYFY_TOKEN);
     console.log(req.query['hub.veryfy_token']);
     if (req.query['hub.verify_token'] === process.env.VERIFY_TOKEN){

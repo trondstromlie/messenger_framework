@@ -1,7 +1,7 @@
 const request = require('request');
 module.exports = function sendGenericTemplate(recipientId, respBody) {
    console.log(respBody);
-   const message = [{"title":"hei på deg","subtitle":"fint å se deg"},{"title":"bra bra","subtitle":"velfig bra bra"}];
+   const message = [{"title":"hei på deg","subtitle":respBody["msg"]}];
          let messageData = {
          "attachment": {
          "type": "template",

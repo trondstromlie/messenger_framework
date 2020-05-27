@@ -6,10 +6,11 @@ module.exports = function processMessage(event) {
     if (!event.message.is_echo) {
       const message = event.message;
       const senderID = event.sender.id;
+      console.log(event.sender);
       console.log("Received message from senderId: " + senderID);
       console.log("Message is: " + JSON.stringify(message));
     if (message.text) {
-       const body = {"message":"du sa " + message.text}
+       const body = {"message":"du sa ","msg": message.text}
        sendGenericTemplate(senderID,body);
       };
     }

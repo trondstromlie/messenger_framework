@@ -13,6 +13,7 @@ module.exports = function processMessage(event) {
       }, (error,res,body) =>{
         let fields = JSON.parse(body);
         console.log(fields);
+        return fields;
       });
 
 
@@ -23,6 +24,19 @@ module.exports = function processMessage(event) {
       console.log("Received message from senderId: " + senderID);
       console.log("Message is: " + JSON.stringify(message));
     if (message.text) {
+      senderAction(senderID);
+       sendMessage(senderID, {text: "hei på deg " id_fields.first_name}).then(() => {
+          senderAction(senderID);
+         sendMessage(senderID, { text: "veldig koselig"}).then(() => {
+            senderAction(senderID);
+           sendMessage(senderID, {  text: "hyggelig å se deg "}).then(() => {
+             senderAction(senderID);
+             sendMessage(senderID, { text: '🎈' });
+         })
+      });
+    });
+
+
        const body = {"message":"du sa ","msg": message.text}
        sendGenericTemplate(senderID,body);
       };

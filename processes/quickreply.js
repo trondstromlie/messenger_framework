@@ -27,6 +27,8 @@ module.exports = async function quickreply(event) {
       console.log("Received message from senderId: " + senderID);
       console.log("Message is: " + JSON.stringify(message));
 
+    //du kan se i postback filen hvordan han finner ut a payload er welcome
+    //quickreply gir payload texten
     console.log(quickreply);
     if (message.quickreply) {
 

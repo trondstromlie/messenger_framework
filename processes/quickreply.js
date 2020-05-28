@@ -6,7 +6,7 @@ const quickReplies = require('../templates/quickReplies');
 
 module.exports = async function quickreply(event) {
 
-
+    console.log("starter quick_reply");
     //use a get request to fetch name fields from graph
     await request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN,
@@ -26,10 +26,10 @@ module.exports = async function quickreply(event) {
       console.log("Received message from senderId: " + senderID);
       console.log("Message is: " + JSON.stringify(message));
 
-    if (message.text) {
+    if (message.quickreply.payload) {
 
       senderAction(senderID);
-       sendMessage(senderID, {text: "hei på deg "+ user_fields.first_name}).then(() => {
+       sendMessage(senderID, {text: "payload registrert "+ user_fields.first_name}).then(() => {
 
              sendMessage(senderID, { text: '🎈' });
            });

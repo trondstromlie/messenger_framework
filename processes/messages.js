@@ -15,7 +15,9 @@ module.exports = function processMessage(event) {
       }, (error,res,body) =>{
          let user_fields = JSON.parse(body);
 
+         console.log(user_fields)
          return user_fields
+
       });
 
     }

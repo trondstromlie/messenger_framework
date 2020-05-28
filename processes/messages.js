@@ -23,7 +23,7 @@ module.exports = async function processMessage(event) {
 
 
 
-      console.log(user);
+      console.log({"outside: ":{user}});
 
 
 

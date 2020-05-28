@@ -39,7 +39,7 @@ module.exports = async function processMessage(event) {
       quickReplies(senderID,body);
   } else if(message.text){
       const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
-      sendGenericTemplate(senderID,body);
+      sendGenericTemplate(senderID,body,user_fields);
 
   }
 

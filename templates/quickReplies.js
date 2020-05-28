@@ -16,7 +16,7 @@ module.exports = function sendQuickReplies(recipientId, respBody,user_fields) {
         recipient:{"id":recipientId},
         messaging_type: "RESPONSE",
         message:{
-          text: " velg med knapen under alternativet som passer deg best:",
+          text: " velg med knapene under, alternativet som passer deg best:",
           quick_replies:[
             {
             content_type:"text",

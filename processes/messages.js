@@ -31,22 +31,24 @@ module.exports = function processMessage(event) {
       console.log(event.sender);
       console.log("Received message from senderId: " + senderID);
       console.log("Message is: " + JSON.stringify(message));
-    if (message.text) {
+    if (message.text && message.text === "hei") {
       senderAction(senderID);
        sendMessage(senderID, {text: "hei på deg "}).then(() => {
-          senderAction(senderID);
+
          sendMessage(senderID, { text: "veldig koselig"}).then(() => {
-            senderAction(senderID);
+
            sendMessage(senderID, {  text: "hyggelig å se deg "}).then(() => {
-             senderAction(senderID);
+
              sendMessage(senderID, { text: '🎈' });
          })
       });
     });
 
+  }; else if(message.text){
+    const body = {"message":"du sa ","msg": message.text}
+    sendGenericTemplate(senderID,body);
+  }
 
-       const body = {"message":"du sa ","msg": message.text}
-       sendGenericTemplate(senderID,body);
-      };
+
     }
   }

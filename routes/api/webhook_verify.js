@@ -35,17 +35,17 @@ const http = require('http');
 
        /* Iterate over each entry, there can be multiple entries
        if callbacks are batched. */
-       
+
        req.body.entry.forEach(function(entry) {
        // Iterate over each messaging event
           entry.messaging.forEach(function(event) {
           console.log({webhook:event});
           if (event.postback){
              processPostback(event);
+          } else if (event.quick_reply) {
+              processQuickreply(event);
           } else if (event.message){
              processMessage(event);
-          } else if (event.quick_reply) {
-             processQuickreply(event);
           }
       });
     });

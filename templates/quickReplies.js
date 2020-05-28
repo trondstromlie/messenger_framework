@@ -2,11 +2,11 @@
 const request = require('request');
 const sendMessage = require('./sendMessage');
 const senderAction = require('./senderAction');
-module.exports = function sendQuickReplies(recipientID , respBody , user_fields) {
- console.log(user_fields);
-  sendMessage(recipientID, {text: "programmet starter "}).then( () => {
-    senderAction(recipientID);
+module.exports = function sendQuickReplies(recipientID , respBody , user) {
 
+ console.log(respBody);
+
+  sendMessage(recipientID, {text: "programmet starter "}).then( () => {
 
   request({
       url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -34,7 +34,6 @@ module.exports = function sendQuickReplies(recipientID , respBody , user_fields)
   },
 
    function(error, response, body){
-        console.log(response);
         if (error) {
           console.log("Error sending message: " + response.error)
          }

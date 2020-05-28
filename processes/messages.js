@@ -2,7 +2,7 @@ const request = require('request');
 const senderAction = require('../templates/senderAction');
 const sendMessage = require('../templates/sendMessage');
 const sendGenericTemplate = require('../templates/sendGenericTemplate');
-const sendQuickReplies = require('../templates/sendQuickReplies');
+const sendQuickReplies = require('../templates/quickReplies');
 
 module.exports = async function processMessage(event) {
 
@@ -40,7 +40,7 @@ module.exports = async function processMessage(event) {
 
   } else if(message.start){
     const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
-    sendQuickReplies(senderID,body);
+    QuickReplies(senderID,body);
   }
 
 

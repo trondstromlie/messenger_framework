@@ -34,14 +34,15 @@ module.exports = async function processMessage(event) {
 
     });
 
+  } else if(message.text === "start"){
+      const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
+      QuickReplies(senderID,body);
   } else if(message.text){
-    const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
-    sendGenericTemplate(senderID,body);
+      const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
+      sendGenericTemplate(senderID,body);
 
-  } else if(message.start){
-    const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
-    QuickReplies(senderID,body);
   }
+
 
 
      }

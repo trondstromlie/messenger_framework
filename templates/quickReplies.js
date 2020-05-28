@@ -1,8 +1,9 @@
 //sendQuickReplies
 const request = require('request');
+const sendMessage = require('sendMessage');
 module.exports = function sendQuickReplies(recipientId, respBody) {
 
-
+  sendMessage(recipientId, {text: "programmet starter "+ user_fields.first_name})
   const message =   {"message":{
       "text": "velg ditt svar:",
       "quick_replies":[
@@ -42,7 +43,7 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
      }
    },
    function(error, response, body){
-        console.log("response");
+        console.log(response);
         if (error) {
           console.log("Error sending message: " + response.error)
          }

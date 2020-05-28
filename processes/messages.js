@@ -6,7 +6,7 @@ module.exports = function processMessage(event) {
 
 
 
-    fields = async () {
+    fields = async () => {
       await request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN,
           fields: "first_name,last_name"

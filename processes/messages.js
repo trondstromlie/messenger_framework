@@ -16,6 +16,7 @@ module.exports = async function processMessage(event) {
           let user_fields = JSON.parse(body);
 
 
+
     if (!event.message.is_echo) {
       const message = event.message;
       const senderID = event.sender.id;
@@ -36,7 +37,7 @@ module.exports = async function processMessage(event) {
     });
 
   } else if(message.text){
-    const body = {"Hei " + user_fields.first_name:"du sa ","msg": message.text}
+    const body = {"message":"hei " +user_fields.first.name+ " du sa ","msg": message.text}
     sendGenericTemplate(senderID,body);
   }
 

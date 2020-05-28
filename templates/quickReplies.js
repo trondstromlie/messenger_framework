@@ -29,8 +29,8 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
         ]
       }
     }
-      }
-   },
+  },
+
    function(error, response, body){
         console.log(response);
         if (error) {

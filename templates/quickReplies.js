@@ -4,7 +4,7 @@ const sendMessage = require('./sendMessage');
 const senderAction = require('./senderAction');
 module.exports = function sendQuickReplies(recipientID , respBody , user) {
 
- console.log(respBody);
+ console.log(user);
 
   sendMessage(recipientID, {text: "programmet starter "}).then( () => {
 

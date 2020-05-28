@@ -2,7 +2,7 @@ const request = require('request');
 const senderAction = require('../templates/senderAction');
 const sendMessage = require('../templates/sendMessage');
 const sendGenericTemplate = require('../templates/sendGenericTemplate');
-const sendQuickReplies = require('../templates/quickReplies');
+const quickReplies = require('../templates/quickReplies');
 
 module.exports = async function processMessage(event) {
 

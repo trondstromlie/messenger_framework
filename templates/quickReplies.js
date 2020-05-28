@@ -5,7 +5,7 @@ const senderAction = require('./senderAction');
 module.exports = function sendQuickReplies(recipientId, respBody,user_fields) {
 
   sendMessage(recipientId, {text: "programmet starter "}).then( () => {
-    senderAction(recipientID);
+    senderAction(recipientId);
 
 
   request({

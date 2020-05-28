@@ -25,18 +25,18 @@ module.exports = async function processMessage(event) {
       console.log(event.sender);
       console.log("Received message from senderId: " + senderID);
       console.log("Message is: " + JSON.stringify(message));
+
     if (message.text && message.text === "hei") {
 
       senderAction(senderID);
        sendMessage(senderID, {text: "hei på deg "+ user_fields.first_name}).then(() => {
 
              sendMessage(senderID, { text: '🎈' });
-
-    });
+           });
 
   } else if(message.text === "start"){
       const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
-      QuickReplies(senderID,body);
+      quickReplies(senderID,body);
   } else if(message.text){
       const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
       sendGenericTemplate(senderID,body);

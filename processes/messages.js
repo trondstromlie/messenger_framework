@@ -17,10 +17,12 @@ module.exports = function processMessage(event) {
 
 
          console.log(user_fields);
+         return user_fields
+
 
       });
 
-
+      console.log(fields);
 
 
 

@@ -1,6 +1,6 @@
 const processPostback = require('../../processes/postback');
 const processMessage = require('../../processes/messages');
-const processQuickreply = require('../../preocesses/quickreply');
+const processQuickreply = require('../../processes/quickreply');
 const express = require('express');
 const router = express.Router();
 const url = require('url');

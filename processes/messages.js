@@ -12,14 +12,11 @@ module.exports = function processMessage(event) {
 
         },
         method: "GET"
-      }, (error,res,body) => {
-         let user_fields = JSON.parse(body);
+      }, async (error,res,body) => {
+         await let user_fields = JSON.parse(body);
 
          user.first_name =user_fields.first_name;
          user.last_name =user_fields.last_name;
-
-
-         console.log(user_fields);
 
 
       });

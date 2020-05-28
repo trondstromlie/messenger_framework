@@ -3,18 +3,22 @@ const senderAction = require('../templates/senderAction');
 const sendMessage = require('../templates/sendMessage');
 const sendGenericTemplate = require('../templates/sendGenericTemplate');
 module.exports = function processMessage(event) {
-  var fields = ""
-  request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
+
+  fields = function ()  {
+
+    request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN,
           fields: "first_name,last_name"
 
         },
         method: "GET"
       }, (error,res,body) =>{
-         fields = JSON.parse(body);
+         let user_fields = JSON.parse(body);
 
 
       });
+      return user_fields
+    }
 
       console.log(fields)
 

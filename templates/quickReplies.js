@@ -24,7 +24,7 @@ module.exports = function sendQuickReplies(recipientID , respBody , user) {
             payload:"alt1"
             },
             {
-            content_type:"text",
+            content_type:"user_email",
             title:"eller denne",
             payload:"alt2"
           }

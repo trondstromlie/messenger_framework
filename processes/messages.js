@@ -2,10 +2,11 @@ const request = require('request');
 const senderAction = require('../templates/senderAction');
 const sendMessage = require('../templates/sendMessage');
 const sendGenericTemplate = require('../templates/sendGenericTemplate');
+const sendQuickReplies = require('../templates/sendQuickReplies');
 module.exports = async function processMessage(event) {
 
 
-    //use a get request to fetch name filelds from graph
+    //use a get request to fetch name fields from graph
     await request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN,
           fields: "first_name,last_name"
@@ -33,6 +34,10 @@ module.exports = async function processMessage(event) {
     });
 
   } else if(message.text){
+    const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
+    sendGenericTemplate(senderID,body);
+    
+  } else if(message.start){
     const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
     sendGenericTemplate(senderID,body);
   }

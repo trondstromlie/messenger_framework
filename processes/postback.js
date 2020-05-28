@@ -7,6 +7,7 @@ module.exports = function processPostback(event) {
   const payload = event.postback.payload;
 
   if(payload === "alt1") {
+    console.log({text:'alt 1 er registrert i payload'});
     sendMessage(senderID, "alternativ 1 er registrert");
   }
 

@@ -5,7 +5,7 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
 
   sendMessage(recipientId, {text: "programmet starter "});
 
-  const message =   {"message":{
+  const message =   {
       "text": "velg ditt svar:",
       "quick_replies":[
         {
@@ -19,7 +19,7 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
 
         }
       ]
-    }};
+    };
 
 
 

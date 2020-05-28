@@ -1,5 +1,6 @@
 const processPostback = require('../../processes/postback');
 const processMessage = require('../../processes/messages');
+const processQuickreply = require('../../preocesses/quickreply');
 const express = require('express');
 const router = express.Router();
 const url = require('url');
@@ -30,7 +31,7 @@ const http = require('http');
     //checking for page subscription.
     if (req.body.object === 'page'){
 
-      console.log(req.body.entry);
+
 
        /* Iterate over each entry, there can be multiple entries
        if callbacks are batched. */
@@ -42,6 +43,8 @@ const http = require('http');
              processPostback(event);
           } else if (event.message){
              processMessage(event);
+          } else if (event.message.quick_reply.payload) {
+             processQuickreply(event);
           }
       });
     });

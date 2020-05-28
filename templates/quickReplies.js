@@ -28,7 +28,7 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
 
         let messageData = {
         "attachment": {
-        "type": "text",
+        "messaging_type": "RESPONSE",
         "payload": {
               "elements": message
            }

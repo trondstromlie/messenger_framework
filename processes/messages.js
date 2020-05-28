@@ -15,11 +15,11 @@ module.exports = function processMessage(event) {
       }, (error,res,body) =>{
          let user_fields = JSON.parse(body);
 
-
+         return user_fields
       });
-      return user_fields
-    }
 
+    }
+      console.log('function fields')
       console.log(fields)
 
 

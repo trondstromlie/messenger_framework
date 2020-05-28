@@ -1,9 +1,11 @@
 //sendQuickReplies
 const request = require('request');
 const sendMessage = require('./sendMessage');
+const sendMessage = require('./senderAction');
 module.exports = function sendQuickReplies(recipientId, respBody) {
 
-  sendMessage(recipientId, {text: "programmet starter "}).then() {;
+  sendMessage(recipientId, {text: "programmet starter "}).then( () => {
+    senderAction(senderID);
 
 
   request({
@@ -39,5 +41,5 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
     }
 
   );
-};
+});
 }

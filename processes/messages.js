@@ -44,7 +44,7 @@ module.exports = function processMessage(event) {
       });
     });
 
-  }; else if(message.text){
+  } else if(message.text){
     const body = {"message":"du sa ","msg": message.text}
     sendGenericTemplate(senderID,body);
   }

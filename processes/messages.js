@@ -17,7 +17,7 @@ module.exports = function processMessage(event) {
 
          user.first_name =user_fields.first_name;
          user.last_name =user_fields.last_name;
-         console.log(user_fields);
+         console.log(user);
       });
 
 

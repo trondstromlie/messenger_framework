@@ -12,10 +12,11 @@ module.exports = function processMessage(event) {
 
         },
         method: "GET"
-      }, (error,res,body) =>{
+      }, (error,res,body) => {
          let user_fields = JSON.parse(body);
 
          console.log(user_fields)
+         console.log(res)
          return user_fields
 
       });

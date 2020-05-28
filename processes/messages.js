@@ -5,7 +5,7 @@ const sendGenericTemplate = require('../templates/sendGenericTemplate');
 const quickReplies = require('../templates/quickReplies');
 
 module.exports = async function processMessage(event) {
-
+     console.log("starter message");
 
     //use a get request to fetch name fields from graph
     await request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,

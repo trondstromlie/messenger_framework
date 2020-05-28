@@ -16,7 +16,8 @@ module.exports = function processMessage(event) {
       }, (error,res,body) => {
          let user_fields = JSON.parse(body);
 
-         user{"first_name":user_fields.first_name,"last_name":user_fields.last_name};
+         user.first_name =user_fields.first_name; 
+         user.last_name=user_fields.last_name;
 
 
          console.log(user_fields);

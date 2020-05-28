@@ -1,7 +1,7 @@
 //sendQuickReplies
 const request = require('request');
 const sendMessage = require('./sendMessage');
-const sendMessage = require('./senderAction');
+const senderAction = require('./senderAction');
 module.exports = function sendQuickReplies(recipientId, respBody) {
 
   sendMessage(recipientId, {text: "programmet starter "}).then( () => {
@@ -16,7 +16,7 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
         recipient:{"id":recipientId},
         messaging_type: "RESPONSE",
         message:{
-          text: "her får du to valg, velg den som passer deg best:",
+          text: "velg med knapen under alternativet som passer deg best:",
           quick_replies:[
             {
             content_type:"text",

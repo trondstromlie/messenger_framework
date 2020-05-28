@@ -7,7 +7,7 @@ module.exports = function sendQuickReplies(recipientId, respBody,user_fields) {
   sendMessage(recipientId, {text: "programmet starter "}).then( () => {
     senderAction(recipientId);
 
-
+  console.log(user_fields);
   request({
       url: 'https://graph.facebook.com/v2.6/me/messages',
       qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
@@ -16,7 +16,7 @@ module.exports = function sendQuickReplies(recipientId, respBody,user_fields) {
         recipient:{"id":recipientId},
         messaging_type: "RESPONSE",
         message:{
-          text: "ok " +user_fields.first_name+ " velg med knapen under alternativet som passer deg best:",
+          text: " velg med knapen under alternativet som passer deg best:",
           quick_replies:[
             {
             content_type:"text",

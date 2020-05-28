@@ -35,7 +35,7 @@ const http = require('http');
 
        /* Iterate over each entry, there can be multiple entries
        if callbacks are batched. */
-       console.log({webhook:req.body.entry})
+       console.log({webhook:req.body.entry.messaging})
        req.body.entry.forEach(function(entry) {
        // Iterate over each messaging event
           entry.messaging.forEach(function(event) {

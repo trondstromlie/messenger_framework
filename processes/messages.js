@@ -4,9 +4,9 @@ const sendMessage = require('../templates/sendMessage');
 const sendGenericTemplate = require('../templates/sendGenericTemplate');
 module.exports = function processMessage(event) {
 
-  fields = async function ()  {
 
-    await request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
+
+    fields = request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN,
           fields: "first_name,last_name"
 
@@ -15,13 +15,11 @@ module.exports = function processMessage(event) {
       }, (error,res,body) => {
          let user_fields = JSON.parse(body);
 
-         console.log(user_fields)
-         console.log(res)
-         return user_fields
+
 
       });
 
-    }
+
       console.log('function fields')
       console.log(fields)
 

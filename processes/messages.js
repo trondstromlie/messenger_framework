@@ -16,12 +16,13 @@ module.exports = function processMessage(event) {
          let user_fields = JSON.parse(body);
 
 
+         console.log(user_fields);
 
       });
 
 
-      console.log('function fields')
-      console.log(fields)
+
+
 
 
     if (!event.message.is_echo) {

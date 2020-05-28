@@ -2,18 +2,18 @@
 const request = require('request');
 const sendMessage = require('./sendMessage');
 const senderAction = require('./senderAction');
-module.exports = function sendQuickReplies(recipientId, respBody,user_fields) {
+module.exports = function sendQuickReplies(recipientID , respBody , user_fields) {
+ console.log(user_fields);
+  sendMessage(recipientID, {text: "programmet starter "}).then( () => {
+    senderAction(recipientID);
 
-  sendMessage(recipientId, {text: "programmet starter "}).then( () => {
-    senderAction(recipientId);
 
-  console.log(user_fields);
   request({
       url: 'https://graph.facebook.com/v2.6/me/messages',
       qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
       method: 'POST',
       json: {
-        recipient:{"id":recipientId},
+        recipient:{"id":recipientID},
         messaging_type: "RESPONSE",
         message:{
           text: " velg med knapene under, alternativet som passer deg best:",

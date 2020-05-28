@@ -28,7 +28,7 @@ module.exports = async function quickreply(event) {
       console.log("Received message from senderId: " + senderID);
       console.log("Message is: " + JSON.stringify(message));
 
-    console.log({quick_reply:quickreply.payload.});
+    console.log({quick_reply:quickreply.payload});
     if (message.quickreply) {
 
       senderAction(senderID);

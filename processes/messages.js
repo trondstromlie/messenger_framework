@@ -36,7 +36,7 @@ module.exports = async function processMessage(event) {
 
   } else if(message.text === "start"){
       const body = {"message":"hei " +user_fields.first_name+ " du sa ","msg": message.text}
-      quickReplies(senderID , body , user_fields);
+      quickReplies(senderID , body , user_fields.first_name);
 
 
   }

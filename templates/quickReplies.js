@@ -3,7 +3,7 @@ const request = require('request');
 const sendMessage = require('./sendMessage');
 module.exports = function sendQuickReplies(recipientId, respBody) {
 
-  sendMessage(recipientId, {text: "programmet starter "+ user_fields.first_name});
+  sendMessage(recipientId, {text: "programmet starter "});
 
   const message =   {"message":{
       "text": "velg ditt svar:",

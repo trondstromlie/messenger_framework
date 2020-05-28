@@ -3,7 +3,7 @@ const request = require('request');
 const sendMessage = require('./sendMessage');
 module.exports = function sendQuickReplies(recipientId, respBody) {
 
-  sendMessage(recipientId, {text: "programmet starter "});
+  sendMessage(recipientId, {text: "programmet starter "}).then() {;
 
 
   request({
@@ -39,4 +39,5 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
     }
 
   );
+};
 }

@@ -5,43 +5,31 @@ module.exports = function sendQuickReplies(recipientId, respBody) {
 
   sendMessage(recipientId, {text: "programmet starter "});
 
-  const message =   {
-      "text": "velg ditt svar:",
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"Red",
-          "payload":"svar2",
-        },{
-          "content_type":"text",
-          "title":"Green",
-          "payload":"svar1"
 
-        }
-      ]
-    };
-
-
-
-
-
-
-        let messageData = {
-        "attachment": {
-        "messaging_type": "RESPONSE",
-        "payload": {
-              "elements": message
-           }
-        }
-     }
   request({
       url: 'https://graph.facebook.com/v2.6/me/messages',
       qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
       method: 'POST',
       json: {
-        recipient: {id: recipientId},
-        message: messageData,
-     }
+        recipient:{"id":recipientId},
+        messaging_type: "RESPONSE",
+        message:{
+          text: "her får du to valg, velg den som passer deg best:",
+          quick_replies:[
+            {
+            content_type:"text",
+            title:"velg denne",
+            payload:"alt1"
+            },
+            {
+            content_type:"text",
+            title:"eller denne",
+            payload:"alt2"
+          }
+        ]
+      }
+    }
+      }
    },
    function(error, response, body){
         console.log(response);

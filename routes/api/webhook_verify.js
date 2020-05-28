@@ -43,7 +43,7 @@ const http = require('http');
              processPostback(event);
           } else if (event.message){
              processMessage(event);
-          } else if (event.message.quick_reply.payload) {
+          } else if (event.quick_reply) {
              processQuickreply(event);
           }
       });

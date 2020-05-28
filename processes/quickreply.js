@@ -20,7 +20,6 @@ module.exports = async function quickreply(event) {
 
 
     if (!event.message.is_echo) {
-      event_data = JSON.parse(event.message)
       const message = event.message;
       const senderID = event.sender.id;
       const quickreply = JSON.stringify(event.message.quick_reply)

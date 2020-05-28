@@ -29,8 +29,8 @@ const http = require('http');
   router.post('/hook', function(req, res) {
     //checking for page subscription.
     if (req.body.object === 'page'){
-      console.log("webhook");
-      console.log(req.body);
+
+      console.log(req.body.entry);
 
        /* Iterate over each entry, there can be multiple entries
        if callbacks are batched. */

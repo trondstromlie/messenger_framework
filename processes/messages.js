@@ -6,7 +6,8 @@ module.exports = function processMessage(event) {
 
     let user = {"first_name":"","last_name":""}
 
-    fields = request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
+    fields = async function () {
+      await request({ url: "https://graph.facebook.com/v2.6/" + event.sender.id,
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN,
           fields: "first_name,last_name"
 
@@ -19,6 +20,7 @@ module.exports = function processMessage(event) {
          user.last_name =user_fields.last_name;
          console.log(user);
       });
+    }
 
 
 

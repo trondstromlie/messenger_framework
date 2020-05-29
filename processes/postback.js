@@ -6,10 +6,7 @@ module.exports = function processPostback(event) {
   const senderID = event.sender.id;
   const payload = event.postback.payload;
 
-  if(payload === "alt1") {
-    console.log('alt 1 er registrert i payload');
-    sendMessage(senderID, {text:"alternativ 1 er registrert"});
-  }
+  console.log(event);
 
   else if (payload === 'welcome') {
      request({ url: "https://graph.facebook.com/v2.6/" + senderID,

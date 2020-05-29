@@ -32,6 +32,7 @@ app.use("/api/serviceupdate", require("./routes/api/serviceupdate"));
 
 //API route for the messenger web_hook
 app.use("/api/verify", require("./routes/api/webhook_verify"));
+app.use("/messengerapp/webhook", require("./messengerApp/webhook"));
 
 
 

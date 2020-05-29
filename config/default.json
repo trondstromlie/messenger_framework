@@ -1,12 +1,12 @@
 {
- #mongo DB
+ //mongo DB
  "mongoURI":"mongodb+srv://trondstromlie:MO-bbllhdnu1@clusterphonestatus-udrj0.mongodb.net/test?retryWrites=true&w=majority",
  "localMongoURI":"mongodb://127.0.0.1:27017",
 
- #jwttoken
+ //jwttoken
  "jwtToken":"sfdhus403lrgj",
 
- #facebook messenger tokens
+ //facebook messenger tokens
  "FBVERYFY_TOKEN":"dfsuhgmvd",
  "FbPageToken":"EAAHuUAxrQ8QBAOkvPVAIaq0vHnrcUDm86NiwTuk83tu2UtYEnn5gFRvSQpIvCtQGGNRq5xW230gzXdEJUlexHfdVpulQYBUeAEyOHMQPL6h25au4XIXexVyJv261ndLyuQEXJFsgaIzB0sezFU08mg9oMW9EL4c0gCuZAWQtqokrkCb1kNFkGy6XpsQ8ZD",
  "FbappID":"543502549861316",

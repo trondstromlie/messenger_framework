@@ -7,7 +7,7 @@ const User = require("../models/User");
   // @ Adds support for GET requests to our webhook
 router.get("/", ( req , res ) => {
     // Your verify token. Should be a random string.
-    let VERIFY_TOKEN = config.get("FbToken");
+    let VERIFY_TOKEN = config.get("FBVERYFY_TOKEN");
 
     // Parse the query params
 

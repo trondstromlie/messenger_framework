@@ -2,5 +2,6 @@
  "mongoURI":"mongodb+srv://trondstromlie:MO-bbllhdnu1@clusterphonestatus-udrj0.mongodb.net/test?retryWrites=true&w=majority",
  "localMongoURI":"mongodb://127.0.0.1:27017",
  "jwtToken":"sfdhus403lrgj",
- "FbToken":"dfsuhgmvd"
+ "FbToken":"dfsuhgmvd",
+ "FbPageToken":"EAAHuUAxrQ8QBAOkvPVAIaq0vHnrcUDm86NiwTuk83tu2UtYEnn5gFRvSQpIvCtQGGNRq5xW230gzXdEJUlexHfdVpulQYBUeAEyOHMQPL6h25au4XIXexVyJv261ndLyuQEXJFsgaIzB0sezFU08mg9oMW9EL4c0gCuZAWQtqokrkCb1kNFkGy6XpsQ8ZD"
 }

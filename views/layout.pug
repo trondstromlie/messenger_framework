@@ -7,7 +7,7 @@ head
     window.fbAsyncInit = function() {
     FB.init({
     xfbml            : true,
-    version          : 'v7.0'
+    version          : 'v6.0'
     });
     };
     (function(d, s, id) {
@@ -18,7 +18,11 @@ head
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   // Your Chat Plugin code
-  .fb-customerchat(attribution='setup_tool' page_id='104680997936481')
+  .fb-customerchat(
+      attribution='setup_tool'
+      page_id='104680997936481'
+      logged_in_greeting="hei hvordan kan jeg hjelpe deg "
+      logged_out_greeting="Hei hvordan kan jeg hjelpe deg")
 
   meta(charset='utf-8')
   meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')

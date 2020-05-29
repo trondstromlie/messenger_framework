@@ -19,6 +19,7 @@ function callSendAPI (sender_psid, response) {
    "uri": "https://graph.facebook.com/v2.6/me/messages",
    "qs": { "access_token": config.get('FbPageToken') },
    "method": "POST",
+   "json": request_body
   }, (err, res, body) => {
    if (!err) {
     console.log('message sent!')

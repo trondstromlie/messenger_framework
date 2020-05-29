@@ -2,6 +2,7 @@ const express = require('express');
 const connectDb = require('./config/db');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const path = require("path");
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,11 +20,11 @@ app.use(morgan('dev')); // log every request to the console.
 app.use(bodyParser.urlencoded({ extended:false }));
 app.use(bodyParser.json());
 
-//blanc index
+app.use(express.static(path.join(__dirname,'public')));
 
-app.get("/", (req,res) => {
-  res.send("hello world");
-});
+app.set('view engine', 'pug');
+app.set('views',path.join(__dirname,'views'));
+console.log(path.join(__dirname));
 
 //API routes
 app.use("/api/user", require("./routes/api/user"));
@@ -33,6 +34,9 @@ app.use("/api/serviceupdate", require("./routes/api/serviceupdate"));
 //API route for the messenger web_hook
 app.use("/api/verify", require("./routes/api/webhook_verify"));
 app.use("/messengerapp/webhook", require("./messengerApp/webhook"));
+
+//Routes for views
+app.use("/", require("./routes/pages/pages"));
 
 
 

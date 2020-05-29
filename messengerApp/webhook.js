@@ -4,7 +4,7 @@ const config = require('config');
 const User = require("../models/User");
 
 const handleMessage = (psid, message) => {
-  console.log(message);
+  console.log(message.text);
 };
 
 const handlePostback = (psid, postback) => {

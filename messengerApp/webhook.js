@@ -3,6 +3,15 @@ const router = express.Router();
 const config = require('config');
 const User = require("../models/User");
 
+const handleMessage = (psid, message) => {
+  console.log(message);
+};
+
+const handlePostback = (psid, postback) => {
+  console.log(postback);
+};
+
+
   // @ route GET / messengerapp / webhook
   // @ Adds support for GET requests to our webhook
 router.get("/", ( req , res ) => {
@@ -57,6 +66,14 @@ router.post("/", ( req , res ) => {
       // Get the sender PSID
       let sender_psid = webhook_event.sender.id;
       console.log('Sender PSID: ' + sender_psid);
+
+      // Check if the event is a message or postback and
+      // pass the event to the appropriate handler function
+      if (webhook_event.message) {
+        handleMessage(sender_psid, webhook_event.message);
+      } else if (webhook_event.postback) {
+        handlePostback(sender_psid, webhook_event.postback);
+      }
     });
 
     // Returns a '200 OK' response to all requests

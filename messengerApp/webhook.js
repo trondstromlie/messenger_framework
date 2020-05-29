@@ -5,19 +5,19 @@ const User = require("../models/User");
 const request = require('request');
 
 //construct the message body
-const function callSendAPI(sender_psid, response) {
+function callSendAPI (sender_psid, response) {
   // Construct the message body
   let request_body = {
     "recipient": {
       "id": sender_psid
     },
     "message": response
-  }
-  // Send the HTTP request to the Messenger Platform
-  
- request({
+   }
+   // Send the HTTP request to the Messenger Platform
+
+  request({
    "uri": "https://graph.facebook.com/v2.6/me/messages",
-   "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
+   "qs": { "access_token": config.get('FbPageToken') },
    "method": "POST",
   }, (err, res, body) => {
    if (!err) {
@@ -27,12 +27,12 @@ const function callSendAPI(sender_psid, response) {
    }
  });
  }
-};
+
 
 
 //handle message
 //function
-const  handleMessage (sender_psid, received_message) => {
+function handleMessage (sender_psid, received_message) {
 
   let response;
 
@@ -49,7 +49,7 @@ const  handleMessage (sender_psid, received_message) => {
   callSendAPI(sender_psid, response);
 }
 
-const handlePostback = (psid, postback) => {
+function handlePostback (psid, postback) {
   console.log(postback);
 };
 

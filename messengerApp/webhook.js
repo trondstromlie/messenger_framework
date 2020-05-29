@@ -29,7 +29,10 @@ router.get("/", ( req , res ) => {
         // Responds with '403 Forbidden' if verify tokens do not match
         res.sendStatus(403);
       }
+    } else {
+      res.status(501).send("server error");
     }
+
   });
 
 

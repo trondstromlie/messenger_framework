@@ -22,7 +22,7 @@ try {
 
             })
           console.log({"getUserData": user_fields});
-          return user_fields;
+          return {"name":"input_field","last name":"input_field"};
 
     }catch(e) {
       console.error(e.message)

@@ -11,7 +11,7 @@ const callSendAPI = require("./controllers/callSendAPI");
 //handle message
 //function
 function handleMessage (sender_psid, received_message) {
-  console.log(received_message);
+  console.log("melding fra messenger "+received_message.text);
   let response;
   let user_data = new messengerUser(sender_psid);
 
@@ -94,7 +94,6 @@ router.post("/", ( req , res ) => {
       // Gets the message. entry.messaging is an array, but
       // will only ever contain one message, so we get index 0
       let webhook_event = entry.messaging[0];
-      console.log(webhook_event);
 
       // Get the sender PSID
       let sender_psid = webhook_event.sender.id;

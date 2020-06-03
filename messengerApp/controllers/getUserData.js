@@ -8,7 +8,7 @@ const request = require('request');
   request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),
             fields: "first_name,last_name" }, method: "GET"
-          }, await (error, response, body) =>
+          }, (error, response, body) await =>
               {
                 if(!error) {
                 console.log(body)

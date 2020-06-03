@@ -22,6 +22,6 @@ try {
 
     }catch(e) {
       console.error(e.message)
-    }
-    return userData
+    }.then() {return userData; }
+
   };

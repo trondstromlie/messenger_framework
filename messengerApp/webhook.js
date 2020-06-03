@@ -32,7 +32,7 @@ function handleMessage (sender_psid, received_message) {
   } else {
       console.log(received_message.text);
       //send the responce message
-      callSendAPI(sender_psid, "ingen melding");
+      callSendAPI(sender_psid, {"text":"ingen melding"});
   }
 
 

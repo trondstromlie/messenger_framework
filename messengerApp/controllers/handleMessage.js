@@ -31,8 +31,8 @@ module.exports = async function handleMessage (sender_psid, received_message) {
   } else if ( received_message.text === "Start") {
 
     let response;
-    let userdata = await getUserData(sender_psid)
-
+    let userdata = await getUserData(sender_psid);
+    response = {"text": userdata.first_name + "er kul"};
     console.log({"user_data" : userdata});
     console.log("start is active");
 

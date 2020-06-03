@@ -22,9 +22,9 @@ module.exports = function callSendAPI (sender_psid, response) {
    "json": request_body
   }, (err, res, body) => {
    if (!err) {
-    console.log('message sent!')
+    return console.log('message sent!')
    } else {
-     console.error("Unable to send message:" + err);
+     return console.error("Unable to send message:" + err);
    }
  });
  }

@@ -1,6 +1,7 @@
 //send message function
 //construct the message body
 const request = require("request");
+const config = require("config");
 
 module.exports = function callSendAPI (sender_psid, response) {
   // Construct the message body

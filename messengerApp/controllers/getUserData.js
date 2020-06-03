@@ -5,10 +5,10 @@ const request = require('request-promise');
  module.exports = async function (sender_psid) {
   var userData = {};
 
-request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
+  const result = await request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),
             fields: "first_name,last_name" }, method: "GET"
-          }, await function (error, response, body) 
+          },  function (error, response, body)
               {
                 if(!error) {
                 console.log(body)
@@ -19,5 +19,5 @@ request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
 
             });
   return userData;
-  console.log({"getUserData":JSON.stringify(userData)})
+  console.log({"getUserData":JSON.stringify(const.body)})
  };

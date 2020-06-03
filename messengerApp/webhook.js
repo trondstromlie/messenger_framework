@@ -4,7 +4,6 @@ const router = express.Router();
 const config = require('config');
 const User = require("../models/User");
 const request = require('request');
-const messengerUser = require("./controllers/user");
 const callSendAPI = require("./controllers/callSendAPI");
 
 

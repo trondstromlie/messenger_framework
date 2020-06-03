@@ -16,7 +16,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
   if (received_message.text === "Image") {
 
     let response;
-    let userdata = await getUserData(sender_psid).then(){
+    let userdata = await getUserData(sender_psid)
 
     console.log({"user_data" : userdata});
 
@@ -26,7 +26,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
     }
     // Sends the response message
     return callSendAPI(sender_psid, response);
-  }
+
 
   } else if ( received_message.text === "Start") {
 
@@ -61,7 +61,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
     } catch(e) {
        console.error(e.message);
      }
-    }
 
+}
 
   };

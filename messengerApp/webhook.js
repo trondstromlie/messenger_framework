@@ -4,7 +4,7 @@ const config = require('config');
 const User = require("../models/User");
 const request = require('request');
 const messengerUser = require("./controllers/user");
-const callSendAPI = require("./controllers/sendMessage");
+const callSendAPI = require("./controllers/callSendAPI");
 
 
 //handle message
@@ -12,6 +12,7 @@ const callSendAPI = require("./controllers/sendMessage");
 function handleMessage (sender_psid, received_message) {
 
   let response;
+  let user_data = new messengerUser(sender_psid);
 
   // Check if the message contains text
   if (received_message.text === "image") {

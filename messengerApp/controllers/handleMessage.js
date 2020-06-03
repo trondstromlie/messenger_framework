@@ -8,7 +8,7 @@ const getUserData = require("./getUserData");
 
 module.exports = async function handleMessage (sender_psid, received_message) {
 
-  console.log(JSON.stringify(received_message));
+  //console.log(JSON.stringify(received_message));
 
 
 
@@ -43,10 +43,14 @@ module.exports = async function handleMessage (sender_psid, received_message) {
     let response;
     let userdata = await getUserData(sender_psid)
 
-    console.log({"userdata" : userdata});
+    console.log({"userdata else" : userdata});
       //send the responce message
       if (userdata.first_name === "Trond") {
-      callSendAPI(sender_psid, {"text":"hei "+ userdata.first_name+ " <3 du er flink"});
+
+      //create payload for messages
+      response = {"txt": `hei ${userdata.first_name} <3 :) du er flink`};
+
+      callSendAPI(sender_psid, response);
     } else {
       callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
     }
@@ -54,4 +58,4 @@ module.exports = async function handleMessage (sender_psid, received_message) {
   }
 
 
-}
+};

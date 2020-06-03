@@ -13,7 +13,7 @@ module.exports = function handleMessage (sender_psid, received_message) {
   let response;
 
 
-  console.log({"user_data":{getUserData(sender_psid)});
+  console.log({"user_data" : getUserData(sender_psid)});
 
   // Check if the message contains text
   if (received_message.text === "Image") {

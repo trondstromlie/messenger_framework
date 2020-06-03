@@ -11,9 +11,9 @@ module.exports = function handleMessage (sender_psid, received_message) {
   console.log(JSON.stringify(received_message));
 
   let response;
+  let userdata = await getUserData(sender_psid)
 
-
-  console.log({"user_data" : getUserData(sender_psid)});
+  console.log({"user_data" : userdata});
 
   // Check if the message contains text
   if (received_message.text === "Image") {

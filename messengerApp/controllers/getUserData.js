@@ -5,10 +5,10 @@ const request = require('request');
  module.exports = async function (sender_psid) {
   var userData = {};
 
-  await request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
+  request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),
             fields: "first_name,last_name" }, method: "GET"
-            }, (error, response, body) =>
+          }, await (error, response, body) =>
               {
                 if(!error) {
                 console.log(body)

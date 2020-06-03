@@ -57,7 +57,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
         await callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
       }
-    } catch(e) { condole.error(e.message);}
+    } catch(e) { console.error(e.message);}
     }
 
 

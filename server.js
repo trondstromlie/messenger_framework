@@ -30,6 +30,7 @@ console.log(path.join(__dirname));
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/status", require("./routes/api/status"));
 app.use("/api/serviceupdate", require("./routes/api/serviceupdate"));
+app.use("/api/messenger/check_in_user", require("./routes/api/check_in_user"));
 
 //API route for the messenger web_hook
 app.use("/api/verify", require("./routes/api/webhook_verify"));

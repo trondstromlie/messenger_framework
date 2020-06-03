@@ -15,6 +15,9 @@ const UserSchema = new mongoose.Schema({
     type:String,
     required:true
   },
+  sender_psid:{
+    type:String
+  },
   date:{
     type:Date,
     required:true

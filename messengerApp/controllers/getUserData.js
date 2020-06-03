@@ -17,5 +17,5 @@ const request = require('request');
 
             });
   return userData;
-  console.log({"getUserData":userData})
+  console.log({"getUserData":JSON.stringify(userData)})
  };

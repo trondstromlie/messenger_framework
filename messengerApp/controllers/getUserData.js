@@ -27,5 +27,6 @@ try {
     }catch(e) {
       console.error(e.message)
     } () => {}
+    console.log(data.userData)
  //return {"name":"trond"};
   };

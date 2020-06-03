@@ -6,7 +6,7 @@ const getUserData = require("./getUserData");
 //handle message
 //function
 
-module.exports = function handleMessage (sender_psid, received_message) {
+module.exports = async function handleMessage (sender_psid, received_message) {
 
   console.log(JSON.stringify(received_message));
 

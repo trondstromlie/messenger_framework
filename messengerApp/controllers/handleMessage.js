@@ -48,14 +48,14 @@ module.exports = async function handleMessage (sender_psid, received_message) {
         if (userdata.first_name === "Trond") {
 
         //create payload for messages
-        response = {"txt": `hei ${userdata.first_name} <3 :) du er flink`};
+        response = {"text": `hei ${userdata.first_name} <3 :) du er flink`};
         console.log(response);
 
         await callSendAPI(sender_psid, response);
 
       } else {
-
-        await callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
+        response = {"text":"hallo "+ userdata.first_name}
+        await callSendAPI(sender_psid, response );
       }
     } catch(e) { console.error(e.message);}
     }

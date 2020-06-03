@@ -21,7 +21,7 @@ try {
               }
 
             })
-          console.log({"getUserData": user_fields});
+          //console.log({"getUserData": user_fields});
           return user_fields
 
     }catch(e) {

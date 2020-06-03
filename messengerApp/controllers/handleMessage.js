@@ -14,6 +14,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
   // Check if the message contains text
   if (received_message.text === "Image") {
+
     let response;
     let userdata = await getUserData(sender_psid)
 
@@ -27,21 +28,25 @@ module.exports = async function handleMessage (sender_psid, received_message) {
     callSendAPI(sender_psid, response);
 
   } else if ( received_message.text === "Start") {
+
     let response;
     let userdata = await getUserData(sender_psid)
 
     console.log({"user_data" : userdata});
-      console.log("start is active");
+    console.log("start is active");
+
       // Sends the response message
       callSendAPI(sender_psid, response);
+
   } else if (received_message.text) {
+
     let response;
     let userdata = await getUserData(sender_psid)
 
-    console.log({"user_data" : userdata});
+    console.log({"userdata" : userdata});
       //send the responce message
       if (userdata.first_name === "Trond") {
-      callSendAPI(sender_psid, {"text":"hei "+userdata.first_name+" <3 du er flink"});
+      callSendAPI(sender_psid, {"text":"hei "+ userdata.first_name+ " <3 du er flink"});
     } else {
       callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
     }

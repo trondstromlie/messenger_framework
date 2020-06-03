@@ -36,7 +36,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
     console.log("start is active");
 
       // Sends the response message
-      callSendAPI(sender_psid, response);
+      await callSendAPI(sender_psid, response);
 
   } else if (received_message.text) {
 
@@ -51,9 +51,11 @@ module.exports = async function handleMessage (sender_psid, received_message) {
       response = {"txt": `hei ${userdata.first_name} <3 :) du er flink`};
       console.log(response);
 
-      callSendAPI(sender_psid, response);
+      await callSendAPI(sender_psid, response);
+
     } else {
-      callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
+
+      await callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
     }
 
   }

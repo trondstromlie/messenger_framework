@@ -9,7 +9,7 @@ module.exports = function callSendAPI (sender_psid, response) {
   // Construct the message body
   console.log("melding sendt til send API " + response)
 
-  let request_body = {
+  const request_body = {
     "recipient": {
       "id": sender_psid
     },
@@ -17,6 +17,7 @@ module.exports = function callSendAPI (sender_psid, response) {
    }
    // Send the HTTP request to the Messenger Platform
    console.log(request_body);
+
   request({
    "uri": "https://graph.facebook.com/v2.6/me/messages",
    "qs": { "access_token": config.get('FbPageToken') },

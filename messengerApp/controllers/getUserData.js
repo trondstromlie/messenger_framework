@@ -12,7 +12,7 @@ const request = require('request-promise');
               {
                 if(!error) {
                 console.log(body)
-                 userData = body;
+                 await userData = body;
               } else {
                 console.error({"unable to get user data": error});
               }

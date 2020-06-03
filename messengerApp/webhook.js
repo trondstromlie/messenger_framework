@@ -21,13 +21,24 @@ function handleMessage (sender_psid, received_message) {
     response = {
       "text": `You sent the message: "${received_message.text}". Now send me an image!`
     }
+    // Sends the response message
+    callSendAPI(sender_psid, response);
+
   } else if ( received_message.text === "start") {
+      console.log("start is active");
+      // Sends the response message
+      callSendAPI(sender_psid, response);
+  } else (
+      console.log(received_message.text);
+      //send the responce message
+      callSendAPI(sender_psid, "ingen melding");
+  )
 
-  }
 
-  // Sends the response message
-  callSendAPI(sender_psid, response);
 }
+
+
+//handle postback message
 
 function handlePostback (psid, postback) {
   console.log(postback);

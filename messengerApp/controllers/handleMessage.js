@@ -40,7 +40,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
   } else if (received_message.text) {
 
-    const response;
+    let response;
     const userdata = await getUserData(sender_psid)
 
     console.log({"userdata else" : userdata});

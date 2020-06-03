@@ -8,7 +8,7 @@ const getUserData = require("./getUserData");
 
 module.exports = function handleMessage (sender_psid, received_message) {
 
-  console.log(JSON.strinify(received_message));
+  console.log(JSON.stringify(received_message));
 
   let response;
   let user_data = new getUserData(sender_psid);

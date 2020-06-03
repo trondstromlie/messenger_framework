@@ -17,9 +17,9 @@ const request = require('request-promise');
                 console.error({"unable to get user data": error});
               }
 
-            }).then(userData)
+            }).then()
             {
-              console.log({"getUserData":JSON.stringify(result.body)})
+              console.log(userData)
               return userData;
           }
  };

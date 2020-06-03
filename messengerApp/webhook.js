@@ -8,36 +8,6 @@ const messengerUser = require("./controllers/user");
 const callSendAPI = require("./controllers/callSendAPI");
 
 
-//handle message
-//function
-function handleMessage (sender_psid, received_message) {
-  console.log("melding fra messenger1234 "+received_message.text);
-  let response;
-  //let user_data = new messengerUser(sender_psid);
-
-  // Check if the message contains text
-  if (received_message.text === "image") {
-
-    // Create the payload for a basic text message
-    response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an image!`
-    }
-    // Sends the response message
-    callSendAPI(sender_psid, response);
-
-  } else if ( received_message.text === "start") {
-      console.log("start is active");
-      // Sends the response message
-      callSendAPI(sender_psid, response);
-  } else {
-      //send the responce message
-      callSendAPI(sender_psid, {"text":"ingen melding"});
-  }
-
-
-}
-
-
 //handle postback message
 
 function handlePostback (psid, postback) {

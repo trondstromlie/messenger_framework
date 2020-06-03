@@ -31,7 +31,7 @@ module.exports = function handleMessage (sender_psid, received_message) {
       callSendAPI(sender_psid, response);
   } else {
       //send the responce message
-      callSendAPI(sender_psid, {"text":"ingen melding"});
+      callSendAPI(sender_psid, {"text":"<3 :)"});
   }
 
 

@@ -15,7 +15,7 @@ const request = require('request');
                 console.log(body)
                 userData = body;
               } else {
-                //console.log(error);
+                console.error({"unable to get user data": error});
               }
 
             });

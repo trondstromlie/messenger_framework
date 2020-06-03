@@ -12,7 +12,6 @@ try {
           },  function (error, response, body)
               {
                 if(!error) {
-                console.log(body)
                  userData = body;
               } else {
                 console.error({"unable to get user data": error});
@@ -20,8 +19,9 @@ try {
 
             })
           console.log({"getUserData": userData});
-          return userData;
+
     }catch(e) {
       console.error(e.message)
     }
+    return userData
   };

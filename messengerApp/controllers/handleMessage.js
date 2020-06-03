@@ -16,7 +16,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
   if (received_message.text === "Image") {
 
     let response;
-    let userdata = await getUserData(sender_psid)
+    let userdata = await getUserData(sender_psid);
 
     console.log({"user_data" : userdata});
 
@@ -42,7 +42,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
   } else if (received_message.text) {
     try {
       let response;
-      const userdata = await getUserData(sender_psid):
+      const userdata = await getUserData(sender_psid);
 
       console.log({"userdata else" : userdata});
         //send the responce message

@@ -10,7 +10,7 @@ const request = require('request');
               {
                 if(!error) {
                 console.log(body)
-                return body)
+                return body
               } else {
                 console.error({"unable to get user data": error});
               }

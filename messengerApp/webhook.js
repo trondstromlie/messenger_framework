@@ -30,7 +30,7 @@ function handleMessage (sender_psid, received_message) {
       // Sends the response message
       callSendAPI(sender_psid, response);
   } else {
-      console.log(received_message.text);
+      console.log("Du sendte denne meldingen "+received_message.text);
       //send the responce message
       callSendAPI(sender_psid, {"text":"ingen melding"});
   }

@@ -22,7 +22,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
     // Create the payload for a basic text message
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      "text": `You sent the message: "${userdata.first_name +received_message.text}". Now send me an image!`
     }
     // Sends the response message
     callSendAPI(sender_psid, response);
@@ -54,7 +54,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
         await callSendAPI(sender_psid, response);
 
       } else {
-        response = {"text":"hallo "+ userdata.first_name}
+        response = {"text":"hallo " + userdata.first_name}
         await callSendAPI(sender_psid, response );
       }
     } catch(e) { console.error(e.message);}

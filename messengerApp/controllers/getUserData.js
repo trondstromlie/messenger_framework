@@ -5,7 +5,8 @@ const request = require('request-promise');
  module.exports = async function (sender_psid) {
   var userData = {};
 
-  const result = await request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
+try {
+   await request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),
             fields: "first_name,last_name" }, method: "GET"
           },  function (error, response, body)
@@ -17,9 +18,10 @@ const request = require('request-promise');
                 console.error({"unable to get user data": error});
               }
 
-            }).then()
-            {
-              console.log(userData)
-              return userData;
-          }
- };
+            })
+          console.log({"getUserData": userData});
+          return userData;
+    }catch(e) {
+      console.error(e.message)
+    }
+  };

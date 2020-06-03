@@ -3,7 +3,7 @@ const request = require('request');
 
  module.exports = function (sender_psid) {
   var userData;
-  console.log({"getUserData"})
+  console.log({"getUserData":userData})
 
 
   request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,

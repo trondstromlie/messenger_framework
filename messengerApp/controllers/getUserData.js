@@ -3,10 +3,10 @@ const config = require('config');
 const request = require('request-promise');
 
  module.exports = async function (sender_psid) {
-
+    const userData = {};
 
 try {
-   var userData = {};
+
    var data =  await request({
             url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),

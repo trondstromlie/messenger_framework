@@ -6,6 +6,7 @@ const config = require("config");
 
 module.exports = function callSendAPI (sender_psid, response) {
   // Construct the message body
+  console.log("melding sendt til send API " + response)
   let request_body = {
     "recipient": {
       "id": sender_psid

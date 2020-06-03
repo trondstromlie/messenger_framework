@@ -14,7 +14,9 @@ const request = require('request');
             fields: "first_name,last_name" }, method: "GET"
             }, (error, response, body) =>
               {
-                console.log(body);
+                if(!error) {console.log(body)
+                }
+                console.log(error);
 
             }
           )

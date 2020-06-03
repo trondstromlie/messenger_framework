@@ -2,7 +2,8 @@ const config = require('config');
 const request = require('request');
 
  module.exports = function (sender_psid) {
-  var userData = {};
+  var userData;
+  console.log({"getUserData"})
 
 
   request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
@@ -14,7 +15,7 @@ const request = require('request');
                 console.log(body)
                 userData = body;
               } else {
-                console.log(error);
+                //console.log(error);
               }
 
             });

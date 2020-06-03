@@ -62,6 +62,3 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 
   };
-
-
-};

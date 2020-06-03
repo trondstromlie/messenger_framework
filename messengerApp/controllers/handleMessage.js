@@ -29,7 +29,7 @@ module.exports = function handleMessage (sender_psid, received_message) {
       console.log("start is active");
       // Sends the response message
       callSendAPI(sender_psid, response);
-  } else {
+  } else if (received_message.text) {
       //send the responce message
       callSendAPI(sender_psid, {"text":"<3 :)"});
   }

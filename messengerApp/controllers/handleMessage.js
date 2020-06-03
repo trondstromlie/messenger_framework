@@ -25,7 +25,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
       "text": `You sent the message: "${userdata.first_name +received_message.text}". Now send me an image!`
     }
     // Sends the response message
-    return await callSendAPI(sender_psid, response);
+    return callSendAPI(sender_psid, response);
   }
 
   } else if ( received_message.text === "Start") {
@@ -37,12 +37,12 @@ module.exports = async function handleMessage (sender_psid, received_message) {
     console.log("start is active");
 
       // Sends the response message
-      await callSendAPI(sender_psid, response);
+      return callSendAPI(sender_psid, response);
 
   } else if (received_message.text) {
     try {
       let response;
-      const userdata = await getUserData(sender_psid)
+      const userdata = await getUserData(sender_psid):
 
       console.log({"userdata else" : userdata});
         //send the responce message
@@ -52,11 +52,11 @@ module.exports = async function handleMessage (sender_psid, received_message) {
         response = {"text": `hei ${userdata.first_name} <3 :) du er flink`};
         console.log(response);
 
-        return await callSendAPI(sender_psid, response);
+        return callSendAPI(sender_psid, response);
 
       } else {
         response = {"text":"hallo " + userdata.first_name}
-        return await callSendAPI(sender_psid, response );
+        return callSendAPI(sender_psid, response );
       }
     } catch(e) {
        console.error(e.message);

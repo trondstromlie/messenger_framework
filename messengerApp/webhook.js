@@ -5,7 +5,7 @@ const config = require('config');
 const User = require("../models/User");
 const request = require('request');
 const callSendAPI = require("./controllers/callSendAPI");
-const handleMessage = requier("./controllers/handleMessage");
+const handleMessage = require("./controllers/handleMessage");
 
 
 //handle postback message

@@ -3,7 +3,7 @@ const config = require('config');
 const request = require('request');
 
  module.exports = function (sender_psid) {
-  const userData
+  const userData = {};
 
   request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),

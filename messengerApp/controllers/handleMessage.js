@@ -39,24 +39,27 @@ module.exports = async function handleMessage (sender_psid, received_message) {
       await callSendAPI(sender_psid, response);
 
   } else if (received_message.text) {
+    try {
+      let response;
+      const userdata = await getUserData(sender_psid)
 
-    let response;
-    const userdata = await getUserData(sender_psid)
+      console.log({"userdata else" : userdata});
+        //send the responce message
+        if (userdata.first_name === "Trond") {
 
-    console.log({"userdata else" : userdata});
-      //send the responce message
-      if (userdata.first_name === "Trond") {
+        //create payload for messages
+        response = {"txt": `hei ${userdata.first_name} <3 :) du er flink`};
+        console.log(response);
 
-      //create payload for messages
-      response = {"txt": `hei ${userdata.first_name} <3 :) du er flink`};
-      console.log(response);
+        await callSendAPI(sender_psid, response);
 
-      await callSendAPI(sender_psid, response);
+      } else {
 
-    } else {
-
-      await callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
+        await callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
+      }
+    } catch(e) { condole.error(e.message);}
     }
+
 
   };
 

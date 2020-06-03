@@ -7,7 +7,7 @@ const request = require('request-promise');
 
 try {
    let userData = {};
-   await request({
+   let data =  await request({
             url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),
             fields: "first_name,last_name" },
@@ -22,10 +22,11 @@ try {
 
             })
           console.log({"getUserData": userData});
-          return userData
+          console.log(data.response);
+          return {"name":"trond"};
 
     }catch(e) {
       console.error(e.message)
     }
- return userData;
+ //return {"name":"trond"};
   };

@@ -40,8 +40,8 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
   } else if (received_message.text) {
 
-    let response;
-    let userdata = await getUserData(sender_psid)
+    const response;
+    const userdata = await getUserData(sender_psid)
 
     console.log({"userdata else" : userdata});
       //send the responce message
@@ -58,7 +58,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
       await callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
     }
 
-  }
+  };
 
 
 };

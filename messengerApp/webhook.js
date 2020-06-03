@@ -11,9 +11,9 @@ const callSendAPI = require("./controllers/callSendAPI");
 //handle message
 //function
 function handleMessage (sender_psid, received_message) {
-
+  console.log(received_message);
   let response;
-  //let user_data = new messengerUser(sender_psid);
+  let user_data = new messengerUser(sender_psid);
 
   // Check if the message contains text
   if (received_message.text === "image") {
@@ -30,7 +30,6 @@ function handleMessage (sender_psid, received_message) {
       // Sends the response message
       callSendAPI(sender_psid, response);
   } else {
-      console.log("Du sendte denne meldingen "+received_message.text);
       //send the responce message
       callSendAPI(sender_psid, {"text":"ingen melding"});
   }

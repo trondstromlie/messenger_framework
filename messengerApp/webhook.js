@@ -13,7 +13,7 @@ const callSendAPI = require("./controllers/callSendAPI");
 function handleMessage (sender_psid, received_message) {
 
   let response;
-  let user_data = new messengerUser(sender_psid);
+  //let user_data = new messengerUser(sender_psid);
 
   // Check if the message contains text
   if (received_message.text === "image") {

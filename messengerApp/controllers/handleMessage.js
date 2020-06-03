@@ -49,6 +49,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
       //create payload for messages
       response = {"txt": `hei ${userdata.first_name} <3 :) du er flink`};
+      console.log(response);
 
       callSendAPI(sender_psid, response);
     } else {

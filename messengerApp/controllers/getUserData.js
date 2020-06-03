@@ -5,7 +5,6 @@ const request = require('request-promise');
  module.exports = async function (sender_psid) {
   var userData = {};
 
-  try
   const result = await request({ url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),
             fields: "first_name,last_name" }, method: "GET"

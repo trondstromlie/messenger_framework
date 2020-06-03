@@ -9,13 +9,13 @@ const request = require('request');
    this.user = {};
 
 
-  request({ url: "https://graph.facebook.com/v2.6/" + psid,
+  request({ url: "https://graph.facebook.com/v2.6/" + this.psid,
             qs: { access_token: config.get("FbPageToken"),
             fields: "first_name,middle_name,last,name" }, method: "GET"
             }, (error, response, body) =>
               {
                 console.log(body);
-                
+
             }
           )
  };

@@ -11,9 +11,9 @@ const callSendAPI = require("./controllers/callSendAPI");
 //handle message
 //function
 function handleMessage (sender_psid, received_message) {
-  console.log("melding fra messenger "+received_message.text);
+  console.log("melding fra messenger1234 "+received_message.text);
   let response;
-  let user_data = new messengerUser(sender_psid);
+  //let user_data = new messengerUser(sender_psid);
 
   // Check if the message contains text
   if (received_message.text === "image") {
@@ -102,7 +102,7 @@ router.post("/", ( req , res ) => {
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
-        console.log(webhook_event.message)
+        console.log(webhook_event.message.text)
         handleMessage(sender_psid, webhook_event.message);
       } else if (webhook_event.postback) {
         handlePostback(sender_psid, webhook_event.postback);

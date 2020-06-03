@@ -1,3 +1,4 @@
+"use strict";
 //send message function
 //construct the message body
 

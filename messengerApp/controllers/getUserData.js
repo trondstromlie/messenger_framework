@@ -19,5 +19,5 @@ const request = require('request-promise');
 
             });
   return userData;
-  console.log({"getUserData":JSON.stringify(const.body)})
+  console.log({"getUserData":JSON.stringify(result.body)})
  };

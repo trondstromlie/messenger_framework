@@ -43,7 +43,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
       if (userdata.first_name === "Trond") {
       callSendAPI(sender_psid, {"text":"hei "+userdata.first_name+" <3 du er flink"});
     } else {
-      callSendAPI(sender_psid, {"text":"hallo "+ user_data.first_name});
+      callSendAPI(sender_psid, {"text":"hallo "+ userdata.first_name});
     }
 
   }

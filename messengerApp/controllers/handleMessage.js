@@ -43,7 +43,7 @@ if(received_message.text === "Hei") {
         let response = {"text":"hei  " +userdata['first_name']+ " Jeg er ekstra nyforelska i deg i dag <3"};
         await callSendAPI(sender_psid,response);
         return null;
-      } else {
+      } else if (userdata.first_name === "Trond") {
 
       let response = {"text":"hello " +userdata['first_name']+ " du heter ikke kristina vell?"};
 
@@ -51,7 +51,10 @@ if(received_message.text === "Hei") {
 
       return null;
       }
-    }
+      else {
+        let respponse = {"text":"Jeg kjenner ikke deg"};
+        await callSendAPI(sender_psid,response);
+      }
 
   } catch(e) {
     console.error(e.message);

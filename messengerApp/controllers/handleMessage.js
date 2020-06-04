@@ -26,7 +26,7 @@ if(received_message.text === "Hei") {
 
       return null;
 
-    }
+    
 
   } catch(e) {
     console.error(e.message);

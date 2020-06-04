@@ -70,13 +70,12 @@ if(received_message.text === "Hei") {
 
         let respponse = {"text":"hei <3 "+ userdata.first_name +" du skrev " + received_message};
         await callSendAPI(sender_psid,response);
-      }
+
 
   } catch(e) {
     console.error(e.message);
-  }
+  };
   //end
 
-
-
-  };
+  }
+};

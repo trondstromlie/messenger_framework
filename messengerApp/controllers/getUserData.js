@@ -11,12 +11,13 @@ try {
    url:"/api/messenger/messenger_user_details",
    method:"GET",
    json:requestBody
- }  function (err, res ,body) {
-   consol.log(res);
-   consol.log(body);
-   consol.log(err);
+ },  function (err, res ,body) {
 
- });
+   console.log(res);
+   console.log(body);
+   console.log(err);
+});
+
 }catch(e) {
   console.error(e.message);
 }

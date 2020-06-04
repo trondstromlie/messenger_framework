@@ -53,7 +53,7 @@ if(received_message.text === "Hei") {
       }
       else {
         let response = {"text":"Jeg kjenner ikke deg"};
-        await callSendAPI(sender_psid,response);
+        await callSendAPI(sender_psid ,r esponse);
         return 0
       }
 
@@ -69,7 +69,7 @@ if(received_message.text === "Hei") {
 
       let userdata = await getUserData(sender_psid);
 
-        let respponse = {"text":"hei <3 "+ userdata.first_name +" du skrev " + received_message};
+        let response = {"text":"hei <3 "+ userdata.first_name +" du skrev " + received_message};
         await callSendAPI(sender_psid,response);
 
 

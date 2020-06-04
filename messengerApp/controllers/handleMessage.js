@@ -46,7 +46,7 @@ else if(received_message.text === "start") {
         return null;
       } else {
 
-      let response = {"text":"hello " +userdata['first_name']+ " du sheter ikke kristina vell?"};
+      let response = {"text":"hello " +userdata['first_name']+ " du heter ikke kristina vell?"};
 
       await callSendAPI(sender_psid,response);
 

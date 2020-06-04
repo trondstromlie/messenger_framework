@@ -59,6 +59,22 @@ if(received_message.text === "Hei") {
   } catch(e) {
     console.error(e.message);
   }
+
+  //end
+
+}  else if(received_message.text) {
+
+  try {
+
+      let userdata = await getUserData(sender_psid);
+
+        let respponse = {"text":"hei <3 "+ userdata.first_name +" du skrev " + received_message};
+        await callSendAPI(sender_psid,response);
+      }
+
+  } catch(e) {
+    console.error(e.message);
+  }
   //end
 
 

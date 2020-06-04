@@ -5,14 +5,18 @@ const path = require('path');
 
  module.exports = async function (sender_psid) {
     var userData = {};
-    console.log("url til denne siden  " + path.join(__dirname));
+
 try {
-  //let data = await request({
-  //  url:"/api/messenger/"
-  console.log("mm")
+  let data = await request({
+   url:"/api/messenger/messenger_user_details",
+   method:"GET",
+   json:requestBody
+ }  function (err, res ,body) {
+   consol.log(res);
+   consol.log(body);
+   consol.log(err);
 
-
-
+ });
 }catch(e) {
   console.error(e.message);
 }

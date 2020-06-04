@@ -7,6 +7,7 @@ const path = require('path');
     var userData = {};
 
 try {
+  let requestBody = {sender_psid:sender_psid}
   let data = await request({
    url:"/api/messenger/messenger_user_details",
    method:"GET",

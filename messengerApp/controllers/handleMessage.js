@@ -8,11 +8,16 @@ const getUserData = require("./getUserData");
 
 module.exports = async function handleMessage (sender_psid, received_message) {
 
-  console.log(received_message);;
+if(received_message.is_echo == true) {
+
+console.log(received_message.text);
+
+}
+
 
 
   //check if messege contain the word "hei"
-if(received_message.text === "Hei") {
+else if(received_message.text === "Hei") {
 
   try {
 

@@ -17,9 +17,10 @@ module.exports = async function handleMessage (sender_psid, received_message) {
     if(received_message.text === "Hei") {
 
       let userdata = await getUserData(sender_psid);
-      console.log(userdata);
 
-      let response = {"text":"hello " +userdata.first_name+ " du skriver med roboten nå"};
+      console.log(userdata.first_name);
+
+      let response = {"text":"hello " +userdata['first_name']+ " du skriver med roboten nå"};
 
       await callSendAPI(sender_psid,response);
 

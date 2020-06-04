@@ -10,7 +10,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 if(received_message.is_echo == true) {
 
-console.log(received_message.mid);
+console.log({"mid":received_message.mid});
 
 }
 
@@ -18,7 +18,7 @@ console.log(received_message.mid);
 
   //check if messege contain the word "hei"
 else if(received_message.text === "Hei") {
-  console.log(received_message.mid);
+  console.log({"mid":received_message.mid});
   try {
 
       let userdata = await getUserData(sender_psid);

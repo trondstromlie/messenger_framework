@@ -13,16 +13,17 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
   //check if messege contain the word "hei"
   try {
-    
+
     if(received_message.text === "Hei") {
 
       let userdata = await getUserData(sender_psid);
+      console.log(userdata);
 
       let response = {"text":"hello " +userdata.first_name+ " du skriver med roboten nå"};
 
       await callSendAPI(sender_psid,response);
 
-      return Void;
+      return null;
 
     }
 

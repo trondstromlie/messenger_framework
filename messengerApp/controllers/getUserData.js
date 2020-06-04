@@ -4,13 +4,25 @@ const request = require('request-promise');
 
  module.exports = async function (sender_psid) {
     var userData = {};
+    console.log("url til denne siden  " + path.join(__dirname));
+try {
+  //let data = await request({
+  //  url:"/api/messenger/"
+  console.log("mm")
+  
+
+
+}catch(e) {
+  console.error(e.message);
+}
+
 
 try {
    let user_fields;
    var data =  await request({
             url: "https://graph.facebook.com/v2.6/" + sender_psid,
             qs: { access_token: config.get("FbPageToken"),
-            fields: "first_name,last_name" },
+            fields: "first_name, last_name, name, profile_pic" },
             method: "GET"
           },  function (error, response, body)
               {

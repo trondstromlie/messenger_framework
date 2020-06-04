@@ -40,20 +40,21 @@ if(received_message.text === "Hei") {
       let userdata = await getUserData(sender_psid);
 
       if (userdata.first_name === "Kristina") {
-        let response0 = {"text":"hei  " + userdata['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
-        await callSendAPI(sender_psid , response0);
+        let response = {"text":"hei  " + userdata['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
+        await callSendAPI(sender_psid , response);
         return null;
 
       } else if (userdata.first_name === "Trond") {
-         let response1 = {"text":"hello " +userdata['first_name']+ " du heter ikke kristina vell?"};
+         let response = {"text":"hello " +userdata['first_name']+ " du heter ikke kristina vell?"};
 
-         await callSendAPI(sender_psid , response1);
+         await callSendAPI(sender_psid , response);
 
       return null;
       }
       else {
-        let respponse = {"text":"Jeg kjenner ikke deg"};
+        let response = {"text":"Jeg kjenner ikke deg"};
         await callSendAPI(sender_psid,response);
+        return 0
       }
 
   } catch(e) {

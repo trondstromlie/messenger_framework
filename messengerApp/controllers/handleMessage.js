@@ -10,7 +10,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 if(received_message.is_echo == true) {
 
-console.log(received_message.text);
+console.log(JSON.stringify(received_message));
 
 }
 

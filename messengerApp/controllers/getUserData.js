@@ -15,7 +15,7 @@ try {
           },  function (error, response, body)
               {
                 if(!error) {
-                 user_fields = body;
+                 user_fields = JSON.parse(body);
               } else {
                 console.error({"unable to get user data": error});
               }

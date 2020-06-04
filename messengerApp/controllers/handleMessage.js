@@ -26,15 +26,14 @@ if(received_message.text === "Hei") {
 
       return null;
 
-    
+
 
   } catch(e) {
     console.error(e.message);
   }
   //end
-
-  //check if name is trond contain the word "and message contain word init"
-else if(received_message.text === "start") {
+ //check if name is trond contain the word "and message contain word init"
+ }  else if(received_message.text === "start") {
 
   try {
 

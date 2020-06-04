@@ -12,9 +12,9 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 
   //check if messege contain the word "hei"
-  try {
+if(received_message.text === "Hei") {
 
-    if(received_message.text === "Hei") {
+  try {
 
       let userdata = await getUserData(sender_psid);
 
@@ -31,6 +31,33 @@ module.exports = async function handleMessage (sender_psid, received_message) {
   } catch(e) {
     console.error(e.message);
   }
+  //end
+
+  //check if name is trond contain the word "and message contain word init"
+else if(received_message.text === "start") {
+
+  try {
+
+      let userdata = await getUserData(sender_psid);
+
+      if (userdata.first_name === "Kristina") {
+        let response = {"text":"hei  " +userdata['first_name']+ " Jeg er ekstra nyforelska i deg i dag <3"};
+        await callSendAPI(sender_psid,response);
+        return null;
+      } else {
+
+      let response = {"text":"hello " +userdata['first_name']+ " du sheter ikke kristina vell?"};
+
+      await callSendAPI(sender_psid,response);
+
+      return null;
+      }
+    }
+
+  } catch(e) {
+    console.error(e.message);
+  }
+  //end
 
 
 

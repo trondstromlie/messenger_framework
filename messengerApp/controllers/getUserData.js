@@ -9,7 +9,7 @@ const path = require('path');
 try {
   let requestBody = {sender_psid:sender_psid}
   let data = await request({
-   url:"api/messenger/messenger_user_details",
+   url:"https://phonestats.herokuapp.com/api/messenger/messenger_user_details",
    method:"GET",
    json:requestBody
  },  function (err, res ,body) {

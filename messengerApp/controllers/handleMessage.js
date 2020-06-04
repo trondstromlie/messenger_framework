@@ -22,7 +22,7 @@ if(received_message.text === "Hei") {
 
       let response = {"text":"hello " +userdata['first_name']+ " du skriver med roboten nå"};
 
-      await callSendAPI(sender_psid,response);
+      await callSendAPI(sender_psid , response);
 
       return null;
 
@@ -40,14 +40,14 @@ if(received_message.text === "Hei") {
       let userdata = await getUserData(sender_psid);
 
       if (userdata.first_name === "Kristina") {
-        let response = {"text":"hei  " +userdata['first_name']+ " Jeg er ekstra nyforelska i deg i dag <3"};
-        await callSendAPI(sender_psid,response);
+        let response0 = {"text":"hei  " + userdata['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
+        await callSendAPI(sender_psid , response0);
         return null;
+
       } else if (userdata.first_name === "Trond") {
+         let response1 = {"text":"hello " +userdata['first_name']+ " du heter ikke kristina vell?"};
 
-      let response = {"text":"hello " +userdata['first_name']+ " du heter ikke kristina vell?"};
-
-      await callSendAPI(sender_psid,response);
+         await callSendAPI(sender_psid , response1);
 
       return null;
       }

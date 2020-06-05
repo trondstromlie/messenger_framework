@@ -46,6 +46,9 @@ async function user_fields (sender_psid) {
                  method: "GET"
                },  function (error, response, body)
                    {
+                     console.log(error);
+                     console.log(response);
+
                      if(!error) {
                       user_fields = JSON.parse(body);
                    } else {

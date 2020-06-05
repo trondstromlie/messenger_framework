@@ -11,9 +11,10 @@ router.get("/", [
     let errors = validationResult(req);
     if(!errors.isEmpty()) {
       console.log(errors);
-      res.status(300).json({errors:errors});
+      res.status(310).json({errors:errors});
     } else {
       try {
+        console.log(req.sender_psid);
 
       let user = await Mess_user.findOne({sender_psid:req.sender_psid});
       if(user){

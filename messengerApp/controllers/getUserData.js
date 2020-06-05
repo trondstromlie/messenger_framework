@@ -63,7 +63,7 @@ async function user_fields (sender_psid) {
   //return status code 300 if no user exist, if user exist return user data body
   async function GETmesssengerDB_API (sender_psid) {
      try {
-       let data = await requests({
+       let data = await request({
          url:"https://phonestats.herokuapp.com/api/messenger/messenger_user_details",
          method:"GET",
          json: sender_psid
@@ -90,7 +90,7 @@ async function user_fields (sender_psid) {
    //returns user fields
   async function POSTAddUser (psid,userFields) {
      try{
-       let data = await requests({
+       let data = await request({
          url:"https://phonestats.herokuapp.com/api/messenger/messenger_user_details",
          method:"POST",
          json:{"sender_psid":psid,userFields}

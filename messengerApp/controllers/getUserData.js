@@ -17,7 +17,7 @@ try {
    if(err) {
      console.log(err)
    } else {
-     console.log(res.body);
+     console.log({"status":res.statusCode});
 
 
    }

@@ -80,8 +80,10 @@ async function user_fields (sender_psid) {
          if(!err) {
            console.log("get request ok")
            if(res.statusCode === 300) {
-             return {status:res.statusCode};
+             user_fields = {status:res.statusCode};
+             return NaN;
            }else if (res.status === 200 ) {
+             user_fields = JSON.parse(body);
              return {status:200,body:JSON.parse(body)};
            }
 
@@ -90,6 +92,7 @@ async function user_fields (sender_psid) {
            console.log({"status":"get not working",err})
          }
        });
+       return user_fields
 
      } catch(e) {
        console.error(e.message);

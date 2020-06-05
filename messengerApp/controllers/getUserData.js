@@ -68,6 +68,7 @@ async function user_fields (sender_psid) {
   //function to make request to the api //first check if user exists, if not ad user to db
   //return status code 300 if no user exist, if user exist return user data body
   async function GETmesssengerDB_API (sender_psid) {
+    let user_fields = {};
      try {
        let data = await request({
          url:"https://phonestats.herokuapp.com/api/messenger/messenger_user_details",
@@ -92,7 +93,8 @@ async function user_fields (sender_psid) {
            console.log({"status":"get not working",err})
          }
        });
-       return user_fields
+       console.log(user_fields);
+       return user_fields;
 
      } catch(e) {
        console.error(e.message);

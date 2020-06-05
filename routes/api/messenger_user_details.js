@@ -13,10 +13,11 @@ router.get("/", [
       console.log(errors);
       res.status(310).json({errors:errors});
     } else {
-      try {
-        console.log(req.sender_psid);
 
-      let user = await Mess_user.findOne({sender_psid:req.sender_psid});
+      try {
+        console.log(req.body.sender_psid);
+
+      let user = await Mess_user.findOne({sender_psid:req.body.sender_psid});
       if(user){
         return res.status(200).json(user);
       } else {

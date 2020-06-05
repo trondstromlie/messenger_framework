@@ -15,7 +15,7 @@ router.get("/", [
     } else {
       try {
 
-      let user = await Mess_user.findOne({sender_psid:"req.sender_psid"});
+      let user = await Mess_user.findOne({sender_psid:req.sender_psid});
       if(user){
         return res.status(200).json(user);
       } else {

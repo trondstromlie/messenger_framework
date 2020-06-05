@@ -9,10 +9,13 @@ const path = require('path');
       //check if user is already in db
       //connect to API
       let status = await GETmesssengerDB_API(sender_psid);
+      console.log({status:status});
       if (status.statusCode === 300) {
         //add user to DB
         let userFields = await userFields(sender_psid);
+        console.log({userFields:userFields})
         let newUser = await POSTAddUser(userFields);
+        console.log({newUser:newUser});
         return newUser;
       } else if (status.statusCode === 200){
         return status.body;
@@ -73,7 +76,7 @@ async function user_fields (sender_psid) {
            if(res.statusCode === 300) {
              return {status:res.statusCode};
            }else if (res.status === 200 ) {
-             return {status:200,body:body};
+             return {status:200,body:JSON.parse(body)};
            }
 
          } else {

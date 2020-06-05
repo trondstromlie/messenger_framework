@@ -72,7 +72,7 @@ async function user_fields (sender_psid) {
        let data = await request({
          url:"https://phonestats.herokuapp.com/api/messenger/messenger_user_details",
          headers:{"Content-Type":"aplication/json"},
-         json: sender_psid,
+         json: {sender_psid:sender_psid},
          method:"GET",
        }, (err, res, body) => {
          console.log(body);
@@ -102,8 +102,9 @@ async function user_fields (sender_psid) {
      try{
        let data = await request({
          url:"https://phonestats.herokuapp.com/api/messenger/messenger_user_details",
-         method:"POST",
-         json:{"sender_psid":psid, userFields}
+         headers:{"Content-Type":"aplication/json"},
+         json:{"sender_psid":psid, userFields},
+         method:"POST"
        }, (error, result, body) => {
          if(!error) {
            console.log({msg:"user added to db",body});

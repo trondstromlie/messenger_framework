@@ -74,8 +74,8 @@ async function user_fields (sender_psid) {
          method:"GET",
          json: sender_psid
        }, (err, res, body) => {
-         console.log(err);
-         console.log(res);
+         console.log(body);
+         console.log(res.body);
          if(!err) {
            console.log("get request ok")
            if(res.statusCode === 300) {

@@ -8,11 +8,11 @@ const path = require('path');
     try{
       //check if user is already in db
       //connect to API
-      status = await GETmesssengerDB_API(sender_psid);
+      let status = await GETmesssengerDB_API(sender_psid);
       if (status.statusCode === 300) {
         //add user to DB
-        userFields = await userFields(sender_psid);
-        newUser = await POSTAddUser(userFields);
+        let userFields = await userFields(sender_psid);
+        let newUser = await POSTAddUser(userFields);
         return newUser;
       } else if (status.statusCode === 200){
         return status.body;

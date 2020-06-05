@@ -72,7 +72,7 @@ async function user_fields (sender_psid) {
        let data = await request({
          url:"https://phonestats.herokuapp.com/api/messenger/messenger_user_details",
          headers:{"Content-Type":"aplication/json"},
-         json: {"sender_psid":sender_psid},
+         body: {"sender_psid":sender_psid},
          method:"GET",
        }, (err, res, body) => {
          console.log(body);

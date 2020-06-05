@@ -14,9 +14,20 @@ try {
    json:requestBody
  },  function (err, res ,body) {
 
-   console.log(res);
-   console.log(body);
-   console.log(err);
+   if(err) {
+     console.log(err)
+   } else
+     console.log(res);
+
+     
+   }
+
+
+
+
+
+
+
 });
 
 }catch(e) {

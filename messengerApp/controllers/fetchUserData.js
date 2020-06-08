@@ -3,7 +3,53 @@ const request = require("request");
 const config = require("config");
 
 
+//**********************************************
+//the public function
+//*********************************************
 
+async function fetchUserData (sender_psid) {
+
+   let userFields = {};
+
+try {
+  //get the user data
+
+  var user = await GETcheckIfUserMesssengerDB_API(sender_psid);
+
+
+  if (user.status === 300) {
+    console.log("getting data from facebook");
+    let facebookUserfields = await user_fields(sender_psid);
+    facebookUserfields.sender_psid = sender_psid;
+
+    console.log("adding data to db");
+
+
+    let adduser = await POSTAddUser(facebookUserfields);
+
+    userFields = adduser;
+
+    console.log({status:"user added to db"});
+
+  } else if (user.status === 200) {
+    userFields = user;
+  }
+
+} catch(err) {
+  console.log("error block #api messenger get userfields ");
+  console.error(err.message);
+}
+
+//hand over data  data to function
+
+ console.log({userFields});
+ return userFields;
+
+ }; //end main function
+
+ //*******************************************
+ // Helper functions
+ //******************************
 
 //function to make request to the api //first check if user exists,
 //return status code 300 if no user exist, if user exist return user data body
@@ -82,49 +128,4 @@ function user_fields (sender_psid) {
   })
 }
 
-
-//**********************************************
-//the public function
-//*********************************************
-async function fetchUserData (sender_psid) {
-
-   let userFields = {};
-
-try {
-  //get the user data
-
-  var user = await GETcheckIfUserMesssengerDB_API(sender_psid);
-
-
-  if (user.status === 300) {
-    console.log("getting data from facebook");
-    let facebookUserfields = await user_fields(sender_psid);
-    facebookUserfields.sender_psid = sender_psid;
-
-    console.log("adding data to db");
-
-
-    let adduser = await POSTAddUser(facebookUserfields);
-
-    userFields = adduser;
-
-    console.log({status:"user added to db"});
-
-  } else if (user.status === 200) {
-    userFields = user;
-  }
-
-} catch(err) {
-  console.log("error block #api messenger get userfields ");
-  console.error(err.message);
-}
-
-//hand over data  data to function
-
- console.log({userFields});
- return userFields;
-
- }; //end main function
-
-
- module.exports = fetchUserData();
+ module.exports = fetchUserData;

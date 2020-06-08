@@ -7,7 +7,7 @@ const config = require("config");
 //the public function
 //*********************************************
 
-async function fetchUserData (sender_psid) {
+module.exports async function fetchUserData (sender_psid) {
 
    let userFields = {};
 
@@ -127,5 +127,3 @@ function user_fields (sender_psid) {
     })
   })
 }
-
- module.exports = fetchUserData;

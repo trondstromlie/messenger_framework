@@ -21,7 +21,7 @@ router.get("/", [
       if(user){
         return res.status(200).json(user);
       } else {
-        return res.status(300).json({"error":"no user with this psid"});
+        return res.status(300).json({"status":300,"error":"no user with this psid"});
       }
 
     } catch(e) {

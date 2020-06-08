@@ -1,6 +1,6 @@
 
 const callSendAPI = require("./callSendAPI");
-const getUserData = require("./getUserData");
+const fetchUserData = require("./fetchUserData");
 
 
 //handle message
@@ -21,7 +21,7 @@ else if(received_message.text === "Hei") {
   console.log({"received_message:":received_message.text});
   try {
 
-      let userdata = await getUserData(sender_psid);
+      let userdata = await fetchUserData(sender_psid);
 
       console.log(userdata.first_name);
 

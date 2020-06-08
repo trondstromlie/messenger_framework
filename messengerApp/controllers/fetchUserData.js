@@ -128,4 +128,4 @@ function user_fields (sender_psid) {
   })
 }
 
-module.exports fetchUserData;
+module.exports = fetchUserData;

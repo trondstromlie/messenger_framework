@@ -45,13 +45,13 @@ else if(received_message.text === "Hei") {
 
       let userdata = await fetchUserData(sender_psid);
 
-      if (userdata.first_name === "Kristina") {
-        let response = {"text":"hei  " + userdata['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
+      if (userdata.user.first_name === "Kristina") {
+        let response = {"text":"hei  " + userdata['user']['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
         await callSendAPI(sender_psid , response);
         return null;
 
-      } else if (userdata.first_name === "Trond") {
-         let response = {"text":"hello " +userdata['first_name']+ " du heter ikke kristina vell?"};
+      } else if (userdata.user.first_name === "Trond") {
+         let response = {"text":"hello " +userdata['user']['first_name']+ " du heter ikke kristina vell?"};
 
          await callSendAPI(sender_psid , response);
 

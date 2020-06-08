@@ -22,6 +22,7 @@ else if(received_message.text === "Hei") {
   try {
 
       let userdata = await fetchUserData(sender_psid);
+      console.log("fetchUserData":userdata);
 
       console.log(userdata.first_name);
 

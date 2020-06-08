@@ -19,7 +19,7 @@ router.get("/", [
 
       let user = await Mess_user.findOne({sender_psid:req.body.sender_psid});
       if(user){
-        return res.status(200).json(user);
+        return res.status(200).json({status:200,user:user});
       } else {
         return res.status(300).json({"status":300,"error":"no user with this psid"});
       }

@@ -75,7 +75,7 @@ else if(received_message.text === "Hei") {
 
       let userdata = await fetchUserData(sender_psid);
 
-        let response = {"text":"hei <3 "+ userdata.first_name +" du skrev " + received_message.text};
+        let response = {"text":"hei <3 "+ userdata.user.first_name +" du skrev " + received_message.text};
         await callSendAPI(sender_psid , response);
 
 

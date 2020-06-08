@@ -39,7 +39,7 @@ router.post("/", [
   let errors = validationResult(req);
   if(!errors.isEmpty()) {
     console.log(errors);
-    res.status(300).json({"errors":errors});
+    res.status(300).json({"status":300,"errors":errors});
   } else {
 
     try {
@@ -64,7 +64,7 @@ router.post("/", [
         await user.save();
 
         console.log(user);
-        return res.status(200).json({msg:"user registered"});
+        return res.status(200).json(user);
 
       }
 

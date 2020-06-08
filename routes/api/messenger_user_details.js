@@ -34,7 +34,7 @@ router.get("/", [
 // @ rout POST / api / messenger / messenger_user_details
 // @ desc add or uppdate messenger profile
 router.post("/", [
-  check("sender_psid", "sender_psid is required").not().isEmpty()
+  check("id", "sender_psid is required").not().isEmpty()
 ], async ( req, res ) => {
   let errors = validationResult(req);
   if(!errors.isEmpty()) {

@@ -42,7 +42,7 @@ else if(received_message.text === "Hei") {
 
   try {
 
-      let userdata = await getUserData(sender_psid);
+      let userdata = await fetchUserData(sender_psid);
 
       if (userdata.first_name === "Kristina") {
         let response = {"text":"hei  " + userdata['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
@@ -72,7 +72,7 @@ else if(received_message.text === "Hei") {
 
   try {
 
-      let userdata = await getUserData(sender_psid);
+      let userdata = await fetchUserData(sender_psid);
 
         let response = {"text":"hei <3 "+ userdata.first_name +" du skrev " + received_message.text};
         await callSendAPI(sender_psid , response);

@@ -1,4 +1,4 @@
-"use strict";
+
 const callSendAPI = require("./callSendAPI");
 const getUserData = require("./getUserData");
 

@@ -11,7 +11,7 @@ router.get("/", [
     let errors = validationResult(req);
     if(!errors.isEmpty()) {
       console.log(errors);
-      res.status(310).json({errors:errors});
+      res.status(310).json({status="301",errors:errors});
     } else {
 
       try {

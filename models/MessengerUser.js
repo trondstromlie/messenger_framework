@@ -16,22 +16,27 @@ const MessengerUserSchema = new mongoose.Schema({
   },
   date:{
     type:Date,
-    required:true    
+    required:true
   },
-  prosess:[
+  messenger_processes:[
     {
-      name:{
-             type:String
+      process_name:{
+              type:String,
+              required:true
            },
-      status:{
+      process_status:{
               type: Boolean,
               default:false
       },
-      progress:{
+      process_progress:{
               type:String
       },
-      steps:{
+      process_steps:{
               type:Array
+      },
+      process_expires:{
+              type:Date,
+              required:true
       }
     }
   ],
@@ -54,6 +59,19 @@ const MessengerUserSchema = new mongoose.Schema({
       type:String
     },
     message:{
+      type:String,
+      required:true
+    },
+    sender_psid: {
+      type:String,
+      required:true
+    }
+  }],
+  custom_data: [{
+    field_name:{
+      type:String
+    },
+    field_value:{
       type:String
     }
   }]

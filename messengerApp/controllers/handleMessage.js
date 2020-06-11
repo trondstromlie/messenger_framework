@@ -3,6 +3,29 @@ const callSendAPI = require("./callSendAPI");
 const fetchUserData = require("./fetchUserData");
 
 
+
+//***********TODO MESSENGER FUNCTIONS*************************
+//
+//  Add function and API to update the messenger logg
+//
+//  * #1 make the api to add the users and responders  messages to the logg
+//  #2 connect the messenger handleres to the api
+//
+//!!*************************************************************
+
+//  Add functions and api to update statuses for progress fields
+//
+// Add function and API to update the progress fx - wait for emailadress use regex to check emeil
+// and send to api for adding fields to the user object
+//
+//  #1 make api to take name og prosess, wait for email, number og steps in prosess( check if email is registered in the main system prosess. )
+//  #2 connect messenger message handler to api
+//
+//!!*******************************************************************
+
+
+
+
 //handle message
 //function
 

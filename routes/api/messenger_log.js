@@ -10,12 +10,12 @@ const { check, validationResult } = require('express-validator');
 // @ ACCESS Private ....
 router.get('/:sender_psid', ( req , res ) => {
 
-  res.send("@ GET api / messenger / messengerelog id: "+ req.params.sender_psid);
+  res.send("@ GET api / messenger / messenger_log / id: "+ req.params.sender_psid);
   console.log(req.params)
 
 });
 
-// @ Route POST/ api /messenger / messengerlog
+// @ Route PUT / api /messenger / messengerlog
 // @ DESC  Add messages from user to log
 // @ ACCESS Private ....
 router.put('/', [
@@ -64,8 +64,8 @@ router.put('/', [
 
   }
 
-  res.send("POST api / messenger / messengerelog");
-
+  res.send("POST api / messenger / messenger_log");
+      res.send("no post options ond this endpoint");
 });
 
 

@@ -1,6 +1,7 @@
 
 const callSendAPI = require("./callSendAPI");
 const fetchUserData = require("./fetchUserData");
+const logMessage = require("./writeToLog");
 
 
 
@@ -35,6 +36,9 @@ if(received_message.is_echo == true) {
 
 console.log({"is_echo:":received_message.text});
 
+} else {
+  let log = await logMessage(sender_psid, received_message.text, first_name);
+  console.log(log);
 }
 
 

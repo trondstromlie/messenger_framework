@@ -36,17 +36,19 @@ if(received_message.is_echo == true) {
 
 console.log({"is_echo:":received_message.text});
 
-} else {
-  let log = await logMessage(sender_psid, received_message.text, first_name);
-  console.log(log);
-}
+
+
+
 
 
 
   //check if messege contain the word "hei"
 else if(received_message.text === "Hei") {
+
   console.log({"received_message:":received_message.text});
   try {
+      let log = await logMessage(sender_psid, received_message.text, first_name);
+      console.log({log:log});
 
       let userdata = await fetchUserData(sender_psid);
       console.log({"fetchUserData":userdata});
@@ -69,7 +71,8 @@ else if(received_message.text === "Hei") {
  }  else if(received_message.text === "start") {
 
   try {
-
+      let log = await logMessage(sender_psid, received_message.text, first_name);
+      console.log({log:log});
       let userdata = await fetchUserData(sender_psid);
 
       if (userdata.user.first_name === "Kristina") {
@@ -85,6 +88,8 @@ else if(received_message.text === "Hei") {
       return null;
       }
       else {
+        let log = await logMessage(sender_psid, received_message.text, first_name);
+        console.log({log:log});
         let response = {"text":"Jeg kjenner ikke deg"};
         await callSendAPI(sender_psid , response);
         return 0

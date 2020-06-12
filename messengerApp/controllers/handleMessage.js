@@ -39,7 +39,7 @@ console.log({"is_echo:":received_message.text});
 
 
 
-
+}
 
 
   //check if messege contain the word "hei"

@@ -48,8 +48,8 @@ else if(received_message.text === "Hei") {
       let userdata = await fetchUserData(sender_psid);
 
 
-      let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
-      console.log({log:log});
+      await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+
 
 
 
@@ -58,7 +58,7 @@ else if(received_message.text === "Hei") {
       let response = {"text":"hello " +userdata['user']['first_name']+ " du skriver med roboten nå"};
 
       await callSendAPI(sender_psid , response);
-      let log = await logMessage(sender_psid, response, "The Robot");
+      await logMessage(sender_psid, response, "The Robot");
 
 
       return null;
@@ -76,8 +76,8 @@ else if(received_message.text === "Hei") {
 
       let userdata = await fetchUserData(sender_psid);
 
-      let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
-      console.log(log)
+      await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+
 
       if (userdata.user.first_name === "Kristina") {
         let response = {"text":"hei  " + userdata['user']['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
@@ -86,17 +86,18 @@ else if(received_message.text === "Hei") {
 
       } else if (userdata.user.first_name === "Trond") {
          let response = {"text":"hello " +userdata['user']['first_name']+ " du heter ikke kristina vell?"};
-         let log = await logMessage(sender_psid, response, "The Robot");
+         await logMessage(sender_psid, response, "The Robot");
          await callSendAPI(sender_psid , response);
 
       return null;
       }
       else {
         let userdata = await fetchUserData(sender_psid);
-        let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
-        console.log({log:log});
+        await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+
+        
         let response = {"text":"Jeg kjenner ikke deg"};
-        let log = await logMessage(sender_psid, response, "The Robot");
+        await logMessage(sender_psid, response, "The Robot");
         await callSendAPI(sender_psid , response);
         return 0
       }
@@ -114,7 +115,7 @@ else if(received_message.text === "Hei") {
       let userdata = await fetchUserData(sender_psid);
 
         let response = {"text":"hei <3 "+ userdata.user.first_name +" du skrev " + received_message.text};
-        let log = await logMessage(sender_psid, response, "The Robot");
+        await logMessage(sender_psid, response, "The Robot");
         await callSendAPI(sender_psid , response);
 
 

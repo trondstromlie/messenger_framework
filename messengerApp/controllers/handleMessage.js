@@ -47,11 +47,13 @@ else if(received_message.text === "Hei") {
 
   console.log({"received_message:":received_message.text});
   try {
-      let log = await logMessage(sender_psid, received_message.text, first_name);
-      console.log({log:log});
-
       let userdata = await fetchUserData(sender_psid);
       console.log({"fetchUserData":userdata});
+
+      let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+      console.log({log:log});
+
+
 
       console.log(userdata.user.first_name);
 
@@ -71,9 +73,11 @@ else if(received_message.text === "Hei") {
  }  else if(received_message.text === "start") {
 
   try {
-      let log = await logMessage(sender_psid, received_message.text, first_name);
-      console.log({log:log});
+
       let userdata = await fetchUserData(sender_psid);
+
+      let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+      console.log(log)
 
       if (userdata.user.first_name === "Kristina") {
         let response = {"text":"hei  " + userdata['user']['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
@@ -88,7 +92,8 @@ else if(received_message.text === "Hei") {
       return null;
       }
       else {
-        let log = await logMessage(sender_psid, received_message.text, first_name);
+        let userdata = await fetchUserData(sender_psid);
+        let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
         console.log({log:log});
         let response = {"text":"Jeg kjenner ikke deg"};
         await callSendAPI(sender_psid , response);

@@ -8,6 +8,10 @@ const logMessage = require("./writeToLog");
 
 module.exports = async function callSendAPI (sender_psid, response) {
 
+  //send responce to the console.log;
+  
+  await logMessage(sender_psid, response.text, "The Robot");
+
   // Construct the message body
   const request_body = {
     "recipient": {

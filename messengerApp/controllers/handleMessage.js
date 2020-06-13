@@ -57,7 +57,7 @@ else if(received_message.text === "Hei") {
 
       await callSendAPI(sender_psid , response);
 
-      await logMessage(sender_psid, response.text, "The Robot");
+
 
 
       return null;
@@ -85,7 +85,7 @@ else if(received_message.text === "Hei") {
 
       } else if (userdata.user.first_name === "Trond") {
          let response = {"text":"hello " +userdata['user']['first_name']+ " du heter ikke kristina vell?"};
-         await logMessage(sender_psid, response, "The Robot");
+
 
          await callSendAPI(sender_psid , response);
 
@@ -98,7 +98,7 @@ else if(received_message.text === "Hei") {
 
 
         let response = {"text":"Jeg kjenner ikke deg"};
-        await logMessage(sender_psid, response, "The Robot");
+
 
         await callSendAPI(sender_psid , response);
         return 0
@@ -118,7 +118,7 @@ else if(received_message.text === "Hei") {
 
         let response = {"text":"hei <3 "+ userdata.user.first_name +" du skrev " + received_message.text};
 
-        await logMessage(sender_psid, response, "The Robot");
+        
         await callSendAPI(sender_psid , response);
 
 

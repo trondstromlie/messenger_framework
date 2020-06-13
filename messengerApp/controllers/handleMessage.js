@@ -66,7 +66,7 @@ else if(received_message.text === "Hei") {
   }
   //end
  //check if name is trond contain the word "and message contain word init"
- }  else if(received_message.text === "start") {
+}  else if(received_message.text === "Start") {
 
   try {
 

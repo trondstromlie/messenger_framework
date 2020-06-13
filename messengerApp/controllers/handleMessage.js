@@ -49,7 +49,7 @@ else if(received_message.text === "Hei") {
 
       console.log({sendr_psid:sender_psid,received_message:received_message.text,first_name:userdata.user.first_name});
 
-      //await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+      await logMessage(sender_psid, received_message.text, userdata.user.first_name);
 
 
 

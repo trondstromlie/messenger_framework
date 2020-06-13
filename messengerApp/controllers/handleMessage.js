@@ -33,7 +33,8 @@ const logMessage = require("./writeToLog");
 module.exports = async function handleMessage (sender_psid, received_message) {
 
 let userdata = await fetchUserData(sender_psid);
-if(!received_message.is_echo == true) logMessage(sender_psid, received_message.text, userdata.user.first_name);
+
+if(!received_message.is_echo == true) await logMessage(sender_psid, received_message.text, userdata.user.first_name);
 
 if(received_message.is_echo == true) {
 
@@ -109,7 +110,7 @@ else if(received_message.text === "Hei") {
 
   try {
 
-    
+
 
         let response = {"text":"hei <3 "+ userdata.user.first_name +" du skrev " + received_message.text};
 

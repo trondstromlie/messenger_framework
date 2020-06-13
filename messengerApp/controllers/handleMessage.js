@@ -49,18 +49,15 @@ else if(received_message.text === "Hei") {
 
       console.log({sendr_psid:sender_psid,received_message:received_message.text,first_name:userdata.user.first_name});
 
-      await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+      //await logMessage(sender_psid, received_message.text, userdata.user.first_name);
 
 
-
-
-      console.log(userdata.user.first_name);
 
       let response = {"text":"hello " +userdata['user']['first_name']+ " du skriver med roboten nå"};
 
       await callSendAPI(sender_psid , response);
 
-      await logMessage(sender_psid, response, "The Robot");
+      await logMessage(sender_psid, response.text, "The Robot");
 
 
       return null;

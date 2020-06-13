@@ -47,7 +47,7 @@ else if(received_message.text === "Hei") {
   try {
       let userdata = await fetchUserData(sender_psid);
 
-      console.log({sendr_psid:sender_psid,received_message:received_message.text,first_name:userdata.user.first_name});
+
 
       await logMessage(sender_psid, received_message.text, userdata.user.first_name);
 
@@ -80,6 +80,7 @@ else if(received_message.text === "Hei") {
 
       if (userdata.user.first_name === "Kristina") {
         let response = {"text":"hei  " + userdata['user']['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
+
         await callSendAPI(sender_psid , response);
         return null;
 
@@ -91,9 +92,12 @@ else if(received_message.text === "Hei") {
 
       return null;
       }
+
       else {
+
         let userdata = await fetchUserData(sender_psid);
 
+      
         await logMessage(sender_psid, received_message.text, userdata.user.first_name);
 
 
@@ -101,6 +105,7 @@ else if(received_message.text === "Hei") {
 
 
         await callSendAPI(sender_psid , response);
+
         return 0
       }
 
@@ -118,7 +123,7 @@ else if(received_message.text === "Hei") {
 
         let response = {"text":"hei <3 "+ userdata.user.first_name +" du skrev " + received_message.text};
 
-        
+
         await callSendAPI(sender_psid , response);
 
 

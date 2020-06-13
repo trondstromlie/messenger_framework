@@ -47,6 +47,7 @@ else if(received_message.text === "Hei") {
   try {
       let userdata = await fetchUserData(sender_psid);
 
+      console.log({sendr_psid:sender_psid,received_message:received_message.text,first_name:userdata.user.first_name});
 
       await logMessage(sender_psid, received_message.text, userdata.user.first_name);
 
@@ -58,7 +59,7 @@ else if(received_message.text === "Hei") {
       let response = {"text":"hello " +userdata['user']['first_name']+ " du skriver med roboten nå"};
 
       await callSendAPI(sender_psid , response);
-      
+
       await logMessage(sender_psid, response, "The Robot");
 
 

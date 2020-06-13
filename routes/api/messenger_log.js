@@ -48,6 +48,7 @@ router.put('/', [
 
 
       user.message_log.unshift(message_fields);
+      
       user.save()
 
       return res.status(200).json({"status":200,"msg":"message stored in log",message_fields});

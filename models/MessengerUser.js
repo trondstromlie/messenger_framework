@@ -55,7 +55,7 @@ const MessengerUserSchema = new mongoose.Schema({
     date:{
     type:Date
     },
-    sender_name:{
+    first_name:{
       type:String
     },
     message:{
@@ -65,7 +65,10 @@ const MessengerUserSchema = new mongoose.Schema({
     sender_psid: {
       type:String,
       required:true
-    }
+    },
+    sender_avatar: {
+      type:String,
+    }    
   }],
   custom_data: [{
     field_name:{

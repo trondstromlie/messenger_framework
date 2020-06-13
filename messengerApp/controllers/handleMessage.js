@@ -32,11 +32,11 @@ const logMessage = require("./writeToLog");
 
 module.exports = async function handleMessage (sender_psid, received_message) {
 
+if(!received_message.is_echo == true) logMessage(sender_psid, received_message.text, userdata.user.first_name);
+
 if(received_message.is_echo == true) {
 
 console.log({"is_echo:":received_message.text});
-
-
 
 
 }  //check if messege contain the word "Hei"
@@ -46,11 +46,6 @@ else if(received_message.text === "Hei") {
 
   try {
       let userdata = await fetchUserData(sender_psid);
-
-
-
-      await logMessage(sender_psid, received_message.text, userdata.user.first_name);
-
 
 
       let response = {"text":"hello " +userdata['user']['first_name']+ " du skriver med roboten nå"};
@@ -75,8 +70,6 @@ else if(received_message.text === "Hei") {
 
       let userdata = await fetchUserData(sender_psid);
 
-      await logMessage(sender_psid, received_message.text, userdata.user.first_name);
-
 
       if (userdata.user.first_name === "Kristina") {
         let response = {"text":"hei  " + userdata['user']['first_name'] + " Jeg er ekstra nyforelska i deg i dag <3"};
@@ -96,10 +89,6 @@ else if(received_message.text === "Hei") {
       else {
 
         let userdata = await fetchUserData(sender_psid);
-
-      
-        await logMessage(sender_psid, received_message.text, userdata.user.first_name);
-
 
         let response = {"text":"Jeg kjenner ikke deg"};
 

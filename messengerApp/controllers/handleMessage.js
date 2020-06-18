@@ -28,8 +28,8 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 if(!received_message.is_echo == true) {
   try {
-    let userdata = await fetchUserData(sender_psid);
-    console.log({userdata:userdata});
+    let user_data = await fetchUserData(sender_psid);
+    console.log({"userdata":user_data});
     let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
   } catch(e) {
     console.log("error handleMessage");

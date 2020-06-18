@@ -28,6 +28,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 if(!received_message.is_echo == true) {
   let userdata = await fetchUserData(sender_psid);
+  console.log({userdata:userdata});
   let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
 
   //check if messege contain the word "Hei"

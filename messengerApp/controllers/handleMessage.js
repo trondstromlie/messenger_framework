@@ -56,4 +56,5 @@ if(!received_message.is_echo == true) {
  //check if name is trond contain the word "and message contain word init"
  }
 }
+}
   //end

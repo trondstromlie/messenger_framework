@@ -4,7 +4,7 @@ const config = require("config");
 
 
 //**********************************************
-//the public function
+// public function to check if user is in db if not add user to db
 //*********************************************
 
 async function fetchUserData (sender_psid) {
@@ -31,8 +31,13 @@ try {
 
     console.log({status:"user added to db"});
 
+    console.log({userFields});
+    return userFields;
+
   } else if (user.status === 200) {
     userFields = user;
+    console.log({userFields});
+    return userFields;
   }
 
 } catch(err) {
@@ -40,10 +45,9 @@ try {
   console.error(err.message);
 }
 
-//hand over data  data to function
 
- console.log({userFields});
- return userFields;
+
+
 
  }; //end main function
 

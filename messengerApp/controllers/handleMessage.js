@@ -28,9 +28,9 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 if(!received_message.is_echo == true) {
   try {
-    let user_data = await fetchUserData(sender_psid);
+    const user_data = await fetchUserData(sender_psid);
     console.log({"userdata":user_data});
-    let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+    let log = await logMessage(sender_psid, received_message.text, user_data.user.first_name);
   } catch(e) {
     console.log("error handleMessage");
     console.error(e);
@@ -47,7 +47,7 @@ if(!received_message.is_echo == true) {
       //add the process get_personel to the user fields
       //is activ true step 0
 
-      let response = {"text":"hello " + userdata['user']['first_name'] + " du skriver med roboten nå"};
+      let response = {"text":"hello " + user_data['user']['first_name'] + " du skriver med roboten nå"};
 
       await callSendAPI(sender_psid , response);
 

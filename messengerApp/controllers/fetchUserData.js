@@ -45,7 +45,7 @@ async function fetchUserData (sender_psid) {
    } else if (user.status === 200) {
 
      userFields = user;
-     console.log({userFields});
+     console.log({status200:userFields});
 
      resolve(userFields);
    }

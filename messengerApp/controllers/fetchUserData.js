@@ -10,8 +10,8 @@ const config = require("config");
 async function fetchUserData (sender_psid) {
 
 
-  return new Promise(await (reject,resolve) => {
-    
+  return new Promise(async ( reject , resolve ) => {
+
     let userFields = {};
 
  try {

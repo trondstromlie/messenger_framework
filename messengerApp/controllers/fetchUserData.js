@@ -46,7 +46,7 @@ async function fetchUserData (sender_psid) {
 
      userFields = user;
      //console.log({status200:userFields});
-
+     console.log("returning data");
      resolve(userFields);
    }
    reject("error");

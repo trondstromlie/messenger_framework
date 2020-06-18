@@ -37,7 +37,7 @@ async function fetchUserData (sender_psid) {
 
      console.log({status:"user added to db"});
 
-     console.log({"status300":userFields});
+     //console.log({"status300":userFields});
 
      resolve(userFields);
 
@@ -45,7 +45,7 @@ async function fetchUserData (sender_psid) {
    } else if (user.status === 200) {
 
      userFields = user;
-     console.log({status200:userFields});
+     //console.log({status200:userFields});
 
      resolve(userFields);
    }

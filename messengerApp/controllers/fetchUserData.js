@@ -9,47 +9,57 @@ const config = require("config");
 
 async function fetchUserData (sender_psid) {
 
-   let userFields = {};
 
-try {
-  //get the user data
+  return new Promise(await (reject,resolve) => {
+    
+    let userFields = {};
 
-  var user = await GETcheckIfUserMesssengerDB_API(sender_psid);
+ try {
+   //get the user data
 
-
-  if (user.status === 300) {
-    console.log(user);
-    console.log("getting data from facebook");
-    let facebookUserfields = await user_fields(sender_psid);
-    facebookUserfields.sender_psid = sender_psid;
-
-    console.log("adding data to db");
-
-
-    let adduser = await POSTAddUser(facebookUserfields);
-
-    userFields = adduser;
-
-    console.log({status:"user added to db"});
-
-    console.log({userFields});
-    return userFields;
-
-  } else if (user.status === 200) {
-    userFields = user;
-    console.log({userFields});
-    return userFields;
-  }
-
-} catch(err) {
-  console.log("error block #api messenger get userfields ");
-  console.error(err.message);
-}
+   var user = await GETcheckIfUserMesssengerDB_API(sender_psid);
 
 
 
+     if (user.status === 300) {
 
 
+     console.log("getting data from facebook");
+     let facebookUserfields = await user_fields(sender_psid);
+     facebookUserfields.sender_psid = sender_psid;
+
+     console.log("adding data to db");
+
+
+     let adduser = await POSTAddUser(facebookUserfields);
+
+     userFields = adduser;
+
+     console.log({status:"user added to db"});
+
+     console.log({"status300":userFields});
+
+     resolve(userFields);
+
+   } else if (user.status === 200) {
+
+     userFields = user;
+     console.log({userFields});
+
+     resolve(userFields);
+   }
+   reject("error");
+
+ } catch(err) {
+   console.log("error block #api messenger get userfields ");
+   console.error(err.message);
+ }
+
+
+
+
+
+});//end Promise
  }; //end main function
 
  //*******************************************

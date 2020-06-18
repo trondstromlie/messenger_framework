@@ -18,6 +18,7 @@ try {
 
 
   if (user.status === 300) {
+    console.log(user);
     console.log("getting data from facebook");
     let facebookUserfields = await user_fields(sender_psid);
     facebookUserfields.sender_psid = sender_psid;

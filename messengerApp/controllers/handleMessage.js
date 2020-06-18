@@ -29,18 +29,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 if(!received_message.is_echo == true) {
 
 try {
-  
-  let userdata = await fetchUserData(sender_psid);
 
-
-
-  console.log({userdata:userdata});
-  let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
-
-}catch(e) {
-  console.error(e);
-}
-}
 
 if(received_message.is_echo == true) {
 
@@ -50,9 +39,14 @@ console.log({"is_echo:":received_message.text});
 }  //check if messege contain the word "Hei"
 else if(received_message.text === "Init") {
 
+  let userdata = await fetchUserData(sender_psid);
+  console.log({userdata:userdata});
+
+  let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+
   console.log({"received_message:":received_message.text});
 
-  try {
+
 
       //add the process get_personel to the user fields
       //is activ true

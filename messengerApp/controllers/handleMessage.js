@@ -29,9 +29,10 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 if(!received_message.is_echo == true) {
 
 try {
+  
   let userdata = await fetchUserData(sender_psid);
 
-  let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+
 
   console.log({userdata:userdata});
   let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);

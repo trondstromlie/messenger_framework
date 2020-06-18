@@ -28,15 +28,10 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 if(!received_message.is_echo == true) {
   let userdata = await fetchUserData(sender_psid);
-  let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);}
+  let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
 
-if(received_message.is_echo == true) {
-
-console.log({"is_echo:":received_message.text});
-
-
-}  //check if messege contain the word "Hei"
-else if(received_message.text === "Init") {
+  //check if messege contain the word "Hei"
+ if(received_message.text === "Init") {
 
   console.log({"received_message:":received_message.text});
 
@@ -60,6 +55,5 @@ else if(received_message.text === "Init") {
   //end
  //check if name is trond contain the word "and message contain word init"
  }
-  //end
-
 }
+  //end

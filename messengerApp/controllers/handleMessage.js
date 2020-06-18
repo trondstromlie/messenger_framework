@@ -27,27 +27,28 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 
 if(!received_message.is_echo == true) {
-  try {
-    const user_data = await fetchUserData(sender_psid);
-    console.log({"userdata _ fields _handle message":user_data.user});
-    let log = await logMessage(sender_psid, received_message.text, user_data.user.first_name);
-  } catch(e) {
-    console.log("error handleMessage");
-    console.error(e);
-  }
+  await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+  let userdata = await fetchUserData(sender_psid);
+  console.log({userdata:userdata});
+  let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
+}
+
+if(received_message.is_echo == true) {
+
+console.log({"is_echo:":received_message.text});
 
 
-  //check if messege contain the word "Hei"
- if(received_message.text === "Init") {
+}  //check if messege contain the word "Hei"
+else if(received_message.text === "Init") {
 
   console.log({"received_message:":received_message.text});
 
   try {
 
       //add the process get_personel to the user fields
-      //is activ true step 0
+      //is activ true
 
-      let response = {"text":"hello " + user_data['user']['first_name'] + " du skriver med roboten nå"};
+      let response = {"text":"hello " +userdata['user']['first_name']+ " du skriver med roboten nå"};
 
       await callSendAPI(sender_psid , response);
 
@@ -62,6 +63,6 @@ if(!received_message.is_echo == true) {
   //end
  //check if name is trond contain the word "and message contain word init"
  }
-}
-}
   //end
+
+}

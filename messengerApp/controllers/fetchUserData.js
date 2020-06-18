@@ -41,6 +41,7 @@ async function fetchUserData (sender_psid) {
 
      resolve(userFields);
 
+
    } else if (user.status === 200) {
 
      userFields = user;
@@ -52,7 +53,7 @@ async function fetchUserData (sender_psid) {
 
  } catch(err) {
    console.log("error block #api messenger get userfields ");
-   console.error(err.message);
+   console.error(err);
  }
 
 

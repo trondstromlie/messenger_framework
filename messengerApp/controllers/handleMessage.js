@@ -59,7 +59,7 @@ else if(received_message.text === "Init") {
       return null;
 
 
-
+}
   } catch(e) {
     console.error(e.message);
    }
@@ -67,5 +67,5 @@ else if(received_message.text === "Init") {
  //check if name is trond contain the word "and message contain word init"
  }
   //end
-
+}
 }

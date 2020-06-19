@@ -4,9 +4,6 @@
 const process_functions = require('./process_functions');
 const fs = require('fs');
 
-const readline = require('readline');
-
-
 //the user loop functions
 //starts when handle message discovers an active userProcess in the user procecces field
 //index is the index of the userprocess in case there is more than one.

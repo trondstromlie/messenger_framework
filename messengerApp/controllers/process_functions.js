@@ -1,6 +1,5 @@
 "use strict";
-const readline = require('readline');
-const fs = require('fs');
+
 const sleep = require('sleep-promise');
 
 
@@ -12,7 +11,7 @@ const sleep = require('sleep-promise');
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick_reply_obj) {
+async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
   console.log("get text input");
 
 
@@ -25,7 +24,7 @@ async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick
 //***********
 //function som hviser en input data , sender quick reply for å bekrefte
 //du skrev dette er de riktig.
-async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ) {
+async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
 
   console.log("confirm_data");
 
@@ -33,7 +32,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
      //console.log("looking in " + item.field_name + " " + item.field_value )
 
 
-  let promt_for_answer = await new askforData(msg);
+  let promt_for_answer = incoming_msg
 
   let answer = quick_reply_obj.filter( (item) => {
 
@@ -67,7 +66,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
 //***********************************
 //send empty text and jump to the next functions
 
-async function send_empty_message(sender_psid, user, msg, custom_field_name ,quick_reply_obj ) {
+async function send_empty_message(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
   let string = msg;
 
   if(custom_field_name !== null) {
@@ -92,7 +91,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
 //**********************************************
 //send send_quick_reply to colect data fex email, subscription data etc
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
-async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj) {
+async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg) {
   console.log("send quick reply");
   console.log(quick_reply_obj);
     return {status:true,step:"next"};
@@ -101,7 +100,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
-async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_reply_obj) {
+async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg) {
   console.log(" listen for data ");
 
 
@@ -111,7 +110,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
       //get email from the user
 
 
-      let promt_for_email = await new askforData(msg);
+      let promt_for_email = incoming_msg;
 
 
        //regex to check for email
@@ -124,7 +123,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
          let data = user;
 
 
-         let custom_field_index = await return_index(user,custom_field_name);
+         let custom_field_index = await return_index(user,custom_field_name, incoming_msg);
 
 
 
@@ -160,7 +159,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
     } else {
       let data = user
-      let promt_for_data = await new askforData(msg);
+      let promt_for_data = incoming_msg;
       console.log(promt_for_data)
       //check if field already exists return index if value exixts in obj, else return null
       let custom_field_index = await return_index(user,custom_field_name);
@@ -193,7 +192,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 }
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
-async function writing_action (sender_psid, user, msg, custom_field_name ,quick_reply_obj) {
+async function writing_action (sender_psid, user, msg, custom_field_name ,quick_reply_obj,incoming_msg) {
 
 
   console.log("writing action sleeping for 1 sec");

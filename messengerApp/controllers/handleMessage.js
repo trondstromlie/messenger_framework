@@ -29,24 +29,35 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 if(!received_message.is_echo === true) {
   //fetch the user data from api
 
+try {
+
   let userFields = await fetchUserData(sender_psid);
 
   //write message to the users log
   let log = await logMessage( sender_psid , received_message.text , userFields.user.first_name);
   console.log(log);
 
-try {
+
     //check if active proceceses
-    let active_process = userFields.user.messenger_processes.filter( item => item.process_status === true );
+    let messenger_processes  = userFields.user.messenger_processes;
 
-    if(active_process.length > 0 ) {
+    let indexAndNameOfActiveUserprocess = []
+    //find name and index of the active processes
+    await messenger_processes.forEach((item, i) => {
+      console.log(item)
+      if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
+    });
 
-      console.log({active_process:active_process});
+    if(indexAndNameOfActiveUserprocess > 0) {
+      console.log("found a user process " + indexAndNameOfActiveUserprocess[0].item + " contuing the user process");
+      await process_loop(indexAndNameOfActiveUserprocess.item.process_name, userFields.user, indexAndNameOfActiveUserprocess.index, received_message);
 
-      //start the process from current step
+      return NaN;
+
+
 
       //find index of current messenger_processes
-      return NaN
+
 
     } //if text is === to something
     else if(received_message.text === "Init") {
@@ -56,11 +67,12 @@ try {
 
 
       let messenger_processes  = userFields.user.messenger_processes;
+
       let indexAndNameOfActiveUserprocess = []
       //find name and index of the active processes
       await messenger_processes.forEach((item, i) => {
         console.log(item)
-        if (item.process_status === true) indexof.push( {index : i , process_name : item.process_name});
+        if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
       });
 
       if(indexAndNameOfActiveUserprocess > 0) {

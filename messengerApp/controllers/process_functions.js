@@ -70,7 +70,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
 
 async function send_empty_message(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
   let string = msg;
-  const response = msg;
+  const response = {text:msg};
 
   if(custom_field_name !== null) {
     let custom_field = user.custom_fields.filter(item => item.field_name === custom_field_name)

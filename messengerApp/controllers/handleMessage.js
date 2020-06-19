@@ -69,7 +69,7 @@ try {
 
       let names  = ["Trond", "kristina"];
 
-      let the_name = arr.filter(item => item === userFields.user.first_name) ;
+      let the_name = names.filter(item => item === userFields.user.first_name) ;
 
       console.log(the_name);
 

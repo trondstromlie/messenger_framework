@@ -3,6 +3,7 @@ const callSendAPI = require('./callSendAPI');
 const fetchUserData = require('./fetchUserData');
 const logMessage = require('./writeToLog');
 const addandupdate_userfields = require('./addandupdate_userfields');
+const process_loop = require('./process_loop')
 
 
 
@@ -34,7 +35,22 @@ if(!received_message.is_echo == true) {
   logMessage( sender_psid , received_message , userFields.user.first_name);
 
 try {
-    if(received_message.text === "Init") {
+    //check if active proceceses
+    let active_process = userFields.user.messenger_processes.filter( item => item.process_status.Id === true ).
+    console.log({active_process:active_process});
+    if(active_process.length > 0 ) {
+
+      //start the process from current step
+
+      //find index of current messenger_processes
+
+
+
+
+       return NaN;
+
+    } //if text is === to something
+    else if(received_message.text === "Init") {
 
 
       let user_process = "get_personal";
@@ -43,12 +59,19 @@ try {
 
       let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + user_process};
 
-      await callSendAPI( sender_psid , responce )
+      await callSendAPI( sender_psid , responce );
+
+      await process_loop(userProcess, userFields.user, 0);
+
+      return NaN;
+
     }
     else {
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
 
       await callSendAPI(sender_psid, responce);
+
+      return Nan;
     }
 
 

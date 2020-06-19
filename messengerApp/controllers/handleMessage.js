@@ -78,7 +78,7 @@ try {
 
       await callSendAPI(sender_psid, responce);
 
-      return Nan;
+      return NaN;
     }
 
 

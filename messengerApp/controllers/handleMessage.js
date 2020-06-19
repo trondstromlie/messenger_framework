@@ -35,24 +35,25 @@ try {
 
   //write message to the users log
   let log = await logMessage( sender_psid , received_message.text , userFields.user.first_name);
-  console.log(log);
+
 
 
     //check if active proceceses
-    let messenger_processes  = userFields.user.messenger_processes;
+  let messenger_processes  = userFields.user.messenger_processes;
 
-    let indexAndNameOfActiveUserprocess = []
-    //find name and index of the active processes
-    await messenger_processes.forEach((item, i) => {
-      console.log(item)
-      if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
+  let indexAndNameOfActiveUserprocess = []
+  //find name and index of the active processes
+  await messenger_processes.forEach((item, i) => {
+    console.log(item)
+    if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
     });
+    console.log({indexAndNameOfActiveUserprocess:indexAndNameOfActiveUserprocess})
 
     if(indexAndNameOfActiveUserprocess > 0) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].item + " contuing the user process");
       await process_loop(indexAndNameOfActiveUserprocess.item.process_name, userFields.user, indexAndNameOfActiveUserprocess.index, received_message);
 
-      return NaN;
+    return NaN;
 
 
 
@@ -83,7 +84,7 @@ try {
       }else {
 
       }
-      console.log(messenger_processes);
+
 
       await addandupdate_userfields.add_user_process(sender_psid,user_process , userFields.user );
 
@@ -98,16 +99,6 @@ try {
     }
     else {
 
-      let names  = ["Trond", "kristina"];
-
-      let indexof = []
-      names.forEach((item, i) => {
-        console.log(item)
-        if (item === "Trond") indexof.push( {index : i , item: item});
-      });
-
-
-      console.log(indexof);
 
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
 
@@ -115,8 +106,6 @@ try {
 
       return NaN;
     }
-
-
 
 }catch(e) {
 

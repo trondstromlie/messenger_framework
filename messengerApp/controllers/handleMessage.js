@@ -72,11 +72,11 @@ try {
       let indexof = []
       names.forEach((item, i) => {
         console.log(item)
-        if (item === "trond") indexof.push( {index : i , item: item});
+        if (item === "Trond") indexof.push( {index : i , item: item});
       });
 
 
-      console.log(indexof[0]);
+      console.log(indexof);
 
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
 

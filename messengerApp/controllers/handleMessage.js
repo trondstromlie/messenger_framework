@@ -34,7 +34,7 @@ if(!received_message.is_echo == true) {
 
 try {
     if(received_message === "Init") (
-      console.log(" handle message init  ": userFields);
+      console.log({" handle message init  ": userFields});
 
       let responce = {text:"Hei " + userFields.name + " jeg har mottatt din melding"};
 

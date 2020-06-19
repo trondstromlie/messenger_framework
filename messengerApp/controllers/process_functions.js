@@ -76,6 +76,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
     let custom_field = user.custom_fields.filter(item => item.field_name === custom_field_name)
 
    responce = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
+   await callSendAPI(sender_psid, responce)
    return {status:true,step:"next"};
   }
   else {

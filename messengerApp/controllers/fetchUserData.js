@@ -28,7 +28,7 @@ try {
 
     let adduser = await POSTAddUser(facebookUserfields);
 
-    userFields = adduser;
+    userFields = {user:adduser};
 
     console.log({status:"user added to db"});
 

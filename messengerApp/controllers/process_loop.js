@@ -95,7 +95,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
               case  "next":
                 console.log("moving to the next step");
-                user.processes[index].step ++;
+                user.messenger_processes[index].process_progresstep ++;
 
 
                 user_loop(process_name , user_obj, index );
@@ -104,7 +104,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
               case  "pause":
                 console.log("waiting for input start function to continue");
-                user.processes[index].step ++;
+                user.messenger_processes[index].process_progress ++;
                 data = JSON.stringify(user)
                 await fs.writeFileSync('the_user_object.json', data);
                 return NaN;
@@ -112,7 +112,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
               case "jump_to" :
                console.log("jumping to function link"+ res.link)
-               user.processes[index].step = res.link;
+               user.messenger_processes[index].process_progress = res.link;
                data = JSON.stringify(user);
                await fs.writeFileSync('the_user_object.json', data);
                user_loop(process_name , user_obj, index );

@@ -39,7 +39,7 @@ try {
 
       let user_process = "get_personal";
 
-      await addandupdate_userfields(sender_psid,user_process);
+      await addandupdate_userfields.add_user_process(sender_psid,user_process);
 
       let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + user_process};
 

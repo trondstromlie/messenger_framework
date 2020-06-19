@@ -12,7 +12,7 @@ module.exports = async function callSendAPI (sender_psid, response) {
   try {
 
   let log = await logMessage(sender_psid, response.text, "The Robot");
-  console.log(log)
+
 
 } catch(e) {
   console.error(e);

@@ -52,6 +52,8 @@ try {
 
     if(indexAndNameOfActiveUserprocess[0].index >= 0) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
+
+
       await process_loop(indexAndNameOfActiveUserprocess[0].process_name, userFields.user, indexAndNameOfActiveUserprocess[0].index, received_message);
 
     return NaN;
@@ -70,7 +72,7 @@ try {
 
       let messenger_processes  = userFields.user.messenger_processes;
 
-      let indexAndNameOfActiveUserprocess = []
+      indexAndNameOfActiveUserprocess = []
       //find name and index of the active processes
       await messenger_processes.forEach((item, i) => {
         console.log(item)
@@ -79,7 +81,7 @@ try {
 
       if(indexAndNameOfActiveUserprocess > 0) {
         console.log("contuing the user process");
-        await process_loop(indexAndNameOfActiveUserprocess.item.process_name, userFields.user, indexAndNameOfActiveUserprocess.index, received_message);
+        await process_loop(indexAndNameOfActiveUserprocess[0].process_name, userFields.user, indexAndNameOfActiveUserprocess[0].index, received_message);
         return NaN;
 
       }else {

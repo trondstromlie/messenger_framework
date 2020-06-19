@@ -12,9 +12,9 @@ const fs = require('fs');
 
 
 async function user_loop (process_name , user_obj, index , incoming_msg ) {
-
+  console.log("process loop is starting!");
   let user = user_obj;
-  let step = user.processes[index].step;
+  let step = user.messenger_processes[index].process_progress;
 
   //the user processes imported from mongodb
   //**************************************************************
@@ -96,8 +96,8 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
               case  "next":
                 console.log("moving to the next step");
                 user.processes[index].step ++;
-                data = JSON.stringify(user)
-                await fs.writeFileSync('the_user_object.json', data);
+
+
                 user_loop(process_name , user_obj, index );
                 return NaN;
                 break;

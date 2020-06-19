@@ -1,7 +1,8 @@
 
-const callSendAPI = require("./callSendAPI");
-const fetchUserData = require("./fetchUserData");
-const logMessage = require("./writeToLog");
+const callSendAPI = require('./callSendAPI');
+const fetchUserData = require('./fetchUserData');
+const logMessage = require('./writeToLog');
+const addandupdate_userfields = require('/addandupdate_userfields');
 
 
 
@@ -34,9 +35,13 @@ if(!received_message.is_echo == true) {
 
 try {
     if(received_message.text === "Init") {
-      console.log({" handle message init  ": userFields.user});
 
-      let responce = {text:"Hei " + userFields.user.name + " jeg har mottatt din melding"};
+
+      let user_process = "get_personal";
+
+      await addandupdate_userfields(sender_psid,user_process);
+
+      let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + user_process};
 
       await callSendAPI( sender_psid , responce )
     }

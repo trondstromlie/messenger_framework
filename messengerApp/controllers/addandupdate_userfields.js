@@ -22,7 +22,7 @@ async function update_custom_field ( sender_psid , user_obj , field_obj  ) {
 //add or reset user_process
 //next step create process to reset_user_process
 
-async function add_user_process(sender_psid, process_name) {
+async function add_user_process( sender_psid , process_name , user_obj ) {
 
   // if user process is not already in user data
   //create it if user_process is already in  db reset it to step 0
@@ -43,7 +43,7 @@ async function add_user_process(sender_psid, process_name) {
  return new Promise( (resolve , reject) => {
    request(options, (err, res , body) => {
      if(err) {
-       console.error(err);
+       console.error(err.message);
        reject(err);
 
      } else {

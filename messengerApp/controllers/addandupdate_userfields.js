@@ -41,7 +41,7 @@ async function add_user_process(sender_psid, process_name) {
 
 
  return new Promise( (resolve , reject) => {
-   request(options, (err, res , body)) {
+   request(options, (err, res , body) => {
      if(err) {
        console.error(err);
        reject(err);

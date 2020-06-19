@@ -37,17 +37,15 @@ if(!received_message.is_echo === true) {
 try {
     //check if active proceceses
     let active_process = userFields.user.messenger_processes.filter( item => item.process_status === true );
-    console.log({active_process:active_process});
+
     if(active_process.length > 0 ) {
+
+      console.log({active_process:active_process});
 
       //start the process from current step
 
       //find index of current messenger_processes
-
-
-
-
-       return NaN;
+      return NaN
 
     } //if text is === to something
     else if(received_message.text === "Init") {

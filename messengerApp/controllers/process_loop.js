@@ -69,7 +69,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
           let quick_reply_obj = null;
           let in_message = incoming_msg;
 
-          console.log(in_message)
+          console.log(in_message);
 
           if( item.steps[step].msg ) message = item.steps[step].msg;
 

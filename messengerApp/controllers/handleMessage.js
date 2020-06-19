@@ -2,7 +2,7 @@
 const callSendAPI = require('./callSendAPI');
 const fetchUserData = require('./fetchUserData');
 const logMessage = require('./writeToLog');
-const addandupdate_userfields = require('/addandupdate_userfields');
+const addandupdate_userfields = require('./addandupdate_userfields');
 
 
 

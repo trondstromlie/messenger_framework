@@ -50,7 +50,7 @@ async function add_user_process(sender_psid, process_name) {
        console.log(body);
        resolve(body);
      }
-   }
+   });
 });// end of promise
 } //add user_process
 

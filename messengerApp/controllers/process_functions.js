@@ -70,22 +70,29 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
 
 async function send_empty_message(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
   let string = msg;
+  let response = msg;
 
   if(custom_field_name !== null) {
     let custom_field = user.custom_fields.filter(item => item.field_name === custom_field_name)
 
-   let responce = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
+   responce = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
+   return {status:true,step:"next"};
+  }
+  else {
+
+    console.log(responce);
+    await callSendAPI(sender_psid, responce)
+    return {status:true,step:"next"};
   }
 
-  console.log(responce);
-  await callSendAPI(sender_psid, responce)
 
 
 
 
 
 
-  return {status:true,step:"next"};
+
+
   //send message send message move to next step in prosess
   //message pause is wait for user input
 

@@ -54,13 +54,32 @@ try {
 
       let user_process = "get_personal";
 
+
+      let messenger_processes  = userFields.user.messenger_processes;
+      let indexAndNameOfActiveUserprocess = []
+      //find name and index of the active processes
+      await messenger_processes.forEach((item, i) => {
+        console.log(item)
+        if (item.process_status === true) indexof.push( {index : i , process_name : item.process_name});
+      });
+
+      if(indexAndNameOfActiveUserprocess > 0) {
+        console.log("contuing the user process");
+        await process_loop(indexAndNameOfActiveUserprocess.item.process_name, userFields.user, indexAndNameOfActiveUserprocess.index, received_message);
+        return NaN;
+
+      }else {
+
+      }
+      console.log(messenger_processes);
+
       await addandupdate_userfields.add_user_process(sender_psid,user_process , userFields.user );
 
       let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + user_process};
 
       await callSendAPI( sender_psid , responce );
 
-      await process_loop(userProcess, userFields.user, 0);
+      await process_loop(userProcess, userFields.user, 0, received_message);
 
       return NaN;
 

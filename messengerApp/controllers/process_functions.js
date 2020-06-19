@@ -1,6 +1,7 @@
 "use strict";
 
 const sleep = require('sleep-promise');
+const callSendAPI = require('./callSendAPI');
 
 
 
@@ -12,7 +13,7 @@ const sleep = require('sleep-promise');
 //send a string of text, include a quick reply object to add a quick reply
 
 async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
-  
+
   console.log("get text input");
 
 
@@ -73,17 +74,18 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
   if(custom_field_name !== null) {
     let custom_field = user.custom_fields.filter(item => item.field_name === custom_field_name)
 
-    string = msg.replace("{<custom_field>}", custom_field[0].field_value);
+    responce = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
   }
 
-  console.log(string);
+  console.log(responce);
+  await callSendAPI(sender_psid, responce)
 
 
 
 
 
 
-  return {status:true,step:"pause"};
+  return {status:true,step:"next"};
   //send message send message move to next step in prosess
   //message pause is wait for user input
 
@@ -94,7 +96,11 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg) {
   console.log("send quick reply");
-  console.log(quick_reply_obj);
+
+    let responce = { text:msg,quick_replies:quick_reply_obj, messaging_type:"RESPONCE"}
+
+    callSendAPI(sender_psid,responce);
+
     return {status:true,step:"next"};
 };
 
@@ -196,8 +202,8 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 async function writing_action (sender_psid, user, msg, custom_field_name ,quick_reply_obj,incoming_msg) {
 
 
-  console.log("writing action sleeping for 1 sec");
-  await sleep(1000);
+
+  await sleep(3000);
   return {status:true,step:"next"};
 }
 

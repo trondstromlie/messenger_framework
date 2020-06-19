@@ -11,7 +11,7 @@ const fs = require('fs');
 
 
 
-async function user_loop (process_name , user_obj, index ) {
+async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
   let user = user_obj;
   let step = user.processes[index].step;
@@ -26,7 +26,7 @@ async function user_loop (process_name , user_obj, index ) {
          {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" før du kan registrer deg må jeg få vite litt mer om hvem du er :) "},
          {name:"writing_action",func:process_functions.writing_action},
          {name:"ask for email",func:process_functions.send_empty_message, msg:"Skriv din beste epostadresse her, eller velg adressen facebook har foreslått for deg. " },
-         {name:"ask for email quick reply",func:process_functions.send_quick_reply,quick_reply_obj:{"msg":"email","payload":"email"}},
+         {name:"ask for email quick reply",func:process_functions.send_quick_reply,msg:"velg her!",quick_reply_obj:{"msg":"email","payload":"email"}},
          {name:"listen_for_email",func:process_functions.listen_for_data,custom_field_name:"email",msg:"Skriv din epost her >> "},
          {name:"confirm_data",func:process_functions.send_empty_message,custom_field_name:"email", msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "},
          {name:"confirm email",func:process_functions.send_quick_reply,quick_reply_obj:[{"msg":"Ja","payload":"send takk",link:8},{"msg":"Nei","payload":"ask for email",link:2}]},
@@ -67,6 +67,7 @@ async function user_loop (process_name , user_obj, index ) {
           let message = null;
           let custom_field_name = null;
           let quick_reply_obj = null;
+          let in_message = incoming_msg.text;
 
           if( item.steps[step].msg ) message = item.steps[step].msg;
 
@@ -78,7 +79,7 @@ async function user_loop (process_name , user_obj, index ) {
           let item_function = item.steps[step].func;
 
 
-          let res = await item_function(user.sender_psid, user, message, custom_field_name, quick_reply_obj);
+          let res = await item_function(user.sender_psid, user, message, custom_field_name, quick_reply_obj, in_message);
 
           console.log({res:res});
 

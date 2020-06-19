@@ -10,7 +10,10 @@ module.exports = async function callSendAPI (sender_psid, response) {
 
   //send responce to the console.log;
   try {
-  await logMessage(sender_psid, response.text, "The Robot");
+
+  let log = await logMessage(sender_psid, response.text, "The Robot");
+  console.log(log)
+
 } catch(e) {
   console.error(e);
 }

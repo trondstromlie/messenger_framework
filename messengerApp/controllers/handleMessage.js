@@ -73,7 +73,7 @@ try {
 
       let arr = ["trond","kristina","eller","rolf"];
 
-      let index = arr.filter(item => arr.Id);
+      let index = arr.filter(item => arr === "rolf");
       console.log({idex:index})
 
       await callSendAPI(sender_psid, responce);

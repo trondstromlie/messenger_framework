@@ -69,7 +69,8 @@ try {
 
       let names  = ["Trond", "kristina"];
 
-      let the_name = arr.filter(item, => item === userFields.user.first_name) ;
+      let the_name = arr.filter(item => item === userFields.user.first_name) ;
+
       console.log(the_name);
 
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};

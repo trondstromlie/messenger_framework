@@ -67,11 +67,12 @@ try {
     }
     else {
 
+      let names  = ["Trond", "kristina"];
+
+      let the_name = arr.filter(item, => item === userFields.user.first_name) ;
+      console.log(the_name);
+
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
-
-
-
-      
 
       await callSendAPI(sender_psid, responce);
 

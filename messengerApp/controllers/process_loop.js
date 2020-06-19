@@ -59,7 +59,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
 
 
-      if(item.name === user.messenger_processes[index].name ) {
+      if(item.name === user.messenger_processes[index].process_name ) {
         try {
 
           console.log("\n\n********* starting " + item.steps[step].name +  " **********\n\n");

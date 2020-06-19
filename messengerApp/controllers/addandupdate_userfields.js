@@ -54,7 +54,7 @@ async function add_user_process( sender_psid , process_name , user_obj ) {
 });// end of promise
 } //add user_process
 
-await function update_process_progress ( sender_psid, process_name, process_status, process_progress )  {
+async function update_process_progress ( sender_psid, process_name, process_status, process_progress )  {
 
 
   let json = {sender_psid:sender_psid, process_name:process_name}

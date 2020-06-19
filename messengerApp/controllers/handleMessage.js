@@ -31,7 +31,7 @@ if(!received_message.is_echo == true) {
   let userFields = await fetchUserData(sender_psid);
 
   //write message to the users log
-  logMessage( sender_psid , received_message );
+  logMessage( sender_psid , received_message , userFields.user.first_name);
 
 try {
     if(received_message.text === "Init") {

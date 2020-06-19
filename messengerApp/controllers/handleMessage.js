@@ -70,7 +70,7 @@ try {
       let names  = ["Trond", "kristina"];
 
       let indexof = []
-       forEach((item, i) => {
+       names.forEach((item, i) => {
         if (item === "trond") indexof.push( {index : i , item: item});
       });
 

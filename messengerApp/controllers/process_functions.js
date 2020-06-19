@@ -74,7 +74,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
   if(custom_field_name !== null) {
     let custom_field = user.custom_fields.filter(item => item.field_name === custom_field_name)
 
-    responce = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
+   let responce = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
   }
 
   console.log(responce);

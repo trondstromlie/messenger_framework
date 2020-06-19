@@ -34,9 +34,9 @@ if(!received_message.is_echo == true) {
 
 try {
     if(received_message.text === "Init") {
-      console.log({" handle message init  ": userFields});
+      console.log({" handle message init  ": userFields.user});
 
-      let responce = {text:"Hei " + userFields.name + " jeg har mottatt din melding"};
+      let responce = {text:"Hei " + userFields.user.name + " jeg har mottatt din melding"};
 
       await callSendAPI( sender_psid , responce )
     }

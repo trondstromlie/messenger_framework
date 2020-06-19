@@ -51,8 +51,8 @@ try {
     console.log(indexAndNameOfActiveUserprocess[0].process_name);
 
     if(indexAndNameOfActiveUserprocess[0].index >= 0) {
-      console.log("found a user process " + indexAndNameOfActiveUserprocess[0].item + " contuing the user process");
-      await process_loop(indexAndNameOfActiveUserprocess.item.process_name, userFields.user, indexAndNameOfActiveUserprocess.index, received_message);
+      console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
+      await process_loop(indexAndNameOfActiveUserprocess[0].process_name, userFields.user, indexAndNameOfActiveUserprocess[0].index, received_message);
 
     return NaN;
 

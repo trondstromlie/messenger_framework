@@ -24,48 +24,29 @@ const logMessage = require("./writeToLog");
 module.exports = async function handleMessage (sender_psid, received_message) {
 
 
-
-
 if(!received_message.is_echo == true) {
+  //fetch the user data from api
+
+  let userFields = await fetchUserData(sender_psid);
+
+  //write message to the users log
+  logMessage( sender_psid , received_message );
 
 try {
+    if(received_message === "Init") (
+      console.log(" handle message init  ": userFields);
 
+      let responce = {text:"Hei " + userFields.name + " jeg har mottatt din melding"};
 
-if(received_message.is_echo == true) {
-
-console.log({"is_echo:":received_message.text});
-
-
-}  //check if messege contain the word "Hei"
-else if(received_message.text === "Init") {
-
-  let userdata = await fetchUserData(sender_psid);
-  console.log({userdata:userdata});
-
-  let log = await logMessage(sender_psid, received_message.text, userdata.user.first_name);
-
-  console.log({"received_message:":received_message.text});
+      await callSendAPI( sender_psid , responce )
+    );
 
 
 
-      //add the process get_personel to the user fields
-      //is activ true
+}catch(e) {
 
-      let response = {"text":"hello " +userdata['user']['first_name']+ " du skriver med roboten nå"};
-
-      await callSendAPI(sender_psid , response);
-
-
-      return null;
-
-
+  console.error(e);
 }
-  } catch(e) {
-    console.error(e.message);
-   }
-  //end
- //check if name is trond contain the word "and message contain word init"
- }
-  //end
-}
+};
+
 }

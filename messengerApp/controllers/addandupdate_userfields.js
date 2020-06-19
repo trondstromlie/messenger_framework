@@ -72,9 +72,9 @@ async function update_process_progress ( sender_psid, process_name, process_stat
     request(options, ( err, res, body ) => {
       if(err) {
         reject(err);
-      } else (
+      } else {
         resolve(body);
-      )
+      }
     });
 
   });

@@ -26,13 +26,13 @@ const process_loop = require('./process_loop')
 module.exports = async function handleMessage (sender_psid, received_message) {
 
 
-if(!received_message.is_echo == true) {
+if(!received_message.is_echo === true) {
   //fetch the user data from api
 
   let userFields = await fetchUserData(sender_psid);
 
   //write message to the users log
-  logMessage( sender_psid , received_message , userFields.user.first_name);
+  logMessage( sender_psid , received_message.text , userFields.user.first_name);
 
 try {
     //check if active proceceses

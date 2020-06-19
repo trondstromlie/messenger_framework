@@ -32,7 +32,8 @@ if(!received_message.is_echo === true) {
   let userFields = await fetchUserData(sender_psid);
 
   //write message to the users log
-  logMessage( sender_psid , received_message.text , userFields.user.first_name);
+  let log = await logMessage( sender_psid , received_message.text , userFields.user.first_name);
+  console.log(log);
 
 try {
     //check if active proceceses
@@ -65,6 +66,7 @@ try {
 
     }
     else {
+
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
 
 

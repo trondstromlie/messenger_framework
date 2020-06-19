@@ -33,7 +33,7 @@ if(!received_message.is_echo == true) {
   logMessage( sender_psid , received_message );
 
 try {
-    if(received_message === "Init") {
+    if(received_message.text === "Init") {
       console.log({" handle message init  ": userFields});
 
       let responce = {text:"Hei " + userFields.name + " jeg har mottatt din melding"};
@@ -45,7 +45,7 @@ try {
 
 }catch(e) {
 
-  console.error(e);
+  console.error(e.message);
 }
 };
 

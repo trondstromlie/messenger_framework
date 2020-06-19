@@ -69,9 +69,13 @@ try {
 
       let names  = ["Trond", "kristina"];
 
-      let the_name = names.filter(item => item === userFields.user.first_name) ;
+      let indexof = []
+       forEach((item, i) => {
+        if (item === "trond") indexof.push( {index : i , item: item});
+      });
 
-      console.log(the_name);
+
+      console.log(indexof);
 
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
 

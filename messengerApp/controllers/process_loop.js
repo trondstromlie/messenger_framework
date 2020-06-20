@@ -21,6 +21,8 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
   console.log("process loop is starting!");
   let user = user_obj;
   let step = user.messenger_processes[index].process_progress;
+  let processName = process_name;
+  console.log(processName);
 
   //the user processes will be omprtetd from a registerd users db in the future
   //**************************************************************
@@ -104,7 +106,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
               case  "next":
                 console.log("moving to the next step");
                 user.messenger_processes[index].process_progresstep ++;
-                addandupdate_userfields.update_process_progress(sender_psid, process_name, null, user.messenger_processes[index].process_progress);
+                addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
                 user_loop(process_name , user, index );
                 return NaN;
                 break;
@@ -112,7 +114,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
               case  "pause":
                 console.log("waiting for input start function to continue");
                 user.messenger_processes[index].process_progress ++;
-                addandupdate_userfields.update_process_progress(sender_psid, process_name, null, user.messenger_processes[index].process_progress);
+                addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
 
                 return NaN;
                 break;
@@ -120,7 +122,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
               case "jump_to" :
                console.log("jumping to function link"+ res.link)
                user.messenger_processes[index].process_progress = res.link;
-               addandupdate_userfields.update_process_progress(sender_psid, process_name, null, user.messenger_processes[index].process_progress);
+               addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
                user_loop(process_name , user, index );
                return NaN;
                break;
@@ -128,7 +130,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
               case "restart":
                 console.log("restarting current function")
-                user_loop(process_name , user_obj, index );
+                user_loop(processName , user_obj, index );
                 return NaN;
                 break;
               default:

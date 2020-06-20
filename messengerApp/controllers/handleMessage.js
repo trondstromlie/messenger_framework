@@ -86,18 +86,21 @@ try {
 
       }else {
 
+      
+
+        let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + user_process};
+
+        await callSendAPI( sender_psid , responce );
+
+
+
+        return NaN;
+
+
       }
 
 
-      await addandupdate_userfields.add_user_process(sender_psid,user_process , userFields.user );
 
-      let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + user_process};
-
-      await callSendAPI( sender_psid , responce );
-
-      await process_loop(userProcess, userFields.user, 0, received_message);
-
-      return NaN;
 
     }
     else {

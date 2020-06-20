@@ -1,13 +1,19 @@
+//************************************************
+// todo
+//
+//prosess goes into an infinite user_loop
+// sett all functions to return pause
 
 
 "use strict";
 const process_functions = require('./process_functions');
+const addandupdate_userfields = require('./addandupdate_userfields');
 const fs = require('fs');
 
 //the user loop functions
 //starts when handle message discovers an active userProcess in the user procecces field
 //index is the index of the userprocess in case there is more than one.
-//only one user process can be activ in one time.
+//only one user process can be activ in one time. creata array.map() that sets all other procecces to false whan creating a new process
 
 
 
@@ -16,7 +22,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
   let user = user_obj;
   let step = user.messenger_processes[index].process_progress;
 
-  //the user processes imported from mongodb
+  //the user processes will be omprtetd from a registerd users db in the future
   //**************************************************************
   const user_process = {processes: [
     {
@@ -98,26 +104,24 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
               case  "next":
                 console.log("moving to the next step");
                 user.messenger_processes[index].process_progresstep ++;
-
-
-                user_loop(process_name , user_obj, index );
+                addandupdate_userfields.update_process_progress(sender_psid, process_name, null, user.messenger_processes[index].process_progress);
+                user_loop(process_name , user, index );
                 return NaN;
                 break;
 
               case  "pause":
                 console.log("waiting for input start function to continue");
                 user.messenger_processes[index].process_progress ++;
-                data = JSON.stringify(user)
-                await fs.writeFileSync('the_user_object.json', data);
+                addandupdate_userfields.update_process_progress(sender_psid, process_name, null, user.messenger_processes[index].process_progress);
+
                 return NaN;
                 break;
 
               case "jump_to" :
                console.log("jumping to function link"+ res.link)
                user.messenger_processes[index].process_progress = res.link;
-               data = JSON.stringify(user);
-               await fs.writeFileSync('the_user_object.json', data);
-               user_loop(process_name , user_obj, index );
+               addandupdate_userfields.update_process_progress(sender_psid, process_name, null, user.messenger_processes[index].process_progress);
+               user_loop(process_name , user, index );
                return NaN;
                break;
 

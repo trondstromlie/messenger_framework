@@ -41,7 +41,7 @@ try {
     //check if active proceceses
   let messenger_processes  = userFields.user.messenger_processes;
 
-  let indexAndNameOfActiveUserprocess = []
+  let indexAndNameOfActiveUserprocess;
   //find name and index of the active processes
   await messenger_processes.forEach((item, i) => {
     console.log({item:item})

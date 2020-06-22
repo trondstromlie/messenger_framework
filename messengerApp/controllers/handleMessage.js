@@ -73,29 +73,37 @@ try {
 
       }else {
 
+        console.log("\n********************   creating new process ************************");
         let messenger_process = "get_personal";
 
-        let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user)
+        let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
 
-        console.log(add_user_process);
+        index = []
+        await add_user_process.messenger_process.forEach((item, i) => {
+          if ( item.process_name === messenger_process  ) {
+            index.push({process_name: item.process_name, index:i})
+          }
+        });
 
-        let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
+        if(!index > 0) {
+          throw("index not found in register process")
+        } else {
+          console.log(add_user_process);
 
-        //await process_loop(messenger_process, userFields.user, , received_message);
+          let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
 
-        await callSendAPI( sender_psid , responce );
+          //await process_loop(messenger_process, userFields.user, , received_message);
 
-        //add the procecc to the user with the api and start the process loop
+          await callSendAPI( sender_psid , responce );
+
+          //add the procecc to the user with the api and start the process loop
 
 
 
-        return NaN;
-
+          return NaN;
+        }
 
       }
-
-
-
 
     }
     else {

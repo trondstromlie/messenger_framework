@@ -44,7 +44,7 @@ try {
   let indexAndNameOfActiveUserprocess = [];
   //find name and index of the active processes
   await messenger_processes.forEach((item, i) => {
-    console.log({item:item})
+    
     if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
     });
 
@@ -78,6 +78,8 @@ try {
 
         let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
 
+        console.log(add_user_process);
+
         index = []
         await add_user_process.messenger_processes.forEach((item, i) => {
           if ( item.process_name === messenger_process  ) {
@@ -96,7 +98,7 @@ try {
           await callSendAPI( sender_psid , responce );
 
           console.log(index[0].index)
-          await process_loop(messenger_process, userFields.user, index[0].index , received_message);
+          await process_loop(messenger_process, add_user_process, index[0].index , received_message);
 
 
 

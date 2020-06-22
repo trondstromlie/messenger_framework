@@ -30,7 +30,7 @@ async function add_user_process( sender_psid , process_name , user_obj ) {
   let process_steps = 0;
   let process_progress = 0;
   let user_data = user_obj;
-  
+
   let json = {sender_psid:sender_psid,process_name:process_name,process_progress:process_progress,process_steps:process_steps};
 
   let options = {
@@ -68,6 +68,8 @@ async function update_process_progress ( sender_psid, process_name, process_stat
     method:"PUT",
     json:json
   };
+
+  console.log(json);
 
   return new Promise( ( resolve , reject ) => {
     request(options, ( err, res, body ) => {

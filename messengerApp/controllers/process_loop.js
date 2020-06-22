@@ -107,7 +107,8 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 console.log("moving to the next step");
                 user.messenger_processes[index].process_progresstep ++;
                 addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
-                user_loop(process_name , user, index );
+                user_loop(sender_psid, process_name , user, index, NaN );
+
                 return NaN;
                 break;
 
@@ -124,13 +125,14 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                user.messenger_processes[index].process_progress = res.link;
                addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
                user_loop(process_name , user, index );
+
                return NaN;
                break;
 
 
               case "restart":
                 console.log("restarting current function")
-                user_loop(processName , user_obj, index );
+                user_loop(sender_psid , processName , user_obj , index , incoming_msg );
                 return NaN;
                 break;
               default:

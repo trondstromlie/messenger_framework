@@ -77,12 +77,14 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
 
    response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
    await callSendAPI(sender_psid, response)
+
    return {status:true,step:"next"};
   }
   else {
 
     console.log(response);
     await callSendAPI(sender_psid, response)
+    
     return {status:true,step:"next"};
   }
 

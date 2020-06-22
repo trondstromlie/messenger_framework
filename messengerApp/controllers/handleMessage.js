@@ -95,8 +95,8 @@ try {
 
           await callSendAPI( sender_psid , responce );
 
-          console.log(index)
-          await process_loop(messenger_process, userFields.user, index.index , received_message);
+          console.log(index[0].index)
+          await process_loop(messenger_process, userFields.user, index[0].index , received_message);
 
 
 

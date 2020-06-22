@@ -20,7 +20,7 @@ const fs = require('fs');
 async function user_loop (process_name , user_obj, index , incoming_msg ) {
   console.log("process loop is starting!");
 
-  console.log(user_obj.messenger_processes[index]);
+  console.log(user_obj.messenger_processes[index].process_progress);
   let user = user_obj;
   let step = user.messenger_processes[index].process_progress;
   let processName = process_name;

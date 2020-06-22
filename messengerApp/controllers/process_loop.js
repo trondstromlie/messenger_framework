@@ -22,7 +22,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
   let user = user_obj;
   let step = user.messenger_processes[index].process_progress;
   let processName = process_name;
-  console.log(processName);
+  sender_psid = user.sender_psid;
 
   //the user processes will be omprtetd from a registerd users db in the future
   //**************************************************************

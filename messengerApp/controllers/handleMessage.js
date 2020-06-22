@@ -66,7 +66,7 @@ try {
     } //if text is === to something
     else if(received_message.text === "Init") {
 
-
+      console.log("\n *********************** starting Iit *********************** \n")
       let messenger_processes  = userFields.user.messenger_processes;
 
       indexAndNameOfActiveUserprocess = []
@@ -84,7 +84,7 @@ try {
       }else {
 
 
-
+        console.log("\n ********************* starting else *******************\n ")  
         let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
 
         await callSendAPI( sender_psid , responce );

@@ -44,7 +44,7 @@ try {
   let indexAndNameOfActiveUserprocess = []
   //find name and index of the active processes
   await messenger_processes.forEach((item, i) => {
-    console.log(item)
+    console.log({item:item})
     if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
     });
     console.log({indexAndNameOfActiveUserprocess:indexAndNameOfActiveUserprocess})
@@ -65,9 +65,6 @@ try {
 
     } //if text is === to something
     else if(received_message.text === "Init") {
-
-
-      let user_process = "get_personal";
 
 
       let messenger_processes  = userFields.user.messenger_processes;

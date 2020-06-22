@@ -79,7 +79,7 @@ try {
         let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
 
         index = []
-        await add_user_process.messenger_process.forEach((item, i) => {
+        await add_user_process.messenger_processes.forEach((item, i) => {
           if ( item.process_name === messenger_process  ) {
             index.push({process_name: item.process_name, index:i})
           }

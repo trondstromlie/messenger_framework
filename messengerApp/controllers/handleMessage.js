@@ -49,7 +49,7 @@ try {
     });
 
     console.log({indexAndNameOfActiveUserprocess_length:indexAndNameOfActiveUserprocess.length})
-    if(!indexAndNameOfActiveUserprocess.length && Array.isArray(indexAndNameOfActiveUserprocess)) {
+    if(!indexAndNameOfActiveUserprocess.length && !Array.isArray(indexAndNameOfActiveUserprocess)) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
 
 

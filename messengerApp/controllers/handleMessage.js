@@ -92,9 +92,11 @@ try {
 
           let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
 
-          //await process_loop(messenger_process, userFields.user, , received_message);
-
           await callSendAPI( sender_psid , responce );
+
+          await process_loop(messenger_process, userFields.user, index.index , received_message);
+
+
 
           //add the procecc to the user with the api and start the process loop
 

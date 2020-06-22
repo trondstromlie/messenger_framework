@@ -49,7 +49,7 @@ try {
     });
 
 
-    if(indexAndNameOfActiveUserprocess.length >= 0) {
+    if(indexAndNameOfActiveUserprocess.length && Array.isArray(indexAndNameOfActiveUserprocess)) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
 
 

@@ -41,7 +41,7 @@ try {
     //check if active proceceses
   let messenger_processes  = userFields.user.messenger_processes;
 
-  let indexAndNameOfActiveUserprocess;
+  let indexAndNameOfActiveUserprocess [];
   //find name and index of the active processes
   await messenger_processes.forEach((item, i) => {
     console.log({item:item})
@@ -49,18 +49,15 @@ try {
     });
 
     console.log({indexAndNameOfActiveUserprocess_length:indexAndNameOfActiveUserprocess.length})
-    if(!indexAndNameOfActiveUserprocess.length && !Array.isArray(indexAndNameOfActiveUserprocess)) {
+    if(indexAndNameOfActiveUserprocess.length > 0)) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
 
 
       await process_loop(indexAndNameOfActiveUserprocess[0].process_name, userFields.user, indexAndNameOfActiveUserprocess[0].index, received_message);
 
-    return NaN;
-
-
+      return NaN;
 
       //find index of current messenger_processes
-
 
     } //if text is === to something
     else if(received_message.text === "Init") {

@@ -109,7 +109,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 console.log("moving to the next step");
                 user.messenger_processes[index].process_progresstep ++;
                 addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
-                user_loop(sender_psid, processName, user_obj , index, incoming_msg );
+                //user_loop(sender_psid, processName, user_obj , index, incoming_msg );
 
                 return NaN;
                 break;

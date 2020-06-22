@@ -65,12 +65,6 @@ try {
       console.log("\n *********************** starting Iit *********************** \n")
       let messenger_processes  = userFields.user.messenger_processes;
 
-      indexAndNameOfActiveUserprocess = []
-      //find name and index of the active processes
-      await messenger_processes.forEach((item, i) => {
-        console.log(item)
-        if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
-      });
 
       if(indexAndNameOfActiveUserprocess > 0) {
         console.log("contuing the user process");
@@ -81,8 +75,13 @@ try {
 
         let messenger_process = "get_personal";
 
+        let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user)
+
+        console.log(add_user_process);
+
         let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
-        await process_loop(indexAndNameOfActiveUserprocess[0].process_name, userFields.user, indexAndNameOfActiveUserprocess[0].index, received_message);
+
+        //await process_loop(messenger_process, userFields.user, , received_message);
 
         await callSendAPI( sender_psid , responce );
 

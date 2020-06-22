@@ -82,8 +82,11 @@ try {
         let messenger_process = "get_personal";
 
         let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
+        await process_loop(indexAndNameOfActiveUserprocess[0].process_name, userFields.user, indexAndNameOfActiveUserprocess[0].index, received_message);
 
         await callSendAPI( sender_psid , responce );
+
+        //add the procecc to the user with the api and start the process loop
 
 
 

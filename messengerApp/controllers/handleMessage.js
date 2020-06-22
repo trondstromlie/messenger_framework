@@ -86,9 +86,9 @@ try {
 
       }else {
 
-      
 
-        let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + user_process};
+
+        let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
 
         await callSendAPI( sender_psid , responce );
 

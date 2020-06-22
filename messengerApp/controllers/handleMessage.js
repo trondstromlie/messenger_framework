@@ -41,14 +41,14 @@ try {
     //check if active proceceses
   let messenger_processes  = userFields.user.messenger_processes;
 
-  let indexAndNameOfActiveUserprocess;
+  let indexAndNameOfActiveUserprocess= [];
   //find name and index of the active processes
   await messenger_processes.forEach((item, i) => {
     console.log({item:item})
     if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
     });
 
-
+    console.log({indexAndNameOfActiveUserprocess_length:indexAndNameOfActiveUserprocess.length})
     if(indexAndNameOfActiveUserprocess.length && Array.isArray(indexAndNameOfActiveUserprocess)) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
 

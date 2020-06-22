@@ -90,12 +90,12 @@ try {
 
         } else {
 
-          
+
           let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
 
           await callSendAPI( sender_psid , responce );
 
-          console.log(index}
+          console.log(index)
           await process_loop(messenger_process, userFields.user, index.index , received_message);
 
 

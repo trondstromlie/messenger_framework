@@ -48,7 +48,7 @@ try {
     if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
     });
 
-    console.log({indexAndNameOfActiveUserprocess_length:indexAndNameOfActiveUserprocess.length})
+
     if(indexAndNameOfActiveUserprocess.length > 0)) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
 

@@ -79,8 +79,8 @@ try {
 
       }else {
 
+        let messenger_process = "get_personal";
 
-        console.log("\n ********************* starting else *******************\n ")
         let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
 
         await callSendAPI( sender_psid , responce );
@@ -98,6 +98,7 @@ try {
     }
     else {
 
+      console.log("\n ********************* starting else *******************\n ")
 
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
 

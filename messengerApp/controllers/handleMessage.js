@@ -47,8 +47,7 @@ try {
     console.log({item:item})
     if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
     });
-    console.log({indexAndNameOfActiveUserprocess:indexAndNameOfActiveUserprocess})
-    console.log(indexAndNameOfActiveUserprocess[0].process_name);
+
 
     if(indexAndNameOfActiveUserprocess[0].index >= 0) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
@@ -84,7 +83,7 @@ try {
       }else {
 
 
-        console.log("\n ********************* starting else *******************\n ")  
+        console.log("\n ********************* starting else *******************\n ")
         let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
 
         await callSendAPI( sender_psid , responce );

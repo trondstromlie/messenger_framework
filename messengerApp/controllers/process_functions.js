@@ -115,7 +115,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
       let temp_obj = {content_type : "text" ,payload:item.payload ,title:item.title};
       if(item.img) temp_obj.img = item.img;
 
-      quickreply_response.push = temp_obj;
+      quickreply_response.push(temp_obj);
       });
     console.log(quickreply_response);
 

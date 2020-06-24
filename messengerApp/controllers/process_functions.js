@@ -112,7 +112,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
     let quickreply_response = []
 
     await quick_reply_obj.forEach((item, i) => {
-      let temp_obj = {content_type : "text" ,payload:item.payload ,title:item.title};
+      let temp_obj = {content_type : "user_email" ,payload:item.payload ,title:item.title};
       if(item.img) temp_obj.img = item.img;
 
       quickreply_response.push(temp_obj);

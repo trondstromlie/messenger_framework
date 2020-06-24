@@ -157,7 +157,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
          let data = user;
 
 
-         let custom_field_index = await return_index(user,custom_field_name, incoming_msg);
+         let custom_field_index = await return_index(user,custom_field_name, incoming_msg, err_message);
 
 
 
@@ -187,12 +187,12 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          console.log("this is not a valid email");
 
-         let responce = {text:"Dette er ikke en gyldig Epost adresse, prøv en gang til"}
+         let responce = {err_msg.msg}
 
          callSendAPI(sender_psid,responce,"RESPONSE");
 
 
-         return {status:true,step:"pause"};
+         return {status:true,step:"jump_to",link:err_message.link};
 
          //do something else!
                }

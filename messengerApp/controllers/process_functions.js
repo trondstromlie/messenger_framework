@@ -12,7 +12,7 @@ const callSendAPI = require('./callSendAPI');
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
+async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
 
   console.log("get text input");
 
@@ -26,7 +26,7 @@ async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick
 //***********
 //function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette er de riktig.
-async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
+async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg. err_message) {
 
   console.log("confirm_data");
 
@@ -50,14 +50,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
    }
 
 
-
-
-
-
   //add promt for data here if yes continue else go back to change the email
-
-
-
 
   //hvis nei hopp en funksjon tilbake start prosess på nytt
 
@@ -65,7 +58,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
 //***********************************
 //send empty text and jump to the next functions
 
-async function send_empty_message(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
+async function send_empty_message(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
   let string = msg;
   const response = {text:msg};
 
@@ -104,7 +97,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
 
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 
-async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg) {
+async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg, err_message) {
   console.log("send quick reply");
 
     //lag en foreach lopp som går gjennom alle quickreply object og bygger objektet for hver enkelt innlegg.......
@@ -134,7 +127,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
 
-async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg) {
+async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg, err_message) {
   console.log(" listen for data ");
 
 
@@ -157,7 +150,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
          let data = user;
 
 
-         let custom_field_index = await return_index(user,custom_field_name, incoming_msg, err_message);
+         let custom_field_index = await return_index(user,custom_field_name, incoming_msg);
 
 
 

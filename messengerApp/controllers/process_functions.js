@@ -109,13 +109,13 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
     //lag en foreach lopp som går gjennom alle quickreply object og bygger objektet for hver enkelt innlegg.......
 
-    let quickreply_responce = []
+    let quickreply_response = []
 
     await quick_reply_obj.forEach((item, i) => {
       let temp_obj = {content_type : "text" ,payload:item.payload ,title:item.title};
       if(item.img) temp_obj.img = item.img;
 
-      quickreply_responce.push = temp_obj;
+      quickreply_response.push = temp_obj;
       });
     console.log(quickreply_response);
 

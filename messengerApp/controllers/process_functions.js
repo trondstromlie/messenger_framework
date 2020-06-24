@@ -158,8 +158,8 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          if(custom_field_index !== false) {
 
-           console.log("updating " + custom_field_name + " from " + data.custom_fields[custom_field_index].field_value + " to " + promt_for_email );
-           data.custom_fields[custom_field_index].field_value = promt_for_email;
+           console.log("updating " + custom_field_name + " from " + data.custom_data[custom_field_index].field_value + " to " + promt_for_email );
+           data.custom_data[custom_field_index].field_value = promt_for_email;
            console.log(data);
 
            //write update to database
@@ -167,7 +167,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          } else {
            //create new custom field
-           data.custom_fields.push({"field_name":custom_field_name,"field_value":promt_for_email});
+           data.custom_data.push({"field_name":custom_field_name,"field_value":promt_for_email});
            console.log(data);
 
            //fs.writeFileSync('the_user_object.json',JSON.stringify(data));

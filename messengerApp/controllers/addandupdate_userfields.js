@@ -3,20 +3,31 @@ const request = require('request');
 
 //***u*************************
 //Update userfield using the messenger_user_API
-async function update_custom_field ( sender_psid , user_obj , field_obj  ) {
+async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  ) {
 
-  try {
+  console.log( { field_obj  : field_obj } );
 
-
-    // connect to messenger API too update fields
-    //create a promise function using request
+  let json = {sender_psid:sender_psid, user:user_obj, field_obj }
 
 
-  } catch (e) {
-    console.error(e.message);
-  }
+  let otions = {
+    url:"https://phonestats.herokuapp.com/api/messenger/messenger_processes/customfields",
+    method:"POST",
+    json:json
+  };
 
-}
+  return new Promise( ( resolve , reject ) => {
+    request(options , ( err, res, body ) => {
+      if(err) {
+        reject(err);
+      } else {
+        resolve(body);
+      }
+    });
+
+  });
+
+  };
 
 //*******
 //add or reset user_process

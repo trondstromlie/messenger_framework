@@ -163,6 +163,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
            console.log(data);
 
            //write update to database
+           
            //fs.writeFileSync('the_user_object.json',JSON.stringify(data))
 
          } else {

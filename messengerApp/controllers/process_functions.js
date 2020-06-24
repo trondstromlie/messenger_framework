@@ -73,14 +73,15 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
     let custom_field = user.custom_fields.filter(item => item.field_name === custom_field_name)
 
    response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
-   await callSendAPI(sender_psid, response)
+   await callSendAPI(sender_psid, response, " RESPONSE")
 
    return {status:true,step:"next"};
   }
   else {
 
     console.log(response);
-    await callSendAPI(sender_psid, response,"RESPONCE")
+    
+    await callSendAPI(sender_psid, response,"RESPONSE")
 
     return {status:true,step:"next"};
   }
@@ -119,7 +120,8 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
 
     let responce = { text:msg,quick_replies:quickreply_responce};
-    let messaging_type = "RESPONCE";
+
+    let messaging_type = "RESPONSE";
 
 
     callSendAPI(sender_psid,responce,messaging_type);
@@ -183,10 +185,10 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
        } else {
 
          console.log("this is not a valid email");
-         
+
          let responce = {text:"Dette er ikke en gyldig Epost adresse, prøv en gang til"}
 
-         callSendAPI(sender_psid,responce,"RESPONCE");
+         callSendAPI(sender_psid,responce,"RESPONSE");
 
 
          return {status:true,step:"pause"};
@@ -231,7 +233,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 }
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
-async function writing_action (sender_psid, user, msg, custom_field_name ,quick_reply_obj,incoming_msg) {
+async function writing_action (sender_psid, user, msg, custom_field_name , quick_reply_obj, incoming_msg) {
 
 
 

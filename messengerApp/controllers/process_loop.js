@@ -99,7 +99,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
           console.log({res:res});
 
-          let current_step = step += 1;
+          let current_step = number(step) + 1;
           console.log("step " + current_step+ " of " + item.steps.length)
           if(res.status === true && current_step < item.steps.length) {
             console.log("step " + current_step+ " of " + item.steps.length)

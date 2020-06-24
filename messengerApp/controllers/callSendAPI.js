@@ -37,7 +37,7 @@ module.exports = async function callSendAPI (sender_psid, response, m_type) {
    "json": request_body
   }, (err, res, body) => {
    if (!err) {
-    return console.log({msg:'message sent!' , body)
+    return console.log({msg:'message sent!' , body})
    } else {
      return console.error("Unable to send message:" + err);
    }

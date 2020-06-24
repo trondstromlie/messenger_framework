@@ -118,7 +118,7 @@ try {
 
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
 
-      await callSendAPI(sender_psid, responce , "RESPONCE");
+      await callSendAPI(sender_psid, responce , "RESPONSE");
 
       return NaN;
     }

@@ -162,16 +162,22 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
            console.log("updating " + custom_field_name + " from " + data.custom_data[custom_field_index].field_value + " to " + promt_for_email );
            data.custom_data[custom_field_index].field_value = promt_for_email;
            console.log(data);
-
+           try {
            //write update to database
            await addandupdate_userfields.add_or_update_custom_data(sender_psid,data, {custom_field_name:custom_field_name,custom_field_value: promt_for_email})
            //fs.writeFileSync('the_user_object.json',JSON.stringify(data))
-
+         } catch(e) {
+           console.error(e.message);
+         }
          } else {
            //create new custom field
            data.custom_data.push({"field_name":custom_field_name,"field_value":promt_for_email});
            console.log(data);
-           await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {custom_field_name:custom_field_name,custom_field_value: promt_for_email})
+           try {
+           await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {custom_field_name:custom_field_name,custom_field_value: promt_for_email});
+         } catch(e) {
+           console.error(e.message);
+         }
            //fs.writeFileSync('the_user_object.json',JSON.stringify(data));
 
 

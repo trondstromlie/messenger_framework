@@ -10,7 +10,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
   let json = {sender_psid:sender_psid, user:user_obj, field_obj }
 
 
-  let otions = {
+  let options = {
     url:"https://phonestats.herokuapp.com/api/messenger/messenger_processes/customfields",
     method:"POST",
     json:json

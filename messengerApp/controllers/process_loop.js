@@ -98,8 +98,9 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
           let res = await item_function(user.sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , err_message);
 
           console.log({res:res});
-          console.log("step " + current_step+ " of " + item.steps.length)
+
           let current_step = step + 1;
+          console.log("step " + current_step+ " of " + item.steps.length)
           if(res.status === true && current_step < item.steps.length) {
             console.log("step " + current_step+ " of " + item.steps.length)
 

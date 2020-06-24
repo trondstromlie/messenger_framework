@@ -187,9 +187,9 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          console.log("this is not a valid email");
 
-         let responce = {err_msg.msg}
+         let response = {err_message.msg}
 
-         callSendAPI(sender_psid,responce,"RESPONSE");
+         callSendAPI(sender_psid,response,"RESPONSE");
 
 
          return {status:true,step:"jump_to",link:err_message.link};

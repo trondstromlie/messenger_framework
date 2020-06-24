@@ -125,7 +125,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
     let messaging_type = "RESPONCE";
 
 
-    callSendAPI(sender_psid,responce,messeging_type);
+    callSendAPI(sender_psid,responce,messaging_type);
 
     return {status:true,step:"pause"};
 };

@@ -37,7 +37,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
          {name:"writing_action",func:process_functions.writing_action},
          {name:"ask for email",func:process_functions.send_empty_message, msg:"Skriv din beste epostadresse her, eller velg adressen facebook har foreslått for deg. " },
          {name:"ask for email quick reply",func:process_functions.send_quick_reply,msg:"velg her!",quick_reply_obj:[{"content_type":"user_email","title":"email","payload":"email"}]},
-         {name:"listen_for_email",func:process_functions.listen_for_data,custom_field_name:"email",msg:" venter på epost >> "},
+         {name:"listen_for_email",func:process_functions.listen_for_data,custom_field_name:"email",msg:" venter på epost >> ",err_message:{msg:"Dette er ikke en gyldig epost adresse, prøv igjen! :) ", link:2} ;},
          {name:"confirm_data",func:process_functions.send_empty_message,custom_field_name:"email", msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "},
          {name:"confirm email",func:process_functions.send_quick_reply,quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send takk",link:8},{"content_type":"text","title":"Nei","payload":"ask for email",link:2}]},
          {name:"listen_for_email",func:process_functions.listen_for_quick_reply,custom_field_name:"email", msg:"Skriv ja eller nei >> " , quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send takk",link:8},{"content_type":"text","title":"Nei","payload":"ask for email",link:2}]},
@@ -78,20 +78,24 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
           let custom_field_name = null;
           let quick_reply_obj = null;
           let in_message = incoming_msg;
+          let err_message = null;
 
           console.log(in_message);
 
           if( item.steps[step].msg ) message = item.steps[step].msg;
 
-          if( item.steps[step].custom_field_name ) custom_field_name = item.steps[step].custom_field_name;
+          if( item.steps[step].custom_field_name ) custom_field_name = item.steps[step].custom_field_name ;
 
           if( item.steps[step].quick_reply_obj ) quick_reply_obj = item.steps[step].quick_reply_obj ;
+
+          if( item.steps[step].err_message ) err_message = item.step[step].err_message ;
 
 
           let item_function = item.steps[step].func;
 
 
-          let res = await item_function(user.sender_psid, user, message, custom_field_name, quick_reply_obj, in_message);
+
+          let res = await item_function(user.sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , err_message);
 
           console.log({res:res});
 

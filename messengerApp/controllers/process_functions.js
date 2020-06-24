@@ -163,14 +163,14 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
            console.log(data);
 
            //write update to database
-           
+           await addandupdate_userfields.add_or_update_custom_data(sender_psid,data, {custom_field_name:custom_field_name,custom_field_value: promt_for_email})
            //fs.writeFileSync('the_user_object.json',JSON.stringify(data))
 
          } else {
            //create new custom field
            data.custom_data.push({"field_name":custom_field_name,"field_value":promt_for_email});
            console.log(data);
-
+           await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {custom_field_name:custom_field_name,custom_field_value: promt_for_email})
            //fs.writeFileSync('the_user_object.json',JSON.stringify(data));
 
 

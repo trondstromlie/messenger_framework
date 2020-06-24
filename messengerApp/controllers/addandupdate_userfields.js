@@ -100,5 +100,6 @@ async function update_process_progress ( sender_psid, process_name, process_stat
 module.exports = {
   add_user_process:add_user_process,
   update_process_progress:update_process_progress,
-  update_custom_field:update_custom_field
+  add_or_update_custom_data:add_or_update_custom_data,
+
 };

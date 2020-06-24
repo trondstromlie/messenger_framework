@@ -47,7 +47,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
          {name:"listen_for_mor",func:process_functions.listen_for_data,type:"text", custom_field_name:"mor", msg:"skriv navnet på moren din her  >> "},
          {name:"confirm_data_mor",func:process_functions.send_empty_message,custom_field_name:"mor", msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "  },
          {name:"confirm mor",func:process_functions.send_quick_reply,quick_reply_obj:[{"msg":"Ja","payload":"send to bio",link:15},{"msg":"Nei","payload":"ask for mother",link:10}]},
-         {name:"listen_for_mor",func:process_functions.listen_for_quick_reply,custom_field_name:"mor", msg:"Skriv ja eller nei >> " , quick_reply_obj:[{"msg":"Ja","payload":"send to bio",link:15},{"msg":"Nei","payload":"ask for mother",link:10}]},
+         {name:"listen_for_mor",func:process_functions.listen_for_quick_reply,custom_field_name:"mor", msg:"Skriv ja eller nei >> " , quick_reply_obj:[{"title":"Ja","payload":"send to bio",link:15},{"msg":"Nei","payload":"ask for mother",link:10}]},
          {name:"get_bio",func:process_functions.send_empty_message, msg:"Skriv litt om deg selv " , field_name:"bio"},
          {name:"listen_for_bio",func:process_functions.listen_for_data,type:"text",custom_field_name:"bio",msg:"hva er din bio, skriv det her >> "},
          {name:"confirm_data_bio",func:process_functions.send_empty_message,custom_field_name:"bio", msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "  },

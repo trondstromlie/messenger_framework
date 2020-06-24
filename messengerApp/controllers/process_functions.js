@@ -24,7 +24,7 @@ async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick
 
 }
 //***********
-//function som hviser en input data , sender quick reply for å bekrefte
+//function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette er de riktig.
 async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg) {
 
@@ -103,13 +103,31 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
 
 //**********************************************
 //send send_quick_reply to colect data fex email, subscription data etc
+
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
+
 async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg) {
   console.log("send quick reply");
 
-    let responce = { text:msg,quick_replies:quick_reply_obj}
+    //lag en foreach lopp som går gjennom alle quickreply object og bygger objektet for hver enkelt innlegg.......
 
-    callSendAPI(sender_psid,responce);
+    let quickreply_responce = []
+
+    await quick_reply_obj.forEach((item, i) => {
+      let temp_obj = {}
+      if(item.img) temp_obj.img = item.img;
+      temp_obj .content_type:text, .payload:item.payload , .title:item.title
+
+
+      quickreply_responce.push = temp_obj;
+      });
+
+
+    let responce = { text:msg,quick_replies:quick_reply_obj}
+    messaging_type = "RESPONCE";
+
+
+    callSendAPI(sender_psid,responce,messeging_type);
 
     return {status:true,step:"pause"};
 };
@@ -117,6 +135,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
+
 async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg) {
   console.log(" listen for data ");
 

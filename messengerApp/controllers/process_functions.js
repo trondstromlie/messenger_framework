@@ -114,16 +114,14 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
     let quickreply_responce = []
 
     await quick_reply_obj.forEach((item, i) => {
-      let temp_obj = {}
+      let temp_obj = {content_type : text ,payload:item.payload ,title:item.title};
       if(item.img) temp_obj.img = item.img;
-      temp_obj .content_type = text, .payload = item.payload , .title = item.title
-
 
       quickreply_responce.push = temp_obj;
       });
 
 
-    let responce = { text:msg,quick_replies:quick_reply_obj}
+    let responce = { text:msg,quick_replies:quickreply_responce};
     messaging_type = "RESPONCE";
 
 

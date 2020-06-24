@@ -187,7 +187,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          console.log("this is not a valid email");
 
-         let response = {err_message.msg}
+         let response = {text:err_message.msg}
 
          callSendAPI(sender_psid,response,"RESPONSE");
 

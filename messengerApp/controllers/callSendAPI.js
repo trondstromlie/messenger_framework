@@ -13,7 +13,7 @@ module.exports = async function callSendAPI (sender_psid, response, m_type) {
 
   let log = await logMessage(sender_psid, response.text, "The Robot");
   let messaging_type = "RESPONCE_TAG";
-  if (m_type) messaging_type = m_type;
+   if (m_type) messaging_type = m_type;
 
 } catch(e) {
   console.error(e);

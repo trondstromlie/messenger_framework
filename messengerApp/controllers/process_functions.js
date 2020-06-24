@@ -31,9 +31,6 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
   console.log("confirm_data");
 
 
-     //console.log("looking in " + item.field_name + " " + item.field_value )
-
-
   let promt_for_answer = incoming_msg
 
   let answer = quick_reply_obj.filter( (item) => {
@@ -83,7 +80,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
   else {
 
     console.log(response);
-    await callSendAPI(sender_psid, response)
+    await callSendAPI(sender_psid, response,"RESPONCE")
 
     return {status:true,step:"next"};
   }
@@ -168,13 +165,16 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
            console.log("updating " + custom_field_name + " from " + data.custom_fields[custom_field_index].field_value + " to " + promt_for_email );
            data.custom_fields[custom_field_index].field_value = promt_for_email;
            console.log(data);
-           fs.writeFileSync('the_user_object.json',JSON.stringify(data))
+
+           //write update to database
+           //fs.writeFileSync('the_user_object.json',JSON.stringify(data))
 
          } else {
-
+           //create new custom field
            data.custom_fields.push({"field_name":custom_field_name,"field_value":promt_for_email});
            console.log(data);
-           fs.writeFileSync('the_user_object.json',JSON.stringify(data));
+
+           //fs.writeFileSync('the_user_object.json',JSON.stringify(data));
 
 
          }
@@ -183,6 +183,11 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
        } else {
 
          console.log("this is not a valid email");
+         
+         let responce = {text:"Dette er ikke en gyldig Epost adresse, prøv en gang til"}
+
+         callSendAPI(sender_psid,responce,"RESPONCE");
+
 
          return {status:true,step:"pause"};
 

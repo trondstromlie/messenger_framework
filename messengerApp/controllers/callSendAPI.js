@@ -25,7 +25,7 @@ module.exports = async function callSendAPI (sender_psid, response, m_type) {
     "recipient": {
       "id": sender_psid
     },
-    "messaging_type":messaging_type,
+    "messaging_type": messaging_type,
     "message": response
    }
    // Send the HTTP request to the Messenger Platform

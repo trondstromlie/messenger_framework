@@ -80,7 +80,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
   else {
 
     console.log(response);
-    
+
     await callSendAPI(sender_psid, response,"RESPONSE")
 
     return {status:true,step:"next"};
@@ -117,9 +117,10 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
       quickreply_responce.push = temp_obj;
       });
+    console.log(quickreply_response);
 
 
-    let responce = { text:msg,quick_replies:quickreply_responce};
+    let responce = { text:msg,quick_replies:quickreply_response};
 
     let messaging_type = "RESPONSE";
 

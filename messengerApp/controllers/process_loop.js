@@ -88,7 +88,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
           if( item.steps[step].quick_reply_obj ) quick_reply_obj = item.steps[step].quick_reply_obj ;
 
-          if( item.steps[step].err_message ) err_message = item.step[step].err_message ;
+          if( item.steps[step].err_message ) err_message = item.steps[step].err_message ;
 
 
           let item_function = item.steps[step].func;

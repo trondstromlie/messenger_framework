@@ -2,7 +2,7 @@
 
 const sleep = require('sleep-promise');
 const callSendAPI = require('./callSendAPI');
-const addandupdate_userfields = require('/addandupdate_userfields');
+const addandupdate_userfields = require('./addandupdate_userfields');
 
 
 

@@ -122,7 +122,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
               case  "pause":
                 console.log("waiting for input start function to continue");
                 user.messenger_processes[index].process_progress ++;
-                addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
+                await addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
 
                 return NaN;
                 break;
@@ -130,7 +130,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
               case "jump_to" :
                console.log("jumping to function link"+ res.link)
                user.messenger_processes[index].process_progress = res.link;
-               addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
+               await addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
                user_loop(process_name , user_obj, index , incoming_msg  );
 
                return NaN;
@@ -149,6 +149,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
 
           } else {
+            console.log("program ending");
             return NaN;
           }
 

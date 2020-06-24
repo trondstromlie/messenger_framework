@@ -150,7 +150,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
          let data = user;
 
 
-         let custom_field_index = await return_index(user,custom_field_name, incoming_msg);
+         let custom_field_index = await return_index( data ,custom_field_name, incoming_msg);
 
 
 
@@ -259,13 +259,13 @@ async function return_index(user, custom_field_name) {
 
 let custom_field_index = false;
 
-await user.custom_fields.forEach(async (item, i) => {
-  console.log("looking in "+item.field_name)
-  if (item.field_name === custom_field_name) {
-    console.log("found one : " + item.field_value + " item number :" + i)
-    custom_field_index =  i;
-  }
-});
+ await user.custom_data.forEach(async (item, i) => {
+   console.log("looking in "+item.field_name)
+   if (item.field_name === custom_field_name) {
+     console.log("found one : " + item.field_value + " item number :" + i)
+     custom_field_index =  i;
+   }
+ });
 return custom_field_index;
 }
 

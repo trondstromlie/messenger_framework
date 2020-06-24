@@ -26,7 +26,7 @@ async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick
 //***********
 //function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette er de riktig.
-async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg. err_message) {
+async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
 
   console.log("confirm_data");
 

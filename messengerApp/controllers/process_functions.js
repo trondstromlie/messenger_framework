@@ -122,7 +122,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
 
     let responce = { text:msg,quick_replies:quickreply_responce};
-    messaging_type = "RESPONCE";
+    let messaging_type = "RESPONCE";
 
 
     callSendAPI(sender_psid,responce,messeging_type);

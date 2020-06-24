@@ -6,13 +6,14 @@ const request = require("request");
 const config = require("config");
 const logMessage = require("./writeToLog");
 
-module.exports = async function callSendAPI (sender_psid, response) {
+module.exports = async function callSendAPI (sender_psid, response, m_type) {
 
   //send responce to the console.log;
   try {
 
   let log = await logMessage(sender_psid, response.text, "The Robot");
-
+  let messaging_type = "RESPONCE_TAG";
+  if (m_type) messaging_type = m_type;
 
 } catch(e) {
   console.error(e);
@@ -24,6 +25,7 @@ module.exports = async function callSendAPI (sender_psid, response) {
     "recipient": {
       "id": sender_psid
     },
+    "messaging_type":messaging_type,
     "message": response
    }
    // Send the HTTP request to the Messenger Platform

@@ -32,7 +32,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
   console.log(" ********************* Listen for quick_replies confirm_data *************************");
 
 
-  let prompt_for_answer = incoming_msg;
+  let prompt_for_answer = incoming_msg.text;
   console.log({quick_reply_obj:quick_reply_obj,prompt_for_answer:prompt_for_answer});
 
   let answer = await quick_reply_obj.filter( (item) => {

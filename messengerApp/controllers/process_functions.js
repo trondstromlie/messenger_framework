@@ -122,7 +122,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
     let messaging_type = "RESPONSE";
 
 
-    callSendAPI(sender_psid,response,messaging_type);
+    await callSendAPI(sender_psid,response,messaging_type);
 
     return {status:true,step:"pause"};
 };
@@ -193,7 +193,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          let response = {text:err_message.msg}
 
-         callSendAPI(sender_psid,response,"RESPONSE");
+         await callSendAPI(sender_psid,response,"RESPONSE");
 
 
          return {status:true,step:"jump_to",link:err_message.link};
@@ -220,8 +220,9 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
         console.log(custom_field_name+" found " + "updating field with data " + promt_for_data);
 
+        //legg in da integration her
         data.custom_fields[custom_field_index].field_value = promt_for_data;
-        fs.writeFileSync('the_user_object.json',JSON.stringify(data));
+        // fs.writeFileSync('the_user_object.json',JSON.stringify(data));
       }
 
 

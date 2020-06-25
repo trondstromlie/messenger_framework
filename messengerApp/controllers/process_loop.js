@@ -21,7 +21,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
   console.log("process loop is starting!");
 
   console.log(user_obj.messenger_processes[index].process_progress);
-  
+
   let user = user_obj;
   let step = user.messenger_processes[index].process_progress;
   let processName = process_name;
@@ -45,9 +45,10 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
          {name:"send takk",func:process_functions.send_empty_message, msg : "Takk :) " },
          {name:"writing_action",func:process_functions.writing_action},
          {name:"get_mothers_name",func:process_functions.send_empty_message, msg:"Nå må jeg vite litt om din fammilie :) "},
-         {name:"listen_for_mor",func:process_functions.listen_for_data,type:"text", custom_field_name:"mor", msg:"skriv navnet på moren din her  >> "},
+         {name:"listen_for_mor",func:process_functions.send_empty_message, msg:"skriv navnet på moren din her  >> "},
+         {name:"listen_for_mor",func:process_functions.listen_for_data,custom_field_name:"email",msg:" venter på mor >> ",err_message:{msg:"Dette var ikke det jeg ventet på, prøv igjen! :) ", link:10} },
          {name:"confirm_data_mor",func:process_functions.send_empty_message,custom_field_name:"mor", msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "  },
-         {name:"confirm mor",func:process_functions.send_quick_reply,quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to bio",link:15},{"content_type":"text","title":"Nei","payload":"ask for mother",link:10}]},
+         {name:"confirm mor",func:process_functions.send_quick_reply,quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to bio",link:16},{"content_type":"text","title":"Nei","payload":"ask for mother",link:10}]},
          {name:"listen_for_mor",func:process_functions.listen_for_quick_reply,custom_field_name:"mor", msg:"Skriv ja eller nei >> " , quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to bio",link:15},{"content_type":"text","title":"Nei","payload":"ask for mother",link:10}]},
          {name:"get_bio",func:process_functions.send_empty_message, msg:"Skriv litt om deg selv " , field_name:"bio"},
          {name:"listen_for_bio",func:process_functions.listen_for_data,type:"text",custom_field_name:"bio",msg:"hva er din bio, skriv det her >> "},

@@ -86,6 +86,8 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
           console.log(in_message);
 
+          //check if some or all of the standarfields are sett
+
           if( item.steps[step].msg ) message = item.steps[step].msg;
 
           if( item.steps[step].custom_field_name ) custom_field_name = item.steps[step].custom_field_name ;
@@ -109,6 +111,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
             console.log("step " + current_step+ " of " + item.steps.length)
 
             let data ={};
+
             //if result. step is === next start the function loop function agein
             //if status is pause, wait for user feedback
 
@@ -155,6 +158,8 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
           } else {
             console.log("program ending");
+            //when user has gone true all object post or  status is false update process status to false and end process
+            await addandupdate_userfields.update_process_progress( sender_psid, processName, "false" , null);
             return NaN;
           }
 

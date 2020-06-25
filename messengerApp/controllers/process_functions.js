@@ -32,12 +32,12 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
   console.log("confirm_data");
 
 
-  let promt_for_answer = incoming_msg;
-  console.log(quick_reply_obj);
+  let prompt_for_answer = incoming_msg;
+  console.log({quick_reply_obj:quick_reply_obj,prompt_for_answer:prompt_for_answer});
 
   let answer = await quick_reply_obj.filter( (item) => {
 
-    return item.title === promt_for_answer
+    return item.title === prompt_for_answer
   })
   console.log({answer_listen_for_quick_reply: answer});
 

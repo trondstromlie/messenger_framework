@@ -67,9 +67,9 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
     let custom_field = user.custom_data.filter(item => item.field_name === custom_field_name)
 
    response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
-   await callSendAPI(sender_psid, response, " RESPONSE")
+   await callSendAPI(sender_psid, response, "RESPONSE")
 
-   return {status:true,step:"next"};
+   return {status:true,step:"pause"};
   }
   else {
 
@@ -183,7 +183,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          }
 
-         return {status:true,step:"pause"};
+         return {status:true,step:"next"};
        } else {
 
          console.log("this is not a valid email");

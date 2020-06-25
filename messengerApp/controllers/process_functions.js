@@ -36,16 +36,17 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
 
   let answer = quick_reply_obj.filter( (item) => {
 
-    return item.msg === promt_for_answer
+    return item.title === promt_for_answer
   })
-
+  console.log({answer_listen_for_quick_reply: answe});
 
   if(answer.length > 0) {
 
-     console.log(answer);
+     console.log({found:answer});
 
      return {status:true,step:"jump_to",link:answer[0].link};
    } else {
+     await callSendAPI(sender_psid, {text:"dette var ikke svaret jeg forventet, bruk knappene over for å velge ditt svar "}, "RESPONSE")
      console.log("dette svaret var ikke det jeg forventet :) bruk knappene over for å velge ditt svar ");
      return {status:true,step:"restart"};
    }

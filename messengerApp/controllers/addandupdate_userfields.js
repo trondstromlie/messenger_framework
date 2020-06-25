@@ -21,6 +21,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
       if(err) {
         reject(err);
       } else {
+        console.log({"add or update function ":body});
         resolve(body);
       }
     });

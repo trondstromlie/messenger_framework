@@ -13,14 +13,29 @@ const addandupdate_userfields = require('./addandupdate_userfields');
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
+async function ask_for_custom_data (sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
 
-  console.log("get text input");
+  console.log("Ask for custom data and pause");
 
+  let string = msg;
+  let response = {text:msg};
 
-  return {status:true,step:"next"};
+  if(custom_field_name !== null) {
+    let custom_field = user.custom_data.filter(item => item.field_name === custom_field_name)
 
-  // Send message and start the next sequence
+   response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
+   await callSendAPI(sender_psid, response, "RESPONSE")
+
+   return {status:true,step:"pause"};
+  }
+  else {
+
+    console.log(response);
+
+    await callSendAPI(sender_psid, response,"RESPONSE")
+
+    return {status:true,step:"pause"};
+  }
 
 
 }

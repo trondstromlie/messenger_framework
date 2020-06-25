@@ -270,7 +270,7 @@ async function writing_action (sender_psid, user, msg, custom_field_name , quick
 // functions to be exported
 
 module.exports = {
-  get_text_innput:get_text_innput,
+  ask_for_custom_data:ask_for_custom_data,
   send_empty_message:send_empty_message,
   send_quick_reply:send_quick_reply,
   listen_for_data:listen_for_data,

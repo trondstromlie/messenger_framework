@@ -99,6 +99,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 
 async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg, err_message) {
+
   console.log("send quick reply");
 
     //lag en foreach lopp som går gjennom alle quickreply object og bygger objektet for hver enkelt innlegg.......
@@ -111,15 +112,15 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
       quickreply_response.push(temp_obj);
       });
-    console.log(quickreply_response);
+    console.log({quick_reply_response : quickreply_response});
 
 
-    let responce = { text:msg,quick_replies:quickreply_response};
+    let response = { text:msg,quick_replies:quickreply_response};
 
     let messaging_type = "RESPONSE";
 
 
-    callSendAPI(sender_psid,responce,messaging_type);
+    callSendAPI(sender_psid,response,messaging_type);
 
     return {status:true,step:"pause"};
 };

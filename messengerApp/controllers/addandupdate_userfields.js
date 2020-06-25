@@ -7,7 +7,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
   console.log("writing custom fields to db")
   console.log( { field_obj  : field_obj } );
 
-  let json = {sender_psid:sender_psid, user:user_obj, field_obj }
+  let json = { sender_psid:sender_psid, field_name:field_obj.field_name, field_value:field_obj.field_value  }
 
 
   let options = {

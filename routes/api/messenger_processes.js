@@ -160,8 +160,8 @@ router.put('/', [
 
 router.post('/customfields', [
   check("sender_psid","sender_psid is required").not().isEmpty(),
-  check("custom_field_name", "custom_field_name is required").not().isEmpty(),
-  check("custom_field_value", "custom_field_message is required").not().isEmpty()
+  check("field_name", "field_name is required").not().isEmpty(),
+  check("field_value", "field_value is required").not().isEmpty()
 ], async ( req , res ) => {
 
   let errors = validationResult(req);

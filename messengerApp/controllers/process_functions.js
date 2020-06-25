@@ -183,7 +183,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          }
 
-         return {status:true,step:"next"};
+         return {status:true,step:"pause"};
        } else {
 
          console.log("this is not a valid email");

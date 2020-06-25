@@ -38,7 +38,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
 
     return item.title === promt_for_answer
   })
-  console.log({answer_listen_for_quick_reply: answe});
+  console.log({answer_listen_for_quick_reply: answer});
 
   if(answer.length > 0) {
 

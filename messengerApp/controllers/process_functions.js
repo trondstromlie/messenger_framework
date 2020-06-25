@@ -181,6 +181,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
            console.log("updating " + custom_field_name + " from " + data.custom_data[custom_field_index].field_value + " to " + promt_for_email );
            data.custom_data[custom_field_index].field_value = promt_for_email;
            console.log(data);
+
            try {
            //write update to database
            await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_name,field_value: promt_for_email})
@@ -189,6 +190,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
            console.error(e.message);
          }
          } else {
+
            //create new custom field
            data.custom_data.push({"field_name":custom_field_name,"field_value":promt_for_email});
            console.log(data);
@@ -214,37 +216,40 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
          return {status:true,step:"jump_to",link:err_message.link};
 
-         //do something else!
-               }
+
+        }
 
 
 
     } else {
       let data = user
-      let promt_for_data = incoming_msg;
+      let promt_for_data = incoming_msg.text;
+
       console.log(promt_for_data)
       //check if field already exists return index if value exixts in obj, else return null
       let custom_field_index = await return_index(user,custom_field_name);
+
       if (!custom_field_index) {
         console.log("no value found, adding "+ promt_for_data + "  to db");
 
-        data.custom_fields.push({"field_name" : custom_field_name,"field_value" : promt_for_data });
+        data.custom_data.push({"field_name" : custom_field_name,"field_value" : promt_for_data });
+         await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_name,field_value: promt_for_data});
 
-        console.log(data);
-        fs.writeFileSync('the_user_object.json',JSON.stringify(data));
+
       } else {
 
         console.log(custom_field_name+" found " + "updating field with data " + promt_for_data);
 
         //legg in da integration her
         data.custom_fields[custom_field_index].field_value = promt_for_data;
-        // fs.writeFileSync('the_user_object.json',JSON.stringify(data));
+          await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_name,field_value: promt_for_data});
+
       }
 
 
       console.log("get custom data " + custom_field_name);
 
-      if( return_index)
+
 
 
       return {status:true,step:"next"};

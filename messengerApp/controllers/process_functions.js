@@ -29,7 +29,7 @@ async function get_text_innput (sender_psid, user, msg, custom_field_name ,quick
 //du skrev dette er de riktig.
 async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
 
-  console.log("confirm_data");
+  console.log(" ********************* Listen for quick_replies confirm_data *************************");
 
 
   let prompt_for_answer = incoming_msg;

@@ -122,7 +122,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
     callSendAPI(sender_psid,response,messaging_type);
 
-    return {status:true,step:"pause"};
+    return {status:true,step:"next"};
 };
 
 

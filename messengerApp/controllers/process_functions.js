@@ -46,7 +46,8 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
 
      return {status:true,step:"jump_to",link:answer[0].link};
    } else {
-     await callSendAPI(sender_psid, {text:"dette var ikke svaret jeg forventet, bruk knappene over for å velge ditt svar "}, "RESPONSE")
+     await callSendAPI(sender_psid, {text:"dette var ikke svaret jeg forventet, bruk knappene over for å velge ditt svar "}, "RESPONSE");
+
      console.log("dette svaret var ikke det jeg forventet :) bruk knappene over for å velge ditt svar ");
      return {status:true,step:"restart"};
    }
@@ -123,7 +124,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
     callSendAPI(sender_psid,response,messaging_type);
 
-    return {status:true,step:"next"};
+    return {status:true,step:"pause"};
 };
 
 

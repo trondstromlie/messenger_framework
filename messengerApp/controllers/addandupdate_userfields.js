@@ -1,8 +1,9 @@
 
 const request = require('request');
 
-//***u*************************
+//****************************
 //Update userfield using the messenger_user_API
+
 async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  ) {
   console.log("writing custom fields to db")
   console.log( { field_obj  : field_obj } );
@@ -96,11 +97,55 @@ async function update_process_progress ( sender_psid, process_name, process_stat
 };
 
 
+async function delete_messenger_process (sender_psid, process_name) {
+
+  let options = {
+      url : "https://phonestats.herokuapp.com/api/messenger/messenger_processes",
+      method:"DELETE",
+      json:{sender_psid:sender_psid,process_name:process_name}
+  };
+
+  //starting the promise here
+  return new Promise( ( resolve , reject ) => {
+      //do the async stuff here
+
+      request( options, ( err , res , body ) => {
+          if(err) {
+              reject(err);
+          } else {
+              resolve(body);
+          }
+      });
+  });
+};
+
+async function delete_custom_field (sender_psid, field_name) {
+  let options = {
+      url : "https://phonestats.herokuapp.com/api/messenger/messenger_processes/customfields",
+      method:"DELETE",
+      json:{sender_psid:sender_psid,field_name:field_name}
+  };
+
+  //starting the promise here
+  return new Promise( ( resolve , reject ) => {
+      //do the async stuff here
+
+      request( options, ( err , res , body ) => {
+          if(err) {
+              reject(err);
+          } else {
+              resolve(body);
+          }
+      });
+  });
+};
+
 
 //export functions
 module.exports = {
   add_user_process:add_user_process,
   update_process_progress:update_process_progress,
   add_or_update_custom_data:add_or_update_custom_data,
-
+  delete_messenger_process:delete_messenger_process,
+  delete_custom_field:delete_custom_field
 };

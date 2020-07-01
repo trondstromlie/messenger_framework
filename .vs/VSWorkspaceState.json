@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\messengerApp",
+    "\\messengerApp\\controllers",
+    "\\middelware",
+    "\\routes",
+    "\\routes\\api"
+  ],
+  "SelectedNode": "\\routes\\api\\messenger_processes.js",
+  "PreviewInSolutionExplorer": false
+}

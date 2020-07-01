@@ -13,6 +13,7 @@ const process_loop = require('./process_loop')
 // and send to api for adding fields to the user object
 //
 //  #1 make api to take name og prosess, wait for email, number og steps in prosess( check if email is registered in the main system prosess. )
+
 //  #2 connect messenger message handler to api
 //
 //!!*******************************************************************

@@ -1,0 +1,45 @@
+
+
+***todo list ******
+
+************ user field ******** 
+
+	delete all data from the process when process finishes..
+
+
+	make a process to check i a custom field is true
+
+	make a function to sett a boolean value of a custom field 
+	f.eks when the process get-personel starts add custom field get-personal = true.
+
+	a new process can check if this custom field is true or not, prompt the user for a question and than do something
+	jump to a new process, quit etc 
+
+	creata a new api DELETE messenger api
+
+	creata a function to delete the data.
+
+
+
+
+
+************ create a template function that read a product list, and send the user a menu of items to buy *****
+
+	restaurant booking system 
+	internett store ...
+
+	get the data as a json object from a api or a atom rss feed.
+
+	what happends when the users places the order... 
+
+
+
+********* create a api where a logged in user can send a message to a selected messenger user.
+	creat a and API that acept a token to validate a user, a sender_PSID and a message, 
+
+
+
+
+
+
+

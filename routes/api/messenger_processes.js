@@ -42,7 +42,7 @@ router.get('/', [
 } );
 
 // @ Router : POST api / messenger / messenger_processes
-// @ Desc : create new prosess for registered user with psid
+// @ Desc : create new messenger_prosess for registered user with psid
 // @ acess Public with psid
 
 router.post('/', [
@@ -67,13 +67,19 @@ router.post('/', [
                process_steps
             }= req.body;
 
+        let check_for_messenger_process = await user.messenger_processes.filter(item => item.process_name === process_name);
+        if(check_for_messenger_process.length > 0 ) {
+          console.log("this process is already active for the user " + req.body.sender_psid);
+          return res.status(310).json({error:"your are already registered for this messenger process"});
+        }
+
         let date = new Date();
         //add one day to date
         date.setDate(date.getDate()+1);
         let process_expires = Date.parse(date);
         let process_status = true;
 
-        console.log(user);
+        
 
         user.messenger_processes.unshift({process_name, process_progress, process_steps, process_status, process_expires});
         await user.save();
@@ -81,7 +87,7 @@ router.post('/', [
 
 
       } else {
-        console.log("errr noe user " + sender_psid);
+        console.log("errr no user " + sender_psid);
         res.status(300).json({"status":"300","msg":"No user with this psid"})
       }
 
@@ -139,7 +145,7 @@ router.put('/', [
 
 
                    }
-                 }  return res.statu(300).json({msg:"no process with this name found"});
+                 }  return res.status(300).json({msg:"no process with this name found"});
                } else {
                  console.log("no user found");
                  return res.status(300).json({msg:"no user found"});
@@ -153,6 +159,64 @@ router.put('/', [
   //update prosess progress and status
   //fex when prosess is finished change status from active to false.
 });
+
+// @ Router : DELETE api / messenger / messenger_processes
+// @ Desc :  Delete messenger_process
+// @ Acess Public
+
+router.delete('/', [
+  check('sender_psid', 'Sender_psid is required').not().isEmpty(),
+  check('process_name', 'field_name is required').not().isEmpty()
+], async ( req , res ) => {
+      try {
+
+      let errors = validationResult(req);
+      
+
+      if ( !errors.isEmpty() ) {
+
+          console.log(errors);
+          res.status(300).json(errors);
+  
+
+      } else {
+
+      
+
+          let user = await  MessengerUser.findOne({ sender_psid:req.body.sender_psid });
+          if(!user) {
+            console.log("no user found");
+            return res.status(300).json({"error":"No user found"});
+          } else {           
+
+          let messenger_processes = user.messenger_processes;
+
+          //check if custom_field exists in database 
+          let check_for_messenger_process = await messenger_processes.filter(item => item.process_name === req.body.process_name);
+          
+            if(check_for_messenger_process.length === 0 ) {
+              console.log("no process found");
+              return res.status(310).json({error:"messenger process not found"});
+            }
+
+          let updated_processes = await messenger_processes.filter(item => item.process_name !== req.body.process_name);
+
+          console.log(updated_processes);
+       
+          user.messenger_processes = updated_processes;
+
+          console.log("deleting field " + req.body.process_name );
+
+          user.save();
+          
+          res.status(200).json({updated_user:user.messenger_processes});
+        }
+      };
+    } catch (e) {
+      console.log(e.message);
+      res.status(500).send("server error");
+    }
+}); 
 
 // @ Router : POST api / messenger / messenger_processes / customfields
 // @ Desc :  add or update customfields
@@ -227,6 +291,67 @@ router.post('/customfields', [
   }
 
     }
- });
+});
+
+// @ Router : DELETE api / messenger / messenger_processes / customfields
+// @ Desc :  Delete customfield
+// @ Acess Public
+
+router.delete('/customfields', [
+    check('sender_psid', 'Sender_psid is required').not().isEmpty(),
+    check('field_name', 'field_name is required').not().isEmpty()
+], async ( req , res ) => {
+        try {
+
+        let errors = validationResult(req);
+        
+
+        if ( !errors.isEmpty() ) {
+
+            console.log(errors);
+            res.status(300).json(errors);
+    
+
+        } else {
+
+        
+
+            let user = await  MessengerUser.findOne({ sender_psid:req.body.sender_psid });
+            if(!user) {
+              console.log("no user found");
+              return res.status(300).json({"error":"No user found"});
+            } else {
+            console.log(user.custom_data);
+            console.log(req.body);              
+
+            let custom_data = user.custom_data;
+
+            //check if custom_field exists in database 
+            let check_for_custom_data = await custom_data.filter(item => item.field_name === req.body.field_name);
+            
+              if(check_for_custom_data.length === 0 ) {
+                console.log("no data found");
+                return res.status(310).json({error:"custom field not found"});
+              }
+
+            let updated_data = await custom_data.filter(item => item.field_name !== req.body.field_name);
+
+            console.log(updated_data);
+         
+            user.custom_data = updated_data;
+
+            console.log("deleting field " + req.body.field_name );
+
+            user.save();
+
+            res.status(200).json({updated_user:user.custom_data});
+          }
+        };
+      } catch (e) {
+        console.log(e.message);
+        res.status(500).send("server error");
+      }
+}); 
+
 
 module.exports =  router;

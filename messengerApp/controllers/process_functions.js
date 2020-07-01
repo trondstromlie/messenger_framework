@@ -179,7 +179,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name, qui
 
    if(jump_to !== null) {
 
-    return {status:true,jump_to:jump_to.link};
+    return {status:true,step:"jump_to",link:jump_to.link};
 
   } else {
 
@@ -194,7 +194,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name, qui
 
     if(jump_to !== null) {
 
-      return {status:true,jump_to:jump_to.link};
+      return {status:true,step:"jump_to",link:jump_to.link};
 
     } else {
 

@@ -114,7 +114,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
           if( item.steps[step].bool_obj ) bool_obj = item.steps[step].bool_obj ;
 
-          if (item.step[step].jump_to ) jump_to = item.step[step].jump_to ;
+          if (item.steps[step].jump_to ) jump_to = item.steps[step].jump_to ;
 
 
           let item_function = item.steps[step].func;

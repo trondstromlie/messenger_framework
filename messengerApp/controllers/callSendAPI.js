@@ -31,7 +31,7 @@ module.exports = async function callSendAPI (sender_psid, response, m_type) {
    // Send the HTTP request to the Messenger Platform
    //du må lage denne prosessen Promise based hvis ikke kommer den til å rote til rekkefølgen av meldigene i blant.....
 
-  return new Promise( ( responce , reject ) => { 
+  return new Promise( ( resolve , reject ) => { 
 
     request({
       "uri": "https://graph.facebook.com/v2.6/me/messages",

@@ -159,7 +159,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
           } else {
             console.log("program ending");
             //when user has gone true all object post or  status is false update process status to false and end process
-            await addandupdate_userfields.update_process_progress( sender_psid, processName, "false" , null);
+            await addandupdate_userfields.delete_messenger_process( sender_psid, processName);
             return NaN;
           }
 

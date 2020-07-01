@@ -240,8 +240,8 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 
         console.log(custom_field_name+" found " + "updating field with data " + promt_for_data);
 
-        //legg in da integration her
-        data.custom_fields[custom_field_index].field_value = promt_for_data;
+        //legg in data integration her
+        data.custom_data[custom_field_index].field_value = promt_for_data;
           await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_name,field_value: promt_for_data});
 
       }

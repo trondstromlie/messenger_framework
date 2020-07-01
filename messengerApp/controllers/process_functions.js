@@ -166,9 +166,9 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_n
 //***********************************
 //send empty text and jump to the next functions
 
-async function send_empty_message(sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function send_empty_message(sender_psid, user, msg, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
   
-  let string = message;
+  let string = msg;
   let response = {text:msg};
 
   if(custom_field_name !== null) {

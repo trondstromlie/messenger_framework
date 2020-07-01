@@ -29,17 +29,24 @@ module.exports = async function callSendAPI (sender_psid, response, m_type) {
     "message": response
    }
    // Send the HTTP request to the Messenger Platform
+   //du må lage denne prosessen Promise based hvis ikke kommer den til å rote til rekkefølgen av meldigene i blant.....
 
-  request({
-   "uri": "https://graph.facebook.com/v2.6/me/messages",
-   "qs": { "access_token": config.get('FbPageToken') },
-   "method": "POST",
-   "json": request_body
-  }, (err, res, body) => {
-   if (!err) {
-    return console.log({msg:'message sent!' , body})
-   } else {
-     return console.error("Unable to send message:" + err);
-   }
- });
+  return new Promise( ( responce , reject ) => { 
+
+    request({
+      "uri": "https://graph.facebook.com/v2.6/me/messages",
+      "qs": { "access_token": config.get('FbPageToken') },
+      "method": "POST",
+      "json": request_body
+     }, (err, res, body) => {
+      if (!err) {
+       console.log({msg:'message sent!' , body})
+       resolve(body)
+      } else {
+         console.error("Unable to send message:" + err);
+         reject(err);
+      }
+    });
+  } );
+
  }

@@ -6,14 +6,63 @@ const addandupdate_userfields = require('./addandupdate_userfields');
 
 
 
+//*********************************************************************
+//** invisible function to add a custom field with a boolean value 
+//** f.eks subscription data subscribing to field -- newsletter:true */
+
+async function add_bool_custom_value(sender_psid,_user,field_name,field_value) {
+
+  try {
+
+    await addandupdate_userfields.add_or_update_custom_data(sender_psid,field_name,field_value);
+
+  } catch (e) {
+
+    console.log(e.message);
+  }
+  
+  
+
+};
+
+//*********************************************************************** */
+//******function Jump to process
+
+async function jump_to_process(_sender_psid, _user, msg, _custom_field_name ,quick_reply_obj ,_incoming_msg, _err_message ) {
+
+  console.log("******* jump to process " + quick_reply_obj.link.messenger_process);
+
+  // Update quick reply link to be an objeckt, can contain link.index number and link.messenger_process
+  // process is waiting for an answer from a quick reply 
+  // delete all active  processes and start the next process.
+  // Add new process to db and start step one, 
+  // find index of process, ps will alwais be 0 or one since we start with deleting all.
+  //return false breaks the process.
+
+  //send optional message to user if message is !== null
+  //send message before starting the new process
+  try {
+
+    if(msg !== null) {
+      let response = {text:msg};
+      await callSendAPI(sender_psid,response);
+    }
+  
+    return {status:false,step:"pause"}
+
+  } catch(e) {
+    console.error(e.message);
+  }
 
 
+  
+}
 
 
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function ask_for_custom_data (sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
+async function ask_for_custom_data (sender_psid, user, msg, custom_field_name ,_quick_reply_obj ,_incoming_msg, _err_message) {
 
   console.log("Ask for custom data and pause");
 
@@ -41,8 +90,8 @@ async function ask_for_custom_data (sender_psid, user, msg, custom_field_name ,q
 }
 //***********
 //function som viser en input data , sender quick reply for å bekrefte
-//du skrev dette er de riktig.
-async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
+//du skrev dette, er de riktig.
+async function listen_for_quick_reply(sender_psid, _user, _msg, _custom_field_name ,quick_reply_obj ,incoming_msg, _err_message) {
 
   console.log("Listen for quick_replies confirm_data");
 
@@ -61,6 +110,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
      console.log({found:answer});
 
      return {status:true,step:"jump_to",link:answer[0].link};
+     
    } else {
      await callSendAPI(sender_psid, {text:"dette var ikke svaret jeg forventet, bruk knappene over for å velge ditt svar "}, "RESPONSE");
 
@@ -69,7 +119,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
    }
 
 
-  //add promt for data here if yes continue else go back to change the email
+  //add promt for data here if yes continue, else go back to change the email
 
   //hvis nei hopp en funksjon tilbake start prosess på nytt
 
@@ -77,7 +127,7 @@ async function listen_for_quick_reply(sender_psid, user, msg, custom_field_name 
 //***********************************
 //send empty text and jump to the next functions
 
-async function send_empty_message(sender_psid, user, msg, custom_field_name ,quick_reply_obj ,incoming_msg, err_message) {
+async function send_empty_message(sender_psid, user, msg, custom_field_name ,_quick_reply_obj ,_incoming_msg, _err_message) {
   let string = msg;
   let response = {text:msg};
 
@@ -116,7 +166,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name ,qui
 
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 
-async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg, err_message) {
+async function send_quick_reply(sender_psid, _user, msg, _custom_field_name ,quick_reply_obj, _incoming_msg, _err_message) {
 
   console.log("send quick reply");
 
@@ -124,7 +174,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 
     let quickreply_response = []
 
-    await quick_reply_obj.forEach((item, i) => {
+    await quick_reply_obj.forEach((item, _i) => {
       let temp_obj = {content_type : item.content_type ,payload:item.payload ,title:item.title};
       if(item.img) temp_obj.img = item.img;
 
@@ -147,7 +197,7 @@ async function send_quick_reply(sender_psid, user, msg, custom_field_name ,quick
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
 
-async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_reply_obj, incoming_msg, err_message) {
+async function listen_for_data(sender_psid, user, _msg, custom_field_name ,_quick_reply_obj, incoming_msg, err_message) {
   console.log(" listen for data ");
 
 
@@ -260,7 +310,7 @@ async function listen_for_data(sender_psid, user, msg, custom_field_name ,quick_
 }
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
-async function writing_action (sender_psid, user, msg, custom_field_name , quick_reply_obj, incoming_msg) {
+async function writing_action (_sender_psid, _user, _msg, _custom_field_name , _quick_reply_obj, _incoming_msg) {
 
 
 
@@ -280,7 +330,8 @@ module.exports = {
   send_quick_reply:send_quick_reply,
   listen_for_data:listen_for_data,
   writing_action:writing_action,
-  listen_for_quick_reply:listen_for_quick_reply
+  listen_for_quick_reply:listen_for_quick_reply,
+  add_bool_custom_value:add_bool_custom_value
 };
 
 

@@ -113,6 +113,50 @@ try {
       }
 
     }
+
+    else if (received_message.text === "Hello") {
+
+      console.log("\n********************   creating new process Hello ************************");
+
+      let messenger_process = "confirm_start";
+
+      let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
+
+      console.log(add_user_process);
+
+      index = [];
+
+      await add_user_process.messenger_processes.forEach((item, i) => {
+        if ( item.process_name === messenger_process  ) {
+          index.push({process_name: item.process_name, index:i})
+        }
+      });
+
+      if(!index.lenght > 0) {
+        throw("index not found in register process");
+
+      } else {
+
+
+        let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
+
+        await callSendAPI( sender_psid , responce ,"RESPONCE");
+
+        console.log(index[0].index)
+        await process_loop(messenger_process, add_user_process, index[0].index , received_message);
+
+
+
+        //add the process to the user with the api and start the process loop
+
+
+
+        return NaN;
+      }
+
+
+    } //******ending hello process starter */
+
     else {
 
       console.log("\n ********************* starting else *******************\n ")

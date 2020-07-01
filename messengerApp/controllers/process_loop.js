@@ -9,6 +9,7 @@
 const process_functions = require('./process_functions');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const fs = require('fs');
+const { getMaxListeners } = require('process');
 
 //the user loop functions
 //starts when handle message discovers an active userProcess in the user procecces field
@@ -65,6 +66,19 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
       steps: [
          {name:"get_email",func:process_functions.get_email, msg:"skriv din beste epost adresse her"}
       ]
+    },
+    {
+
+      name:"confirm_start",
+      steps: [
+        {name:"send_empty_message",func:process_functions.send_empty_message, msg: "Hyggelig å se deg " + user.first_name},
+        {name:"check if custom_field is true",func:process_functions.read_bool_value_of_custom_field,custom_field_name:"email",bool_obj:{test:"mybestlabs@gmail.com",is_true:{link:2,msg:"herlig, fant denne epostadressen "},is_false:{link:4,msg:"oops fant ikke noe her"}} },
+        {name:"send_empty_message",func:process_functions.send_empty_message, msg: "okay supert",jump_to:{link:4}},
+        {name:"send_empty_message",func:process_functions.send_empty_message, msg: "det var ikke noe der", jump_to:{link:4}},
+        {name:"send_empty_message",func:process_functions.send_empty_message, msg: "takk for din tålmodighet avslutter prosessen nå"}
+        
+
+      ]
     }
     ]
   }; //end of object ***************************************
@@ -83,10 +97,12 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
           let quick_reply_obj = null;
           let in_message = incoming_msg;
           let err_message = null;
+          let bool_obj = null;
+          let jump_to = null;
 
           console.log(in_message);
 
-          //check if some or all of the standarfields are sett
+          //check if some or all of the standarfields are sett if sett initialize 
 
           if( item.steps[step].msg ) message = item.steps[step].msg;
 
@@ -96,12 +112,16 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
           if( item.steps[step].err_message ) err_message = item.steps[step].err_message ;
 
+          if( item.steps[step].bool_obj ) bool_obj = item.steps[step].bool_obj ;
+
+          if (item.step[step].jump_to ) jump_to = item.step[step].jump_to ;
+
 
           let item_function = item.steps[step].func;
 
 
 
-          let res = await item_function(user.sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , err_message);
+          let res = await item_function(user.sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message);
 
           console.log({res:res});
 

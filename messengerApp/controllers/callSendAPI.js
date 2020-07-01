@@ -29,7 +29,7 @@ module.exports = async function callSendAPI (sender_psid, response, m_type) {
     "message": response
    }
    // Send the HTTP request to the Messenger Platform
-   //du må lage denne prosessen Promise based hvis ikke kommer den til å rote til rekkefølgen av meldigene i blant.....
+  
 
   return new Promise( ( resolve , reject ) => { 
 

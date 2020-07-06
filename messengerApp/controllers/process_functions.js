@@ -37,12 +37,12 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
         console.log("fant verdien");
 
         let message = bool_obj.is_true.msg;
-        await callSendAPI({text:message})
+        await callSendAPI(sender_psid,{text:message})
         return {status:true,step:"jump_to",link:bool_obj.is_true.link};
       } else {
         console.log("fant ikke verdien")
         let message = bool_obj.is_false.msg;
-        await callSendAPI({text:message})
+        await callSendAPI(sender_psid,{text:message})
         return {status:true,step:"jump_to",link:bool_obj.is_false.link};
         
       }

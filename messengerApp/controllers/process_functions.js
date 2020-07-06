@@ -274,7 +274,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_name, qu
       //get email from the user
 
 
-      let promt_for_email = incoming_msg.text;
+      let promt_for_email = in_message.text;
 
 
        //regex to check for email

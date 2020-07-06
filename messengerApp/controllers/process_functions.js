@@ -250,7 +250,7 @@ async function send_quick_reply(sender_psid, user, message, custom_field_name, q
     console.log({quick_reply_response : quickreply_response});
 
 
-    let response = { text:msg,quick_replies:quickreply_response};
+    let response = { text:message,quick_replies:quickreply_response};
 
     let messaging_type = "RESPONSE";
 

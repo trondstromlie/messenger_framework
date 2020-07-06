@@ -79,7 +79,7 @@ try {
 
         let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
 
-        console.log(add_user_process);
+        //console.log(add_user_process);
 
         index = []
         await add_user_process.messenger_processes.forEach((item, i) => {
@@ -122,7 +122,7 @@ try {
 
       let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
 
-      console.log(add_user_process);
+      //console.log(add_user_process);
 
       index = [];
 
@@ -143,6 +143,7 @@ try {
         await callSendAPI( sender_psid , responce ,"RESPONCE");
 
         console.log(index[0].index)
+
         await process_loop(messenger_process, add_user_process, index[0].index , received_message);
 
 

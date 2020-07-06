@@ -72,7 +72,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
       name:"confirm_start",
       steps: [
         {name:"send_empty_message",func:process_functions.send_empty_message, msg: "Hyggelig å se deg " + user.first_name},
-        {name:"check if custom_field is true",func:process_functions.read_bool_value_of_custom_field,custom_field_name:"email",bool_obj:{test:"trond@trondstromlie.com",is_true:{link:2,msg:"herlig, fant denne epostadressen "},is_false:{link:4,msg:"oops fant ikke noe her"}} },
+        {name:"check if custom_field is true",func:process_functions.read_bool_value_of_custom_field,custom_field_name:"email",bool_obj:{test:"mybestlabs@gmail.com",is_true:{link:2,msg:"herlig, fant denne epostadressen "},is_false:{link:4,msg:"oops fant ikke noe her"}} },
         {name:"send_empty_message",func:process_functions.send_empty_message, msg: "okay supert",jump_to:{link:4}},
         {name:"send_empty_message",func:process_functions.send_empty_message, msg: "det var ikke noe der", jump_to:{link:4}},
         {name:"send_empty_message",func:process_functions.send_empty_message, msg: "takk for din tålmodighet avslutter prosessen nå"}

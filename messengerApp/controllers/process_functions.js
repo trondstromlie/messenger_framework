@@ -337,7 +337,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_name, qu
 
     } else {
       let data = user
-      let promt_for_data = incoming_msg.text;
+      let promt_for_data = in_message.text;
 
       console.log(promt_for_data)
       //check if field already exists return index if value exixts in obj, else return null

@@ -14,24 +14,37 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
   try {
 
     let user_field = user.custom_data.filter(item => item.field_name === custom_field_name);
-    console.log(user_field);
+    //console.log(user_field);
 
-    if(! user_field.length > 0 )  {
-      console.log("could not find this user_field");
+    if( ! user_field.length > 0 )  {
+
+      console.log(" could not find this user_field ");
 
     } else {
 
       //check if the value is === or not === to the one specified in bool_obj
       //bool object {condition: !== === , test: true,false,custom value}
       
+      //finner ikke verdien i if statement ener opp i en udefinded value 
+      //her er det noe å jobbe med 
+
+      //jeg jobber med å lage den nye prosessene. hva er skrittene jeg skal gjøre 
+
+      
       let condition = user_field.value === bool_obj.test;
 
       if(condition === true) {
         console.log("fant verdien");
-        return {status:true,step:"next"};
+
+        let message = bool_obj.is_true.msg;
+        await callSendAPI({text:message})
+        return {status:true,step:"jump_to",link:bool_obj.is_true.link};
       } else {
         console.log("fant ikke verdien")
-        return {status:true,step:"next"};
+        let message = bool_obj.is_false.msg;
+        await callSendAPI({text:message})
+        return {status:true,step:"jump_to",link:bool_obj.is_false.link};
+        
       }
 
     }

@@ -27,7 +27,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
   let processName = process_name;
   let sender_psid = user.sender_psid;
 
-  //the user processes will be omprtetd from a registerd users db in the future
+  //the user processes will be imprteted from a registerd users db in the future
   //**************************************************************
   const user_process = {processes: [
     {

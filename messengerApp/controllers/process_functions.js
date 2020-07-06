@@ -113,7 +113,7 @@ async function jump_to_process(sender_psid, user, message, custom_field_name, qu
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function ask_for_custom_data (sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function ask_for_custom_data (sender_psid, user, msg, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   console.log("Ask for custom data and pause");
 

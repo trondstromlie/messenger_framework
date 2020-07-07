@@ -17,8 +17,11 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
     console.log({fond_user_field:user_field});
 
     if( ! user_field.length > 0 )  {
-
+      //no field found
       console.log(" could not find the field " + custom_field_name );
+      let message = bool_obj.is_false.msg;
+        await callSendAPI(sender_psid,{text:message})
+        return {status:true,step:"jump_to",link:bool_obj.is_false.link};
 
     } else {
 

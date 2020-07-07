@@ -79,7 +79,14 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
         
 
       ]
-    }
+    },
+  {
+    name: "Add_customfield",
+    steps: [
+      {name:"add_update_custom_field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"test_subscriber",value:"true"}},
+      {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"ok du abonerer på dette kurset nå :) "}
+    ]
+  }
     ]
   }; //end of object ***************************************
 

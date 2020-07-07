@@ -38,25 +38,25 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
          {name:"writing_action",func:process_functions.writing_action},
          {name:"ask for email",func:process_functions.send_empty_message, msg:"Skriv din beste epostadresse her, eller velg adressen facebook har foreslått for deg. " },
          {name:"ask for email quick reply",func:process_functions.send_quick_reply,msg:"velg her!",quick_reply_obj:[{"content_type":"user_email","title":"email","payload":"email"}]},
-         {name:"listen_for_email",func:process_functions.listen_for_data,custom_field_name:"email",msg:" venter på epost >> ",err_message:{msg:"Dette er ikke en gyldig epost adresse, prøv igjen! :) ", link:2} },
-         {name:"confirm_email_text",func:process_functions.send_empty_message,custom_field_name:"email", msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "},
+         {name:"listen_for_email",func:process_functions.listen_for_data,custom_field_obj:{name:"email"},msg:" venter på epost >> ",err_message:{msg:"Dette er ikke en gyldig epost adresse, prøv igjen! :) ", link:2} },
+         {name:"confirm_email_text",func:process_functions.send_empty_message,custom_field_obj:{name:"email"}, msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "},
          {name:"confirm email",func:process_functions.send_quick_reply,msg:"Velg her",quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send takk",link:8},{"content_type":"text","title":"Nei","payload":"ask for email",link:2}]},
-         {name:"listen_for_email",func:process_functions.listen_for_quick_reply,custom_field_name:"email", msg:"Skriv ja eller nei >> " , quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send takk",link:8},{"content_type":"text","title":"Nei","payload":"ask for email",link:2}]},
+         {name:"listen_for_email",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"email"}, msg:"Skriv ja eller nei >> " , quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send takk",link:8},{"content_type":"text","title":"Nei","payload":"ask for email",link:2}]},
          {name:"send takk",func:process_functions.send_empty_message, msg : "Takk :) " },
          {name:"writing_action",func:process_functions.writing_action},
          {name:"get_mothers_name",func:process_functions.send_empty_message, msg:"Nå må jeg vite litt om din fammilie :) "},
          {name:"ask_for_mor",func:process_functions.ask_for_custom_data, msg:"skriv navnet på moren din under ! "},
-         {name:"listen_for_mor",func:process_functions.listen_for_data,custom_field_name:"mor",msg:" venter på custom field mor >> ",err_message:{msg:"Dette er var ikke dataen jeg forventet ", link:17} },
-         {name:"confirm_data_mor",func:process_functions.send_empty_message,custom_field_name:"mor", msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "  },
+         {name:"listen_for_mor",func:process_functions.listen_for_data,custom_field_obj:{name:"mor"},msg:" venter på custom field mor >> ",err_message:{msg:"Dette er var ikke dataen jeg forventet ", link:17} },
+         {name:"confirm_data_mor",func:process_functions.send_empty_message,custom_field_obj:{name:"mor"}, msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "  },
          {name:"confirm mor",func:process_functions.send_quick_reply,msg:"velg Ja eller Nei",quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to bio",link:16},{"content_type":"text","title":"Nei","payload":"ask for bio",link:17}]},
-         {name:"listen_for_mor",func:process_functions.listen_for_quick_reply,custom_field_name:"mor", msg:"Skriv ja eller nei " , quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to bio",link:16},{"content_type":"text","title":"Nei","payload":"ask for bio",link:17}]},
+         {name:"listen_for_mor",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"mor"}, msg:"Skriv ja eller nei " , quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to bio",link:16},{"content_type":"text","title":"Nei","payload":"ask for bio",link:17}]},
          {name:"writing_action",func:process_functions.writing_action},
          {name:"get_bio",func:process_functions.send_empty_message, msg:"Nå må jeg vite litt om deg :) "},
          {name:"ask_for_bio",func:process_functions.ask_for_custom_data, msg:"Skriv din bio her vær kreativ  "},
-         {name:"listen_for_bio",func:process_functions.listen_for_data,custom_field_name:"bio",msg:" venter på custom field bio >> ",err_message:{msg:"Dette er var ikke dataen jeg forventet ", link:9} },
-         {name:"confirm_data_mor",func:process_functions.send_empty_message,custom_field_name:"bio", msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "  },
+         {name:"listen_for_bio",func:process_functions.listen_for_data,custom_field_obj:{name:"bio"},msg:" venter på custom field bio >> ",err_message:{msg:"Dette er var ikke dataen jeg forventet ", link:9} },
+         {name:"confirm_data_mor",func:process_functions.send_empty_message,custom_field_obj:{name:"bio"}, msg:"Du skrev {<custom_field>} bekreft med knappen under at det er riktig "  },
          {name:"confirm mor",func:process_functions.send_quick_reply,msg:"velg Ja eller Nei",quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to fin",link:23},{"content_type":"text","title":"Nei","payload":"ask for mother",link:10}]},
-         {name:"listen_for_mor",func:process_functions.listen_for_quick_reply,custom_field_name:"bio", msg:"Skriv ja eller nei " , quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to bio",link:23},{"content_type":"text","title":"Nei","payload":"ask for mother",link:10}]},
+         {name:"listen_for_mor",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"bio"}, msg:"Skriv ja eller nei " , quick_reply_obj:[{"content_type":"text","title":"Ja","payload":"send to bio",link:23},{"content_type":"text","title":"Nei","payload":"ask for mother",link:10}]},
          {name:"writing_action",func:process_functions.writing_action},
          {name:"send_empty_message",func:process_functions.send_empty_message, msg: "Takk du er nå registrert "}
         ] },
@@ -106,7 +106,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
           if( item.steps[step].msg ) message = item.steps[step].msg;
 
-          if( item.steps[step].custom_field_name ) custom_field_name = item.steps[step].custom_field_name ;
+          if( item.steps[step].custom_field_obj ) custom_field_obj = item.steps[step].custom_field_obj ;
 
           if( item.steps[step].quick_reply_obj ) quick_reply_obj = item.steps[step].quick_reply_obj ;
 
@@ -121,7 +121,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
 
 
-          let res = await item_function(user.sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message);
+          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message);
 
           console.log({res:res});
 

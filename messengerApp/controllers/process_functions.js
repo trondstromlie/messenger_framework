@@ -24,15 +24,6 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
         return {status:true,step:"jump_to",link:bool_obj.is_false.link};
 
     } else {
-
-      //check if the value is === or not === to the one specified in bool_obj
-      //bool object {condition: !== === , test: true,false,custom value}
-      
-      //finner ikke verdien i if statement ener opp i en udefinded value 
-      //her er det noe å jobbe med 
-
-      //jeg jobber med å lage den nye prosessene. hva er skrittene jeg skal gjøre 
-
       
       let condition = user_field[0].field_value === bool_obj.test;
       console.log("matchin values " + user_field[0].field_value + " === " + bool_obj.test + " = " + condition );
@@ -62,14 +53,14 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
 
 
 //*********************************************************************
-//** invisible function to add a custom field with a boolean value 
-//** f.eks subscription data subscribing to field -- newsletter:true */
+//** invisible function to add a custom field with a value 
+//** f.ex subscription data subscribing to field -- newsletter:true */
 
-async function add_bool_custom_value(sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   try {
 
-    await addandupdate_userfields.add_or_update_custom_data(sender_psid,field_name,field_value);
+    await addandupdate_userfields.add_or_update_custom_data(sender_psid,custom_field_obj.name ,custom_field_obj.value);
 
     return {status:false,step:"next"}
 
@@ -101,7 +92,7 @@ async function jump_to_process(sender_psid, user, message, custom_field_name, qu
   try {
 
     if(msg !== null) {
-      let response = {text:msg};
+      let response = {text:message};
       await callSendAPI(sender_psid,response);
     }
   
@@ -119,12 +110,12 @@ async function jump_to_process(sender_psid, user, message, custom_field_name, qu
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function ask_for_custom_data (sender_psid, user, msg, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function ask_for_custom_data (sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   console.log("Ask for custom data and pause");
 
-  let string = msg;
-  let response = {text:msg};
+  let string = message;
+  let response = {text:message};
 
   if(custom_field_name !== null) {
     let custom_field = user.custom_data.filter(item => item.field_name === custom_field_name)

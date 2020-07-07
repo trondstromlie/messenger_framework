@@ -60,9 +60,9 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 
   try {
 
-    await addandupdate_userfields.add_or_update_custom_data(sender_psid,custom_field_obj.name ,custom_field_obj.value);
+    await addandupdate_userfields.add_or_update_custom_data(sender_psid,null , {field_name:custom_field_obj.name ,field_value:custom_field_obj.value});
 
-    return {status:false,step:"next"}
+    return {status:true,step:"next"}
 
   } catch (e) {
 

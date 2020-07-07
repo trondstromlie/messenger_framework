@@ -9,16 +9,16 @@ const addandupdate_userfields = require('./addandupdate_userfields');
 //** invisible function to read value of bool custom value */
 // if value is true jump to if value is false jump to 
 
-async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_object, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   try {
 
-    let user_field = user.custom_data.filter(item => item.field_name === custom_field_name);
+    let user_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);
     console.log({fond_user_field:user_field});
 
     if( ! user_field.length > 0 )  {
       //no field found
-      console.log(" could not find the field " + custom_field_name );
+      console.log(" could not find the field " + custom_field_obj.name );
       let message = bool_obj.is_false.msg;
         await callSendAPI(sender_psid,{text:message})
         return {status:true,step:"jump_to",link:bool_obj.is_false.link};
@@ -76,7 +76,7 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 //*********************************************************************** */
 //******function Jump to process
 
-async function jump_to_process(sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   console.log("******* jump to process " + quick_reply_obj.link.messenger_process);
 
@@ -110,15 +110,15 @@ async function jump_to_process(sender_psid, user, message, custom_field_name, qu
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function ask_for_custom_data (sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   console.log("Ask for custom data and pause");
 
   let string = message;
   let response = {text:message};
 
-  if(custom_field_name !== null) {
-    let custom_field = user.custom_data.filter(item => item.field_name === custom_field_name)
+  if(custom_field_obj.name !== null) {
+    let custom_field = user.custom_data.filter(item => item.field_name === custom_field.obj.name)
 
    response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
    await callSendAPI(sender_psid, response, "RESPONSE")
@@ -140,7 +140,7 @@ async function ask_for_custom_data (sender_psid, user, message, custom_field_nam
 //function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette, er de riktig.
 
-async function listen_for_quick_reply(sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function listen_for_quick_reply(sender_psid, user, message, custom_field_object, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   console.log("Listen for quick_replies confirm_data");
 
@@ -176,13 +176,14 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_n
 //***********************************
 //send empty text and jump to the next functions
 
-async function send_empty_message(sender_psid, user, msg, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function send_empty_message(sender_psid, user, msg, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
   
   let string = msg;
   let response = {text:msg};
 
-  if(custom_field_name !== null) {
-    let custom_field = user.custom_data.filter(item => item.field_name === custom_field_name)
+  if(custom_field_obj.name !== null) {
+    console.log({custom_field_obj:custom_field_obj.name});
+    let custom_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name)
 
    response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
    await callSendAPI(sender_psid, response, "RESPONSE")
@@ -230,7 +231,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_name, qui
 
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 
-async function send_quick_reply(sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   console.log("send quick reply");
 
@@ -261,12 +262,12 @@ async function send_quick_reply(sender_psid, user, message, custom_field_name, q
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
 
-async function listen_for_data(sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function listen_for_data(sender_psid, user, message, custom_field_object, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
   console.log(" listen for data ");
 
 
 
-    if (custom_field_name === "email") {
+    if (custom_field_obj.name === "email") {
       console.log("get_email");
       //get email from the user
 
@@ -284,7 +285,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_name, qu
          let data = user;
 
 
-         let custom_field_index = await return_index( data ,custom_field_name, in_message);
+         let custom_field_index = await return_index( data ,custom_field_obj.name, in_message);
 
 
 
@@ -292,13 +293,13 @@ async function listen_for_data(sender_psid, user, message, custom_field_name, qu
 
          if(custom_field_index !== false) {
 
-           console.log("updating " + custom_field_name + " from " + data.custom_data[custom_field_index].field_value + " to " + promt_for_email );
+           console.log("updating " + custom_field_obj.name + " from " + data.custom_data[custom_field_index].field_value + " to " + promt_for_email );
            data.custom_data[custom_field_index].field_value = promt_for_email;
            console.log(data);
 
            try {
            //write update to database
-           await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_name,field_value: promt_for_email})
+           await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_obj.name,field_value: promt_for_email})
            //fs.writeFileSync('the_user_object.json',JSON.stringify(data))
          } catch(e) {
            console.error(e.message);
@@ -306,10 +307,10 @@ async function listen_for_data(sender_psid, user, message, custom_field_name, qu
          } else {
 
            //create new custom field
-           data.custom_data.push({"field_name":custom_field_name,"field_value":promt_for_email});
+           data.custom_data.push({"field_name":custom_field_obj.name,"field_value":promt_for_email});
            console.log(data);
            try {
-           await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_name,field_value: promt_for_email});
+           await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_obj.name,field_value: promt_for_email});
          } catch(e) {
            console.error(e.message);
          }
@@ -338,27 +339,27 @@ async function listen_for_data(sender_psid, user, message, custom_field_name, qu
 
       console.log(promt_for_data)
       //check if field already exists return index if value exixts in obj, else return null
-      let custom_field_index = await return_index(user,custom_field_name);
+      let custom_field_index = await return_index(user,custom_field_obj.name);
 
       if (!custom_field_index) {
         console.log("no value found, adding "+ promt_for_data + "  to db");
 
-        data.custom_data.push({"field_name" : custom_field_name,"field_value" : promt_for_data });
-         await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_name,field_value: promt_for_data});
+        data.custom_data.push({"field_name" : custom_field_obj.name,"field_value" : promt_for_data });
+         await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_obj.name,field_value: promt_for_data});
 
 
       } else {
 
-        console.log(custom_field_name+" found " + "updating field with data " + promt_for_data);
+        console.log(custom_field_obj.name+" found " + "updating field with data " + promt_for_data);
 
         //legg in data integration her
         data.custom_data[custom_field_index].field_value = promt_for_data;
-          await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_name,field_value: promt_for_data});
+          await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_obj.name,field_value: promt_for_data});
 
       }
 
 
-      console.log("get custom data " + custom_field_name);
+      console.log("get custom data " + custom_field_obj.name);
 
 
 
@@ -371,7 +372,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_name, qu
 }
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
-async function writing_action (sender_psid, user, message, custom_field_name, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function writing_action (sender_psid, user, message, custom_field_object, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
 
 
@@ -401,13 +402,13 @@ module.exports = {
 //helper functions
 
 //function to find index of custom field in object //is it possible to use the bulit in array.filter() insted????
-async function return_index(user, custom_field_name) {
+async function return_index(user, custom_field_object) {
 
 let custom_field_index = false;
 
  await user.custom_data.forEach(async (item, i) => {
    console.log("looking in "+item.field_name)
-   if (item.field_name === custom_field_name) {
+   if (item.field_name === custom_field_object) {
      console.log("found one : " + item.field_value + " item number :" + i)
      custom_field_index =  i;
    }

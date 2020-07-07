@@ -165,11 +165,12 @@ try {
 
     } //******ending hello process starter */
 
-    else if (received_message.text === "Add_customfield") {
+
+    else if (received_message.text === "Add") {
 
       console.log("\n********************   creating new process add_customfield ************************");
 
-      let messenger_process = "add_customfield";
+      let messenger_process = "Add_customfield";
 
       let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
       

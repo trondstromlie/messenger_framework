@@ -117,7 +117,7 @@ async function ask_for_custom_data (sender_psid, user, message, custom_field_obj
   let string = message;
   let response = {text:message};
 
-  if(custom_field_obj.name !== null) {
+  if(custom_field_obj !== null) {
     let custom_field = user.custom_data.filter(item => item.field_name === custom_field.obj.name)
 
    response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};

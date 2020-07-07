@@ -136,7 +136,7 @@ try {
           index.push({process_name: item.process_name, index:i})
         }
       });
-
+      console.log({index_value:index});
       if(!index.lenght > 0) {
 
         console.log("index not found in register process");

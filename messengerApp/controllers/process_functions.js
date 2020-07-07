@@ -14,11 +14,11 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
   try {
 
     let user_field = user.custom_data.filter(item => item.field_name === custom_field_name);
-    //console.log(user_field);
+    console.log({fond_user_field:user_field});
 
     if( ! user_field.length > 0 )  {
 
-      console.log(" could not find this user_field ");
+      console.log(" could not find the field " + custom_field_name );
 
     } else {
 

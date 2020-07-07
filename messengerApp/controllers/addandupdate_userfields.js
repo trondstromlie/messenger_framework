@@ -62,7 +62,7 @@ async function add_user_process( sender_psid , process_name , user_obj ) {
        reject(err);
 
      } else {
-       //console.log(body);
+       
        resolve(body);
      }
    });

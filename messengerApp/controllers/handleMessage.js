@@ -139,6 +139,7 @@ try {
       if(!index.lenght > 0) {
 
         console.log("index not found in register process");
+        console.log(add_user_process);
 
       } else {
 

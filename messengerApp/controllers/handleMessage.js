@@ -132,7 +132,7 @@ try {
 
       await add_user_process.messenger_processes.forEach((item, i) => {
         if ( item.process_name === messenger_process  ) {
-          conslole.log("found one " + item.process_name + " is matching  " + messenger_process );
+          console.log("found one " + item.process_name + " is matching  " + messenger_process );
           index.push({process_name: item.process_name, index:i})
         }
       });

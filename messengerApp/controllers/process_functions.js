@@ -31,8 +31,8 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
       //jeg jobber med å lage den nye prosessene. hva er skrittene jeg skal gjøre 
 
       
-      let condition = user_field.field_value === bool_obj.test;
-      console.log("matchin values " + user_field.field_value + " === " + bool_obj.test + " = " + condition );
+      let condition = user_field[0].field_value === bool_obj.test;
+      console.log("matchin values " + user_field[0].field_value + " === " + bool_obj.test + " = " + condition );
 
 
       if(condition === true) {

@@ -93,7 +93,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
           console.log("\n\n********* starting " + item.steps[step].name +  " **********\n\n");
 
           let message = null;
-          let custom_field_name = null;
+          let custom_field_obj = null;
           let quick_reply_obj = null;
           let in_message = incoming_msg;
           let err_message = null;

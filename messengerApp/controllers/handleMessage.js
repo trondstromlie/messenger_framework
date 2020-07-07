@@ -137,7 +137,7 @@ try {
         }
       });
       console.log({index_value:index});
-      if(!index.lenght > 0) {
+      if(!index.length > 0) {
 
         console.log("index not found in register process");
         console.log(add_user_process);

@@ -269,7 +269,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_object, 
 
 
 
-    if (custom_field_obj.name === "email") {
+    if (custom_field_object.name === "email") {
       console.log("get_email");
       //get email from the user
 

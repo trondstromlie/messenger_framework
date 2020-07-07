@@ -31,7 +31,7 @@ router.get('/', [
       }
 
      } catch (e) {
-       console.log(e.essage);
+       console.log(e.message);
        return res.status(500).send("server error")
      }
    }
@@ -83,6 +83,7 @@ router.post('/', [
 
         user.messenger_processes.unshift({process_name, process_progress, process_steps, process_status, process_expires});
         await user.save();
+        
         return res.status(200).json(user);
 
 

@@ -40,6 +40,7 @@ async function add_user_process( sender_psid , process_name , user_obj ) {
   // if user process is not already in user data
   //create it if user_process is already in  db reset it to step 0
   //connect to messenger API
+
   let process_steps = 0;
   let process_progress = 0;
   let user_data = user_obj;
@@ -61,7 +62,7 @@ async function add_user_process( sender_psid , process_name , user_obj ) {
        reject(err);
 
      } else {
-       console.log(body);
+       //console.log(body);
        resolve(body);
      }
    });

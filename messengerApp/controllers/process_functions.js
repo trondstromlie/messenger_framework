@@ -181,7 +181,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_obj, quic
   let string = msg;
   let response = {text:msg};
 
-  if(custom_field_obj.name !== null) {
+  if(custom_field_obj !== null) {
     console.log({custom_field_obj:custom_field_obj.name});
     
     let custom_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name)

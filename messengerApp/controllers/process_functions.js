@@ -32,6 +32,8 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
 
       
       let condition = user_field.value === bool_obj.test;
+      console.log("matchin values " + user_field.value + " === " + bool_obj.test + " = " + condition );
+
 
       if(condition === true) {
         console.log("fant verdien");
@@ -40,6 +42,7 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
         await callSendAPI(sender_psid,{text:message})
         return {status:true,step:"jump_to",link:bool_obj.is_true.link};
       } else {
+
         console.log("fant ikke verdien")
         let message = bool_obj.is_false.msg;
         await callSendAPI(sender_psid,{text:message})

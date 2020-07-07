@@ -9,7 +9,7 @@ const addandupdate_userfields = require('./addandupdate_userfields');
 //** invisible function to read value of bool custom value */
 // if value is true jump to if value is false jump to 
 
-async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_object, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   try {
 
@@ -140,7 +140,7 @@ async function ask_for_custom_data (sender_psid, user, message, custom_field_obj
 //function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette, er de riktig.
 
-async function listen_for_quick_reply(sender_psid, user, message, custom_field_object, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
   console.log("Listen for quick_replies confirm_data");
 
@@ -264,12 +264,12 @@ async function send_quick_reply(sender_psid, user, message, custom_field_obj, qu
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
 
-async function listen_for_data(sender_psid, user, message, custom_field_object, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
   console.log(" listen for data ");
 
 
 
-    if (custom_field_object.name === "email") {
+    if (custom_field_obj.name === "email") {
       console.log("get_email");
       //get email from the user
 
@@ -287,7 +287,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_object, 
          let data = user;
 
 
-         let custom_field_index = await return_index( data ,custom_field_object.name, in_message);
+         let custom_field_index = await return_index( data ,custom_field_obj.name, in_message);
 
 
 
@@ -374,7 +374,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_object, 
 }
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
-async function writing_action (sender_psid, user, message, custom_field_object, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
 
 
 
@@ -404,13 +404,13 @@ module.exports = {
 //helper functions
 
 //function to find index of custom field in object //is it possible to use the bulit in array.filter() insted????
-async function return_index(user, custom_field_object) {
+async function return_index(user, custom_field_obj) {
 
 let custom_field_index = false;
 
  await user.custom_data.forEach(async (item, i) => {
    console.log("looking in "+item.field_name)
-   if (item.field_name === custom_field_object) {
+   if (item.field_name === custom_field_obj) {
      console.log("found one : " + item.field_value + " item number :" + i)
      custom_field_index =  i;
    }

@@ -287,7 +287,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_object, 
          let data = user;
 
 
-         let custom_field_index = await return_index( data ,custom_field_obj.name, in_message);
+         let custom_field_index = await return_index( data ,custom_field_object.name, in_message);
 
 
 

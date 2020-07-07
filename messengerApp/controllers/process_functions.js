@@ -183,7 +183,9 @@ async function send_empty_message(sender_psid, user, msg, custom_field_obj, quic
 
   if(custom_field_obj.name !== null) {
     console.log({custom_field_obj:custom_field_obj.name});
+    
     let custom_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name)
+    console.log(field_value)
 
    response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
    await callSendAPI(sender_psid, response, "RESPONSE")

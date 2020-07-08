@@ -93,7 +93,7 @@ async function jump_to_process(sender_psid, user, message, custom_field_obj, qui
       await callSendAPI(sender_psid,response,"RESPONSE");
     }
   
-    return {status:true,step:"pause",link:jump_to.process_link}
+    return {status:true,step:"start_new_process",link:jump_to.process_link}
 
   } catch(e) {
 

@@ -189,7 +189,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                 // add the new userprocess to the db return an updated user user_obj
                 let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, res.link, user);
 
-                console.log({updated_user_obj:add_user_process});
+                console.log({updated_user_obj:add_user_process.messenger_processes[0]});
                 //find the index of the new process..
                 //and add it to the messenger_process...
 

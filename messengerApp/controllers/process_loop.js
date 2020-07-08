@@ -10,6 +10,7 @@ const process_functions = require('./process_functions');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const fs = require('fs');
 const { getMaxListeners } = require('process');
+const { add_or_update_custom_data } = require('./addandupdate_userfields');
 
 //the process_loop functions
 //starts when handle message discovers an active userProcess in the user procecces field
@@ -92,6 +93,15 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
   }
     ]
   }; //end of object ***************************************
+
+
+  //check if user process has steps if not abort prosess with error message
+  let check_for_process = await user_process.processes.filter(item => item.name === processName);
+  if(!check_for_process > 0) {
+    console.log( processName + " does not exist deleting for messenger process" );
+    add_or_update_custom_data.delete_messenger_process(sender_psid, processName);
+    return NaN;
+  }
 
     await user_process.processes.forEach(async (item, i) => {
 
@@ -230,7 +240,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
       } else {
       console.log("No process steps for this process deleting");
-      await addandupdate_userfields.delete_messenger_process( sender_psid, processName );
+      //await addandupdate_userfields.delete_messenger_process( sender_psid, processName );
       }
 
 

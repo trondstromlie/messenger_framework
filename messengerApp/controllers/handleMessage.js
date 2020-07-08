@@ -61,72 +61,21 @@ try {
 
       return NaN;
 
-      //find index of current messenger_processes
+      //end find index of current messenger_processes
 
-    } //end find and start process....
-     
-
-    //build a object with all keys and processes
-   
-    //if text is === to something
-    else if (received_message.text === "Hello") {
-
-      console.log("\n********************   creating new process Hello ************************");
-
-      let messenger_process = "confirm_start";
-
-      let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
-      
-
-      //console.log(add_user_process);
-
-      index = [];
-
-      await add_user_process.messenger_processes.forEach((item, i) => {
-        if ( item.process_name === messenger_process  ) {
-          console.log("found one " + item.process_name + " is matching  " + messenger_process );
-          index.push({process_name: item.process_name, index:i})
-        }
-      });
-      console.log({index_value:index});
-      if(!index.length > 0) {
-
-        console.log("index not found in register process");
-        console.log(add_user_process);
-
-      } else {
+    }  else {
 
 
-        let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
+      //if no user process is active check if the string matches a starter fraze 
 
-        await callSendAPI( sender_psid , responce ,"RESPONCE");
-
-        console.log(index[0].index)
-
-        await process_loop(messenger_process, add_user_process, index[0].index , received_message);
-
-
-
-        //add the process to the user with the api and start the process loop
-
-
-
-        return NaN;
-      }
-
-
-    } //******ending hello process starter */
-
-    else {
-
-
-      //if no user procecc is active check if the string matches a starter fraze 
-      console.log("looking for processes that match string  in process objeckt")
+      console.log("looking for processes that match a string in process objeckt")
 
       //check if any of the procecc_keys match with the incoming text 
       const start_processes = {processes: [
         {process_key: "Add", process_name:"Add_customfield"},
-        {process_key: "Init", process_name: "get_personal"}
+        {process_key: "Init", process_name: "Get_personal"},
+        {process_key: "Start", process_name: "Confirm_start"}
+
       ]
           
       }; 

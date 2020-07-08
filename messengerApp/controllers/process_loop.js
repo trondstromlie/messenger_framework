@@ -33,7 +33,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
   //**************************************************************
   const user_process = {processes: [
     {
-     name:"get_personal",
+     name:"Get_personal",
      steps: [
 
          {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" før du kan registrer deg må jeg få vite litt mer om hvem du er :) "},
@@ -64,14 +64,14 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
         ] },
     {
 
-      name:"email",
+      name:"Email",
       steps: [
          {name:"get_email",func:process_functions.get_email, msg:"skriv din beste epost adresse her"}
       ]
     },
     {
 
-      name:"confirm_start",
+      name:"Confirm_start",
       steps: [
         {name:"send_empty_message",func:process_functions.send_empty_message, msg: "Hyggelig å se deg " + user.first_name},
         {name:"check if custom_field is true",func:process_functions.read_bool_value_of_custom_field,custom_field_obj:{name:"email"},bool_obj:{test:"mybestlabs@gmail.com",is_true:{link:2,msg:"herlig, fant denne epostadressen "},is_false:{link:4,msg:"oops fant ikke noe her"}} },

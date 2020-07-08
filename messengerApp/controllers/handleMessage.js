@@ -121,7 +121,7 @@ try {
 
 
       //if no user procecc is active check if the string matches a starter fraze 
-      cosole.log("looking for processes that match string  in process objeckt")
+      console.log("looking for processes that match string  in process objeckt")
 
       //check if any of the procecc_keys match with the incoming text 
       const start_processes = {processes: [

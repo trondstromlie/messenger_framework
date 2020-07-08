@@ -195,7 +195,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
                 await add_user_process.messenger_processes.forEach( async ( item  , index ) => {
                   console.log("searchig in item, found " + item.process_name);
-                    if( item.name === res.link ) {
+                    if( item.process_name === res.link ) {
                       console.log("found a matching process")
                       
                       console.log("jumpig to the new function " + res.process_name + " Index " + index);

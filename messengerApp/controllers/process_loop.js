@@ -183,6 +183,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 console.log("starting new function " + res.process_name);
 
                 //first delete the existing function 
+                console.log("delieting current process " + processName);
                 await addandupdate_userfields.delete_messenger_process( sender_psid, null, processName );
 
                 //find the index of the new process..

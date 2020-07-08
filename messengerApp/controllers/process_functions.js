@@ -7,9 +7,9 @@ const addandupdate_userfields = require('./addandupdate_userfields');
 
 //********************************************************************* */
 //** invisible function to read value of bool custom value */
-// if value is true jump to if value is false jump to 
+//** if value is true do someting is value is false do something else  */
 
-async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
   try {
 
@@ -56,7 +56,7 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
 //** invisible function to add a custom field with a value 
 //** f.ex subscription data subscribing to field -- newsletter:true */
 
-async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
   try {
 
@@ -76,29 +76,27 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 //*********************************************************************** */
 //******function Jump to process
 
-async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
   console.log("******* jump to process " + quick_reply_obj.link.messenger_process);
 
-  // Update quick reply link to be an objeckt, can contain link.index number and link.messenger_process
-  // process is waiting for an answer from a quick reply 
-  // delete all active  processes and start the next process.
-  // Add new process to db and start step one, 
-  // find index of process, ps will alwais be 0 or one since we start with deleting all.
-  //return false breaks the process.
+// jump to a process name,
+// search for process index in messenger processes 
+// add the prcesses object in the refrence to make it searchable
+// a user cllicks yes on a quickreply and are then sendt to this function 
 
-  //send optional message to user if message is !== null
-  //send message before starting the new process
+
   try {
 
-    if(msg !== null) {
+    if(message !== null) {
       let response = {text:message};
-      await callSendAPI(sender_psid,response);
+      await callSendAPI(sender_psid,response,"RESPONSE");
     }
   
-    return {status:false,step:"pause"}
+    return {status:true,step:"start_new_process",link:jump_to.process_link}
 
   } catch(e) {
+
     console.error(e.message);
   }
 
@@ -110,7 +108,7 @@ async function jump_to_process(sender_psid, user, message, custom_field_obj, qui
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
   console.log("Ask for custom data and pause");
 
@@ -140,7 +138,7 @@ async function ask_for_custom_data (sender_psid, user, message, custom_field_obj
 //function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette, er de riktig.
 
-async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
   console.log("Listen for quick_replies confirm_data");
 
@@ -176,7 +174,11 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_o
 //***********************************
 //send empty text and jump to the next functions
 
-async function send_empty_message(sender_psid, user, msg, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+//todo lag en bedre funksjon for å fylle inn custom fields.
+//f.eks navn epost, etc så du kan ha flere customfields i samme text.
+//regex for å finne innholdet av merger fields {<merger-fields>}
+
+async function send_empty_message(sender_psid, user, msg, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
   
   let string = msg;
   let response = {text:msg};
@@ -215,25 +217,18 @@ async function send_empty_message(sender_psid, user, msg, custom_field_obj, quic
     }
   }
 
-
-
-
-
-
-
-
-
   //send message send message move to next step in prosess
   //message pause is wait for user input
 
 }
 
+
 //**********************************************
-//send send_quick_reply to colect data fex email, subscription data etc
+//send send_quick_reply to colect data f.ex email, subscription data etc
 
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 
-async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
   console.log("send quick reply");
 
@@ -264,7 +259,7 @@ async function send_quick_reply(sender_psid, user, message, custom_field_obj, qu
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
 
-async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
   console.log(" listen for data ");
 
 
@@ -374,7 +369,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_obj, qui
 }
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
-async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message) {
+async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
 
 

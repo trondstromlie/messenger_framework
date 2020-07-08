@@ -15,6 +15,9 @@ const process_loop = require('./process_loop')
 //  #1 make api to take name og prosess, wait for email, number og steps in prosess( check if email is registered in the main system prosess. )
 
 //  #2 connect messenger message handler to api
+
+// #3 add a starter function that reads available process loops, and starter keywords loops true a object
+//  to make it easier to add and remove starter procecces. 
 //
 //!!*******************************************************************
 

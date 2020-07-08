@@ -84,7 +84,8 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
     name: "Add_customfield",
     steps: [
       {name:"add_update_custom_field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"test_subscriber",value:"true"}},
-      {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"ok du abonerer på dette kurset nå :) "}
+      {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"ok du abonerer på dette kurset nå :) "},
+      {name:"jump to function confirm_start", func:process_functions.jump_to_process,jump_to:{process_link:"confirm_start"}}
     ]
   }
     ]
@@ -139,7 +140,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
 
             let data ={};
 
-            //if result. step is === next start the function loop function agein
+            //if result. step is === next start the function loop function again
             //if status is pause, wait for user feedback
 
             switch(res.step) {
@@ -163,7 +164,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 break;
 
               case "jump_to" :
-               console.log("jumping to function link"+ res.link)
+               console.log("jumping to function link" + res.link)
                user.messenger_processes[index].process_progress = res.link;
                await addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
                user_loop(process_name , user_obj, index , incoming_msg  );
@@ -175,6 +176,30 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
               case "restart":
                 console.log("restarting current function")
                 user_loop(sender_psid , processName , user_obj , index , incoming_msg );
+                return NaN;
+                break;
+
+              case "start_new_process" :
+                console.log("starting new function " + res.process_name);
+
+                //first delete the existing function 
+                await addandupdate_userfields.delete_messenger_process( sender_psid, res.process_name);
+
+                //find the index of the new process..
+                //and add it to the messenger_process...
+
+                let index_of_function = user_process.processes.forEach( ( item  , index ) => {
+                    if( item.name === res.processName ) {
+
+                      let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
+                      console.log("jumpig to the new function " + res.process_name );
+                      await user_loop(sender_psid , res.process_name , user_obj , index , incoming_msg);
+                      return NaN;
+
+                    } 
+                  
+                 })
+
                 return NaN;
                 break;
               default:

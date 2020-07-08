@@ -85,7 +85,8 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
     steps: [
       {name:"add_update_custom_field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"test_subscriber",value:"true"}},
       {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"ok du abonerer på dette kurset nå :) "},
-      {name:"jump to function confirm_start", func:process_functions.jump_to_process,jump_to:{process_link:"confirm_start"}}
+      {name:"jump to function confirm_start", func:process_functions.jump_to_process,jump_to:{process_link:"confirm_start"}},
+      {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"hopper til neste prosess :) "}
     ]
   }
     ]

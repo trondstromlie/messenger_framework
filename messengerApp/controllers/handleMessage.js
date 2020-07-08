@@ -7,26 +7,6 @@ const process_loop = require('./process_loop')
 
 
 
-//  Add functions and api to update statuses for progress fields
-//
-// Add function and API to update the progress f.ex - wait for emailadress use regex to check emeil
-// and send to api for adding fields to the user object
-//
-//  #1 make api to take name og prosess, wait for email, number og steps in prosess( check if email is registered in the main system prosess. )
-
-//  #2 connect messenger message handler to api
-
-// #3 add a starter function that reads available process loops, and starter keywords loops true a object
-//  to make it easier to add and remove starter procecces. 
-//
-//!!*******************************************************************
-
-
-
-
-//handle message
-//function
-
 module.exports = async function handleMessage (sender_psid, received_message) {
 
 
@@ -68,9 +48,11 @@ try {
 
       //if no user process is active check if the string matches a starter fraze 
 
-      console.log("looking for processes that match a string in process objeckt")
+      console.log("looking for processes that match a string in the process objeckt")
 
       //check if any of the procecc_keys match with the incoming text 
+      //if yes start the corosponding process..... 
+
       const start_processes = {processes: [
         {process_key: "Add", process_name:"Add_customfield"},
         {process_key: "Init", process_name: "Get_personal"},
@@ -89,6 +71,7 @@ try {
 
        } else {
 
+      //create a standard answer to all frazes not recognized  
         
       console.log("\n ********************* starting else *******************\n ");
 

@@ -2,24 +2,13 @@
 
 ***todo list ******
 
-************ user field ******** 
+/************ Creata a better function to initaializa message handeliing *******************
 
-	delete all data from the process when process finishes..
-
-
-	make a process to check i a custom field is true
-
-	make a function to sett a boolean value of a custom field 
-	f.eks when the process get-personel starts add custom field get-personal = true.
-
-	a new process can check if this custom field is true or not, prompt the user for a question and than do something
-	jump to a new process, quit etc 
-
-	creata a new api DELETE messenger api
-
-	creata a function to delete the data.
+	create a object and a function this object should be stored in the (_user db )that
+	starts the aprppriat functon when a key sentence is typed..   
 
 
+/************ add user processses and facebook page token to the user profile
 
 
 
@@ -35,7 +24,7 @@
 
 
 ********* create a api where a logged in user can send a message to a selected messenger user.
-	creat a and API that acept a token to validate a user, a sender_PSID and a message, 
+	creat a and API that acept a token to validate a user find the page toekn from user, a sender_PSID and a message, 
 
 
 

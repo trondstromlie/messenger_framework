@@ -63,63 +63,12 @@ try {
 
       //find index of current messenger_processes
 
-    } //if text is === to something
-    else if(received_message.text === "Init") {
+    } //end find and start process....
+     
 
-      console.log("\n *********************** starting Iit *********************** \n");
-
-      let messenger_processes  = userFields.user.messenger_processes;
-
-
-      if(indexAndNameOfActiveUserprocess > 0) {
-        console.log("contuing the user process");
-        await process_loop(indexAndNameOfActiveUserprocess[0].process_name, userFields.user, indexAndNameOfActiveUserprocess[0].index, received_message);
-        return NaN;
-
-      }else {
-
-        console.log("\n********************   creating new process ************************");
-
-        let messenger_process = "get_personal";
-
-        let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
-
-        //console.log(add_user_process);
-
-        index = [];
-
-        await add_user_process.messenger_processes.forEach((item, i) => {
-          if ( item.process_name === messenger_process  ) {
-            index.push({process_name: item.process_name, index:i})
-          }
-        });
-
-        if(!index > 0) {
-          throw("index not found in register process");
-
-        } else {
-
-
-          let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
-
-          await callSendAPI( sender_psid , responce ,"RESPONCE");
-
-          console.log(index[0].index)
-          await process_loop(messenger_process, add_user_process, index[0].index , received_message);
-
-
-
-          //add the procecc to the user with the api and start the process loop
-
-
-
-          return NaN;
-        }
-
-      }
-
-    }
-
+    //build a object with all keys and processes
+   
+    //if text is === to something
     else if (received_message.text === "Hello") {
 
       console.log("\n********************   creating new process Hello ************************");
@@ -168,70 +117,47 @@ try {
 
     } //******ending hello process starter */
 
-
-    else if (received_message.text === "Add") {
-
-      console.log("\n********************   creating new process add_customfield ************************");
-
-      let messenger_process = "Add_customfield";
-
-      let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
-      
-
-      //console.log(add_user_process);
-
-      index = [];
-
-      await add_user_process.messenger_processes.forEach((item, i) => {
-        if ( item.process_name === messenger_process  ) {
-          console.log("found one " + item.process_name + " is matching  " + messenger_process );
-          index.push({process_name: item.process_name, index:i})
-        }
-      });
-      console.log({index_value:index});
-      if(!index.length > 0) {
-
-        console.log("index not found in register process");
-        console.log(add_user_process);
-
-      } else {
-
-
-        let responce = {text:"Hei " + userFields.user.name + " Du er nå registrert i prosessen " + messenger_process};
-
-        await callSendAPI( sender_psid , responce ,"RESPONCE");
-
-        console.log(index[0].index)
-
-        await process_loop(messenger_process, add_user_process, index[0].index , received_message);
-
-
-
-        //add the process to the user with the api and start the process loop
-
-
-
-        return NaN;
-      }
-
-
-    } //******ending user field process starter */
-
     else {
 
-      console.log("\n ********************* starting else *******************\n ")
+
+      //if no user procecc is active check if the string matches a starter fraze 
+      cosole.log("looking for processes that match string  in process objeckt")
+
+      //check if any of the procecc_keys match with the incoming text 
+      const start_processes = {processes: [
+        {process_key: "Add", process_name:"Add_custom_field"},
+        {process_key: "Init", process_name: "Init"}
+      ]
+          
+      }; 
+      let check = start_processes.filter(item => item.process_key.toLowerCase() === received_message.text.toLowerCase());
+
+      if(check.length > 0 ) {
+
+        let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, check[0].process_name , user);
+        await process_loop(messenger_process, add_user_process, 0 , received_message);
+        return NaN;
+
+       } else {
+
+        
+      console.log("\n ********************* starting else *******************\n ");
+
 
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};
 
       await callSendAPI(sender_psid, responce , "RESPONSE");
 
       return NaN;
+
+       }
     }
 
 }catch(e) {
 
   console.error(e.message);
-}
+ }
+
 };
 
 }

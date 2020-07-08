@@ -198,9 +198,9 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                     if( item.process_name === res.link ) {
                       console.log("found a matching process")
                       
-                      console.log("jumpig to the new function " + res.process_name + " Index " + index);
+                      console.log("jumpig to the new function " + res.link + " Index " + index);
 
-                      await user_loop(sender_psid , res.process_name , add_user_process , index , incoming_msg);
+                      await user_loop(sender_psid , res.link , add_user_process , index , incoming_msg);
                       //return NaN;
 
                     } 

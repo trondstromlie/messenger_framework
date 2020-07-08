@@ -193,8 +193,8 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                 //find the index of the new process..
                 //and add it to the messenger_process...
 
-                let index_of_function = add_user_process.messenger_processes.forEach( async ( item  , index ) => {
-                  console.log(item.name);
+                await add_user_process.messenger_processes.forEach( async ( item  , index ) => {
+                  console.log(item.process_name);
                     if( item.name === res.link ) {
                       console.log("found a matching process")
                       

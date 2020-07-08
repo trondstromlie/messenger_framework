@@ -229,7 +229,9 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
 
       }
-
+      console.log("No process steps for this process deleting");
+      await addandupdate_userfields.delete_messenger_process( sender_psid, processName );
+      return NaN;
 
 
       // if result is positive jump to the next line, if result is negativ jump back

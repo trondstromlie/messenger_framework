@@ -181,7 +181,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 break;
 
               case "start_new_process" :
-                console.log("starting new function " + res.process_name);
+                console.log("starting new function " + res.link);
 
                 //first delete the existing function 
                 console.log("delieting current process " + processName);
@@ -193,7 +193,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 let index_of_function = user_process.processes.forEach( async ( item  , index ) => {
                     if( item.name === res.processName ) {
 
-                      let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);
+                      let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, res.link, user);
                       console.log("jumpig to the new function " + res.process_name );
                       await user_loop(sender_psid , res.process_name , user_obj , index , incoming_msg);
                       return NaN;

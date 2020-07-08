@@ -164,7 +164,7 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 break;
 
               case "jump_to" :
-               console.log("jumping to function link" + res.link)
+               console.log("jumping to function link" + res.link);
                user.messenger_processes[index].process_progress = res.link;
                await addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
                user_loop(process_name , user_obj, index , incoming_msg  );
@@ -183,12 +183,12 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 console.log("starting new function " + res.process_name);
 
                 //first delete the existing function 
-                await addandupdate_userfields.delete_messenger_process( sender_psid, res.process_name);
+                await addandupdate_userfields.delete_messenger_process( sender_psid, null, processName );
 
                 //find the index of the new process..
                 //and add it to the messenger_process...
 
-                let index_of_function = user_process.processes.forEach( ( item  , index ) => {
+                let index_of_function = user_process.processes.forEach( async ( item  , index ) => {
                     if( item.name === res.processName ) {
 
                       let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, messenger_process, user);

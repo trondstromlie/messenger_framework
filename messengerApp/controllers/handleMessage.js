@@ -11,6 +11,7 @@ module.exports = async function handleMessage (sender_psid, received_message) {
 
 
 if(!received_message.is_echo === true) {
+  
   //fetch the user data from api
 
 try {
@@ -22,16 +23,16 @@ try {
 
 
 
-    //check if active proceceses
+    //check for active messenger_proceceses
   let messenger_processes  = userFields.user.messenger_processes;
 
   let indexAndNameOfActiveUserprocess = [];
+
   //find name and index of the active processes
   await messenger_processes.forEach((item, i) => {
 
     if (item.process_status === true) indexAndNameOfActiveUserprocess.push( {index : i , process_name : item.process_name});
     });
-
 
     if(indexAndNameOfActiveUserprocess.length > 0) {
       console.log("found a user process " + indexAndNameOfActiveUserprocess[0].process_name + " contuing the user process");
@@ -46,11 +47,11 @@ try {
     }  else {
 
 
-      //if no user process is active check if the string matches a starter fraze 
+      //if no user process is active check if the incoming string matches a starter fraze 
 
-      console.log("looking for processes that match a string in the process objeckt")
+      console.log("looking for processes that match a string in the process object")
 
-      //check if any of the procecc_keys match with the incoming text 
+      //check if any of the prosess_keys match with the incoming text 
       //if yes start the corosponding process..... 
 
       const start_processes = {processes: [
@@ -73,7 +74,7 @@ try {
 
       //create a standard answer to all frazes not recognized  
         
-      console.log("\n ********************* starting else *******************\n ");
+      console.log("\n ********************* starting standard answer *******************\n ");
 
 
       let responce = {text:`Hei ${userFields.user.first_name}, jeg vet ikke hva jeg skal gjøre med denne meldingen. Skriv Init for å starte programmet `};

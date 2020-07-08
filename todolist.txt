@@ -2,24 +2,39 @@
 
 ***todo list ******
 
-/************ Creata a better function to initaializa message handeliing *******************
-
-	create a object and a function this object should be stored in the (_user db )that
-	starts the aprppriat functon when a key sentence is typed..   
-
 
 /************ add user processses and facebook page token to the user profile
 
+creata and api to add all the user spesific data such as messenger processes, starter fraces etc to user db 
+this to make it faster to iplement the messenger backend to a fully functionin program in the future
 
-
-************ create a template function that read a product list, and send the user a menu of items to buy *****
+************ create a easy template function that read a product list from an api , and send the user a menu of items to buy *****
 
 	restaurant booking system 
-	internett store ...
+	and internett store ...
 
 	get the data as a json object from a api or a atom rss feed.
 
+	whan the user hit the ad to cart menu button the data is stored in a customfield object
+	the user then get promtet for if she want to buy more or continu to cart.
+
+	order sends the order to the citchen.
+
+	to make it more adwanced, store the data in a separat api under the users email or messenger sender_psid.
+
+	whan the user clicks ad to cart a window opens with the cart open and all the product ready to buy
+	add or remove items and click checkout pay and you are returned to messenger. 
+
+
+*****
 	what happends when the users places the order... 
+
+	thins to find out, for this project
+
+	how to send menues and handle postback clicks 
+	how to open and edit custom faceboook windows.... 
+
+*****
 
 
 
@@ -27,7 +42,13 @@
 	creat a and API that acept a token to validate a user find the page toekn from user, a sender_PSID and a message, 
 
 
+	to to this you need to add the page token to the user profile,
+	when you send an api call you must include the user id, the facebook token and the psid, and the message.
+	optioanl walue should also be a custom field value, F.EX a webinar_may partisipant 
 
+************** triggers nex phase
+	what starts a user prosess, listen for customfields, postback, tags is added to a user. 
+	hooks listen for chance in user profile and starts actions...... 
 
 
 

@@ -177,7 +177,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
               case "restart":
                 console.log("restarting current function")
-                user_loop(sender_psid , processName , user_obj , index , incoming_msg );
+                user_loop(processName , user_obj , index , incoming_msg );
                 return NaN;
                 break;
 
@@ -201,7 +201,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                       
                       console.log("jumpig to the new function " + res.link + " Index " + index);
 
-                      await user_loop(sender_psid , res.link , add_user_process , index , incoming_msg);
+                      await user_loop(res.link , add_user_process , index , incoming_msg);
                       //return NaN;
 
                     } 

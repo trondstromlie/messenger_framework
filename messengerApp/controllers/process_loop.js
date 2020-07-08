@@ -11,14 +11,14 @@ const addandupdate_userfields = require('./addandupdate_userfields');
 const fs = require('fs');
 const { getMaxListeners } = require('process');
 
-//the user loop functions
+//the process_loop functions
 //starts when handle message discovers an active userProcess in the user procecces field
 //index is the index of the userprocess in case there is more than one.
 //only one user process can be activ in one time. creata array.map() that sets all other procecces to false whan creating a new process
 
 
 
-async function user_loop (process_name , user_obj, index , incoming_msg ) {
+async function user_loop ( process_name , user_obj, index , incoming_msg ) {
   console.log("process loop is starting!");
 
   console.log(user_obj.messenger_processes[index].process_progress);
@@ -186,14 +186,17 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 //first delete the existing function 
                 console.log("deleting current process " + processName);
                 await addandupdate_userfields.delete_messenger_process( sender_psid, processName );
+                // add the new userprocess to the user_obj
+                let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, res.link, user);
 
+                console.log(add_user_process);
                 //find the index of the new process..
                 //and add it to the messenger_process...
 
                 let index_of_function = user_process.processes.forEach( async ( item  , index ) => {
                     if( item.name === res.link ) {
                       console.log("found a matching process")
-                      let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, res.link, user);
+                      
                       console.log("jumpig to the new function " + res.process_name );
                       await user_loop(sender_psid , res.process_name , user_obj , index , incoming_msg);
                       //return NaN;

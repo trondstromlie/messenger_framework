@@ -125,8 +125,8 @@ try {
 
       //check if any of the procecc_keys match with the incoming text 
       const start_processes = {processes: [
-        {process_key: "Add", process_name:"Add_custom_field"},
-        {process_key: "Init", process_name: "Init"}
+        {process_key: "Add", process_name:"Add_customfield"},
+        {process_key: "Init", process_name: "get_personal"}
       ]
           
       }; 

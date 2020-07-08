@@ -78,7 +78,7 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 
 async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
-  console.log("******* jump to process " + quick_reply_obj.link.messenger_process);
+  console.log("******* jump to process " + jump_to.process_link);
 
 // jump to a process name,
 // search for process index in messenger processes 

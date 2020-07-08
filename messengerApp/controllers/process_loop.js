@@ -184,15 +184,15 @@ async function user_loop (process_name , user_obj, index , incoming_msg ) {
                 console.log("starting new function " + res.link);
 
                 //first delete the existing function 
-                console.log("delieting current process " + processName);
+                console.log("deleting current process " + processName);
                 await addandupdate_userfields.delete_messenger_process( sender_psid, processName );
 
                 //find the index of the new process..
                 //and add it to the messenger_process...
 
                 let index_of_function = user_process.processes.forEach( async ( item  , index ) => {
-                    if( item.name === res.processName ) {
-
+                    if( item.name === res.link ) {
+                      console.log("found a matching process")
                       let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, res.link, user);
                       console.log("jumpig to the new function " + res.process_name );
                       await user_loop(sender_psid , res.process_name , user_obj , index , incoming_msg);

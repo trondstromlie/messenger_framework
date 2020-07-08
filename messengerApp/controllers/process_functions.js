@@ -391,7 +391,8 @@ module.exports = {
   writing_action:writing_action,
   listen_for_quick_reply:listen_for_quick_reply,
   add_bool_custom_value:add_bool_custom_value,
-  read_bool_value_of_custom_field:read_bool_value_of_custom_field
+  read_bool_value_of_custom_field:read_bool_value_of_custom_field,
+  jump_to_process:jump_to_process
 };
 
 

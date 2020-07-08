@@ -186,7 +186,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                 //first delete the existing function 
                 console.log("deleting current process " + processName);
                 await addandupdate_userfields.delete_messenger_process( sender_psid, processName );
-                // add the new userprocess to the user_obj
+                // add the new userprocess to the db return an updated user user_obj
                 let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, res.link, user);
 
                 console.log(add_user_process);
@@ -198,7 +198,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                       console.log("found a matching process")
                       
                       console.log("jumpig to the new function " + res.process_name );
-                      await user_loop(sender_psid , res.process_name , user_obj , index , incoming_msg);
+                      await user_loop(sender_psid , res.process_name , add_user_process , index , incoming_msg);
                       //return NaN;
 
                     } 

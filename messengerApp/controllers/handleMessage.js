@@ -130,7 +130,7 @@ try {
       ]
           
       }; 
-      let check = start_processes.filter(item => item.process_key.toLowerCase() === received_message.text.toLowerCase());
+      let check = start_processes.processes.filter(item => item.process_key.toLowerCase() === received_message.text.toLowerCase());
 
       if(check.length > 0 ) {
 

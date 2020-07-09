@@ -27,11 +27,11 @@ module.exports = async function callSendAPI (sender_psid, response, m_type) {
     },
     "messaging_type": m_type
    }
-   
+
 //add data to the request_body
 
-if(response.text) request_body.message = responce.text;
-if(responce.payload) request_body.payload = responce.payload;
+if(response.text) request_body.message = response.text;
+if(response.payload) request_body.payload = response.payload;
 
 
 

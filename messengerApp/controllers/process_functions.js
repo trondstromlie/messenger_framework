@@ -179,7 +179,7 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_o
 //f.eks navn epost, etc så du kan ha flere customfields i samme text.
 //regex for å finne innholdet av merger fields {<merger-fields>}
 
-async function send_empty_message(ssender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function send_empty_message(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
   
   let string = message;
   let response = {text:message};

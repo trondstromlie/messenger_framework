@@ -54,7 +54,8 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
           },
           {"type":default_obj[0].menu_item[1].type,
           "url":default_obj[0].menu_item[1].uri,
-          "title":default_obj[0].menu_item[1].title
+          "title":default_obj[0].menu_item[1].title,
+          "payload":default_obj[0].menu_item[1].payload
          }
         ]      
       },

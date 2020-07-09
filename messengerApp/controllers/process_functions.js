@@ -10,7 +10,7 @@ const senderAction = require('./senderAction');
 //** invisible function to read value of bool custom value */
 //** if value is true do someting is value is false do something else  */
 
-async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
   try {
 
@@ -57,7 +57,7 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
 //** invisible function to add a custom field with a value 
 //** f.ex subscription data subscribing to field -- newsletter:true */
 
-async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
   try {
 
@@ -77,7 +77,7 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 //*********************************************************************** */
 //******function Jump to process
 
-async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
   console.log("******* jump to process " + jump_to.process_link);
 
@@ -109,7 +109,7 @@ async function jump_to_process(sender_psid, user, message, custom_field_obj, qui
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
   console.log("Ask for custom data and pause");
 
@@ -139,7 +139,7 @@ async function ask_for_custom_data (sender_psid, user, message, custom_field_obj
 //function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette, er de riktig.
 
-async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
   console.log("Listen for quick_replies confirm_data");
 
@@ -179,9 +179,9 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_o
 //f.eks navn epost, etc så du kan ha flere customfields i samme text.
 //regex for å finne innholdet av merger fields {<merger-fields>}
 
-async function send_empty_message(sender_psid, user, msg, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function send_empty_message(ssender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
   
-  let string = msg;
+  let string = message;
   let response = {text:msg};
 
   if(custom_field_obj !== null) {
@@ -229,7 +229,7 @@ async function send_empty_message(sender_psid, user, msg, custom_field_obj, quic
 
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 
-async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
   console.log("send quick reply");
 
@@ -260,7 +260,7 @@ async function send_quick_reply(sender_psid, user, message, custom_field_obj, qu
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
 
-async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
   console.log(" listen for data ");
 
 
@@ -370,7 +370,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_obj, qui
 }
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
-async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
+async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
 try {
 
@@ -378,10 +378,19 @@ try {
 
   console.log(action_start);
 
-  await sleep(5000);
+  let defaulut_sleep = 1;
+  let sleep_for = null;
+
+  if (pause === null) {
+    sleep_for = +defaulut_sleep;
+  } else {
+    sleep_for = +pause;
+  }
+
+  await sleep(sleep_for * 1000);
 
   let action_stop = await senderAction(sender_psid, "typing_off");
-  
+
   return {status:true,step:"next"};
 
 } catch(err) {
@@ -411,6 +420,7 @@ module.exports = {
 //helper functions
 
 //function to find index of custom field in object //is it possible to use the bulit in array.filter() insted????
+
 async function return_index(user, custom_field_obj) {
 
 let custom_field_index = false;
@@ -423,22 +433,4 @@ let custom_field_index = false;
    }
  });
 return custom_field_index;
-}
-
-
-//****************************************
-//dev function to get input
-function askforData (query) {
-  this.query = query;
-
-  var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  return new Promise( resolve => rl.question( this.query, ans => {
-    rl.close();
-    resolve(ans)
-  } )
-  )
 }

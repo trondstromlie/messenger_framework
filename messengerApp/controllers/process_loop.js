@@ -98,9 +98,9 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     name:"Type_action",
     steps:[
       {name:"send melding 1 ",func:process_functions.send_empty_message,msg:"ok nå skal jeg vente noen sekunder :) "},
-      {name:"writing_action",func:process_functions.writing_action},
+      {name:"writing_action",func:process_functions.writing_action,pause:5},
       {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"så kommer en melding før jeg venter igjen :) "},
-      {name:"writing_action",func:process_functions.writing_action},
+      {name:"writing_action",func:process_functions.writing_action, pause:3},
       {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"takk skal du ha nå avslutter jeg. :) "},
     ]
   }
@@ -132,6 +132,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
           let err_message = null;
           let bool_obj = null;
           let jump_to = null;
+          let pause = null;
 
           console.log(in_message);
 
@@ -149,12 +150,14 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
           if (item.steps[step].jump_to ) jump_to = item.steps[step].jump_to ;
 
+          if (item.steps[step].pause ) pause = item.steps[step].pause ;
+
 
           let item_function = item.steps[step].func;
 
 
 
-          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message);
+          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message , pause);
 
           console.log({res:res});
 

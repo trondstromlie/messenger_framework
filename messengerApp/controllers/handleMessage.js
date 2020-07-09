@@ -4,6 +4,7 @@ const fetchUserData = require('./fetchUserData');
 const logMessage = require('./writeToLog');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const process_loop = require('./process_loop')
+const senderAction = require('./senderAction');
 
 
 
@@ -15,6 +16,8 @@ if(!received_message.is_echo === true) {
   //fetch the user data from api
 
 try {
+
+  await senderAction(sender_psid , 'mark_seen');
 
   let userFields = await fetchUserData(sender_psid);
 
@@ -61,7 +64,7 @@ try {
         {process_key: "Type_action", process_name: "Type_action"}
       ]
       }; 
-      
+
       let check = start_processes.processes.filter(item => item.process_key.toLowerCase() === received_message.text.toLowerCase());
 
       if(check.length > 0 ) {

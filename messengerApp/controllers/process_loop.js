@@ -93,6 +93,16 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"jump to function confirm_start", func:process_functions.jump_to_process,jump_to:{process_link:"Confirm_start"}},
       {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"hopper til neste prosess :) "}
     ]
+  },
+  {
+    name:"Type_action",
+    steps:[
+      {name:"send melding 1 ",func:process_functions.send_empty_message,msg:"ok nå skal jeg vente noen sekunder :) "},
+      {name:"writing_action",func:process_functions.writing_action},
+      {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"så kommer en melding før jeg venter igjen :) "},
+      {name:"writing_action",func:process_functions.writing_action},
+      {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"takk skal du ha nå avslutter jeg. :) "},
+    ]
   }
     ]
   }; //end of object ***************************************

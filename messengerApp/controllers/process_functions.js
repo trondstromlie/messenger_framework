@@ -373,7 +373,8 @@ async function listen_for_data(sender_psid, user, message, custom_field_obj, qui
 async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
 
-  await senderAction(sender_psid, "typing_on");
+  let action_start = await senderAction(sender_psid, "typing_on");
+  console.log(action_start);
   await sleep(5000);
   await senderAction(sender_psid, "typing_off");
   return {status:true,step:"next"};

@@ -5,6 +5,67 @@ const callSendAPI = require('./callSendAPI');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const senderAction = require('./senderAction');
 
+//************************************************************************ */
+//** a function to fetch data from an api and show the data in a generic template */
+//** the object must contain an image and mamybe a webadress ?  */
+async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+
+//create a default object for testing if no api object is available fall back to the test object
+
+let default_obj = [
+  {
+    img:"https://brands-a.prod.onewp.net/app/uploads/sites/4/2018/09/Pizza-med-kj%C3%B8ttdeig.jpg",
+    title:"Deilig piza med kjøttdeig",
+    sub_title:"den er bedre en du tror\n nå kr 150",
+    url:"https://www.morshjemmebakte.no/recipes/pizza-med-kjottdeig/",
+    menu_item:[
+      {
+       title:"Les mer",
+       uri:"https://www.morshjemmebakte.no/recipes/pizza-med-kjottdeig/",
+       type: "web_url"
+      },
+      {
+       title:"Bestill",
+       payload:"vare: 123456 pizza med kjøttdeig",
+       type:"postback"
+      }
+    ] 
+  }];
+
+responce = {"sender_psid":sender_psid ,"payload": {
+      "template_type":"generic",
+      "elements":[
+         {
+         "title":default_obj[0].title,
+         "image_url":default_obj[0].img,
+         "subtitle":default_obj[0].sub_title,
+         "default_action": {
+           "type": "web_url",
+           "url": default_obj[0].url,
+            "messenger_extensions": "TRUE",
+            "webview_height_ratio": "COMPACT"
+        },
+        "buttons":[
+          {"type":default_obj[0].menu_item[0].type,
+           "url":default_obj[0].menu_item[0].uri,
+           "title":default_obj[0].menu_item[0].title
+          },
+          {"type":default_obj[0].menu_item[1].type,
+          "url":default_obj[0].menu_item[1].uri,
+          "title":default_obj[0].menu_item[1].title
+         }
+        ]      
+      },
+      ...
+    ]
+  }
+}}
+
+
+}; // end of generic template
+
+
+
 
 //********************************************************************* */
 //** invisible function to read value of bool custom value */
@@ -412,7 +473,8 @@ module.exports = {
   listen_for_quick_reply:listen_for_quick_reply,
   add_bool_custom_value:add_bool_custom_value,
   read_bool_value_of_custom_field:read_bool_value_of_custom_field,
-  jump_to_process:jump_to_process
+  jump_to_process:jump_to_process,
+  fetch_generic_template:fetch_generic_template
 };
 
 

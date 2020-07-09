@@ -97,11 +97,22 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
   {
     name:"Type_action",
     steps:[
-      {name:"send melding 1 ",func:process_functions.send_empty_message,msg:"ok nå skal jeg vente noen sekunder :) "},
+      {name:"send melding  ",func:process_functions.send_empty_message,msg:"ok nå skal jeg vente noen sekunder :) "},
       {name:"writing_action",func:process_functions.writing_action,pause:5},
       {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"så kommer en melding før jeg venter igjen :) "},
       {name:"writing_action",func:process_functions.writing_action, pause:3},
       {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"takk skal du ha nå avslutter jeg. :) "},
+    ]
+  },
+  {
+    name: "Pizza",
+    steps:[
+      {name:"writing_action",func:process_functions.writing_action,pause:5},
+      {name:"send melding velkommen melding ",func:process_functions.send_empty_message,msg:"Ok "+ user.first_name + "la meg hente menyen for deg :) "},
+      {name:"writing_action",func:process_functions.writing_action,pause:5},
+      {name:"pizza_meny",func:process_functions.fetch_generic_template}
+
+
     ]
   }
     ]
@@ -136,7 +147,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
           console.log(in_message);
 
-          //check if some or all of the standarfields are sett if sett initialize 
+          //check if some or all of the standarfields are set if set initialize 
 
           if( item.steps[step].msg ) message = item.steps[step].msg;
 

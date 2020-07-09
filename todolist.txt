@@ -2,8 +2,15 @@
 
 ***todo list ******
 
+/*********** creata a crontab_loop that starts processes on demand **********
 
-/************ add user processses and facebook page token to the user profile
+creae a special messenger process function that ads a new process to the crontab_loop to start on a spesific time
+f.eks process start a course and then send the next section after 24 houres or on a spesific time...
+
+wait for x numner of minutes houres days than >>>  
+
+
+/************ add user processses and facebook page token to the user profile.
 
 creata and api to add all the user spesific data such as messenger processes, starter fraces etc to user db 
 this to make it faster to iplement the messenger backend to a fully functionin program in the future

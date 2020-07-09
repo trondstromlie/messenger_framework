@@ -26,7 +26,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
       },
       {
        title:"Bestill",
-       payload:"vare: 123456 pizza med kjøttdeig",
+       payload:{"vare": "123456", "navn": "pizza med kjøttdeig","pris":"150"},
        type:"postback"
       }
     ] 

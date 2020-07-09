@@ -6,13 +6,13 @@ const request = require('request');
 module.exports =  async function  SenderAction(sender_psid,sender_action) {
 
     //construct the message body
-    
+
     let options = {
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs:{'access_token': config.get('FbPageToken')},
         method:"POST",
         json : {
-            "recipent":{"id":sender_psid},
+            "recipient":{"id":sender_psid},
             "sender_action":sender_action
         }
     }

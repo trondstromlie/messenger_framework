@@ -61,7 +61,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
    }
  }
 
- await callSendAPI(sender_psid , response, "RESPONCE");
+ await callSendAPI(sender_psid , response, "RESPONSE");
 } // end of generic template
 
 

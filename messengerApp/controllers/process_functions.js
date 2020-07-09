@@ -44,7 +44,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
          "default_action": {
            "type": "web_url",
            "url": default_obj[0].url,
-            "messenger_extensions": "TRUE",
+            "messenger_extensions": "FALSE",
             "webview_height_ratio": "COMPACT"
         },
         "buttons":[

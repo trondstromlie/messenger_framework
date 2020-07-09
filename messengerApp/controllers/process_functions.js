@@ -10,9 +10,9 @@ const senderAction = require('./senderAction');
 //** the object must contain an image and mamybe a webadress ?  */
 async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
-//create a default object for testing if no api object is available fall back to the test object
+ //create a default object for testing if no api object is available fall back to the test object
 
-let default_obj = [
+ let default_obj = [
   {
     img:"https://brands-a.prod.onewp.net/app/uploads/sites/4/2018/09/Pizza-med-kj%C3%B8ttdeig.jpg",
     title:"Deilig piza med kjøttdeig",
@@ -32,7 +32,7 @@ let default_obj = [
     ] 
   }];
 
-responce = {"sender_psid":sender_psid ,"payload": {
+ responce = {"sender_psid":sender_psid ,"payload": {
       "template_type":"generic",
       "elements":[
          {
@@ -58,10 +58,8 @@ responce = {"sender_psid":sender_psid ,"payload": {
       },
     ]
   }
-}}
 
-
-}; // end of generic template
+} // end of generic template
 
 
 

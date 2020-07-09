@@ -73,10 +73,13 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
       name:"Confirm_start",
       steps: [
+        {name:"writing_action",func:process_functions.writing_action},
         {name:"send_empty_message",func:process_functions.send_empty_message, msg: "Hyggelig å se deg " + user.first_name},
-        {name:"check if custom_field is true",func:process_functions.read_bool_value_of_custom_field,custom_field_obj:{name:"email"},bool_obj:{test:"mybestlabs@gmail.com",is_true:{link:2,msg:"herlig, fant denne epostadressen "},is_false:{link:4,msg:"oops fant ikke noe her"}} },
-        {name:"send_empty_message",func:process_functions.send_empty_message, msg: "okay supert",jump_to:{link:4}},
-        {name:"send_empty_message",func:process_functions.send_empty_message, msg: "det var ikke noe der", jump_to:{link:4}},
+        {name:"writing_action",func:process_functions.writing_action},
+        {name:"check if custom_field is true",func:process_functions.read_bool_value_of_custom_field,custom_field_obj:{name:"email"},bool_obj:{test:"mybestlabs@gmail.com",is_true:{link:4,msg:"herlig, fant denne epostadressen "},is_false:{link:7,msg:"oops fant ikke noe her"}} },
+        {name:"send_empty_message",func:process_functions.send_empty_message, msg: "okay supert",jump_to:{link:7}},
+        {name:"writing_action",func:process_functions.writing_action},
+        {name:"send_empty_message",func:process_functions.send_empty_message, msg: "det var ikke noe der", jump_to:{link:7}},
         {name:"send_empty_message",func:process_functions.send_empty_message, msg: "takk for din tålmodighet avslutter prosessen nå"}
         
 
@@ -87,7 +90,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     steps: [
       {name:"add_update_custom_field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"test_subscriber",value:"true"}},
       {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"ok du abonerer på dette kurset nå :) "},
-      {name:"jump to function confirm_start", func:process_functions.jump_to_process,jump_to:{process_link:"confirm_start"}},
+      {name:"jump to function confirm_start", func:process_functions.jump_to_process,jump_to:{process_link:"Confirm_start"}},
       {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"hopper til neste prosess :) "}
     ]
   }

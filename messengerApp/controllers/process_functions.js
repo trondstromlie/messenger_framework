@@ -56,7 +56,6 @@ responce = {"sender_psid":sender_psid ,"payload": {
          }
         ]      
       },
-      ...
     ]
   }
 }}

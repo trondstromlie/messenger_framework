@@ -3,6 +3,7 @@
 const sleep = require('sleep-promise');
 const callSendAPI = require('./callSendAPI');
 const addandupdate_userfields = require('./addandupdate_userfields');
+const senderAction = require('./senderAction');
 
 
 //********************************************************************* */
@@ -372,8 +373,9 @@ async function listen_for_data(sender_psid, user, message, custom_field_obj, qui
 async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, messenger_processess) {
 
 
-
-  await sleep(3000);
+  await senderAction(sender_psid, "writing_on");
+  await sleep(5000);
+  await senderAction(sender_psid, "writing_off");
   return {status:true,step:"next"};
 }
 

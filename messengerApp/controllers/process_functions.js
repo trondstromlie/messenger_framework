@@ -119,7 +119,7 @@ async function ask_for_custom_data (sender_psid, user, message, custom_field_obj
   if(custom_field_obj !== null) {
     let custom_field = user.custom_data.filter(item => item.field_name === custom_field.obj.name)
 
-   response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
+   response = {text:messsage.replace("{<custom_field>}", custom_field[0].field_value)};
    await callSendAPI(sender_psid, response, "RESPONSE")
 
    return {status:true,step:"pause"};
@@ -182,7 +182,7 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_o
 async function send_empty_message(ssender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
   
   let string = message;
-  let response = {text:msg};
+  let response = {text:message};
 
   if(custom_field_obj !== null) {
     console.log({custom_field_obj:custom_field_obj.name});
@@ -190,7 +190,7 @@ async function send_empty_message(ssender_psid, user, message, custom_field_obj,
     let custom_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name)
     console.log(custom_field)
 
-   response = {text:msg.replace("{<custom_field>}", custom_field[0].field_value)};
+   response = {text:message.replace("{<custom_field>}", custom_field[0].field_value)};
    await callSendAPI(sender_psid, response, "RESPONSE")
 
    if(jump_to !== null) {

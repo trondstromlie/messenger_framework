@@ -32,7 +32,8 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
     ] 
   }];
 
- let response = {
+ let response = {"attachment" : {
+    "type":"template",
     "payload": {
       "template_type":"generic",
       "elements":[
@@ -59,6 +60,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
       },
     ]
    }
+  }
  }
 
  await callSendAPI(sender_psid , response, "RESPONSE");

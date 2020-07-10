@@ -1,6 +1,6 @@
 "use strict";
 const callSendAPI = require('./callSendAPI');
-const { response } = require('express');
+
 
 
 module.exports = async function handleRefferal (sender_psid, refferal) {
@@ -10,4 +10,5 @@ module.exports = async function handleRefferal (sender_psid, refferal) {
 
     await callSendAPI(sender_psid, response);
     return NaN;
+    
 };

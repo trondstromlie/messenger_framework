@@ -3,8 +3,8 @@ const callSendAPI = require('./callSendAPI');
 
 
 
-module.exports = async function handleRefferal (sender_psid, refferal) {
-
+module.exports = async function handleReferral (sender_psid, refferal) {
+    console.log("************ starting handle refferal   ************ ");
     console.log(refferal.ref);
     let response = {text:"Ok det er notert"};
 

@@ -74,9 +74,6 @@ router.post("/", ( req , res ) => {
       else if (webhook_event.referral) {
         handleReferral(sender_psid, webhook_event.referral);
       }
-      else {
-        console.log({no_webhook:webhook_event});
-      }
     });
 
     // Returns a '200 OK' response to all requests

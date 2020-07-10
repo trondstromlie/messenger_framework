@@ -74,6 +74,9 @@ router.post("/", ( req , res ) => {
       else if (webhook_event.ref) {
         console.log(webhook_event.ref);
       }
+      else {
+        console.log(webhook_event);
+      }
     });
 
     // Returns a '200 OK' response to all requests

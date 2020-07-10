@@ -71,8 +71,8 @@ router.post("/", ( req , res ) => {
       } else if (webhook_event.postback) {
         handlePostBack(sender_psid, webhook_event.postback);
       }
-      else {
-        console.log(webhook_event);
+      else if (webhook_event.ref)
+        console.log(webhook_event.ref);
       }
     });
 

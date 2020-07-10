@@ -6,13 +6,8 @@ const User = require("../models/User");
 const request = require('request');
 const callSendAPI = require("./controllers/callSendAPI");
 const handleMessage = require("./controllers/handleMessage");
+const handlePostBack = require('./controllers/handlePostback');
 
-
-//handle postback message
-
-function handlePostback (psid, postback) {
-  console.log(postback);
-};
 
 
   // @ route GET / messengerapp / webhook

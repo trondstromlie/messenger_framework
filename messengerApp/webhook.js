@@ -71,6 +71,9 @@ router.post("/", ( req , res ) => {
       } else if (webhook_event.postback) {
         handlePostBack(sender_psid, webhook_event.postback);
       }
+      else {
+        console.log(webhook_event);
+      }
     });
 
     // Returns a '200 OK' response to all requests

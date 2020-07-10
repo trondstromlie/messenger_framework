@@ -7,7 +7,7 @@ const request = require('request');
 const callSendAPI = require("./controllers/callSendAPI");
 const handleMessage = require("./controllers/handleMessage");
 const handlePostBack = require('./controllers/handlePostback');
-const handleRefferal = require('./controllers/handleRefferal');
+const handleReferral = require('./controllers/handleReferral');
 
 
   // @ route GET / messengerapp / webhook
@@ -71,8 +71,8 @@ router.post("/", ( req , res ) => {
       } else if (webhook_event.postback) {
         handlePostBack(sender_psid, webhook_event.postback);
       }
-      else if (webhook_event.refferal) {
-        handleRefferal(sender_psid, webhook_event.refferal);
+      else if (webhook_event.referral) {
+        handleReferral(sender_psid, webhook_event.referral);
       }
       else {
         console.log({no_webhook:webhook_event});

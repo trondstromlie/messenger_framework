@@ -114,7 +114,7 @@ new_element.push(element);
 
 
 //send the responce onject 
-let response = {attachment:{type:"template", payload:{template_type:"generic", element:new_element }}};
+let response = {attachment:{type:"template", payload:{template_type:"generic", elements:new_element }}};
 console.log({"responce_element": response})
 
  await callSendAPI(sender_psid , response, "RESPONSE");

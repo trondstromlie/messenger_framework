@@ -12,7 +12,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url", },
-    {"title":"bestill" , "value": {"type": "postback", "payload":{"postback_name":"fetch_generic_template","pris":"price","vare":"vare","tittle":"title"}}}
+    {"title":"bestill" ,"type": "postback", "value": { "payload":{"postback_name":"fetch_generic_template","pris":"price","vare":"vare","tittle":"title"}}}
   ]
 
  //create a default object for testing if no api object is available fall back to the test object

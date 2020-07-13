@@ -23,7 +23,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
     title:"Deilig piza med kjøttdeig",
     sub_title:"Smelter på tunga",
     price:"150",
-    stock:"5",
+    in_stock:"5",
     item_number:"123",
     url:"https://www.morshjemmebakte.no/recipes/pizza-med-kjottdeig/"
  
@@ -33,7 +33,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
     title:"Pizza med kylling",
     sub_title:"kvakkende god",
     price:"200",
-    stock:"1",
+    in_stock:"1",
     item_number:"456",
     url:"https://detgladekjokken.no/oppskrift/pizza-med-marinert-kylling/",
 
@@ -75,7 +75,7 @@ default_obj.forEach( ( item , i ) => {
 
   
   //if this template has buttons add them to the object here.
-  if(buttons.lengt > 0) {
+  if(buttons.length > 0) {
 
     element.buttons = [];
 

@@ -59,7 +59,7 @@ default_obj.forEach( ( item , i ) => {
   let element = {};
   
   element.messenger_extensions = "FALSE";
-  element.webview_height_ratio ="TALL";
+  //element.webview_height_ratio ="TALL";
 
   if(item.img_url) element.img_url = item.img_url;
   if(item.title) element.title = item.title;

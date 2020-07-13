@@ -11,8 +11,8 @@ const senderAction = require('./senderAction');
 async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
   let buttons = [
-    {"les mer" : "url","type":"web_url", },
-    {"bestill": {type: "postback", payload:{"postback_name":"fetch_generic_template","pris":"price","vare":"vare","tittle":"title"}}}
+    {"title" : "les mer", "value" : "url", "type" : "web_url", },
+    {"title":"bestill" , "value": {"type": "postback", "payload":{"postback_name":"fetch_generic_template","pris":"price","vare":"vare","tittle":"title"}}}
   ]
 
  //create a default object for testing if no api object is available fall back to the test object
@@ -66,12 +66,14 @@ default_obj.forEach( ( item , i ) => {
   if(item.price) element.subtitle += " \n Pris : " + item.price;
   if(item.in_stock) element.subtitle += "\n På lager : " + item.in_stock;
   if(item.url) {
+
     element.default_action = {};
     element.default_action.type = "web_url";
     element.default_action.url = item.url;
     element.default_action.messenger_extensions = "FALSE";
     element.default_action.webview_height_ratio ="TALL";
-  }
+
+  };
 
   
   //if this template has buttons add them to the object here.

@@ -67,6 +67,7 @@ default_obj.forEach( ( item , i ) => {
   if(item.in_stock) element.subtitle += "\n På lager : " + item.in_stock;
   if(item.url) {
     element.default_action = {};
+    element.default_action.type = "web_url";
     element.default_action.url = item.url;
     element.default_action.messenger_extensions = "FALSE";
     element.default_action.webview_height_ratio ="TALL";

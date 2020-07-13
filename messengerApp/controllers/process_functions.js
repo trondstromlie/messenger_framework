@@ -29,7 +29,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
  
   },
   {
-    img:"https://i0.wp.com/detgladekjokken.no/wp-content/uploads/2020/02/Pizza-med-kylling.jpg",
+    img_url:"https://i0.wp.com/detgladekjokken.no/wp-content/uploads/2020/02/Pizza-med-kylling.jpg",
     title:"Pizza med kylling",
     sub_title:"kvakkende god",
     price:"200",
@@ -40,7 +40,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
   },
 
   {
-    img:"https://res.cloudinary.com/norgesgruppen/image/upload/c_fill,f_auto,g_center,h_500,q_auto:eco,w_1135/y7u4ve9fzponeyju7jqh.jpg",
+    img_url:"https://res.cloudinary.com/norgesgruppen/image/upload/c_fill,f_auto,g_center,h_500,q_auto:eco,w_1135/y7u4ve9fzponeyju7jqh.jpg",
     title:"pizza med pinnekjøtt",
     sub_title:"salt, røkt og frisk",
     price:"300",
@@ -66,6 +66,7 @@ default_obj.forEach( ( item , i ) => {
   if(item.price) element.subtitle += " \n Pris : " + item.price;
   if(item.in_stock) element.subtitle += "\n På lager : " + item.in_stock;
   if(item.url) {
+    element.default_action = {};
     element.default_action.url = item.url;
     element.default_action.messenger_extensions = "FALSE";
     element.default_action.webview_height_ratio ="TALL";

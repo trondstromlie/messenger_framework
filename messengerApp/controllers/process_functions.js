@@ -63,13 +63,13 @@ default_obj.forEach( ( item , i ) => {
 
   if(item.img_url) element.img_url = item.img_url;
   if(item.title) element.title = item.title;
-  if(itm.sub_title) element.sub_title = item.sub_title;
+  if(item.sub_title) element.sub_title = item.sub_title;
   if(item.price) element.subtitle += " \n Pris : " + item.price;
   if(item.in_stock) element.sub_title += "\n På lager : " + item.in_stock;
   
   //if this template has buttons add them to the object here.
   if(buttons.lengt > 0) {
-    
+
     element.buttons = [];
 
     //we use a function in the frontend to map data from the api to buttens f.ex les mer = web_view, bestill = postback with data from object. 

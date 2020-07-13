@@ -110,7 +110,7 @@ default_obj.forEach( ( item , i ) => {
         }
         button_obj.payload = JSON.stringify(payload);
         
-        elemement.buttons.push(button_obj);
+        element.buttons.push(button_obj);
         
 
       };

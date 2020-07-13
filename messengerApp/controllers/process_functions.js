@@ -10,62 +10,114 @@ const senderAction = require('./senderAction');
 //** the object must contain an image and mamybe a webadress ?  */
 async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
+  let buttons = [
+    {"les mer" : "url","type":"web_url", },
+    {"bestill": {type: "postback", payload:{"postback_name":"fetch_generic_template","pris":"price","vare":"vare","tittle":"title"}}}
+  ]
+
  //create a default object for testing if no api object is available fall back to the test object
 
  let default_obj = [
   {
-    img:"https://brands-a.prod.onewp.net/app/uploads/sites/4/2018/09/Pizza-med-kj%C3%B8ttdeig.jpg",
+    img_url:"https://brands-a.prod.onewp.net/app/uploads/sites/4/2018/09/Pizza-med-kj%C3%B8ttdeig.jpg",
     title:"Deilig piza med kjøttdeig",
-    sub_title:"den er bedre en du tror\n nå kr 150",
-    url:"https://www.morshjemmebakte.no/recipes/pizza-med-kjottdeig/",
-    menu_item:[
-      {
-       title:"Les mer",
-       uri:"https://www.morshjemmebakte.no/recipes/pizza-med-kjottdeig/",
-       type: "web_url"
-      },
-      {
-       title:"Bestill",
-       payload:'{"vare": "123456", "navn": "pizza med kjøttdeig","pris":"150"}',
-       type:"postback"
-      }
-    ] 
-  }];
+    sub_title:"Smelter på tunga",
+    price:"150",
+    stock:"5",
+    item_number:"123",
+    url:"https://www.morshjemmebakte.no/recipes/pizza-med-kjottdeig/"
+ 
+  },
+  {
+    img:"https://i0.wp.com/detgladekjokken.no/wp-content/uploads/2020/02/Pizza-med-kylling.jpg",
+    title:"Pizza med kylling",
+    sub_title:"kvakkende god",
+    price:"200",
+    stock:"1",
+    item_number:"456",
+    url:"https://detgladekjokken.no/oppskrift/pizza-med-marinert-kylling/",
 
- let response = {"attachment" : {
-    "type":"template",
-    "payload": {
-      "template_type":"generic",
-      "elements":[
-         {
-         "title":default_obj[0].title,
-         "image_url":default_obj[0].img,
-         "subtitle":default_obj[0].sub_title,
-         "default_action": {
-           "type": "web_url",
-           "url": default_obj[0].url,
-            "messenger_extensions": "FALSE",
-            "webview_height_ratio": "COMPACT"
-        },
-        "buttons":[
-          {"type":default_obj[0].menu_item[0].type,
-           "url":default_obj[0].menu_item[0].uri,
-           "title":default_obj[0].menu_item[0].title
-          },
-          {"type":default_obj[0].menu_item[1].type,
-          "url":default_obj[0].menu_item[1].uri,
-          "title":default_obj[0].menu_item[1].title,
-          "payload":default_obj[0].menu_item[1].payload
-         }
-        ]      
-      },
-    ]
-   }
+  },
+
+  {
+    img:"https://res.cloudinary.com/norgesgruppen/image/upload/c_fill,f_auto,g_center,h_500,q_auto:eco,w_1135/y7u4ve9fzponeyju7jqh.jpg",
+    title:"pizza med pinnekjøtt",
+    sub_title:"salt, røkt og frisk",
+    price:"300",
+    in_stock:"15",
+    item_number:"789",
+    url:"https://kiwi.no/oppskrifter/kjott/pinnekjott-oppskrifter/pizza-med-pinnekjott/",
+  },
+
+];
+
+
+//now we start building the object 
+let new_element = [];
+default_obj.forEach( ( item , i ) => {
+
+  let element = {};
+  
+  element.messenger_extensions = "FALSE";
+  element.webview_height_ratio ="TALL";
+
+  if(item.img_url) element.img_url = item.img_url;
+  if(item.title) element.title = item.title;
+  if(itm.sub_title) element.sub_title = item.sub_title;
+  if(item.price) element.subtitle += " \n Pris : " + item.price;
+  if(item.in_stock) element.sub_title += "\n På lager : " + item.in_stock;
+  
+  //if this template has buttons add them to the object here.
+  if(buttons.lengt > 0) {
+    
+    element.buttons = [];
+
+    //we use a function in the frontend to map data from the api to buttens f.ex les mer = web_view, bestill = postback with data from object. 
+    //type = postback or web_url, pages whitelisted by page can open in the messenger window.
+    //creat a function that download the data then let you tell what buttons should do what.
+
+    buttons.forEach( (item, i ) => {
+
+      if(item.type === "web_url") {
+       let button_obj = { title: item.title , url: item.url , type:item.type  };
+       element.buttons.push(button_obj);
+       
+      } 
+      else if (item.type === "postback") {
+        
+        // the postback should always be an objekt containing the name of the function that sends it. to route the right responce from the 
+        // postback function, the only exeption is the get startetd persistent menu....
+
+        //first add the standard fields to the button object.
+
+        let button_obj = {title: item.title, type:item.type }
+
+        //now add the the payload 
+
+        payload = {};
+
+        for( k in item) {
+          payload[k] = item[k];
+        }
+        button_obj.payload = payload.jsonStrinify();
+        
+        elemement.buttons.push(button_obj);
+        
+
+      };
+
+    });
+
   }
- }
+new_element.push(element);
+});
+
+
+//send the responce onject 
+let responce = {atachment:new_element}
 
  await callSendAPI(sender_psid , response, "RESPONSE");
- return {status:true,step:"next"}
+ return {status:true,step:"pause"};
 } // end of generic template
 
 

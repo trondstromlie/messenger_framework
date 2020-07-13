@@ -114,7 +114,7 @@ new_element.push(element);
 
 
 //send the responce onject 
-let responce = {atachment:new_element}
+let response = {atachment:new_element}
 
  await callSendAPI(sender_psid , response, "RESPONSE");
  return {status:true,step:"pause"};

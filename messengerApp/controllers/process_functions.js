@@ -103,7 +103,7 @@ default_obj.forEach( ( item , i ) => {
 
         //now add the the payload 
 
-        payload = {};
+        let payload = {};
 
         for( k in button_item) {
           payload[k] = item[k];

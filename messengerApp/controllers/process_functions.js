@@ -290,7 +290,7 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_o
      await callSendAPI(sender_psid, {text:"dette var ikke svaret jeg forventet, bruk knappene over for å velge ditt svar "}, "RESPONSE");
 
      console.log("dette svaret var ikke det jeg forventet :) bruk knappene over for å velge ditt svar ");
-     return {status:true,step:"restart"};
+     return {status:true,step:"pause"};
    }
 
 

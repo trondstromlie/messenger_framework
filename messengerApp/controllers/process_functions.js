@@ -105,7 +105,7 @@ default_obj.forEach( ( item , i ) => {
 
         let payload = {};
 
-        for( k in button_item) {
+        for( var k in button_item.payload) {
           payload[k] = item[k];
         }
         button_obj.payload = payload.jsonStrinify();

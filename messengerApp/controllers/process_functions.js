@@ -85,27 +85,27 @@ default_obj.forEach( ( item , i ) => {
     //type = postback or web_url, pages whitelisted by page can open in the messenger window.
     //creat a function that download the data then let you tell what buttons should do what.
 
-    buttons.forEach( (item, i ) => {
+    buttons.forEach( (button_item, i ) => {
 
-      if(item.type === "web_url") {
-       let button_obj = { title: item.title , url: item.url , type:item.type  };
+      if(button_item.type === "web_url") {
+       let button_obj = { title: button_item.title , url: item.url , type:button_item.type  };
        element.buttons.push(button_obj);
        
       } 
-      else if (item.type === "postback") {
+      else if (button_item.type === "postback") {
         
         // the postback should always be an objekt containing the name of the function that sends it. to route the right responce from the 
         // postback function, the only exeption is the get startetd persistent menu....
 
         //first add the standard fields to the button object.
 
-        let button_obj = {title: item.title, type:item.type }
+        let button_obj = {title: button_item.title, type:button_item.type }
 
         //now add the the payload 
 
         payload = {};
 
-        for( k in item) {
+        for( k in button_item) {
           payload[k] = item[k];
         }
         button_obj.payload = payload.jsonStrinify();

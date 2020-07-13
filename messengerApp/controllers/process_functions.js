@@ -7,7 +7,8 @@ const senderAction = require('./senderAction');
 
 //************************************************************************ */
 //** a function to fetch data from an api and show the data in a generic template */
-//** the object must contain an image and mamybe a webadress ?  */
+//** the object must contain an image some descriptive text, and can contain a webadress ?  */
+
 async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
   let buttons = [
@@ -63,8 +64,8 @@ default_obj.forEach( ( item , i ) => {
   if(item.img_url) element.image_url = item.img_url;
   if(item.title) element.title = item.title;
   if(item.sub_title) element.subtitle = item.sub_title;
-  if(item.price) element.subtitle += " \n Pris : " + item.price;
-  if(item.in_stock) element.subtitle += "\n På lager : " + item.in_stock;
+  if(item.price) element.subtitle += "\nPris : " + item.price;
+  if(item.in_stock) element.subtitle += "\nPå lager : " + item.in_stock;
   if(item.url) {
 
     element.default_action = {};
@@ -84,6 +85,9 @@ default_obj.forEach( ( item , i ) => {
     //we use a function in the frontend to map data from the api to buttens f.ex les mer = web_view, bestill = postback with data from object. 
     //type = postback or web_url, pages whitelisted by page can open in the messenger window.
     //creat a function that download the data then let you tell what buttons should do what.
+
+    //when a button is clicked a postback with a payload as a strinifyed json is sent to the postback function
+    
 
     buttons.forEach( (button_item, i ) => {
 
@@ -129,6 +133,12 @@ console.log({"responce_element": response})
  await callSendAPI(sender_psid , response, "RESPONSE");
  return {status:true,step:"pause"};
 } // end of generic template
+
+// the next function shoud be a wait for data function acepting the calback and putting it in the right customfield as an arry.
+// then ask if customer want to shop for more food products order drinks or go to checkout. 
+// on check-out show a list of all the thins in the object and a total price. 
+
+//for now click ok ask for email and send reciept on email. 
 
 
 

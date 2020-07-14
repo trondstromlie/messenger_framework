@@ -13,7 +13,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url", },
-    {"title":"bestill" ,"type": "postback", "value": { "payload":{"postback_name":"fetch_generic_template","pris":"price","vare":"vare","tittle":"title"}}}
+    {"title":"Pizza" ,"type": "postback", "value": { "payload":{"messenger_process":"Pizza","pris":"price","vare":"vare","tittle":"title"}}}
   ]
 
  //create a default object for testing if no api object is available fall back to the test object
@@ -86,7 +86,7 @@ default_obj.forEach( ( item , i ) => {
     //type = postback or web_url, pages whitelisted by page can open in the messenger window.
     //creat a function that download the data then let you tell what buttons should do what.
 
-    //when a button is clicked a postback with a payload as a strinifyed json is sent to the postback function
+    //when a button is clicked a postback with a payload as a stringifyed json is sent to the postback function
     
 
     buttons.forEach( (button_item, i ) => {
@@ -140,12 +140,31 @@ console.log({"responce_element": response})
 
 //for now click ok ask for email and send reciept on email. 
 
+//********************************************************************* */
+//** listen for add to cart postback */
+
+async function listen_for_add_to_cart (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+
+  postback = JSON.parse(in_message.payload);
+
+  if(!user.custom_data[custom_field_obj.name]) {
+    user.custom_data[custom_field_obj.name] = [];
+  };
+
+  let cart = user.custom_data[custom_field_obj.name];
+  cart.push(postback);
+
+  await addandupdate_userfields.add_or_update_custom_data(sender_psid, null , {field_name:custom_field_obj.name ,field_value:cart});
+
+  return {status:true,step:"pause"};
+
+};
 
 
 
 //********************************************************************* */
 //** invisible function to read value of bool custom value */
-//** if value is true do someting is value is false do something else  */
+//** if value is true do someting if value is false do something else  */
 
 async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
@@ -198,7 +217,7 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 
   try {
 
-    await addandupdate_userfields.add_or_update_custom_data(sender_psid,null , {field_name:custom_field_obj.name ,field_value:custom_field_obj.value});
+    await addandupdate_userfields.add_or_update_custom_data(sender_psid, null , {field_name:custom_field_obj.name ,field_value:custom_field_obj.value});
 
     return {status:true,step:"next"}
 

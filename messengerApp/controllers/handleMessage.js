@@ -5,9 +5,7 @@ const logMessage = require('./writeToLog');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const process_loop = require('./process_loop')
 const senderAction = require('./senderAction');
-
-
-
+ 
 module.exports = async function handleMessage (sender_psid, received_message) {
 
 

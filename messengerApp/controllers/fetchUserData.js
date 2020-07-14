@@ -38,7 +38,7 @@ try {
   } else if (user.status === 200) {
 
     userFields = user;
-    console.log({userFields});
+    
     return userFields;
   }
 

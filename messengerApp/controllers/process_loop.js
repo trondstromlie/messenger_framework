@@ -111,7 +111,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"send melding velkommen melding ",func:process_functions.send_empty_message,msg:"Ok " + user.first_name + " jeg henter menyen for deg :) "},
       {name:"writing_action",func:process_functions.writing_action,pause:5},
       {name:"pizza_meny",func:process_functions.fetch_generic_template},
-      {name:"wait_for_postback", func:process_functions.listen_for_postback_add_to_cart,custom_field_obj:{name:order}}
+      {name:"wait_for_postback", func:process_functions.listen_for_postback_add_to_cart,custom_field_obj:{name:"order"}}
 
 
     ]

@@ -11,12 +11,15 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     console.log(received_message);
     const user = await fetchUserData(sender_psid);
+
     await senderAction(sender_psid , 'mark_seen');
+    console.log(user.messenger_processes);
     
     if( received_message.payload.messenger_process === user.messenger_processes[0].process_name ) {
 
         //send the controll back to the function with the payload 
-        await process_loop(received_message.payload.messenger_process, user.user, 0 ,received_message);
+
+        await process_loop(received_message.payload.messenger_process, user.user, 0 , received_message);
 
         //create "the listen for payload" function in the process loop to store a object in a custom field...
 
@@ -26,7 +29,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     };
     
-    //the logig for the postback starts here 
+    //the logic for the postback starts here 
 
 
     //if received_message.name === in user.messenger_processes 

@@ -566,7 +566,8 @@ module.exports = {
   add_bool_custom_value:add_bool_custom_value,
   read_bool_value_of_custom_field:read_bool_value_of_custom_field,
   jump_to_process:jump_to_process,
-  fetch_generic_template:fetch_generic_template
+  fetch_generic_template:fetch_generic_template,
+  listen_for_add_to_cart:listen_for_add_to_cart
 };
 
 

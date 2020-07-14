@@ -123,7 +123,7 @@ new_element.push(element);
 });
 
 
-//send the responce onject 
+//send the responce object 
 let response = {attachment:{type:"template", payload:{template_type:"generic", elements:new_element }}};
 console.log({"responce_element": response})
 

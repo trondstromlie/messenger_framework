@@ -150,10 +150,10 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
   let postback = JSON.parse(in_message.payload);
 
   if(!user.custom_data[custom_field_obj.name]) {
-    user.custom_data[custom_field_obj.name] = [];
+    user.custom_data[custom_field_obj.name] = '[]';
   };
 
-  let cart = user.custom_data[custom_field_obj.name];
+  let cart = JSON.parse(user.custom_data[custom_field_obj.name]);
   cart.push(postback);
   console.log({the_cart:cart});
 

@@ -5,6 +5,7 @@ const request = require('request');
 //Update userfield using the messenger_user_API
 
 async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  ) {
+  
   console.log("writing custom fields to db")
   console.log( { field_obj  : field_obj } );
 

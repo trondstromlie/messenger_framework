@@ -31,7 +31,7 @@ router.get('/', [
       }
 
      } catch (e) {
-       console.log(e.message);
+       console.error(e.message);
        return res.status(500).send("server error")
      }
    }
@@ -133,7 +133,7 @@ router.put('/', [
                   if(req.body.process_expires) user.messenger_processes[i].process_expires = req.body.process_expires;
                   if(req.body.process_status) user.messenger_processes[i].process_status = req.body.process_status;
 
-                  console.log(user.messenger_processes[i])
+                  //console.log(user.messenger_processes[i])
 
 
                   const update_user = await MessengerUser.findOneAndUpdate(
@@ -268,14 +268,14 @@ router.post('/customfields', [
 
     console.log({custom_data:update_custom_data})
     update_user_fields.custom_data = update_custom_data;
-    console.log(update_user_fields);
+    //console.log(update_user_fields);
 
     let update_the_user = await MessengerUser.findOneAndUpdate(
                             {sender_psid:req.body.sender_psid},
                             {$set: update_user_fields},
                             {new:true});
 
-    console.log({update_user:update_user_fields.custom_data});
+    //console.log({update_user:update_user_fields.custom_data});
     return res.status(200).json(update_user_fields.custom_data);
 
     } else {
@@ -337,7 +337,7 @@ router.delete('/customfields', [
 
             let updated_data = await custom_data.filter(item => item.field_name !== req.body.field_name);
 
-            console.log(updated_data);
+            //console.log(updated_data);
          
             user.custom_data = updated_data;
 

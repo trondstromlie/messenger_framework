@@ -13,9 +13,9 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
     const user = await fetchUserData(sender_psid);
 
     await senderAction(sender_psid , 'mark_seen');
-    console.log(user.custom_data);
+    console.log(user.user.custom_data);
     
-    if( received_message.payload.messenger_process === user.messenger_processes[0].process_name ) {
+    if( received_message.payload.messenger_process === user.user.messenger_processes[0].process_name ) {
 
         //send the controll back to the function with the payload 
 

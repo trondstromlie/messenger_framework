@@ -13,7 +13,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url", },
-    {"title":"Pizza" ,"type": "postback", "value": { "payload":{"messenger_process":"Pizza","pris":"price","vare":"vare","tittle":"title"}}}
+    {"title":"Bestill" ,"type": "postback", "value": { "payload":{"messenger_process":"Pizza","pris":"price","vare":"vare","tittle":"title"}}}
   ]
 
  //create a default object for testing if no api object is available fall back to the test object
@@ -107,11 +107,8 @@ default_obj.forEach( ( item , i ) => {
 
         //now add the the payload 
 
-        let payload = {};
+        let payload = item.value.payload;
 
-        for( var k in button_item.payload) {
-          payload[k] = item[k];
-        }
         button_obj.payload = JSON.stringify(payload);
         
         element.buttons.push(button_obj);
@@ -156,7 +153,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
   await addandupdate_userfields.add_or_update_custom_data(sender_psid, null , {field_name:custom_field_obj.name ,field_value:cart});
 
-  return {status:true,step:"pause"};
+  return {status:true,step:"next"};
 
 };
 

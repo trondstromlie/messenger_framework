@@ -153,7 +153,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
     user.custom_data[custom_field_obj.name] = '[]';
   };
   
-  let cart = JSON.parse(user.custom_data[custom_field_obj.name]);
+  let cart = JSON.parse(user.user.custom_data[custom_field_obj.name]);
   console.log({the_cart_pre:cart})
 
   cart.push(postback);

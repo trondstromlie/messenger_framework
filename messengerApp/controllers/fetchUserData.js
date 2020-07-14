@@ -32,7 +32,7 @@ try {
 
     console.log({status:"user added to db"});
 
-    console.log({userFields});
+    //console.log({userFields});
     return userFields;
 
   } else if (user.status === 200) {

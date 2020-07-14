@@ -20,7 +20,7 @@ try {
   let userFields = await fetchUserData(sender_psid);
 
   //write message to the users log
-  let log = await logMessage( sender_psid , received_message.text , userFields.user.first_name);
+  let log = await logMessage( sender_psid , received_message.text , userFields.user.first_name );
 
 
 

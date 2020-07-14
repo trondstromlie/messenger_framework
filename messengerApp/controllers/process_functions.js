@@ -107,7 +107,7 @@ default_obj.forEach( ( item , i ) => {
 
         //now add the the payload 
 
-        let payload = item.value.payload;
+        let payload = button_item.value.payload;
 
         button_obj.payload = JSON.stringify(payload);
         

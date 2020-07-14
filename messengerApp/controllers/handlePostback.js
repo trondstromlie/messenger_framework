@@ -23,7 +23,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
         //send the controll back to the function with the payload 
 
-        await process_loop(received_message.payload.messenger_process, user.user, 0 , received_message);
+        await process_loop(payload.messenger_process, user.user, 0 , received_message);
 
         //create "the listen for payload" function in the process loop to store a object in a custom field...
 

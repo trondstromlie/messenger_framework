@@ -146,7 +146,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
     console.log("no payload detected");
     return {status:true,step:"pause"};
   }
-  
+
   let postback = JSON.parse(in_message.payload);
 
   if(!user.custom_data[custom_field_obj.name]) {
@@ -155,8 +155,9 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
   let cart = user.custom_data[custom_field_obj.name];
   cart.push(postback);
+  console.log(cart);
 
-  await addandupdate_userfields.add_or_update_custom_data(sender_psid, null , {field_name:custom_field_obj.name ,field_value:cart});
+  await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , {field_name:custom_field_obj.name ,field_value:cart});
 
   return {status:true,step:"next"};
 
@@ -528,6 +529,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_obj, qui
 }
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
+
 async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
 try {

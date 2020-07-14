@@ -142,7 +142,10 @@ console.log({"responce_element": response})
 
 async function listen_for_add_to_cart (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
-  console.log({in_message:in_message});
+  if(!in_message.payload) {
+    console.log("no payload detected");
+    return {status:true,step:"pause"};
+  }
   postback = JSON.parse(in_message.payload);
 
   if(!user.custom_data[custom_field_obj.name]) {

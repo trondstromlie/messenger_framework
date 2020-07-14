@@ -146,7 +146,8 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
     console.log("no payload detected");
     return {status:true,step:"pause"};
   }
-  postback = JSON.parse(in_message.payload);
+  
+  let postback = JSON.parse(in_message.payload);
 
   if(!user.custom_data[custom_field_obj.name]) {
     user.custom_data[custom_field_obj.name] = [];

@@ -20,10 +20,9 @@ const { add_or_update_custom_data } = require('./addandupdate_userfields');
 
 
 async function user_loop ( process_name , user_obj, index , incoming_msg ) {
-  console.log("process loop is starting!");
-  //console.log(user_obj);
 
-  console.log(user_obj.messenger_processes[index].process_progress);
+  console.log(" *********************  process loop is starting!  ********************************");
+
   let user = user_obj;
   let step = user.messenger_processes[index].process_progress;
   let processName = process_name;
@@ -191,7 +190,6 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                 console.log("moving to the next step");
                 user.messenger_processes[index].process_progress ++;
                 let updated_user = await addandupdate_userfields.update_process_progress(sender_psid, processName, null, user.messenger_processes[index].process_progress);
-                console.log(user);
                 user_loop( process_name , user, index , incoming_msg );
 
                 return NaN;
@@ -237,6 +235,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                 await add_user_process.messenger_processes.forEach( async ( item  , index ) => {
                   console.log("searchig in item, found " + item.process_name);
                     if( item.process_name === res.link ) {
+                      
                       console.log("found a matching process")
                       
                       console.log("jumpig to the new function " + res.link + " Index " + index);

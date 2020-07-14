@@ -266,7 +266,7 @@ router.post('/customfields', [
       })
     let update_user_fields = user;
 
-    console.log({custom_data:update_custom_data})
+    
     update_user_fields.custom_data = update_custom_data;
     //console.log(update_user_fields);
 
@@ -322,8 +322,7 @@ router.delete('/customfields', [
               console.log("no user found");
               return res.status(300).json({"error":"No user found"});
             } else {
-            console.log(user.custom_data);
-            console.log(req.body);              
+                     
 
             let custom_data = user.custom_data;
 

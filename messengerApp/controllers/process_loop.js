@@ -21,7 +21,7 @@ const { add_or_update_custom_data } = require('./addandupdate_userfields');
 
 async function user_loop ( process_name , user_obj, index , incoming_msg ) {
   console.log("process loop is starting!");
-  console.log(user_obj);
+  //console.log(user_obj);
 
   console.log(user_obj.messenger_processes[index].process_progress);
   let user = user_obj;

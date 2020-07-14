@@ -144,7 +144,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
   if(!in_message.payload) {
     console.log("no payload detected");
-    return {status:true,step:"pause"};
+    return {status:false,step:"pause"};
   }
 
   let postback = JSON.parse(in_message.payload);
@@ -155,7 +155,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
   let cart = user.custom_data[custom_field_obj.name];
   cart.push(postback);
-  console.log(cart);
+  console.log({the_cart:cart});
 
   await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , {field_name:custom_field_obj.name ,field_value:cart});
 

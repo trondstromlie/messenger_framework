@@ -10,7 +10,10 @@ const senderAction = require('./senderAction');
 module.exports = async function handlePostBack(sender_psid , received_message) {
 
     console.log(received_message);
-    let payload = JSON.parse(received_message.payload)
+    let payload = JSON.parse(received_message.payload);
+
+    console.log(payload);
+
     const user = await fetchUserData(sender_psid);
 
     await senderAction(sender_psid , 'mark_seen');

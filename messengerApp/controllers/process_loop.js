@@ -113,6 +113,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"listen_for_hva vil du bestille",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"bestilling"}, msg:"Skriv ja eller nei " , quick_reply_obj:[{"content_type":"text","title":"Mat","payload":"Bestill_mat",link:4},{"content_type":"text","title":"Drikke","payload":"bestill_drikke",link:5}]},
       {name:"jump to function Order_food", func:process_functions.jump_to_process,jump_to:{process_link:"Order_food"}},
       {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Order_drinks"}},
+      {name:"writing_action",func:process_functions.writing_action,pause:1}
          
       
     ]
@@ -124,7 +125,8 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"pizza_meny",func:process_functions.fetch_generic_template, generic_template_obj:{name:"Order_food", url:"<url>",qs:"email"}},
       {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
-      {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "}
+      {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "},
+      {name:"writing_action",func:process_functions.writing_action,pause:1}
     ]
   },
   {
@@ -134,7 +136,8 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"pizza_meny",func:process_functions.fetch_generic_template, generic_template_obj:{name:"Order_drinks", url:"<url>",qs:"email"}},
       {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
-      {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "}
+      {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "},
+      {name:"writing_action",func:process_functions.writing_action,pause:1}
     ]
   }
     ]

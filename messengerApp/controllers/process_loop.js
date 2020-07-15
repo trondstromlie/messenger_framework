@@ -1,7 +1,7 @@
 //************************************************
 // todo
 //
-//prosess goes into an infinite user_loop
+//
 // sett all functions to return pause
 
 
@@ -13,7 +13,8 @@ const { getMaxListeners } = require('process');
 const { add_or_update_custom_data } = require('./addandupdate_userfields');
 
 //the process_loop functions
-//starts when handle message discovers an active userProcess in the user procecces field
+//starts when handle message discovers an active userProcess in the user procecces field.
+//or when a postback with a payload is discoveres or a ref link 
 //index is the index of the userprocess in case there is more than one.
 //only one user process can be activ in one time. creata array.map() that sets all other procecces to false whan creating a new process
 
@@ -120,7 +121,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     name:"Order_food",
     steps:[
       {name:"writing_action",func:process_functions.writing_action,pause:5},
-      {name:"pizza_meny",func:process_functions.fetch_generic_template},
+      {name:"pizza_meny",func:process_functions.fetch_generic_template, generic_template_obj:{name:"Order_food", url:"<url>",qs:"email"}},
       {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "}
@@ -130,7 +131,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     name:"Order_drinks",
     steps:[
       {name:"writing_action",func:process_functions.writing_action,pause:5},
-      {name:"pizza_meny",func:process_functions.fetch_generic_template},
+      {name:"pizza_meny",func:process_functions.fetch_generic_template, generic_template_obj:{name:"Order_drinks", url:"<url>",qs:"email"}},
       {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "}
@@ -165,6 +166,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
           let bool_obj = null;
           let jump_to = null;
           let pause = null;
+          let generic_template_obj = null;
 
           console.log(in_message);
 
@@ -184,12 +186,14 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
           if (item.steps[step].pause ) pause = item.steps[step].pause ;
 
+          if (item.steps[step].generic_template_obj ) generic_template_obj = item.steps[step].generic_template_obj;
+
 
           let item_function = item.steps[step].func;
 
 
 
-          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message , pause);
+          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message , pause, generic_template_obj);
 
           console.log({res:res});
 

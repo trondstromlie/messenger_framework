@@ -9,16 +9,16 @@ const senderAction = require('./senderAction');
 //** a function to fetch data from an api and show the data in a generic template */
 //** the object must contain an image some descriptive text, and can contain a webadress ?  */
 
-async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url", },
-    {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":"Pizza","fields":{"price":"price","item":"item_number","tittle":"title"}}}
+    {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":null,"fields":{"price":"price","item":"item_number","tittle":"title"}}}
   ];
 
  //create a default object for testing if no api object is available fall back to the test object
 
- let default_obj = [
+ let default_obj_food = [
   {
     img_url:"https://brands-a.prod.onewp.net/app/uploads/sites/4/2018/09/Pizza-med-kj%C3%B8ttdeig.jpg",
     title:"Deilig piza med kjøttdeig",
@@ -52,6 +52,49 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
 ];
 
+let default_obj_drink = [
+  {
+    img_url:"https://matindustrien.no/sites/default/files/styles/wysiwyg_full_width/public/Coca-Cola_nett.jpg",
+    title:"Coca-cola",
+    sub_title:"med masse is",
+    price:"35",
+    in_stock:"5",
+    item_number:"drink123",
+    url:"https://matindustrien.no/2017/coca-cola-velg-sukkerfritt"
+ 
+  },
+  {
+    img_url:"https://dbstatic.no/69745865.jpg?",
+    title:"Øl",
+    sub_title:"fra Rignes bryggeri",
+    price:"98",
+    in_stock:"1",
+    item_number:"drink456",
+    url:"https://www.kk.no/helse/ma-man-legge-pa-seg-av-ol/69741931",
+
+  },
+
+  {
+    img_url:"https://www.thespruceeats.com/thmb/Fv9_8yovhCtj_HYhZXIL6jba43E=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/red-wine-is-poured-into-a-glass-from-a-bottle--light-background--1153158143-98320451802c485cb6d7b5437c7fd60a.jpg",
+    title:"Rød Vin",
+    sub_title:"fra napa",
+    price:"300",
+    in_stock:"15",
+    item_number:"drink789",
+    url:"https://www.thespruceeats.com/types-of-red-wine-3511068",
+  },
+
+];
+
+if(generic_template_obj.name === "Order_food") {
+  
+  default_obj = default_obj_food;
+
+} else if (generic_template_obj.name === "Order_drinks") {
+
+  default_obj = default_obj_drinks;
+
+};
 
 //now we start building the object 
 let new_element = [];
@@ -109,7 +152,7 @@ default_obj.forEach( ( item , i ) => {
         //now add the the payload 
         
 
-        let payload = {messenger_process:button_item.payload.messenger_process};
+        let payload = {messenger_process:default_obj.name};
         //init fields object;
         payload.fields = {};
 
@@ -154,7 +197,7 @@ console.log({"responce_element": response})
 //********************************************************************* */
 //** listen for add to cart postback */
 
-async function listen_for_add_to_cart (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function listen_for_add_to_cart (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
  try {
   
@@ -221,7 +264,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 //** invisible function to read value of bool custom value */
 //** if value is true do someting if value is false do something else  */
 
-async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
   try {
 
@@ -270,7 +313,7 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
 //** invisible function to add a custom field with a value 
 //** f.ex subscription data subscribing to field -- newsletter:true */
 
-async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
   try {
 
@@ -290,7 +333,7 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 //*********************************************************************** */
 //******function Jump to process
 
-async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
   console.log("******* jump to process " + jump_to.process_link);
 
@@ -322,7 +365,7 @@ async function jump_to_process(sender_psid, user, message, custom_field_obj, qui
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
   console.log("Ask for custom data and pause");
 
@@ -352,7 +395,7 @@ async function ask_for_custom_data (sender_psid, user, message, custom_field_obj
 //function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette, er de riktig.
 
-async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
   console.log("Listen for quick_replies confirm_data");
 
@@ -392,7 +435,7 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_o
 //f.eks navn epost, etc så du kan ha flere customfields i samme text.
 //regex for å finne innholdet av merger fields {<merger-fields>}
 
-async function send_empty_message(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function send_empty_message(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
   
   let string = message;
   let response = {text:message};
@@ -442,7 +485,7 @@ async function send_empty_message(sender_psid, user, message, custom_field_obj, 
 
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 
-async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
   console.log("send quick reply");
 
@@ -473,7 +516,7 @@ async function send_quick_reply(sender_psid, user, message, custom_field_obj, qu
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
 
-async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
+async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause, generic_template_obj) {
   console.log(" listen for data ");
 
 

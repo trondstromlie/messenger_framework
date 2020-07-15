@@ -112,7 +112,9 @@ default_obj.forEach( ( item , i ) => {
         let payload = {messenger_process:button_item.payload.messenger_process};
 
         for (var key in button_item.payload.fields) {
+          console.log(key + " - " + item[button_item.payload.fields[key]]);
           payload.fields[key] = item[button_item.payload.fields[key]];
+
         };
 
         console.log({process_generic_template: payload});

@@ -111,8 +111,8 @@ default_obj.forEach( ( item , i ) => {
 
         let payload = {};
 
-        for (var key in button_item.payload.value) {
-          payload[key] = item[button_item.payload.fields[key]];
+        for (var key in button_item.value.payload.fields) {
+          payload[key] = item[button_item.value.payload.fields[key]];
         };
 
         console.log({process_generic_template: payload});

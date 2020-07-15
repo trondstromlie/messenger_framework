@@ -52,7 +52,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
 ];
 
-let default_obj_drink = [
+let default_obj_drinks = [
   {
     img_url:"https://matindustrien.no/sites/default/files/styles/wysiwyg_full_width/public/Coca-Cola_nett.jpg",
     title:"Coca-cola",

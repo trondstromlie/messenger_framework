@@ -162,6 +162,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
   
   if( ! order_field.length > 0 ) {
     
+   cnsole.log("*****************   no field found *******************");
    console.log({order_field_listen_for_cart: order_field});
  
    //init empty aray
@@ -178,7 +179,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
   } else {
 
     //if a custom field is found add to the array 
-
+    console.log("*******************  field found **********************");
     let cart = JSON.parse(order_field[0].value);
     console.log({the_cart_pre_push:cart})
   

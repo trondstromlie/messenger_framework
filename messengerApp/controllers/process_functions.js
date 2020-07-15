@@ -182,7 +182,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
     let cart = JSON.parse(order_field[0].value);
     console.log({the_cart_pre_push:cart})
   
-    let cart.push(postback);
+    cart.push(postback);
     console.log({the_cart:cart});
   
     await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , {field_name:custom_field_obj.name ,field_value:JSON.stringify(cart)});

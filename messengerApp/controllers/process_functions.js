@@ -88,11 +88,11 @@ let default_obj_drink = [
 
 if(generic_template_obj.name === "Order_food") {
   
-  default_obj = default_obj_food;
+  let default_obj = default_obj_food;
 
 } else if (generic_template_obj.name === "Order_drinks") {
 
-  default_obj = default_obj_drinks;
+  let default_obj = default_obj_drinks;
 
 };
 
@@ -210,8 +210,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
   let postback = JSON.parse(in_message.payload);
 
-
- //du glemmer at customdata er en array du må bruke filter for å finne det riktige feltet.
+  //check for customfield 
 
   let order_field = user.custom_data.filter( item => item.field_name === custom_field_obj.name ); 
 
@@ -223,6 +222,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
    console.log({order_field_listen_for_cart: order_field});
  
    //init empty aray
+
    let cart = [];
 
    cart.push(postback);
@@ -236,6 +236,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
   } else {
 
     //if a custom field is found add to the array 
+
     console.log("*******************  field found **********************");
     console.log(order_field);
     let cart = JSON.parse(order_field[0].field_value);

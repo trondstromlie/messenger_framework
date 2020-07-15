@@ -162,7 +162,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
   
   if( ! order_field.length > 0 ) {
     
-   cnsole.log("*****************   no field found *******************");
+   console.log("*****************   no field found *******************");
    console.log({order_field_listen_for_cart: order_field});
  
    //init empty aray
@@ -195,7 +195,6 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
   }
 } catch (e) {
 
-  console.error(e.message);
   console.error({error:e});
 
  }
@@ -247,7 +246,7 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
     }
   } catch (e) {
 
-    console.error(e.message);
+    console.error(e);
   }
 }
 
@@ -266,7 +265,7 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 
   } catch (e) {
 
-    console.log(e.message);
+    console.log(e);
   }
   
   
@@ -297,7 +296,7 @@ async function jump_to_process(sender_psid, user, message, custom_field_obj, qui
 
   } catch(e) {
 
-    console.error(e.message);
+    console.error(e);
   }
 
 
@@ -499,7 +498,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_obj, qui
            await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_obj.name,field_value: promt_for_email})
            //fs.writeFileSync('the_user_object.json',JSON.stringify(data))
          } catch(e) {
-           console.error(e.message);
+           console.error(e);
          }
          } else {
 
@@ -509,7 +508,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_obj, qui
            try {
            await addandupdate_userfields.add_or_update_custom_data(sender_psid, data, {field_name:custom_field_obj.name,field_value: promt_for_email});
          } catch(e) {
-           console.error(e.message);
+           console.error(e);
          }
         }
 
@@ -593,8 +592,8 @@ try {
 
   return {status:true,step:"next"};
 
-} catch(err) {
-  console.error(err.message);
+} catch(e) {
+  console.error(e);
 }
 
 }

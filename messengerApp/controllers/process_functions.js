@@ -85,14 +85,15 @@ let default_obj_drink = [
   },
 
 ];
+let default_obj = {};
 
 if(generic_template_obj.name === "Order_food") {
   
-  let default_obj = default_obj_food;
+   default_obj = default_obj_food;
 
 } else if (generic_template_obj.name === "Order_drinks") {
 
-  let default_obj = default_obj_drinks;
+  default_obj = default_obj_drinks;
 
 };
 

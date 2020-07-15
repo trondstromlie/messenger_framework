@@ -12,7 +12,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
     console.log(received_message);
     let payload = JSON.parse(received_message.payload);
 
-    console.log(payload);
+    console.log({postback_payload:payload});
 
     const user = await fetchUserData(sender_psid);
 

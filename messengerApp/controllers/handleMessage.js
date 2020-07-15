@@ -19,12 +19,12 @@ try {
 
   let userFields = await fetchUserData(sender_psid);
 
-  //write message to the users log
+  //write message to the users log.
   let log = await logMessage( sender_psid , received_message.text , userFields.user.first_name );
 
 
 
-    //check for active messenger_proceceses
+    //check for active messenger_proceceses.
   let messenger_processes  = userFields.user.messenger_processes;
 
   let indexAndNameOfActiveUserprocess = [];
@@ -74,7 +74,7 @@ try {
 
        } else {
 
-      //create a standard answer to all frazes not recognized  
+      //create a standard answer for all frazes not recognized  
         
       console.log("\n ********************* starting standard answer *******************\n ");
 

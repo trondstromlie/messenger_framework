@@ -131,7 +131,7 @@ console.log({"responce_element": response})
  return {status:true,step:"pause"};
 } // end of generic template
 
-// the next function shoud be a wait for data function acepting the calback and putting it in the right customfield as an arry.
+// the next function shoud be a "wait for data function" acepting the calback and putting it in the right customfield as an arry.
 // then ask if customer want to shop for more food products order drinks or go to checkout. 
 // on check-out show a list of all the thins in the object and a total price. 
 
@@ -142,28 +142,61 @@ console.log({"responce_element": response})
 
 async function listen_for_add_to_cart (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause) {
 
+ try {
+  
   if(!in_message.payload) {
+
     console.log("no payload detected");
     return {status:false,step:"pause"};
+
   }
 
   let postback = JSON.parse(in_message.payload);
 
-  if(!user.custom_data[custom_field_obj.name]) {
-    user.custom_data[custom_field_obj.name] = '[]';
-    console.log(user.custom_data);
-  };
+
+ //du glemmer at customdata er en array du må bruke filter for å finne det riktige feltet.
+
+  let order_field = user.custom_data.filter( item => item.name === custom_field_obj.name ); 
+
+  //if order field is == 0 add a field 
   
-  let cart = JSON.parse(user.custom_data[custom_field_obj.name]);
-  console.log({the_cart_pre:cart})
+  if( ! order_field.length > 0 ) {
+    
+   console.log({order_field_listen_for_cart: order_field});
+ 
+   //init empty aray
+   cart = [];
 
-  cart.push(postback);
-  console.log({the_cart:cart});
+   cart.push(postback);
 
-  await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , {field_name:custom_field_obj.name ,field_value:JSON.stringify(cart)});
+   order_field = [{field_name:custom_field_obj.name , field_value: JSON.stringify(cart) }];
 
-  return {status:true,step:"next"};
+   await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , order_field[0]);
 
+   return {status:true,step:"next"};
+
+  } else {
+
+    //if a custom field is found add to the array 
+
+    let cart = JSON.parse(order_field[0].value);
+    console.log({the_cart_pre_push:cart})
+  
+    cart.push(postback);
+    console.log({the_cart:cart});
+  
+    await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , {field_name:custom_field_obj.name ,field_value:JSON.stringify(cart)});
+  
+    return {status:true,step:"next"};
+
+ 
+
+  }
+} catch (e) {
+
+  console.error(e.message);
+
+ }
 };
 
 
@@ -176,6 +209,7 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
 
   try {
 
+    //first check if there is a userfield with this name in the db 
     let user_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);
     console.log({fond_user_field:user_field});
 
@@ -187,10 +221,11 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
         return {status:true,step:"jump_to",link:bool_obj.is_false.link};
 
     } else {
-      
+      //field found
       let condition = user_field[0].field_value === bool_obj.test;
       console.log("matchin values " + user_field[0].field_value + " === " + bool_obj.test + " = " + condition );
 
+      //retrun a value jump to a index in the process if the result is true or false...
 
       if(condition === true) {
         console.log("fant verdien");

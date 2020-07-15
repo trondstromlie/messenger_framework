@@ -156,7 +156,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
  //du glemmer at customdata er en array du må bruke filter for å finne det riktige feltet.
 
-  let order_field = user.custom_data.filter( item => item.name === custom_field_obj.name ); 
+  let order_field = user.custom_data.filter( item => item.field_name === custom_field_obj.name ); 
 
   //if order field is == 0 add a field 
   

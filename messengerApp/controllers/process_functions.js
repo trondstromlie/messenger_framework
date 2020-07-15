@@ -196,6 +196,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 } catch (e) {
 
   console.error(e.message);
+  console.error({error:e});
 
  }
 };

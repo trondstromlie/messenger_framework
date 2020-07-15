@@ -64,13 +64,13 @@ let default_obj_drinks = [
  
   },
   {
-    img_url:"https://dbstatic.no/69745865.jpg?",
+    img_url:"https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large_lg/image/11/117206/19224335-604237286jpg.jpg",
     title:"Øl",
     sub_title:"fra Rignes bryggeri",
     price:"98",
     in_stock:"1",
     item_number:"drink456",
-    url:"https://www.kk.no/helse/ma-man-legge-pa-seg-av-ol/69741931",
+    url:"https://www.berlingske.dk/aok/her-er-de-bedste-oel-til-julefrokosten",
 
   },
 

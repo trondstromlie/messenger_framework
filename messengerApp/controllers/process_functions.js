@@ -180,7 +180,8 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
     //if a custom field is found add to the array 
     console.log("*******************  field found **********************");
-    let cart = JSON.parse(order_field[0].value);
+    console.log(order_field);
+    let cart = JSON.parse(order_field[0].field_value);
     console.log({the_cart_pre_push:cart})
   
     cart.push(postback);

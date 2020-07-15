@@ -13,8 +13,8 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url", },
-    {"title":"Bestill" ,"type": "postback", "value": { "payload":{"messenger_process":"Pizza","fields":{"price":"price","item":"item_number","tittle":"title"}}}}
-  ]
+    {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":"Pizza","fields":{"price":"price","item":"item_number","tittle":"title"}}}
+  ];
 
  //create a default object for testing if no api object is available fall back to the test object
 
@@ -107,12 +107,12 @@ default_obj.forEach( ( item , i ) => {
         let button_obj = {title: button_item.title, type:button_item.type }
 
         //now add the the payload 
-        // "value": { "payload":{"messenger_process":"Pizza",fields:{"Price":"price","Title":"title"}}
+        
 
-        let payload = {};
+        let payload = {messenger_process:button_item.payload.messenger_process};
 
-        for (var key in button_item.value.payload.fields) {
-          payload[key] = item[button_item.value.payload.fields[key]];
+        for (var key in button_item.payload.fields) {
+          payload.fields[key] = item[button_item.payload.fields[key]];
         };
 
         console.log({process_generic_template: payload});

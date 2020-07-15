@@ -153,7 +153,7 @@ default_obj.forEach( ( item , i ) => {
         //now add the the payload 
         
 
-        let payload = {messenger_process:default_obj.name};
+        let payload = {messenger_process:generic_template_obj.name};
         //init fields object;
         payload.fields = {};
 

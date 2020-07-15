@@ -108,13 +108,32 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     steps:[
       {name:"writing_action",func:process_functions.writing_action,pause:5},
       {name:"send melding velkommen melding ",func:process_functions.send_empty_message,msg:"Ok " + user.first_name + " jeg henter menyen for deg :) "},
+      {name:"hva vil du bestille",func:process_functions.send_quick_reply,msg:"Hva vill du bestille? \n Velg med knappene under ",quick_reply_obj:[{"content_type":"text","title":"Mat","payload":"Bestill_mat",link:4},{"content_type":"text","title":"Drikke","payload":"bestill_drikke",link:5}]},
+      {name:"listen_for_hva vil du bestille",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"bestilling"}, msg:"Skriv ja eller nei " , quick_reply_obj:[{"content_type":"text","title":"Mat","payload":"Bestill_mat",link:4},{"content_type":"text","title":"Drikke","payload":"bestill_drikke",link:5}]},
+      {name:"jump to function Order_food", func:process_functions.jump_to_process,jump_to:{process_link:"Order_food"}},
+      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Order_drinks"}},
+         
+      
+    ]
+  },
+  {
+    name:"Order_food",
+    steps:[
       {name:"writing_action",func:process_functions.writing_action,pause:5},
       {name:"pizza_meny",func:process_functions.fetch_generic_template},
       {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "}
-
-
+    ]
+  },
+  {
+    name:"Order_drinks",
+    steps:[
+      {name:"writing_action",func:process_functions.writing_action,pause:5},
+      {name:"pizza_meny",func:process_functions.fetch_generic_template},
+      {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
+      {name:"writing_action2",func:process_functions.writing_action,pause:5},
+      {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "}
     ]
   }
     ]

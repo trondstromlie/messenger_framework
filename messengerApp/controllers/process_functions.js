@@ -13,7 +13,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url", },
-    {"title":"Bestill" ,"type": "postback", "value": { "payload":{"messenger_process":"Pizza","pris":"price","vare":"vare","tittle":"title"}}}
+    {"title":"Bestill" ,"type": "postback", "value": { "payload":{"messenger_process":"Pizza","fields":{"price":"price","item":"item_number","tittle":"title"}}}}
   ]
 
  //create a default object for testing if no api object is available fall back to the test object
@@ -93,6 +93,7 @@ default_obj.forEach( ( item , i ) => {
 
       if(button_item.type === "web_url") {
        let button_obj = { title: button_item.title , url: item.url , type:button_item.type  };
+
        element.buttons.push(button_obj);
        
       } 
@@ -106,9 +107,16 @@ default_obj.forEach( ( item , i ) => {
         let button_obj = {title: button_item.title, type:button_item.type }
 
         //now add the the payload 
+        // "value": { "payload":{"messenger_process":"Pizza",fields:{"Price":"price","Title":"title"}}
 
-        let payload = button_item.value.payload;
+        let payload = {};
 
+        for (var key in button_item.payload.fields) {
+          payload[key] = item[button_item.payload.fields[key]];
+        };
+
+        console.log({process_generic_template: payload});
+        
         button_obj.payload = JSON.stringify(payload);
         
         element.buttons.push(button_obj);
@@ -128,7 +136,9 @@ let response = {attachment:{type:"template", payload:{template_type:"generic", e
 console.log({"responce_element": response})
 
  await callSendAPI(sender_psid , response, "RESPONSE");
+
  return {status:true,step:"pause"};
+
 } // end of generic template
 
 // the next function shoud be a "wait for data function" acepting the calback and putting it in the right customfield as an arry.

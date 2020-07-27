@@ -35,7 +35,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
       let total = 0;
     
     
-      order.forEach( ( item, i) => {
+      order.forEach( async ( item, i) => {
 
         let responce = {text: "Item " + i  + " of " + order.length + " " + item.fields.title + " : " + item.fields.price}
         price += +item.fields.price

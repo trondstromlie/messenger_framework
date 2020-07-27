@@ -21,7 +21,8 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
   if(custom_field_obj !== null) {
 
     console.log(user.custom_data);
-    let custom_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);
+
+    let custom_field = await user.custom_data.filter(item => item.field_name === custom_field_obj.name);
     console.log({"custom_field":custom_field,"custom_field_length":custom_field.length});
 
     if (custom_field.length > 0) {
@@ -29,17 +30,18 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
       console.log({"field_found": custom_field});
       
       let order = JSON.parse(custom_field[0].field_value);
+
       let price = +0;
       let wat = 25;
-      
       let total = 0;
     
     
       await order.forEach( async ( item, i) => {
 
-        let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price}
-        price += +item.fields.price
+        let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price};
+        price += +item.fields.price;
         await callSendAPI(sender_psid , response, "RESPONSE");
+        return NaN;
 
       });
 

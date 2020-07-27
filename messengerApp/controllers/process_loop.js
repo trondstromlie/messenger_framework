@@ -129,7 +129,8 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "},
       {name:"writing_action",func:process_functions.writing_action,pause:1},
-      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"See_order"}}
+      {name:"jump to function see order", func:process_functions.jump_to_process,jump_to:{process_link:"See_order"}},
+      {name:"writing_action",func:process_functions.writing_action,pause:1}
     ]
   },
   {
@@ -141,7 +142,8 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "},
       {name:"writing_action",func:process_functions.writing_action,pause:1},
-      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"See_order"}}
+      {name:"jump to function see order", func:process_functions.jump_to_process,jump_to:{process_link:"See_order"}},
+      {name:"writing_action",func:process_functions.writing_action,pause:1}
     ]
   },
   {

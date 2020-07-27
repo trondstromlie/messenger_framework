@@ -27,9 +27,26 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
     if (custom_field.length > 0) {
 
       console.log({"field_found": custom_field});
+      
+      let order = JSON.parse(custom_field[0].field_value);
+      let price = +0;
+      let wat = 25;
+      let price_wat = wat/100;
+      let total = 0;
+    
+    
+      order.forEach( ( item, i) => {
+
+        let responce = {text: "Item " + i  + " of " + order.length + " " + item.fields.title + " : " + item.fields.price}
+        price += +item.fields.price
+        await callSendAPI(sender_psid , response, "RESPONSE");
+
+      });
 
       return {status:true,step:"next"};
+      let total_responce ={text:"Price = " + price + " + " + wat + "% \n Total: " + price*wat+price} 
 
+      await callSendAPI(sender_psid , total_response, "RESPONSE");
 
     } else {
       console.log("no custom field with the name " + custom_field_obj.name + " discovered.");

@@ -20,13 +20,14 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 
   if(custom_field_obj !== null) {
 
+    console.log(user.custom_data);
     let custom_field = user.custom_data.filter(item => item.name === custom_field_obj.name)
     if (custom_field > 0) {
 
       console.log({"field_found": custom_field});
 
       return {status:true,step:"next"};
-      
+
 
     } else {
       console.log("no custom field with the name " + custom_field_obj.name + " discovered.");

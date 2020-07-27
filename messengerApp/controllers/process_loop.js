@@ -129,25 +129,40 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "},
       {name:"writing_action",func:process_functions.writing_action,pause:1},
-      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Order_more"}}
+      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"See_order"}}
     ]
   },
   {
     name:"Order_drinks",
     steps:[
       {name:"writing_action",func:process_functions.writing_action,pause:5},
-      {name:"pizza_meny",func:process_functions.fetch_generic_template, generic_template_obj:{name:"Order_drinks", url:"<url>",qs:"email"}},
+      {name:"drink_menu",func:process_functions.fetch_generic_template, generic_template_obj:{name:"Order_drinks", url:"<url>",qs:"email"}},
       {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "},
       {name:"writing_action",func:process_functions.writing_action,pause:1},
-      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Order_more"}}
+      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"See_order"}}
     ]
   },
   {
     name:"Order_more",
     steps: [
       {name:"writing_action",func:process_functions.writing_action,pause:5},
+    ]
+  },
+  {
+    name:"See_order",
+    steps: [
+      {name:"show_order", func:process_functions.fetch_and_show_cart,custom_field_obj:{name:"order"}},
+      {name:"writing_action",func:process_functions.writing_action,pause:5},
+      {name:"send melding ",func:process_functions.send_empty_message,msg:"hva vill du gjøre nå " + user.first_name},
+      {name:"bestille_mer_eller_go_to_cart",func:process_functions.send_quick_reply,msg:"Vill du bestille mer eller sende orderen til kjøkkenet? ",quick_reply_obj:[{"content_type":"text","title":"Bestille mer","payload":"til_kjøkken",link:5},{"content_type":"text","title":"Send til kjøkkenet","payload":"bestill_drikke",link:6}]},
+      {name:"listen_for_hva vil du bestille",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"bestilling"}, msg:"Skriv ja eller nei " , quick_reply_obj:[{"content_type":"text","title":"Bestille mer","payload":"til_kjøkken",link:5},{"content_type":"text","title":"Send til kjøkkenet","payload":"bestill_drikke",link:6}]},
+      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Pizza"}},
+      {name:"kasse ",func:process_functions.send_empty_message,msg:"Din ordre er sendt til kjøkkenet " + user.first_name},
+
+
+
     ]
   }
     ]

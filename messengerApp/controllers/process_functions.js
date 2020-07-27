@@ -10,6 +10,39 @@ const callSendAPI = require('./callSendAPI');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const senderAction = require('./senderAction');
 
+//function to fetch the content of the cart, show a list of all items with price, 
+//calculate the total price including a set wat.  
+
+async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
+
+  //foreach item in the customfield 
+  //send the name of the customfield in the customfield object
+
+  if(custom_field_obj !== null) {
+
+    let custom_field = user.custom_data.filter(item => item.name === custom_field_obj.name)
+    if (custom_field > 0) {
+
+      console.log({"field_found": custom_field});
+
+      return {status:true,step:"next"};
+      
+
+    } else {
+      console.log("no custom field with the name " + custom_field_obj.name + " discovered.");
+      return {status:false,step:"pause"};
+    }
+
+
+  }
+  else {
+    console.log("no custom field discovered, aborting the program");
+    return {status:false,step:"pause"};
+  }
+
+}
+
+
 //************************************************************************ */
 //** a function to fetch data from an api and show the data in a generic template */
 //** the object must contain an image some descriptive text, and can contain a webadress ?  */
@@ -678,7 +711,8 @@ module.exports = {
   read_bool_value_of_custom_field:read_bool_value_of_custom_field,
   jump_to_process:jump_to_process,
   fetch_generic_template:fetch_generic_template,
-  listen_for_add_to_cart:listen_for_add_to_cart
+  listen_for_add_to_cart:listen_for_add_to_cart,
+  fetch_and_show_cart:fetch_and_show_cart
 };
 
 

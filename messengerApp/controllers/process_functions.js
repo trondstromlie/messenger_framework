@@ -31,20 +31,20 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
       let order = JSON.parse(custom_field[0].field_value);
       let price = +0;
       let wat = 25;
-      let price_wat = wat/100;
+      let price_wat = 100/wat;
       let total = 0;
     
     
-      order.forEach( async ( item, i) => {
+      await order.forEach( async ( item, i) => {
 
-        let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.tittle + " : " + item.fields.price}
+        let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price}
         price += +item.fields.price
         await callSendAPI(sender_psid , response, "RESPONSE");
 
       });
 
       
-      let total_response = {text:"Price = " + price + " + " + wat + "% \n Total: " + price*wat+price} 
+      let total_response = {text:"Price = kr" + price + " + " + wat + "% \n Total: " + price*wat+price} 
 
       await callSendAPI(sender_psid , total_response, "RESPONSE");
 

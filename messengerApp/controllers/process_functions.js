@@ -21,7 +21,8 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
   if(custom_field_obj !== null) {
 
     console.log(user.custom_data);
-    let custom_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name)
+    let custom_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);
+    console.log({"custom_field":custom_field});
 
     if (custom_field > 0) {
 

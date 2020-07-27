@@ -109,7 +109,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     steps:[
       {name:"writing_action",func:process_functions.writing_action,pause:5},
       {name:"send melding velkommen melding ",func:process_functions.send_empty_message,msg:"Ok " + user.first_name + " jeg henter menyen for deg :) "},
-      {name:"hva vil du bestille",func:process_functions.send_quick_reply,msg:"Hva vill du bestille? \nVelg med knappene under ",quick_reply_obj:[{"content_type":"text","title":"Mat","payload":"Bestill_mat",link:4},{"content_type":"text","title":"Drikke","payload":"bestill_drikke",link:5}]},
+      {name:"hva vil du bestille",func:process_functions.send_quick_reply,msg:"Hva vill du bestille? Velg med knappene under! ",quick_reply_obj:[{"content_type":"text","title":"Mat","payload":"Bestill_mat",link:4},{"content_type":"text","title":"Drikke","payload":"bestill_drikke",link:5}]},
       {name:"listen_for_hva vil du bestille",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"bestilling"}, msg:"Skriv ja eller nei " , quick_reply_obj:[{"content_type":"text","title":"Mat","payload":"Bestill_mat",link:4},{"content_type":"text","title":"Drikke","payload":"bestill_drikke",link:5}]},
       {name:"jump to function Order_food", func:process_functions.jump_to_process,jump_to:{process_link:"Order_food"}},
       {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Order_drinks"}},
@@ -126,7 +126,8 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "},
-      {name:"writing_action",func:process_functions.writing_action,pause:1}
+      {name:"writing_action",func:process_functions.writing_action,pause:1},
+      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Order_more"}}
     ]
   },
   {
@@ -137,11 +138,25 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
       {name:"writing_action2",func:process_functions.writing_action,pause:5},
       {name:"send melding bekreftelses melding ",func:process_functions.send_empty_message,msg:"Ok det er mottat :) "},
-      {name:"writing_action",func:process_functions.writing_action,pause:1}
+      {name:"writing_action",func:process_functions.writing_action,pause:1},
+      {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Order_more"}}
+    ]
+  },
+  {
+    name:"Order_more",
+    steps: [
+      {name:"writing_action",func:process_functions.writing_action,pause:5},
     ]
   }
     ]
   }; //end of object ***************************************
+
+//create a function to show the products in cart, then promt user for shop more or chekcout
+//sheckout should open a new messenger extension window, where you can remove products from cart
+//with a vips like payment 
+//after payment show the reciept template.....
+
+
 
 
   //check if user process has steps if not abort prosess with error message
@@ -173,7 +188,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
           console.log(in_message);
 
-          //check if some or all of the standarfields are set if set initialize 
+          //check if some or all of the standarfields are set if set initialize else field is == null
 
           if( item.steps[step].msg ) message = item.steps[step].msg;
 
@@ -207,7 +222,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
             let data ={};
 
-            //if result. step is === next start the function loop function again
+            //if result step is === next start the function loop function again
             //if status is pause, wait for user feedback
 
             switch(res.step) {
@@ -251,10 +266,12 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                 //first delete the existing function 
                 console.log("deleting current process " + processName);
                 await addandupdate_userfields.delete_messenger_process( sender_psid, processName );
+                
                 // add the new userprocess to the db return an updated user user_obj
                 let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, res.link, user);
 
                 console.log({updated_user_obj:add_user_process.messenger_processes[0]});
+
                 //find the index of the new process..
                 //and add it to the messenger_process...
 
@@ -283,7 +300,9 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
           } else {
             console.log("program ending");
-            //when user has gone true all object post or  status is false update process status to false and end process
+
+            //when user has gone trough all object post or  status is false update process status to false and end process
+
             await addandupdate_userfields.delete_messenger_process( sender_psid, processName);
             return NaN;
           }

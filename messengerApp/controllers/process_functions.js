@@ -31,7 +31,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
       let order = JSON.parse(custom_field[0].field_value);
       let price = +0;
       let wat = 25;
-      let price_wat = 100/wat;
+      
       let total = 0;
     
     
@@ -43,8 +43,9 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 
       });
 
-      
-      let total_response = {text:"Price = kr" + price + " + " + wat + "% Totalt: " + +price*+wat/100 + +price} 
+      let price_wat = price*wat/100;
+      let total = price + price_wat;
+      let total_response = {text:"Price = kr" + price + " + " + wat + " WAT " + price_wat + " Total Price kr " + total} ;
 
       await callSendAPI(sender_psid , total_response, "RESPONSE");
 

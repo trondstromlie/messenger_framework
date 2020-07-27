@@ -113,8 +113,8 @@ default_obj.forEach( ( item , i ) => {
   if(item.img_url) element.image_url = item.img_url;
   if(item.title) element.title = item.title;
   if(item.sub_title) element.subtitle = item.sub_title;
-  if(item.price) element.subtitle += "<p>\nPris : " + item.price + "</p>";
-  if(item.in_stock) element.subtitle += "<p>\nPå lager : " + item.in_stock + "</p>";
+  if(item.price) element.subtitle += "\nPris kr : " + item.price ;
+  if(item.in_stock) element.subtitle += "\nPå lager : " + item.in_stock ;
   if(item.url) {
 
     element.default_action = {};

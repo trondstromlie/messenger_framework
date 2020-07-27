@@ -31,6 +31,8 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
   //the user processes will be imprteted from a registerd users db in the future
   //**************************************************************
+
+  
   const user_process = {processes: [
     {
      name:"Get_personal",
@@ -266,7 +268,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
                 //first delete the existing function 
                 console.log("deleting current process " + processName);
                 await addandupdate_userfields.delete_messenger_process( sender_psid, processName );
-                
+
                 // add the new userprocess to the db return an updated user user_obj
                 let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, res.link, user);
 

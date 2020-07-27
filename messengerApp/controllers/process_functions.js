@@ -1,3 +1,8 @@
+// todo list
+//**************************************************** */
+// Du må lage en funkson for å hente ut customfield(mergerfields), of formatere de som text
+// navn bio etc ..... lag en hjelpefunksjon du kan kalle fra alle process funksoner....
+
 "use strict";
 
 const sleep = require('sleep-promise');
@@ -108,8 +113,8 @@ default_obj.forEach( ( item , i ) => {
   if(item.img_url) element.image_url = item.img_url;
   if(item.title) element.title = item.title;
   if(item.sub_title) element.subtitle = item.sub_title;
-  if(item.price) element.subtitle += "\nPris : " + item.price;
-  if(item.in_stock) element.subtitle += "\nPå lager : " + item.in_stock;
+  if(item.price) element.subtitle += "<p>\nPris : " + item.price + "</p>";
+  if(item.in_stock) element.subtitle += "<p>\nPå lager : " + item.in_stock + "</p>";
   if(item.url) {
 
     element.default_action = {};
@@ -680,7 +685,12 @@ module.exports = {
 //***************************************
 //helper functions
 
+//create a function to extract all the customfields pluss name email etc and creata a easy to read object 
+//use a regex function to find the merger fields innto the right string
+
+
 //function to find index of custom field in object //is it possible to use the bulit in array.filter() insted????
+
 
 async function return_index(user, custom_field_obj) {
 

@@ -44,7 +44,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
       });
 
       let price_wat = price*wat/100;
-      let total = price + price_wat;
+      total = price + price_wat;
       let total_response = {text:"Price = kr" + price + " + " + wat + " WAT " + price_wat + " Total Price kr " + total} ;
 
       await callSendAPI(sender_psid , total_response, "RESPONSE");

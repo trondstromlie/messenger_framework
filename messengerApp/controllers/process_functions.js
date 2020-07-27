@@ -37,16 +37,18 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
     
       order.forEach( async ( item, i) => {
 
-        let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.title + " : " + item.fields.price}
+        let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.tittle + " : " + item.fields.price}
         price += +item.fields.price
         await callSendAPI(sender_psid , response, "RESPONSE");
 
       });
 
-      return {status:true,step:"next"};
-      let total_response ={text:"Price = " + price + " + " + wat + "% \n Total: " + price*wat+price} 
+      
+      let total_response = {text:"Price = " + price + " + " + wat + "% \n Total: " + price*wat+price} 
 
       await callSendAPI(sender_psid , total_response, "RESPONSE");
+
+      return {status:true,step:"next"};
 
     } else {
       console.log("no custom field with the name " + custom_field_obj.name + " discovered.");

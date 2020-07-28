@@ -23,6 +23,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
         //no actice process is discovered
         //create start a new process 
         console.log("messenger process is empty jumping to next step");
+        let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, payload.messenger_process , user);
         await process_loop(payload.messenger_process, user.user, 0 , received_message);
         return NaN;
                 

@@ -37,7 +37,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
     
       for (const index = 0; index < order.length ; index++ ) {
         let response = {text: "Item " + index  + " of " + order.length + " " + order[index].fields.tittle + " kr " + order[index].fields.price};
-        price += +item.fields.price;
+        price += +order[index].fields.price;
         await callSendAPI(sender_psid , response, "RESPONSE");
       }
 

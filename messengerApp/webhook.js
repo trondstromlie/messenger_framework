@@ -74,8 +74,8 @@ router.post("/", ( req , res ) => {
       else if (webhook_event.referral) {
         handleReferral(sender_psid, webhook_event.referral);
       }
-      else {
-        console.log({else_webhook:webhook_event});
+      else if (webhook_event.read) {
+        console.log("message opened at "+ Date.now());
       }
     });
 

@@ -10,8 +10,23 @@ const callSendAPI = require('./callSendAPI');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const senderAction = require('./senderAction');
 
+//function to show a menu featering x number of buttons ant optionale picture
+//the structure for this menu comes from the generic template 
+
+async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
+
+  //if a picture is pressent build the generic template structure.
+
+  //else only build the menu
+
+  
+
+}
+
+
+
 //function to fetch the content of the cart, show a list of all items with price, 
-//calculate the total price including a set wat.  
+//calculate the total price including a set WAT.  
 
 async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 

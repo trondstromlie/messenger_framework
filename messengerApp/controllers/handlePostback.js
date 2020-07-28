@@ -5,6 +5,7 @@ const fetchUserData = require('./fetchUserData');
 const logMessage = require('./writeToLog');
 const process_loop = require('./process_loop')
 const senderAction = require('./senderAction');
+const addandupdate_userfields = require('./addandupdate_userfields');
 
 
 module.exports = async function handlePostBack(sender_psid , received_message) {

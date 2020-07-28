@@ -14,7 +14,7 @@ const { response } = require('express');
 //function to show a menu featering x number of buttons ant optionale picture
 //the structure for this menu comes from the generic template 
 
-async function button_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
+async function generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
   //if generic_template object type is generic_template
   //show template
@@ -811,7 +811,8 @@ module.exports = {
   jump_to_process:jump_to_process,
   fetch_generic_template:fetch_generic_template,
   listen_for_add_to_cart:listen_for_add_to_cart,
-  fetch_and_show_cart:fetch_and_show_cart
+  fetch_and_show_cart:fetch_and_show_cart,
+  generic_template:generic_template
 };
 
 

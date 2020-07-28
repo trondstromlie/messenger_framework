@@ -43,11 +43,11 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 
 
       for( let [item, i] of order.entries())  {
-
-       let response = {text: "for of : Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price};
-       price += +item.fields.price;
-       await callSendAPI(sender_psid , response, "RESPONSE");
-       return NaN;
+       console.log(item + " " + i);
+       //let response = {text: "for of : Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price};
+       //price += +item.fields.price;
+       //await callSendAPI(sender_psid , response, "RESPONSE");
+       
 
       };
 

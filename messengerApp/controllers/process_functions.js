@@ -9,17 +9,74 @@ const sleep = require('sleep-promise');
 const callSendAPI = require('./callSendAPI');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const senderAction = require('./senderAction');
+const { response } = require('express');
 
 //function to show a menu featering x number of buttons ant optionale picture
 //the structure for this menu comes from the generic template 
 
-async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
+async function button_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
-  //if a picture is pressent build the generic template structure.
+  //if generic_template object type is generic_template
+  //show template
+  if(generic_template_obj.type === "generic_template") {
+    //do something build the tempplate and add the buttons 
+    console.log("generic template discovered");
 
-  //else only build the menu
+  } 
+  // else if button template 
+  else if(generic_template_obj.type === "buttons" ) {
+    //show button template
+    console.log("button template discovered");
+    
+    let buttons = [
+      {type:"web_url",url:"https://www.trondstromlie.com", title:" les mer om meg her "},
+      {type:"web_url",url:"https://youtube.com", title:"Se mer på Youttube"},
+      {type:"postback", title:"Bestill Pizza!", payload:{"messenger_process":"Pizza"} }
+    ];
+    let text = "hva kan jeg hjelpe deg med "
 
-  
+    //build the button  template
+    let payload = {};
+
+    payload.type = "template" ;
+    if(text) payload.text = text;
+    
+    payload.buttons = [];
+
+    for(let item in buttons) {
+      if(item.type === "web_url") {
+        //do the logic for url buttons
+        let button_obj = {type:"web_url" ,title:item.title, url:item.payload};
+        payload.buttons.push(button_obj);
+
+      } else if( item.type === "postback") {
+        //do the logic for postback 
+        //the postback for the button template will alwais be a link to a process
+        let button_obj = {type:"postback" ,title:item.title, pyload:item.payload};
+        payload.buttons.push(button_obj);
+        
+        return {status:true,step:"next"};
+        
+
+      }
+    }
+
+    let responce = {attachment:payload};
+    await callSendAPI(sender_psid,response,"RESPONSE");
+
+
+    //push each button max 3 to the button object 
+
+  }
+ else {
+   console.log("error : no template dicovered");
+   return{status:false, step:pause};
+ }
+
+  //else if generic template object type is button only build the menu
+  //show buttons
+
+
 
 }
 
@@ -162,6 +219,9 @@ let default_obj_drinks = [
   },
 
 ];
+
+//denne logikken må bygges fra innholdet i databasen 
+
 let default_obj = {};
 
 if(generic_template_obj.name === "Order_food") {

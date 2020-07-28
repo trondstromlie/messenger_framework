@@ -173,9 +173,6 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Pizza"}},
       {name:"kasse ",func:process_functions.send_empty_message,msg:"Suupert! :) Din ordre er sendt til kjøkkenet "},
       {name:"clean order field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"order",value:'[]'}}
-
-
-
     ]
   }
     ]

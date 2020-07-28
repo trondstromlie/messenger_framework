@@ -35,18 +35,11 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
       let wat = 25;
       let total = 0;
     
-      for (let index = 0; index < order.length ; index++ ) {
-        let response = {text: "Item " + index  + " of " + order.length + " " + order[index].fields.tittle + " kr " + order[index].fields.price};
-        price += +order[index].fields.price;
-        await callSendAPI(sender_psid , response, "RESPONSE");
-      }
-
-
       for( let [i, item] of order.entries())  {
-       console.log(item.fields.tittle + " " + i);
-       //let response = {text: "for of : Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price};
-       //price += +item.fields.price;
-       //await callSendAPI(sender_psid , response, "RESPONSE");
+       
+       let response = {text: "for of : Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price};
+       price += +item.fields.price;
+       await callSendAPI(sender_psid , response, "RESPONSE");
        
 
       };

@@ -35,6 +35,16 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
   
   const user_process = {processes: [
     {
+      name:"Getting_started",
+      steps: [
+        {name:"writing_action",func:process_functions.writing_action},
+        {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" Så hyggelig at du vil snakke med meg, hva kan jeg hjelpe deg med i dag? :) "},
+        {name:"stat_menu",func:process_functions.generic_template, generic_template_obj:{name:"Order_food", url:"<url>",qs:"email"}},
+        {name:"wait_for_postback", func:process_functions.listen_for_add_to_cart,custom_field_obj:{name:"order"}},
+        {name:"writing_action2",func:process_functions.writing_action,pause:5},
+      ]
+    },
+    {
      name:"Get_personal",
      steps: [
 

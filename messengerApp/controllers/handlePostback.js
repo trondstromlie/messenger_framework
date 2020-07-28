@@ -20,13 +20,17 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
     await senderAction(sender_psid , 'mark_seen');
     
     if(user.user.messenger_processes.length === 0) {
-        return NaN;
+        //no actice process is discovered
+        //create start a new process 
         console.log("messenger process is empty jumping to next step");
+        await process_loop(payload.messenger_process, user.user, 0 , received_message);
+        return NaN;
+                
     }
     
-    if( payload.messenger_process === user.user.messenger_processes[0].process_name ) {
+    else if( payload.messenger_process === user.user.messenger_processes[0].process_name ) {
 
-        //send the controll back to the function with the payload 
+        //an active process that match the ongoing process is discovered send the controll back to the function with the payload 
 
         await process_loop(payload.messenger_process, user.user, 0 , received_message);
         return NaN;
@@ -34,7 +38,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
         //create "the listen for payload" function in the process loop to store a object in a custom field...
 
     } else {
-        
+        //an active process thet is not the same as this postback is discovered deleting og pausing the existing process.
         console.log("new process starting pausing or deleting all processes");
         return NaN;
 

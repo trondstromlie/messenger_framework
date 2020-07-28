@@ -10,6 +10,7 @@ const senderAction = require('./senderAction');
 module.exports = async function handlePostBack(sender_psid , received_message) {
 
     console.log(received_message);
+
     let payload = JSON.parse(received_message.payload);
 
     console.log({postback_payload:payload});
@@ -18,18 +19,24 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     await senderAction(sender_psid , 'mark_seen');
     
+    if(user.user.messenger_processes.length === 0) {
+        return NaN;
+        console.log("messenger process is empty jumping to next step");
+    }
     
     if( payload.messenger_process === user.user.messenger_processes[0].process_name ) {
 
         //send the controll back to the function with the payload 
 
         await process_loop(payload.messenger_process, user.user, 0 , received_message);
+        return NaN;
 
         //create "the listen for payload" function in the process loop to store a object in a custom field...
 
     } else {
         
         console.log("new process starting pausing or deleting all processes");
+        return NaN;
 
     };
     

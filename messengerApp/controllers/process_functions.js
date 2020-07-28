@@ -35,15 +35,21 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
       let wat = 25;
       let total = 0;
     
-    
-      await order.forEach( async ( item, i) => {
-
-        let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price};
+      for (const index = 0; index < order.length ; index++ ) {
+        let response = {text: "Item " + index  + " of " + order.length + " " + order[index].fields.tittle + " kr " + order[index].fields.price};
         price += +item.fields.price;
         await callSendAPI(sender_psid , response, "RESPONSE");
-        return NaN;
+      }
 
-      });
+
+      //await order.forEach( async ( item, i) => {
+
+      //  let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price};
+      //  price += +item.fields.price;
+      //  await callSendAPI(sender_psid , response, "RESPONSE");
+      //  return NaN;
+
+      //});
 
       let price_wat = price*wat/100;
       total = price + price_wat;

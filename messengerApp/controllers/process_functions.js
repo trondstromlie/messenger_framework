@@ -38,7 +38,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     //build the button  template
     let payload = {};
 
-    payload.type = "template" ;
+    payload.template_type = "button" ;
     if(text) payload.text = text;
     
     payload.buttons = [];
@@ -61,7 +61,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       }
     }
 
-    let responce = {attachment:payload};
+    let responce = {attachment:{type:template, payload}};
     await callSendAPI(sender_psid,response,"RESPONSE");
 
 

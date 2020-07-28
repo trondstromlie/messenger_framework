@@ -172,7 +172,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"listen_for_hva vil du bestille",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"bestilling"}, msg:"velg med knappene under " , quick_reply_obj:[{"content_type":"text","title":"Bestille mer","payload":"til_kjøkken",link:5},{"content_type":"text","title":"Send til kjøkkenet","payload":"bestill_drikke",link:6}]},
       {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Pizza"}},
       {name:"kasse ",func:process_functions.send_empty_message,msg:"Suupert! :) Din ordre er sendt til kjøkkenet "},
-      {name:"clean order field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"order",value:" "}}
+      {name:"clean order field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"order",value:'[]'}}
 
 
 

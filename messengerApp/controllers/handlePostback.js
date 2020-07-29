@@ -34,7 +34,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
             {process_key: "Pizza", process_name : "Pizza" }
         ];
 
-        let check_obj = ref_obj.filter(item => item.process_key.toLowerCase() === received_message.refferal.ref.toLowerCase());
+        let check_obj = ref_obj.filter(item => item.process_key.toLowerCase() === received_message.referral.ref.toLowerCase());
         
         if(check_obj.length > 0 ) {
 

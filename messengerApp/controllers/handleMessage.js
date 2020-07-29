@@ -60,7 +60,8 @@ try {
         {process_key: "Init", process_name: "Get_personal"},
         {process_key: "Start", process_name: "Confirm_start"},
         {process_key: "Type_action", process_name: "Type_action"},
-        {process_key: "Pizza", process_name : "Pizza" }
+        {process_key: "Pizza", process_name : "Pizza" },
+        {process_key: "Start", process_name : "Getting_started"}
         ]
       }; 
 

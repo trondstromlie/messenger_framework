@@ -52,6 +52,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         //do the logic for url buttons
         let button_obj = {type:"web_url" ,title:item.title, url:item.payload};
         payload.buttons.push(button_obj);
+        
 
       } else if( item.type === "postback") {
         //do the logic for postback 
@@ -59,7 +60,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         let button_obj = {type:"postback" ,title:item.title, pyload:item.payload};
         payload.buttons.push(button_obj);
         
-        return {status:true,step:"next"};
+        
         
 
       }

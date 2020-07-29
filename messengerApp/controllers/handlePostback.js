@@ -28,7 +28,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     if ( received_message.referral ) {
         console.log("referal discovered");
-        console.log({received_message :received_message.refferal.ref});
+        console.log({received_message :received_message.referral.ref});
 
         let ref_obj = [
             {process_key: "Pizza", process_name : "Pizza" }
@@ -37,6 +37,8 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
         let check_obj = ref_obj.filter(item => item.process_key.toLowerCase() === received_message.referral.ref.toLowerCase());
         
         if(check_obj.length > 0 ) {
+
+            console.log({"adding process to user ": check_obj });
 
             let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, payload.messenger_process , user);
         

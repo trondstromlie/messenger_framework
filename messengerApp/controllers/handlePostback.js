@@ -19,8 +19,15 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
     const user = await fetchUserData(sender_psid);
 
     await senderAction(sender_psid , 'mark_seen');
+
+    if ( received_message.refferal) {
+        console.log("referal discovered");
+        console.log({recieved_message :received_message.refferal});
+        return NaN;
+
+    }
     
-    if(user.user.messenger_processes.length === 0) {
+    else if(user.user.messenger_processes.length === 0) {
         //no actice process is discovered
         //create start a new process 
         console.log("messenger process is empty jumping to next step");

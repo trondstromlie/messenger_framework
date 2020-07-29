@@ -52,12 +52,12 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         //do the logic for url buttons
         let button_obj = {type:"web_url" ,title:item.title, url:item.payload};
         payload.buttons.push(button_obj);
-        
+
 
       } else if( item.type === "postback") {
         //do the logic for postback 
         //the postback for the button template will alwais be a link to a process
-        let button_obj = {type:"postback" ,title:item.title, pyload:item.payload};
+        let button_obj = {type:"postback" ,title:item.title, payload:item.payload};
         payload.buttons.push(button_obj);
         
         

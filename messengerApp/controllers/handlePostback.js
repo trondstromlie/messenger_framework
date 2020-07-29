@@ -20,16 +20,41 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     await senderAction(sender_psid , 'mark_seen');
 
-    if ( received_message.refferal) {
+    //if the referral is mixed with the welcommessage postback it is sendt here insted so w need to have two 
+    //points to intercept a ref call to the webhook, here and in the handle refferal function
+    //both function get the referral object from the db  
+
+    if ( received_message.refferal ) {
         console.log("referal discovered");
         console.log({recieved_message :received_message.refferal});
-        return NaN;
+
+        let ref_obj = [
+            {process_key: "Pizza", process_name : "Pizza" }
+        ];
+
+        let check_obj = ref_obj.filter(item => item.process_key.toLowerCase() === received_message.refferal.ref.toLowerCase());
+        
+        if(check_obj.length > 0 ) {
+
+            let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, payload.messenger_process , user);
+        
+            await process_loop(check[0].process_name, add_user_process, 0 , received_message);
+    
+            return NaN;
+
+        } else {
+
+            console.log("no process found matching this ref");
+            return NaN;
+        }
+
+
 
     }
     
     else if(user.user.messenger_processes.length === 0) {
-        //no actice process is discovered
-        //create start a new process 
+        //no active process is discovered
+        //create one and start the new process 
         console.log("messenger process is empty jumping to next step");
         let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, payload.messenger_process , user);
         

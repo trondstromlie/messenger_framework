@@ -66,12 +66,14 @@ router.post("/", ( req , res ) => {
 
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
+
       if (webhook_event.referral) {
         handleReferral(sender_psid, webhook_event.referral);
       }
       else if (webhook_event.message) {
         handleMessage(sender_psid, webhook_event.message);
-      } else if (webhook_event.postback) {
+      }
+      else if (webhook_event.postback) {
         handlePostBack(sender_psid, webhook_event.postback);
       } 
       else if (webhook_event.read) {

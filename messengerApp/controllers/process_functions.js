@@ -16,6 +16,10 @@ const { response } = require('express');
 
 async function generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
+  //funksjonen stopper i template
+  // jeg kan se du har rotet med oppsette av message objektet de ter her du må begynne 
+
+
   //if generic_template object type is generic_template
   //show template
   if(generic_template_obj.type === "generic_template") {
@@ -61,7 +65,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       }
     }
 
-    let responce = {attachment:{type:template, payload}};
+    let responce = {attachment:{type:template, payload: payload }};
     await callSendAPI(sender_psid,response,"RESPONSE");
 
 

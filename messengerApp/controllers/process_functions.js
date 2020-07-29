@@ -65,7 +65,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       }
     }
 
-    let responce = {attachment:{type:template, payload: payload }};
+    let responce = {attachment:{type:"template", payload: payload }};
     await callSendAPI(sender_psid,response,"RESPONSE");
 
 

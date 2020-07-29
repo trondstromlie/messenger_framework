@@ -40,7 +40,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
             console.log({"adding process to user ": check_obj });
 
-            let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, payload.messenger_process , user);
+            let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, check_obj[0].process_name , user);
         
             await process_loop(check_obj[0].process_name, add_user_process, 0 , received_message);
     

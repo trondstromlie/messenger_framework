@@ -10,7 +10,7 @@ const addandupdate_userfields = require('./addandupdate_userfields');
 
 module.exports = async function handlePostBack(sender_psid , received_message) {
 
-    console.log(received_message);
+    console.log({received_message_to_postback: recieved_message});
 
     let payload = JSON.parse(received_message.payload);
 

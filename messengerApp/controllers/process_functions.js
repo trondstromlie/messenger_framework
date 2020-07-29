@@ -35,7 +35,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     let buttons = [
       {type:"web_url",url:"https://www.trondstromlie.com", title:" les mer om meg her "},
       {type:"web_url",url:"https://youtube.com", title:"Se mer på Youttube"},
-      {type:"postback", title:"Bestill Pizza!", payload:{"messenger_process":"Pizza"} }
+      {type:"postback", title:"Bestill Pizza!", payload:'{"messenger_process":"Pizza"}' }
     ];
     let text = "hva kan jeg hjelpe deg med "
 

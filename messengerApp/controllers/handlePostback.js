@@ -28,7 +28,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     if ( received_message.referral ) {
         console.log("referal discovered");
-        console.log({recieved_message :received_message.refferal});
+        console.log({received_message :received_message.refferal.ref});
 
         let ref_obj = [
             {process_key: "Pizza", process_name : "Pizza" }

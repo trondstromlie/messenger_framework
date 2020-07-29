@@ -47,7 +47,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     
     payload.buttons = [];
 
-    for(let item in buttons) {
+    for(let [i, item] of buttons.entries()) {
       if(item.type === "web_url") {
         //do the logic for url buttons
         let button_obj = {type:"web_url" ,title:item.title, url:item.payload};

@@ -14,7 +14,7 @@ module.exports = async function handleReferral (sender_psid, received_message) {
     user = fetchUserData(sender_psid);
 
     console.log("************ starting handle refferal   ************ ");
-    console.log(recieved_message);
+    console.log(received_message);
     
   if ( received_message.referral ) {
         console.log("referal discovered");

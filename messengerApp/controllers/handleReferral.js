@@ -16,15 +16,15 @@ module.exports = async function handleReferral (sender_psid, received_message) {
     console.log("************ starting handle refferal   ************ ");
     console.log(received_message);
     
-  if ( received_message.referral ) {
+  if ( received_message.ref ) {
         console.log("referal discovered");
-        console.log({recieved_message :received_message.refferal});
+        console.log({received_message :received_message.ref});
 
         let ref_obj = [
             {process_key: "Pizza", process_name : "Pizza" }
         ];
 
-        let check_obj = ref_obj.filter(item => item.process_key.toLowerCase() === received_message.refferal.ref.toLowerCase());
+        let check_obj = ref_obj.filter(item => item.process_key.toLowerCase() === received_message.ref.toLowerCase());
         
         if(check_obj.length > 0 ) {
 

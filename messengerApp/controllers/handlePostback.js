@@ -22,11 +22,11 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     await senderAction(sender_psid , 'mark_seen');
 
-    //if the referral is mixed with the welcommessage postback it is sendt here insted so w need to have two 
-    //points to intercept a ref call to the webhook, here and in the handle refferal function
+    //if the referral is mixed with the welcommessage postback it is sendt here insted so we need to have two 
+    //points to intercept a ref call to the webhook, here and in the handle referral function
     //both function get the referral object from the db  
 
-    if ( received_message.refferal ) {
+    if ( received_message.referral ) {
         console.log("referal discovered");
         console.log({recieved_message :received_message.refferal});
 
@@ -76,7 +76,7 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     } else {
         //an active process thet is not the same as this postback is discovered deleting og pausing the existing process.
-        console.log("new process starting pausing or deleting all processes");
+        console.log("nothin sendt to the postback function");
         return NaN;
 
     };

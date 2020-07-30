@@ -16,9 +16,34 @@ const { response } = require('express');
 
 async function generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
+  if (generic_template_obj.type === "media") {
+    //do the logic for media content here.
+    console.log("media template discovered");
+    let buttons = [
+      {type:"postback", title:"Bestill Pizza!", payload:'{"messenger_process":"Pizza"}' }
+    ];
+
+    //if video mediatype is video else image
+    let default_obj = [
+      {
+        media_type:"video",
+        attachmentment_id: "281875426571630",
+        buttons:buttons
+      }
+    ];
+
+    let response = {attachment:{type:"template", payload:{template_type:"image",elements:default_object}}} ;
+    console.log(response.attachment);
+
+    await callSendAPI(sender_psid, response, "RESPONSE");
+    
+    return {status:true, step:"next"};
+
+  }
+  
   //if generic_template object type is generic_template
   //show template
-  if(generic_template_obj.type === "generic_template") {
+  else if(generic_template_obj.type === "generic_template") {
     //do something build the tempplate and add the buttons 
     console.log("generic template discovered");
 

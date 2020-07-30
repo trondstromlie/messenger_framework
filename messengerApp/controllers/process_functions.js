@@ -16,15 +16,40 @@ const { response } = require('express');
 
 async function generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 
-  //funksjonen stopper i template
-  // jeg kan se du har rotet med oppsette av message objektet de ter her du må begynne 
-
-
   //if generic_template object type is generic_template
   //show template
   if(generic_template_obj.type === "generic_template") {
     //do something build the tempplate and add the buttons 
     console.log("generic template discovered");
+
+    let buttons = [
+      {type:"web_url",url:"https://www.trondstromlie.com", title:" les mer om meg her "},
+      {type:"web_url",url:"https://youtube.com", title:"Se mer på Youttube"},
+      {type:"postback", title:"Bestill Pizza!", payload:'{"messenger_process":"Pizza"}' }
+    ];
+
+    let default_object = [
+      {
+        title:"cute cat 1",
+        image_url:"https://www.rd.com/wp-content/uploads/2019/05/shutterstock_671541538-e1557714950453.jpg",
+        subtitle: "This is a cute cat",
+        default_action: {
+          type:"web_url",
+          url:"https://www.rd.com/list/cutest-cat-breeds/",
+          webview_height_ratio:"tall"
+        },
+        buttons:buttons,
+        
+      }
+    ]
+
+    let elements = [];
+
+    let response = {attachment:{type:"template", payload:{template_type:"generic"}, elements:default_object}} ;
+
+    await callSendAPI(sender_psid, response, "RESPONSE");
+    
+    return {status:true, step:"next"};
 
   } 
   // else if button template 
@@ -56,7 +81,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 
       } else if( item.type === "postback") {
         //do the logic for postback 
-        //the postback for the button template will alwais be a link to a process
+        //the postback for the button template will always be a link to a process
         let button_obj = {type:"postback" ,title:item.title, payload:item.payload};
         payload.buttons.push(button_obj);
         

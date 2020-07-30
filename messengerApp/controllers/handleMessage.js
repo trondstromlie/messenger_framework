@@ -61,7 +61,8 @@ try {
         {process_key: "Start", process_name: "Confirm_start"},
         {process_key: "Type_action", process_name: "Type_action"},
         {process_key: "Pizza", process_name : "Pizza" },
-        {process_key: "Kjør på", process_name : "Getting_started"}
+        {process_key: "Kjør på", process_name : "Getting_started"},
+        {process_key: "Menu2", process_name : "Generic_menu"}
         ]
       }; 
 

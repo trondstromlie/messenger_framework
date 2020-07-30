@@ -22,8 +22,8 @@ module.exports = async function handlePostBack(sender_psid , received_message) {
 
     await senderAction(sender_psid , 'mark_seen');
 
-    //if the referral is mixed with the welcommessage postback it is sendt here insted so we need to have two 
-    //points to intercept a ref call to the webhook, here and in the handle referral function
+    //if the referral is mixed with the postback payload it is sendt here so we need to have two 
+    //points to intercept a ref call to the webhook, and handle the referral function
     //both function get the referral object from the db  
 
     if ( received_message.referral ) {

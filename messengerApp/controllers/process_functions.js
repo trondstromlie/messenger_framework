@@ -35,10 +35,6 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         url: "https://www.facebook.com/trondthemessengerbot/videos/288509729032209",
         buttons:buttons
       },
-      {
-        media_type:"video",
-        url: "https://www.facebook.com/trondthemessengerbot/videos/288509729032209"
-      }
     ];
 
     let response = {attachment:{type:"template", payload:{template_type:"media",elements:default_img}}} ;

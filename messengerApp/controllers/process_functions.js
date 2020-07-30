@@ -28,7 +28,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     let default_img = [
       {
         media_type:"video",
-        url: "https://www.facebook.com/trondthemessengerbot/videos/281875433238296",
+        url: "https://www.facebook.com/trondthemessengerbot/videos/288509729032209",
         buttons:buttons
       }
     ];

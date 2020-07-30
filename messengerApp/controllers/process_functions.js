@@ -24,7 +24,8 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     ];
 
     //if video mediatype is video else image
-    let default_obj = [
+
+    let default_img = [
       {
         media_type:"video",
         attachmentment_id: "281875426571630",
@@ -32,7 +33,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       }
     ];
 
-    let response = {attachment:{type:"template", payload:{template_type:"image",elements:default_object}}} ;
+    let response = {attachment:{type:"template", payload:{template_type:"image",elements:default_img}}} ;
     console.log(response.attachment);
 
     await callSendAPI(sender_psid, response, "RESPONSE");

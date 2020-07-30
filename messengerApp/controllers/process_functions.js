@@ -46,7 +46,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     let elements = [];
 
     let response = {attachment:{type:"template", payload:{template_type:"generic",elements:default_object}}} ;
-    console.log(response.attachment.);
+    console.log(response.attachment);
 
     await callSendAPI(sender_psid, response, "RESPONSE");
     

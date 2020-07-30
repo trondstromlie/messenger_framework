@@ -33,7 +33,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       }
     ];
 
-    let response = {attachment:{type:"template", payload:{template_type:"image",elements:default_img}}} ;
+    let response = {attachment:{type:"template", payload:{media_type:"image",elements:default_img}}} ;
     console.log(response.attachment);
 
     await callSendAPI(sender_psid, response, "RESPONSE");

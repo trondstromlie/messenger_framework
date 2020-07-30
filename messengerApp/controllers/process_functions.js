@@ -24,11 +24,16 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     ];
 
     //if video mediatype is video else image
+    //en for of loop som sjekker om det er knapper til dette bildet
+    //fronten funksjonen må inneholde en en funkjson for å laste opp bilder og video, 
+    //eventuelt velge fra facebook sidens bibliotek?
+
 
     let default_img = [
       {
         media_type:"video",
-        url: "https://www.facebook.com/trondthemessengerbot/videos/288509729032209",
+        //url: "https://www.facebook.com/trondthemessengerbot/videos/288509729032209",
+        attachment_id:"1013113599108733",
         buttons:buttons
       }
     ];

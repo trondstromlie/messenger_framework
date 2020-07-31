@@ -505,7 +505,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
   //if order field is == 0 add a field 
   
-  if( ! order_field.length > 0 ) {
+  if( ! order_field.length > 0 || ! order_field[0].field_name ) {
     
    console.log("*****************   No field found *******************");
    
@@ -533,6 +533,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
     console.log(order_field);
 
     let open_order = JSON.parse(order_field[0].field_value);
+    console.log({open_order:open_order});
     let cart = open_order.order;
     console.log({the_cart_pre_push:cart})
   

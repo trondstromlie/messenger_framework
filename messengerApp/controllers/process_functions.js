@@ -513,9 +513,9 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
    cart.push(postback);
 
-   order_field = {field_name:custom_field_obj.name , field_value:{ order:JSON.stringify(cart) }};
+   order_field = {field_name:custom_field_obj.name , field_value:{ order:cart }};
 
-   await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , order_field);
+   await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , JSON.stringify( order_field));
 
    return {status:true,step:"next"};
 

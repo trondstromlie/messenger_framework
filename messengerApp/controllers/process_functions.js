@@ -525,14 +525,19 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
     //if a custom field is found add to the array 
 
     console.log("*******************  field found **********************");
+
     console.log(order_field);
-    let cart = JSON.parse(order_field[0].field_value);
+
+    let open_order = JSON.parse(order_field[0].field_value);
+    let cart = open_order.order;
     console.log({the_cart_pre_push:cart})
   
     cart.push(postback);
     console.log({the_cart:cart});
+
+    open_order.order = cart;
   
-    await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , {field_name:custom_field_obj.name ,field_value:JSON.stringify(cart)});
+    await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , {field_name:custom_field_obj.name ,field_value:JSON.stringify(open_order)});
   
     return {status:true,step:"next"};
 

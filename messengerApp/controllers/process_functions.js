@@ -505,7 +505,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
   //if order field is == 0 add a field 
   
-  if( ! order_field.length > 0  ||   ! order_field[0].field_value === '[]' ) {
+  if( ! order_field.length > 0  ||   order_field[0].field_value === '[]' ) {
     
    console.log("*****************   No field found *******************");
    

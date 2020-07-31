@@ -129,69 +129,78 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 
   else if (generic_template_obj.type === "receipt") {
 
+    //get the order data from a spessified custom field 
+    if (custom_field === null) {
+      console.log("No order passed to the function showing the default order example.")
+      let payload = {
+        "template_type":"receipt",
+        "recipient_name":user.name,
+        "order_number":"12345678902",
+        "currency":"NOK",
+        "payment_method":"Visa 2345",        
+        "order_url":"http://www.trondstromlie.com",
+        "timestamp":"1428444852",         
+        "address":{
+          "street_1":"John Strandruds vei 3",
+          "street_2":"h0704",
+          "city":"lysaker",
+          "postal_code":"1366",
+          "state": "test",
+          "country":"Norge"
+        },
+        "summary":{
+          "subtotal":75.00,
+          "shipping_cost":4.95,
+          "total_tax":6.19,
+          "total_cost":56.14
+        },
+        "adjustments":[
+          {
+            "name":"Firma rabatt",
+            "amount":20
+          },
+          {
+            "name":"$10 Off Coupon",
+            "amount":10
+          }
+        ],
+        "elements":[
+          {
+            "title":"Classic White T-Shirt",
+            "subtitle":"100% Soft and Luxurious Cotton",
+            "quantity":1,
+            "price":50,
+            "currency":"NOK",
+            "image_url":"http://petersapparel.parseapp.com/img/whiteshirt.png"
+          },
+          {
+            "title":"Classic Gray T-Shirt",
+            "subtitle":"100% Soft and Luxurious Cotton",
+            "quantity":1,
+            "price":25,
+            "currency":"NOK",
+            "image_url":"http://petersapparel.parseapp.com/img/grayshirt.png"
+          }
+        ]
+      }
+    
+      let response = {attachment:{type:"template", payload: payload }};
+      //console.log(response)
+      await callSendAPI( sender_psid , response , "RESPONSE");
+      return {status:true,step:"next"};
 
-    let payload = {
-      "template_type":"receipt",
-      "recipient_name":user.name,
-      "order_number":"12345678902",
-      "currency":"NOK",
-      "payment_method":"Visa 2345",        
-      "order_url":"http://www.trondstromlie.com",
-      "timestamp":"1428444852",         
-      "address":{
-        "street_1":"John Strandruds vei 3",
-        "street_2":"h0704",
-        "city":"lysaker",
-        "postal_code":"1366",
-        "state": "test",
-        "country":"Norge"
-      },
-      "summary":{
-        "subtotal":75.00,
-        "shipping_cost":4.95,
-        "total_tax":6.19,
-        "total_cost":56.14
-      },
-      "adjustments":[
-        {
-          "name":"New Customer Discount",
-          "amount":20
-        },
-        {
-          "name":"$10 Off Coupon",
-          "amount":10
-        }
-      ],
-      "elements":[
-        {
-          "title":"Classic White T-Shirt",
-          "subtitle":"100% Soft and Luxurious Cotton",
-          "quantity":2,
-          "price":50,
-          "currency":"NOK",
-          "image_url":"http://petersapparel.parseapp.com/img/whiteshirt.png"
-        },
-        {
-          "title":"Classic Gray T-Shirt",
-          "subtitle":"100% Soft and Luxurious Cotton",
-          "quantity":1,
-          "price":25,
-          "currency":"NOK",
-          "image_url":"http://petersapparel.parseapp.com/img/grayshirt.png"
-        }
-      ]
+    } else if (custom_field !== null) {
+      console.log("custom data discovered building the reciept object");
+
+      let payload = {"template_type": "receipt"};
+      if(custom_field.name) {
+        payload.name = custom_field.name
+      } else {
+        payload.name = user.name;
+      }
     }
-  
 
 
-   
-
-
-
-    let response = {attachment:{type:"template", payload: payload }};
-    //console.log(response)
-    await callSendAPI( sender_psid , response , "RESPONSE");
-    return {status:true,step:"next"};
 
   }
 
@@ -216,7 +225,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 
   //foreach item in the customfield 
   //send the name of the customfield in the customfield object
-
+ try {
   if(custom_field_obj !== null) {
 
     console.log(user.custom_data);
@@ -247,6 +256,14 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
       total = price + price_wat;
       let total_response = {text:"Price = kr" + price + " + " + wat + " WAT " + price_wat + " Total Price kr " + total} ;
 
+      //update the fields with tax and total price in the the custom_data_field
+      //when the order is sendt to the kitchen you asign an order number and payment option 
+      order.price = price;
+      order.wat = price_wat;
+      order.total_price = total;
+
+
+
       await callSendAPI(sender_psid , total_response, "RESPONSE");
 
       return {status:true,step:"next"};
@@ -263,6 +280,9 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
     return {status:false,step:"pause"};
   }
 
+ } catch (e){
+   console.error(e);
+ }
 }
 
 
@@ -492,7 +512,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
    cart.push(postback);
 
-   order_field = [{field_name:custom_field_obj.name , field_value: JSON.stringify(cart) }];
+   order_field = {order:[{field_name:custom_field_obj.name , field_value: JSON.stringify(cart) }]};
 
    await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , order_field[0]);
 

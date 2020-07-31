@@ -504,7 +504,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
   if( ! order_field.length > 0 ) {
     
    console.log("*****************   No field found *******************");
-
+   
    console.log({order_field_listen_for_cart: order_field});
  
    //init empty aray
@@ -513,7 +513,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
    cart.push(postback);
 
-   order_field = {order:[{field_name:custom_field_obj.name , field_value: JSON.stringify(cart) }]};
+   order_field = {field_name:custom_field_obj.name , field_value:{ order:JSON.stringify(cart) }};
 
    await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , order_field);
 

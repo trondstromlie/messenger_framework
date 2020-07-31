@@ -62,6 +62,15 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       ]
     },
     {
+      name:"Receipt",
+      steps: [
+        {name:"writing_action",func:process_functions.writing_action},
+        {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" Her er din kvittiering :) "},
+        {name:"start_menu",func:process_functions.generic_template, generic_template_obj:{type:"receipt", name:"welcome"}},
+        {name:"writing_action2",func:process_functions.writing_action,pause:1},
+      ]
+    },
+    {
      name:"Get_personal",
      steps: [
 

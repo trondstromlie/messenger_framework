@@ -34,7 +34,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         media_type:"video",
         url: "https://www.facebook.com/trondthemessengerbot/videos/288509729032209",
         buttons:buttons
-      },
+      }
     ];
 
     let response = {attachment:{type:"template", payload:{template_type:"media",elements:default_img}}} ;
@@ -114,11 +114,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         //do the logic for postback 
         //the postback for the button template will always be a link to a process
         let button_obj = {type:"postback" ,title:item.title, payload:item.payload};
-        payload.buttons.push(button_obj);
-        
-        
-        
-
+        payload.buttons.push(button_obj);      
       }
     }
    
@@ -130,6 +126,75 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     //push each button max 3 to the button object 
 
   }
+
+  else if (generic_template_obj.type === "receipt") {
+
+
+    let payload = {
+      "template_type":"receipt",
+      "recipient_name":user.name,
+      "order_number":"12345678902",
+      "currency":"NOK",
+      "payment_method":"Visa 2345",        
+      "order_url":"http://www.trondstromlie.com",
+      "timestamp":"1428444852",         
+      "address":{
+        "street_1":"John Strandruds vei 3",
+        "street_2":"h0704",
+        "city":"lysaker",
+        "postal_code":"1366",
+        "state": " ",
+        "country":"Norge"
+      },
+      "summary":{
+        "subtotal":75.00,
+        "shipping_cost":4.95,
+        "total_tax":6.19,
+        "total_cost":56.14
+      },
+      "adjustments":[
+        {
+          "name":"New Customer Discount",
+          "amount":20
+        },
+        {
+          "name":"$10 Off Coupon",
+          "amount":10
+        }
+      ],
+      "elements":[
+        {
+          "title":"Classic White T-Shirt",
+          "subtitle":"100% Soft and Luxurious Cotton",
+          "quantity":2,
+          "price":50,
+          "currency":"NOK",
+          "image_url":"http://petersapparel.parseapp.com/img/whiteshirt.png"
+        },
+        {
+          "title":"Classic Gray T-Shirt",
+          "subtitle":"100% Soft and Luxurious Cotton",
+          "quantity":1,
+          "price":25,
+          "currency":"NOK",
+          "image_url":"http://petersapparel.parseapp.com/img/grayshirt.png"
+        }
+      ]
+    }
+  
+
+
+   
+
+
+
+    let response = {attachment:{type:"template", payload: payload }};
+    //console.log(response)
+    await callSendAPI( sender_psid , response , "RESPONSE");
+    return {status:true,step:"next"};
+
+  }
+
  else {
    console.log("error : no template dicovered");
    return{status:false, step:pause};

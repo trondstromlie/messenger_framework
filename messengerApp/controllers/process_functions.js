@@ -143,7 +143,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         "street_2":"h0704",
         "city":"lysaker",
         "postal_code":"1366",
-        "state": " ",
+        "state": "test",
         "country":"Norge"
       },
       "summary":{

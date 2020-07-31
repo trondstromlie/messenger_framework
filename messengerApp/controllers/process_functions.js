@@ -237,7 +237,9 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 
       console.log({"field_found": custom_field});
       
-      let order = JSON.parse(custom_field[0].field_value);
+      let open_order = JSON.parse(custom_field[0].field_value);
+
+      let order = open_order.order;
 
       let price = +0;
       let wat = 25;
@@ -258,13 +260,15 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 
       //update the fields with tax and total price in the the custom_data_field
       //when the order is sendt to the kitchen you asign an order number and payment option 
-      order.price = price;
-      order.wat = price_wat;
-      order.total_price = total;
+      open_order.price = price;
+      open_order.wat = price_wat;
+      open_order.total_price = total;
 
-
+      
 
       await callSendAPI(sender_psid , total_response, "RESPONSE");
+
+      await addandupdate_userfields.add_or_update_custom_data(sender_psid, user , {field_name:custom_field_obj.name ,field_value:JSON.stringify(open_order)});
 
       return {status:true,step:"next"};
 

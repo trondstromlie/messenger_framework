@@ -270,12 +270,12 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 
          open_order.order.forEach(item => {
            let element_obj = {
-             "title":item.title,
-             "subtitle":item.sub_title,
-             "quantity":item.quantity,
-             "price":item.price,
-             "currency":item.currency,
-             "image_url":item.img_url
+             "title":item.field.title,
+             "subtitle":item.fields.sub_title,
+             "quantity":item..fields.quantity,
+             "price":item.fields.price,
+             "currency":item.fields.currency,
+             "image_url":item.fields.img_url
            }
 
            payload.elements.push(element_obj);

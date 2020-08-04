@@ -272,7 +272,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
            let element_obj = {
              "title":item.field.title,
              "subtitle":item.fields.sub_title,
-             "quantity":item..fields.quantity,
+             "quantity":item.fields.quantity,
              "price":item.fields.price,
              "currency":item.fields.currency,
              "image_url":item.fields.img_url

@@ -209,7 +209,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
        if(open_order.order.length > 0) {
          console.log("custom data discovered building the reciept object");
 
-         let theDate = Math.floor(Date.now() / 1000)
+         let theDate = Math.floor(Date.now() / 1000000)
 
          let payload = {"template_type": "receipt",
                         "recipient_name":user.name,

@@ -199,39 +199,117 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       let order_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);
 
       //open and parse the order object 
-      let open_order = JSON.parse(order_field.field_value);
-       
+      if(order_field.length > 0 ) {
 
-      //neste oppgave fyll ut alle felter med informasjonen fra objektet...
+       let open_order = JSON.parse(order_field[0].field_value);
+    
+
+       //neste oppgave fyll ut alle felter med informasjonen fra objektet...
       
-      if(open_order.lengt > 0) {
-        console.log("custom data discovered building the reciept object");
+       if(open_order.length > 0) {
+         console.log("custom data discovered building the reciept object");
 
-        let payload = {"template_type": "receipt"};
-        if(custom_field.user_name) {
-          payload.name = custom_field.name
-        } else {
-          payload.name = user.name;
-        }
-  
-        if (1===0 ) {
-          console.log("nothing here");
+         let payload = {"template_type": "receipt"};
+        
+         //if username in order
+         if(open_order.user_name) {
+           payload.recipient_name = open_order.user_name;
+         } else {
+           payload.recipient_name = user.name;
+          }
+         //if order number in order
+         if (open_order.order_number ) {
+           payload.order_number = open_order.order_number
+           console.log("nothing here");
+         } else {
+           payload.order_number = "123456789";
+         }
+        
+         //if currency 
 
+         if( open_order.currency ) payload.currency = open_order.currency;
+
+         //if payment method
+
+         if( open_order.payment_method ) payload.payment_method = open_order.payment_method;
+
+         //if order url
+
+         if( open_order.order_url ) payload.order_url = open_order.order_url;
+
+         //if timestamp else set new timestamp on order process
+
+         if (open_order.timestamp) {
+           payload.timestamp = open_order.timestamp;
+         } else {
+           payload.timestamp = time.now();
+         }
+
+         //if address 
+         //adress must be an object containing ex {street_1:something,street_2:something,city:something,postal_code:something,state:something,country:something}
+         if(open_order.address) payload.address = open_order.adress;
+
+         payload.summary = {
+           "subtotal":open_order.total_price,
+           "total_tax":open_order.wat,
+           "total_cost":open_order.price
+         }
+
+         //add shipping cost if it is pressent in open_order
+         if(open_order.shipping) payload.summary = open_order.shipping;
+
+         //if adustments special offers is pressent in the open_order 
+         //add adjustments to the object
+         //adjustments should be presented in the open_order as an array of [ {name:"test", amount:15} ]
+
+         if( open_order.adjustments ) payload.adjustments = open_order.adjustments;
+
+         //add the products in the cart to the reciept, this is in the elements array
+
+         payload.elements = [];
+
+         open_order.order.forEach(item => {
+           let element_obj = {
+             "title":item.title,
+             "subtitle":item.sub_title,
+             "quantity":item.quantity,
+             "price":item.price,
+             "currency":item.currency,
+             "image_url":item.img_url
+           }
+
+           payload.element.push(element_obj);
+          
+         });
+
+        
         } else {
-        console.log("no custom data field " + custom_field_obj.name + " found");
+
+          console.log("no custom data field " + custom_field_obj.name + " found!");
         }
 
  
+      } else {
+
+         console.log("coud not find the order data in "+ custom_field_obj +" , custom_data")
       }
+
+    } else {
+
+        console.log("coud not find the customfield "+ custom_field_obj +" in custom_data");
+    }
     }
 
 
 
-  }
+   
 
- else {
+  else {
+
    console.log("error : no template dicovered");
+
    return{status:false, step:pause};
+
  }
 
   //else if generic template object type is button only build the menu
@@ -274,7 +352,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
     
       for( let [i, item] of order.entries())  {
        
-       let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.tittle + " kr " + item.fields.price};
+       let response = {text: "Item " + i  + " of " + order.length + " " + item.fields.title + " kr " + item.fields.price};
        price += +item.fields.price;
        await callSendAPI(sender_psid , response, "RESPONSE");
        
@@ -325,7 +403,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url", },
-    {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":null,"fields":{"price":"price","item":"item_number","tittle":"title","img_url":"img_url"}}}
+    {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":null,"fields":{"price":"price","currency":"currency","item":"item_number","title":"title","img_url":"img_url","sub_title":"sub_title"}}}
   ];
 
  //create a default object for testing if no api object is available fall back to the test object
@@ -338,6 +416,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
     price:"150",
     in_stock:"5",
     item_number:"123",
+    currency:"NOK",
     url:"https://www.morshjemmebakte.no/recipes/pizza-med-kjottdeig/"
  
   },
@@ -348,6 +427,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
     price:"200",
     in_stock:"1",
     item_number:"456",
+    currency:"NOK",
     url:"https://detgladekjokken.no/oppskrift/pizza-med-marinert-kylling/",
 
   },
@@ -359,6 +439,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
     price:"300",
     in_stock:"15",
     item_number:"789",
+    currency:"NOK",
     url:"https://kiwi.no/oppskrifter/kjott/pinnekjott-oppskrifter/pizza-med-pinnekjott/",
   },
 
@@ -372,6 +453,7 @@ let default_obj_drinks = [
     price:"35",
     in_stock:"5",
     item_number:"drink123",
+    currency:"NOK",
     url:"https://matindustrien.no/2017/coca-cola-velg-sukkerfritt"
  
   },
@@ -382,6 +464,7 @@ let default_obj_drinks = [
     price:"98",
     in_stock:"1",
     item_number:"drink456",
+    currency:"NOK",
     url:"https://www.berlingske.dk/aok/her-er-de-bedste-oel-til-julefrokosten",
 
   },
@@ -393,6 +476,7 @@ let default_obj_drinks = [
     price:"300",
     in_stock:"15",
     item_number:"drink789",
+    currency:"NOK",
     url:"https://www.thespruceeats.com/types-of-red-wine-3511068",
   },
 
@@ -542,6 +626,8 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 
    let cart = [];
 
+   postback.quantity = 1;
+
    cart.push(postback);
 
 
@@ -563,7 +649,12 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
     console.log({open_order:open_order});
     let cart = open_order.order;
     console.log({the_cart_pre_push:cart})
-  
+    
+    //create a new function here to check if the name of product already is in cart, if exist insted of adding a new entry 
+    //update quantity 
+    postback.quantity = 1;
+
+
     cart.push(postback);
     console.log({the_cart:cart});
 

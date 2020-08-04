@@ -281,7 +281,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
              "image_url":item.img_url
            }
 
-           payload.element.push(element_obj);
+           payload.elements.push(element_obj);
           
          });
 

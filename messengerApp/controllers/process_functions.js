@@ -130,7 +130,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
   else if (generic_template_obj.type === "receipt") {
 
     //get the order data from a spessified custom field 
-    if (custom_field === null) {
+    if (custom_field_obj === null) {
 
       console.log("No order passed to the function, showing the default order example.")
 

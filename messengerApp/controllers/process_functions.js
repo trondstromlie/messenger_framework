@@ -11,7 +11,7 @@ const addandupdate_userfields = require('./addandupdate_userfields');
 const senderAction = require('./senderAction');
 const { response } = require('express');
 
-//function to show a menu featering x number of buttons ant optionale picture
+//function to show a the template menues this inclue buttons generic template media reciept and in the future bordingpass
 //the structure for this menu comes from the generic template 
 
 async function generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
@@ -131,7 +131,9 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 
     //get the order data from a spessified custom field 
     if (custom_field === null) {
-      console.log("No order passed to the function showing the default order example.")
+
+      console.log("No order passed to the function, showing the default order example.")
+
       let payload = {
         "template_type":"receipt",
         "recipient_name":user.name,
@@ -189,15 +191,38 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       await callSendAPI( sender_psid , response , "RESPONSE");
       return {status:true,step:"next"};
 
-    } else if (custom_field !== null) {
-      console.log("custom data discovered building the reciept object");
+      //*********the real function starts here 
 
-      let payload = {"template_type": "receipt"};
-      if(custom_field.name) {
-        payload.name = custom_field.name
+    } else if (custom_field !== null) {
+      
+      //find the custom field in db
+      let order_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);
+
+      //open and parse the order object 
+      let open_order = JSON.parse(order_field.field_value);
+       
+
+      //neste oppgave fyll ut alle felter med informasjonen fra objektet...
+      
+      if(open_order.lengt > 0) {
+        console.log("custom data discovered building the reciept object");
+
+        let payload = {"template_type": "receipt"};
+        if(custom_field.user_name) {
+          payload.name = custom_field.name
+        } else {
+          payload.name = user.name;
+        }
+  
+        if ( ) {
+
+
       } else {
-        payload.name = user.name;
+        console.log("no custom data field " + custom_field_obj.name + " found")
       }
+
+ 
+
     }
 
 
@@ -298,7 +323,7 @@ async function fetch_generic_template(sender_psid, user, message, custom_field_o
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url", },
-    {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":null,"fields":{"price":"price","item":"item_number","tittle":"title"}}}
+    {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":null,"fields":{"price":"price","item":"item_number","tittle":"title","img_url":"img_url"}}}
   ];
 
  //create a default object for testing if no api object is available fall back to the test object

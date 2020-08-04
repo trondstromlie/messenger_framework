@@ -217,12 +217,12 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         if (1===0 ) {
           console.log("nothing here");
 
-      } else {
-        console.log("no custom data field " + custom_field_obj.name + " found")
-      }
+        } else {
+        console.log("no custom data field " + custom_field_obj.name + " found");
+        }
 
  
-
+      }
     }
 
 
@@ -239,6 +239,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 
 
 
+ 
 }
 
 
@@ -251,6 +252,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
   //foreach item in the customfield 
   //send the name of the customfield in the customfield object
  try {
+
   if(custom_field_obj !== null) {
 
     console.log(user.custom_data);
@@ -1022,5 +1024,4 @@ let custom_field_index = false;
    }
  });
 return custom_field_index;
-
 }

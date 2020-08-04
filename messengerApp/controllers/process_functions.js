@@ -203,12 +203,13 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       if(order_field.length > 0 ) {
 
        let open_order = JSON.parse(order_field[0].field_value);
+       
        console.log({open_order:open_order});
     
 
        //neste oppgave fyll ut alle felter med informasjonen fra objektet...
       
-       if(open_order.length > 0) {
+       if(open_order.order.length > 0) {
          console.log("custom data discovered building the reciept object");
 
          let payload = {"template_type": "receipt"};

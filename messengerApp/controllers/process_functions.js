@@ -197,15 +197,12 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       
       //find the custom field in db
       let order_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);
-      console.log({order_field:order_field})
+      
 
       //open and parse the order object 
       if(order_field.length > 0 ) {
 
-       let open_order = JSON.parse(order_field[0].field_value);
-       
-       console.log({open_order:open_order});
-    
+       let open_order = JSON.parse(order_field[0].field_value);    
 
        //neste oppgave fyll ut alle felter med informasjonen fra objektet...
       
@@ -288,7 +285,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
          });
 
          let response = {attachment:{type:"template", payload: payload }};
-         //console.log(response)
+         console.log(response)
          await callSendAPI( sender_psid , response , "RESPONSE");
          return {status:true,step:"next"};
 

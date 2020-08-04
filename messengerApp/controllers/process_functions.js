@@ -285,18 +285,22 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         
         } else {
 
-          console.log("no custom data field " + custom_field_obj.name + " found!");
+          console.log("Error 01 no custom data field " + custom_field_obj.name + " found!");
+          return{status:false, step:pause};
+
         }
 
  
       } else {
 
-         console.log("coud not find the order data in "+ custom_field_obj +" , custom_data")
+         console.log("error 02 coud not find the order data in "+ custom_field_obj +" , custom_data");
+         return{status:false, step:pause};
       }
 
     } else {
 
-        console.log("coud not find the customfield "+ custom_field_obj +" in custom_data");
+        console.log("error 03 could not find the customfield "+ custom_field_obj +" in custom_data");
+        return{status:false, step:pause};
     }
     }
 

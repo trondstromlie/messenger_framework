@@ -209,7 +209,14 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
        if(open_order.order.length > 0) {
          console.log("custom data discovered building the reciept object");
 
-         let payload = {"template_type": "receipt"};
+         let payload = {"template_type": "receipt",
+                        "recipient_name":user.name,
+                        "order_number":"12345678902",
+                        "currency":"NOK",
+                        "payment_method":"no data",        
+                        "order_url":"http://www.trondstromlie.com",
+                        "timestamp":"1428444852"  
+                      };
         
          //if username in order
          if(open_order.user_name) {
@@ -227,7 +234,11 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         
          //if currency 
 
-         if( open_order.currency ) payload.currency = open_order.currency;
+         if( open_order.currency ) {
+           payload.currency = open_order.currency;
+          } else {
+            payload.currency = "NOK";
+          }
 
          //if payment method
 
@@ -267,6 +278,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
          //add the products in the cart to the reciept, this is in the elements array
 
          payload.elements = [];
+
          console.log({open_order});
          open_order.order.forEach(item => {
            let element_obj = {
@@ -277,7 +289,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
              "currency":item.fields.currency,
              "image_url":item.fields.img_url
            }
-
+           
            payload.elements.push(element_obj);
 
 

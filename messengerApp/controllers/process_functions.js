@@ -245,7 +245,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
          if (open_order.timestamp) {
            payload.timestamp = open_order.timestamp;
          } else {
-           payload.timestamp = time.now();
+           payload.timestamp = Date.now();
          }
 
          //if address 

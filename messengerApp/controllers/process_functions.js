@@ -215,7 +215,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
                         "currency":"NOK",
                         "payment_method":"no data",        
                         "order_url":"http://www.trondstromlie.com",
-                        "timestamp":"1428444852"  
+                        "timestamp":Date.now() 
                       };
         
          //if username in order

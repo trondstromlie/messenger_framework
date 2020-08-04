@@ -267,7 +267,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
          //add the products in the cart to the reciept, this is in the elements array
 
          payload.elements = [];
-
+         console.log(open_order);
          open_order.order.forEach(item => {
            let element_obj = {
              "title":item.field.title,

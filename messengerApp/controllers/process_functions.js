@@ -297,8 +297,11 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
          });
 
          let response = {attachment:{type:"template", payload: payload }};
-         console.log(response)
+
+         console.log({sending_receipt:response})
+
          await callSendAPI( sender_psid , response , "RESPONSE");
+
          return {status:true,step:"next"};
 
     

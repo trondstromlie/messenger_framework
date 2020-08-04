@@ -283,12 +283,14 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 
            payload.elements.push(element_obj);
 
-           let response = {attachment:{type:"template", payload: payload }};
-           //console.log(response)
-           await callSendAPI( sender_psid , response , "RESPONSE");
-           return {status:true,step:"next"};
+
           
          });
+
+         let response = {attachment:{type:"template", payload: payload }};
+         //console.log(response)
+         await callSendAPI( sender_psid , response , "RESPONSE");
+         return {status:true,step:"next"};
 
     
         } else {

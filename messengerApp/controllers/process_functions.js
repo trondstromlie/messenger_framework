@@ -209,15 +209,15 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
        if(open_order.order.length > 0) {
          console.log("custom data discovered building the reciept object");
 
-         let theDate = Math.floor(Date.now() / 1000000,0);
+         let theDate = Math.floor(Date.now() / 1000,0);
 
          let payload = {"template_type": "receipt",
                         "recipient_name":user.name,
                         "order_number":"12345678902",
                         "currency":"NOK",
-                        "payment_method":"no data",        
+                        "payment_method":"VIPS",        
                         "order_url":"http://www.trondstromlie.com",
-                        "timestamp": "1596567709"
+                        "timestamp": theDate
                       };
         
          //if username in order
@@ -261,9 +261,9 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
          if(open_order.address) payload.address = open_order.adress;
 
          payload.summary = {
-           "subtotal":open_order.total_price,
+           "subtotal":open_order.price,
            "total_tax":open_order.wat,
-           "total_cost":open_order.price
+           "total_cost":open_order.total_price
          }
 
          //add shipping cost if it is pressent in open_order

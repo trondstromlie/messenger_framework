@@ -315,9 +315,9 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 }
 
 
-//************************************************************************ */
-//** a function to fetch data from an api and show the data in a generic template */
-//** the object must contain an image some descriptive text, and can contain a webadress ?  */
+//****************************************************************************************** */
+//** a function to fetch data from an api and show the data in a generic template            */
+//** the object must contain an image some descriptive text, and can contain a webadress ?   */
 
 async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj) {
 

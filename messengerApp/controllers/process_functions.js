@@ -214,7 +214,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
           payload.name = user.name;
         }
   
-        if ( ) {
+        if (1===0 ) {
 
 
       } else {

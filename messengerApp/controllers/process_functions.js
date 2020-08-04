@@ -282,10 +282,15 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
            }
 
            payload.elements.push(element_obj);
+
+           let response = {attachment:{type:"template", payload: payload }};
+           //console.log(response)
+           await callSendAPI( sender_psid , response , "RESPONSE");
+           return {status:true,step:"next"};
           
          });
 
-        
+    
         } else {
 
           console.log("Error 01 no custom data field " + custom_field_obj.name + " found!");
@@ -293,7 +298,6 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 
         }
 
- 
       } else {
 
          console.log("error 02 coud not find the order data in "+ custom_field_obj +" , custom_data");
@@ -305,11 +309,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         console.log("error 03 could not find the customfield "+ custom_field_obj +" in custom_data");
         return{status:false, step:pause};
     }
-    }
-
-
-
-   
+    } 
 
   else {
 

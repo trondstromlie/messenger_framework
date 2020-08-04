@@ -193,7 +193,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 
       //*********the real function starts here 
 
-    } else if (custom_field !== null) {
+    } else if (custom_field_obj !== null) {
       
       //find the custom field in db
       let order_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);

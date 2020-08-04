@@ -215,7 +215,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
         }
   
         if (1===0 ) {
-
+          console.log("nothing here");
 
       } else {
         console.log("no custom data field " + custom_field_obj.name + " found")
@@ -1022,4 +1022,5 @@ let custom_field_index = false;
    }
  });
 return custom_field_index;
+
 }

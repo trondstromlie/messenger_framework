@@ -209,7 +209,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
        if(open_order.order.length > 0) {
          console.log("custom data discovered building the reciept object");
 
-         let theDate = Date.now()/1000
+         let theDate = Date.now()
 
          let payload = {"template_type": "receipt",
                         "recipient_name":user.name,
@@ -217,7 +217,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
                         "currency":"NOK",
                         "payment_method":"no data",        
                         "order_url":"http://www.trondstromlie.com",
-                        "timestamp": theDate
+                        "timestamp": theDate/1000
                       };
         
          //if username in order

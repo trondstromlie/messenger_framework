@@ -197,11 +197,13 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       
       //find the custom field in db
       let order_field = user.custom_data.filter(item => item.field_name === custom_field_obj.name);
+      console.log({order_field:order_field})
 
       //open and parse the order object 
       if(order_field.length > 0 ) {
 
        let open_order = JSON.parse(order_field[0].field_value);
+       console.log({open_order:open_order});
     
 
        //neste oppgave fyll ut alle felter med informasjonen fra objektet...
@@ -256,7 +258,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
          }
 
          //add shipping cost if it is pressent in open_order
-         if(open_order.shipping) payload.summary = open_order.shipping;
+         if(open_order.shipping) payload.summary.shipping_cost = open_order.shipping;
 
          //if adustments special offers is pressent in the open_order 
          //add adjustments to the object

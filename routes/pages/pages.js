@@ -13,7 +13,7 @@ router.get("/",function(req,res) {
 
 });
 
-router.get("/webview",function(req,res) {
+router.get("/webview", async function(req,res) {
 
   let query_message = "Hello";
   let sender_psid = null;
@@ -23,7 +23,8 @@ router.get("/webview",function(req,res) {
   if(req.query.message)  query_message = req.query.sender_psid;
 
   if( sender_psid !== null ) {
-    user_data = fetchUserData(sender_psid);
+    user_data = await fetchUserData(sender_psid);
+    console.log(user_data);
   }
   
   //fetch the userdata from the user_db 

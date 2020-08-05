@@ -25,6 +25,7 @@ router.get("/webview", async function(req,res) {
   let query_message = "Hello";
   let sender_psid = null;
   let user_data = {};
+  let profile_pic = "https://i.pinimg.com/originals/aa/c3/80/aac38056c5f66c34f769f5c21562ebb7.jpg"
 
   if(req.query.message)  query_message = req.query.message;
   if(req.query.sender_psid)  sender_psid = req.query.sender_psid;
@@ -33,12 +34,14 @@ router.get("/webview", async function(req,res) {
 
   if( sender_psid !== null ) {
     user_data = await fetchUserData(sender_psid);
-  }
+  };
+
+  if(user_data.user.profile_pic) profile_pic = user_data.user.profile_pic;
   
   //fetch the userdata from the user_db 
 
 
-  res.render("webview", {"title":query_message,"sender_psid":sender_psid,"name":user_data.user.name,"profile":user_data.user.});
+  res.render("webview", {"title":query_message,"sender_psid":sender_psid,"name":user_data.user.name,"profile":profile_pic});
 
 });
 

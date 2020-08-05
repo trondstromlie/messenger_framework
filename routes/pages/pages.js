@@ -31,7 +31,7 @@ router.get("/webview", async function(req,res) {
 
 
 
-  res.render("webview", {"title":query_message,"name":user_data.user.name});
+  res.render("webview", {"title":query_message});
 
 });
 

@@ -45,8 +45,8 @@ html(lang="en")
              |hello #{name} This is the first text, the message is #{title}
             br
             #profile_picture
-                script. alert(#{profile_pic});
-                //img(src=image_url alt="Profile" width=100%)
+                script. alert(profile_pic);
+                img(src="#{profile_pic}" alt="Profile" width=100%)
             p
              |your sender_psid is #{sender_psid}
 

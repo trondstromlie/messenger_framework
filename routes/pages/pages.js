@@ -4,7 +4,7 @@ const pug = require("pug");
 
 //import the messenger data functions to fetch userdata from the api 
 
-const fetchUserData = require("../messengerApp/fetchUserData");
+const fetchUserData = require("../../messengerApp/fetchUserData");
 
 //routes
 router.get("/",function(req,res) {

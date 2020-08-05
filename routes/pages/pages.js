@@ -13,6 +13,11 @@ router.get("/",function(req,res) {
 
 });
 
+
+// build a webview that when the user click the button update a custom_data field and close the window and start
+// a new function in the messenger conversation 
+// for this you need the api that send a message and starts a new process....
+
 router.get("/webview", async function(req,res) {
 
   console.log("Starting the webview");
@@ -28,11 +33,9 @@ router.get("/webview", async function(req,res) {
 
   if( sender_psid !== null ) {
     user_data = await fetchUserData(sender_psid);
-    console.log(user_data);
   }
   
   //fetch the userdata from the user_db 
-
 
 
   res.render("webview", {"title":query_message,"sender_psid":sender_psid,"name":user_data.user.name});

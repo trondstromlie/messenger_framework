@@ -15,6 +15,8 @@ router.get("/",function(req,res) {
 
 router.get("/webview", async function(req,res) {
 
+  console.log("Starting the webview");
+
   let query_message = "Hello";
   let sender_psid = null;
   let user_data = {};

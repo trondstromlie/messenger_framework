@@ -44,6 +44,13 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       ]
     },
     {
+      name:"Webview",
+      steps:[
+        {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" jeg sender deg til et webview nå, stay calm and relax:) "},
+        {name:"open_webview",func:process_functions.open_web_view,webview_obj:{uri:"https://phonestats.herokuapp.com",qs:{action:"Getting_started"}}, custom_field_obj:{name:"test"}}
+      ]
+    },
+    {
       name:"Generic_menu",
       steps: [
         {name:"writing_action",func:process_functions.writing_action},
@@ -221,7 +228,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     return NaN;
   }
 
-    await user_process.processes.forEach(async (item, i) => {
+    user_process.processes.forEach(async (item, i) => {
 
 
 

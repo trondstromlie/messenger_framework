@@ -6,6 +6,11 @@ html(lang="en")
         title #{title}
         style. 
             body{background-color:gray;}
+            .main_container {
+                             background-color:white;
+                             width:150px;
+
+            }
     body
         script. 
             (function(d, s, id){
@@ -16,14 +21,14 @@ html(lang="en")
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'Messenger'));
         
-        
+        .main_container
 
-        h1 Here goes the title
-        p
-        |hello #{name} This is the first text, the message is #{title}
-        br
-        p
-        |your sender_psid is #{sender_psid}
+            h1 Here goes the title
+            p
+             |hello #{name} This is the first text, the message is #{title}
+            br
+            p
+             |your sender_psid is #{sender_psid}
 
         
         

@@ -11,7 +11,7 @@ router.get("/",function(req,res) {
 
 router.get("/webview",function(req,res) {
 
-  res.render("webview",{"title":"Dette er den første webview"});
+  res.render("webview");
 
 });
 

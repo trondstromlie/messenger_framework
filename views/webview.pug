@@ -18,12 +18,16 @@ html(lang="en")
 
         h1 Here goes the title
         p
-        |This is the first text, the message is #{title}
+        |hello #{name} This is the first text, the message is #{title}
 
+        
+        
+        
+        //when the sdk is loaded do something
         script. 
             window.extAsyncInit = function() {
              // the Messenger Extensions JS SDK is done loading 
-             alert("facebook sdk is loaded");
+             alert("facebook sdk has finished loading");
              };
        
 

@@ -5,9 +5,21 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title #{title}
     body
+        script (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'Messenger'));
 
         h1 Here goes the title
         p
         |This is the first text, the message is #{title}
+
+        script window.extAsyncInit = function() {
+       // the Messenger Extensions JS SDK is done loading 
+       alert("facebook sdk is loaded");
+       };
 
     footer

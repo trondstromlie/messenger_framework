@@ -14,7 +14,9 @@ const { response } = require('express');
 //a simple tester function to open a webview
 async function open_web_view(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
 
-  console.log("starting the webiew")
+  console.log("starting the webiew");
+
+  
 
 
 }

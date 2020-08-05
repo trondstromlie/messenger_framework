@@ -18,6 +18,9 @@ const MessengerUserSchema = new mongoose.Schema({
     type:Date,
     required:true
   },
+  profile_pic: {
+    type:String
+  },
   messenger_processes:[
     {
       process_name:{

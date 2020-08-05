@@ -38,7 +38,7 @@ router.get("/webview", async function(req,res) {
   //fetch the userdata from the user_db 
 
 
-  res.render("webview", {"title":query_message,"sender_psid":sender_psid,"name":user_data.user.name});
+  res.render("webview", {"title":query_message,"sender_psid":sender_psid,"name":user_data.user.name,"profile":user_data.user.});
 
 });
 

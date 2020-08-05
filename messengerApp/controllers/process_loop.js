@@ -246,6 +246,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
           let jump_to = null;
           let pause = null;
           let generic_template_obj = null;
+          let webview_obj = null;
 
           console.log(in_message);
 
@@ -267,12 +268,14 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
           if (item.steps[step].generic_template_obj ) generic_template_obj = item.steps[step].generic_template_obj;
 
+          if (item.steps[step].webview_obj) webview_obj = item.steps[step].webview_obj;
+
 
           let item_function = item.steps[step].func;
 
 
 
-          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message , pause, generic_template_obj);
+          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message , pause, generic_template_obj, webview_obj);
 
           console.log({res:res});
 

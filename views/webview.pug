@@ -9,20 +9,22 @@ html(lang="en")
         style. 
             body{background-color:gray;}
             .main_container {
-                             background-color:white;
-                             margin:auto;
-                             padding:10px;
-                             max-width:450px;
-                             text-align:center; }
-            h1{
+                 background-color:white;
+                 margin:auto;
+                 padding:10px;
+                 max-width:450px;
+                 text-align:center; 
+             }
+            h1 {
                 font-family:lato;
                 font-size:24px; 
-                font-style:bold; }
-            p{
+                font-style:normal; 
+             }
+            p {
                 font-family:lato;
                 font-size:12px; 
                 font-style:normal;
-            }
+             }
     body
         script. 
             (function(d, s, id){
@@ -39,6 +41,8 @@ html(lang="en")
             p
              |hello #{name} This is the first text, the message is #{title}
             br
+            #profile_picture
+                img src=#{profile_picture}
             p
              |your sender_psid is #{sender_psid}
 

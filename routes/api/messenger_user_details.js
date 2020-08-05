@@ -54,12 +54,13 @@ router.post("/", [
           first_name,
           last_name,
           name,
-          sender_psid
+          sender_psid,
+          profile_pic
         } = req.body;
 
         date = Date.now();
 
-        user = new Mess_user({first_name,last_name,name,sender_psid,date});
+        user = new Mess_user({first_name,last_name,name,sender_psid,profile_pic,date});
 
         await user.save();
 

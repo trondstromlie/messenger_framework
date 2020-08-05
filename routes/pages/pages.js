@@ -21,7 +21,7 @@ router.get("/webview", async function(req,res) {
 
   if(req.query.message)  query_message = req.query.message;
   if(req.query.sender_psid)  sender_psid = req.query.sender_psid;
-  
+
   console.log({sender_psid:sender_psid});
 
   if( sender_psid !== null ) {
@@ -33,7 +33,7 @@ router.get("/webview", async function(req,res) {
 
 
 
-  res.render("webview", {"title":query_message});
+  res.render("webview", {"title":query_message,"sender_psid":sender_psid});
 
 });
 

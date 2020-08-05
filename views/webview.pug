@@ -45,8 +45,8 @@ html(lang="en")
              |hello #{name} This is the first text, the message is #{title}
             br
             #profile_picture
-                -var image_url = profile_pic;
-                img(src=image_url alt="Profile" width=100%)
+                - console.log(profile_pic);
+                //img(src=image_url alt="Profile" width=100%)
             p
              |your sender_psid is #{sender_psid}
 

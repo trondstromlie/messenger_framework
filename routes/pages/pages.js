@@ -20,7 +20,7 @@ router.get("/webview", async function(req,res) {
   let user_data = {};
 
   if(req.query.message)  query_message = req.query.message;
-  if(req.query.message)  query_message = req.query.sender_psid;
+  if(req.query.sender_psid)  sender_psid = req.query.sender_psid;
 
   if( sender_psid !== null ) {
     user_data = await fetchUserData(sender_psid);

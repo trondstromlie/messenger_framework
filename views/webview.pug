@@ -25,6 +25,9 @@ html(lang="en")
                 font-size:12px; 
                 font-style:normal;
              }
+             #profile_picture.img {
+                 border-radius:50px;
+             }
     body
         script. 
             (function(d, s, id){
@@ -42,7 +45,7 @@ html(lang="en")
              |hello #{name} This is the first text, the message is #{title}
             br
             #profile_picture
-                img src=#{profile_picture}
+                img src=#{profile_pic} width=100%
             p
              |your sender_psid is #{sender_psid}
 

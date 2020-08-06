@@ -26,11 +26,11 @@ router.get("/webview", async function(req,res) {
   let sender_psid = null;
   let user_data = {};
   let profile_pic = "https://i.pinimg.com/originals/aa/c3/80/aac38056c5f66c34f769f5c21562ebb7.jpg";
-  let field_name = null
+  let field_name = "no_data"
 
   if(req.query.message)  query_message = req.query.message;
   if(req.query.sender_psid)  sender_psid = req.query.sender_psid;
-  if(req.query.field_name0) field_name = req.query.field_name;
+  if(req.query.field_name) field_name = req.query.field_name;
 
   console.log({sender_psid:sender_psid});
 

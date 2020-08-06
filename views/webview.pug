@@ -115,7 +115,7 @@ html(lang="en")
                 alert("button clicked");
                 //write some data to a custom_data field
                 //ajax call to the customfield API get the appropriat customfield from qs 
-                function()
+                
                 var custom_field_url = "https://phonestats.herokuapp.com/api/messenger/messenger_processes/customfields";
                 var custom_data = {"sender_psid" : "#{sender_psid}", "field_name": "#{field_name}", "field_value": "click from webview"};
                 console.log(data);

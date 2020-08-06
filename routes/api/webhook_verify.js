@@ -31,7 +31,8 @@ const http = require('http');
     //checking for page subscription.
     if (req.body.object === 'page'){
 
-
+      console.log("\n************** Webhook_event ******************");
+      console.log({event});
 
        /* Iterate over each entry, there can be multiple entries
        if callbacks are batched. */
@@ -39,8 +40,10 @@ const http = require('http');
        req.body.entry.forEach(function(entry) {
        // Iterate over each messaging event
           entry.messaging.forEach(function(event) {
+
           console.log({webhook:event});
           if (event.postback){
+
              processPostback(event);
           } else if (event.message.quick_reply) {
               processQuickreply(event);

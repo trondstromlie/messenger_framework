@@ -25,10 +25,12 @@ router.get("/webview", async function(req,res) {
   let query_message = "Hello";
   let sender_psid = null;
   let user_data = {};
-  let profile_pic = "https://i.pinimg.com/originals/aa/c3/80/aac38056c5f66c34f769f5c21562ebb7.jpg"
+  let profile_pic = "https://i.pinimg.com/originals/aa/c3/80/aac38056c5f66c34f769f5c21562ebb7.jpg";
+  let field_name = null
 
   if(req.query.message)  query_message = req.query.message;
   if(req.query.sender_psid)  sender_psid = req.query.sender_psid;
+  if(req.query.field_name0) field_name = req.query.field_name
 
   console.log({sender_psid:sender_psid});
 
@@ -37,11 +39,12 @@ router.get("/webview", async function(req,res) {
   };
 
   if(user_data.user.profile_pic) profile_pic = user_data.user.profile_pic;
+
   
   //fetch the userdata from the user_db 
 
 
-  res.render("webview", {"title":query_message,"sender_psid":sender_psid,"name":user_data.user.name,"profile_pic":profile_pic});
+  res.render("webview", {"title":query_message,"sender_psid":sender_psid,"name":user_data.user.name,"profile_pic":profile_pic,"field_name":field_name});
 
 });
 

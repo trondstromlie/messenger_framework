@@ -100,7 +100,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     
     let buttons = [
       {type:"web_url",url:"https://www.trondstromlie.com", title:" les mer om meg her "},
-      {type:"web_url",url:"https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field", title:"Open a web view", "webview_height_ratio": "COMPACT","messenger_extensions":"true"},
+      {type:"web_url",url:"https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field", title:"Open a web view", "webview_height_ratio" : "tall","messenger_extensions":"true"},
       {type:"postback", title:"Bestill Pizza!", payload:'{"messenger_process":"Pizza"}' }
     ];
     let text = "hva kan jeg hjelpe deg med "

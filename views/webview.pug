@@ -137,8 +137,9 @@ html(lang="en")
                 
                  //start a new process 
                  //ajax call to webhook containg a webhook? 
+
                 var webhook_url = "https://phonestats.herokuapp.com/messengerapp/webview_webhook";
-                var payload = JSON.stringify({messenger_process:"start_menu"});
+                var payload = JSON.stringify({messenger_process:"Getting_started"});
                 var webhook_data = {"sender_psid":"#{sender_psid}", "payload":payload};
                 
                 $.ajax({

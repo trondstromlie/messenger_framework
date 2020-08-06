@@ -62,10 +62,6 @@ router.post("/", ( req , res ) => {
       // Get the sender PSID
       let sender_psid = webhook_event.sender.id;
 
-      console.log("\n***************** webhook_event  ******************");
-      console.log({webhook_event});
- 
-
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
 

@@ -44,13 +44,19 @@ const http = require('http');
             
 
           console.log({webhook:event});
+
           if (event.postback){
 
              processPostback(event);
+
           } else if (event.message.quick_reply) {
+
               processQuickreply(event);
+
           } else if (event.message){
+
              processMessage(event);
+             
           }
       });
     });

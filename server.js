@@ -37,7 +37,7 @@ app.use("/api/messenger/messenger_log", require("./routes/api/messenger_log"));
 app.use("/api/messenger/messenger_processes", require("./routes/api/messenger_processes"));
 
 //API route for the messenger web_hook
-//app.use("/api/verify", require("./routes/api/webhook_verify"));
+app.use("/api/verify", require("./routes/api/webhook_verify"));
 app.use("/messengerapp/webhook", require("./messengerApp/webhook"));
 
 //Routes for views

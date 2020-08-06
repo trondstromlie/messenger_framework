@@ -94,7 +94,7 @@ html(lang="en")
               img(src=profile_pic alt="Profile")
               
 
-            a.myButton(href='#') G&aring; videre  
+            a.myButton() G&aring; videre  
             p
              |your sender_psid is #{sender_psid}
 
@@ -107,7 +107,6 @@ html(lang="en")
              // the Messenger Extensions JS SDK is done loading 
              //alert("facebook sdk has finished loading");
              var the_class = document.getElementsByClassName("main_container");
-             alert(the_class);
              the_class[0].style.display = "block";
 
              };

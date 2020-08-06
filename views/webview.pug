@@ -158,6 +158,12 @@ html(lang="en")
 
 
                  //use the facebook sdk method to close the window... 
+
+                 MessengerExtensions.requestCloseBrowser(function success() {
+                // webview closed
+                }, function error(err) {
+                 // an error occurred
+                });
              })
 
              };

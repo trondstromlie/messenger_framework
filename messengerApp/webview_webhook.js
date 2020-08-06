@@ -28,7 +28,7 @@ router.post("/",[
      try {
 
         let body = req.body;
-        await handlePostBack(body.sender_psid, body.postback)
+        await handlePostBack(body.sender_psid, body)
 
         return res.status(200).json({"status":200});
 

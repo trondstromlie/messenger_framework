@@ -100,7 +100,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     
     let buttons = [
       {type:"web_url",url:"https://www.trondstromlie.com", title:" les mer om meg her "},
-      {type:"web_url",url:"https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field", title:"Open a web view","messenger_extensions":"true" , "webview_height_ratio" : "tall"},
+      {type:"web_url",url:"https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field", title:"Open a web view","messenger_extensions":"true" , "webview_height_ratio" : "tall", "fallback_url":"https://trondstromlie.com"},
       {type:"postback", title:"Bestill Pizza!", payload:'{"messenger_process":"Pizza"}' }
     ];
     let text = "hva kan jeg hjelpe deg med "
@@ -116,7 +116,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     for(let [i, item] of buttons.entries()) {
       if(item.type === "web_url") {
         //do the logic for url buttons
-        let button_obj = {type:"web_url" ,title:item.title, url:item.url};
+        let button_obj = {type:"web_url" ,title:item.title, url:item.url,messenger_extensions:item.messenger_extensions,webview_height_ratio:item.webview_height_ratio};
         payload.buttons.push(button_obj);
 
 
@@ -433,7 +433,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
 
   let buttons = [
-    {"title" : "les mer", "value" : "url", "type" : "web_url","messenger_extensions" : "true", "webview_height_ratio" :"tall" },
+    {"title" : "les mer", "value" : "url", "type" : "web_url","messenger_extensions" : "true", "webview_height_ratio" :"compact","fallback_url":"https://trondstromlie.com"},
     {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":null,"fields":{"price":"price","currency":"currency","item":"item_number","title":"title","img_url":"img_url","sub_title":"sub_title"}}}
   ];
 

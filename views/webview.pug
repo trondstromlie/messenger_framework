@@ -124,11 +124,11 @@ html(lang="en")
                     url:custom_field_url,
                     type:"POST",
                     data:custom_data,
-                    success:function(data) {
-                        console.log({data_sent_to_server:data})
+                    success:function(custom_data) {
+                        console.log({data_sent_to_server:custom_data})
                     },
-                    error:function(data) {
-                        console.log(data);
+                    error:function(custom_data) {
+                        console.log(custom_data);
                         alert("an error occured no data sent");
                     }
                 });
@@ -143,11 +143,11 @@ html(lang="en")
                     url:webhook_url,
                     type:"POST",
                     data:webhook_data,
-                    success:function(data) {
-                        console.log({data_sent_to_server:data})
+                    success:function(webhook_data) {
+                        console.log({data_sent_to_server:webhook_data})
                     },
-                    error:function(data) {
-                        console.log(data);
+                    error:function(webhook_data) {
+                        console.log(webhook_data);
                         alert("an error occured no data sent");
                     }
                 });

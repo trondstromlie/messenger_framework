@@ -30,12 +30,15 @@ router.post("/",[
         let body = req.body;
         await handlePostBack(body.sender_psid, body.postback)
 
+        return res.status(200).json({"status":200});
+
       //you need to add som more checks here, like a uniqe id for the webview, a page id etc for now make it simple....
       //do the logic here
       //the request should be fomated with as a stringified object 
 
      } catch (e) {
          console.error(e);
+         res.status(500).send("server error");
      }  
       
     }

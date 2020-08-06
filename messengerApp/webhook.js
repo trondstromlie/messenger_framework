@@ -51,7 +51,7 @@ router.post("/", ( req , res ) => {
   let body = req.body;
 
   console.log("\n***************** webhook_event  ******************");
-      console.log({body});
+      console.log(JSON.stringify(body,null,4));
 
   // Checks this is an event from a page subscription
   if (body.object === 'page') {

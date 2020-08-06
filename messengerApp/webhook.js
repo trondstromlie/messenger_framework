@@ -50,6 +50,9 @@ router.post("/", ( req , res ) => {
 
   let body = req.body;
 
+  console.log("\n***************** webhook_event  ******************");
+      console.log({body});
+
   // Checks this is an event from a page subscription
   if (body.object === 'page') {
 
@@ -64,7 +67,7 @@ router.post("/", ( req , res ) => {
       let sender_psid = webhook_event.sender.id;
 
       console.log("\n***************** webhook_event  ******************");
-      console.log({entry});
+      console.log({webhook_event});
  
 
       // Check if the event is a message or postback and

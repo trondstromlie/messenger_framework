@@ -98,9 +98,11 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     //show button template
     console.log("button template discovered");
     
+    //https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field
+
     let buttons = [
       {type:"web_url",url:"https://www.trondstromlie.com", title:" les mer om meg her "},
-      {type:"web_url",url:"https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field", title:"Open a web view", "webview_height_ratio" : "tall","messenger_extensions":"true"},
+      {type:"web_url",url:"https://trondstromlie.com", title:"Open a web view","messenger_extensions":"true" , "webview_height_ratio" : "tall"},
       {type:"postback", title:"Bestill Pizza!", payload:'{"messenger_process":"Pizza"}' }
     ];
     let text = "hva kan jeg hjelpe deg med "

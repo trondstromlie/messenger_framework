@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const {check, validationResult} = require('express-validator');
-const GlobalOperation = require('../../models/GlobalOperations');
+const GlobalOperations = require('../../models/GlobalOperations');
 
 // @ GET api / messenger / add_userCrontab_loop
 // @ desc   add a user to the crontab 
@@ -38,7 +38,7 @@ router.post('/' , [
 
             let {sender_psid , timestamp, field_name, field_value, messenger_process, page_id } = req.body;
 
-            let cron = await GlobalOperation.findOne(page_id);
+            let cron = await GlobalOperations.findOne({page_id});
             
             //if no cron db for this page is discovered create one else push the new cron jobs to the crontab array 
 
@@ -50,7 +50,7 @@ router.post('/' , [
 
               crontab_loop.push(current_crontab_obj);
 
-              cron = new GlobalOperation({page_id:page_id, crontab_loop:crontab_loop});
+              cron = new GlobalOperations({page_id:page_id, crontab_loop:crontab_loop});
 
               await cron.save();
 
@@ -61,7 +61,7 @@ router.post('/' , [
 
               let current_crontab_obj = { sender_psid:sender_psid, timestamp:timestamp, field_name:field_name, field_value:field_value, messenger_process:messenger_process, page_id:page_id}
               cron.crontab_loop.push(current_crontab_obj);
-              
+
               await cron.save();
 
               res.status(200).json({crontab_loop:cron.crontab_loop})

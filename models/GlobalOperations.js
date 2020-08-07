@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const GlobalOperations = new mongoose .Schema({
+    page_id:{
+        type:String,
+        required:true
 
+    },
     crontab_loop: [
         {
             sender_psid:{

@@ -22,7 +22,8 @@ router.post('/' , [
     check("timestamp","timestamp is required").not().isEmpty(),
     check("field_name","field_name is required").not().isEmpty(),
     check("field_value","field_value is required").not().isEmpty(),
-    check("messenger_process", "messenger_process is required").not().isEmpty()
+    check("messenger_process", "messenger_process is required").not().isEmpty(),
+    check("page_id", "page_id is required")
 ], async ( req , res ) => {
 
     let errors = validationResult(req);
@@ -35,7 +36,39 @@ router.post('/' , [
 
             //write the data to the database.
 
-            let cron = await GlobalOperation.find();
+            let {sender_psid , timestamp, field_name, field_value, messenger_process, page_id } = req.body;
+
+            let cron = await GlobalOperation.findOne(page_id);
+            
+            //if no cron db for this page is discovered create one else push the new cron jobs to the crontab array 
+
+            if(!cron) {
+
+              let crontab_loop = [];
+
+              let current_crontab_obj = { sender_psid:sender_psid, timestamp:timestamp, field_name:field_name, field_value:field_value, messenger_process:messenger_process, page_id:page_id}
+
+              crontab_loop.push(current_crontab_obj);
+
+              cron = new GlobalOperation({page_id:page_id, crontab_loop:crontab_loop});
+
+              await cron.save();
+
+              res.status(200).json({crontab_loop:cron.crontab_loop})
+
+
+            } else {
+
+              let current_crontab_obj = { sender_psid:sender_psid, timestamp:timestamp, field_name:field_name, field_value:field_value, messenger_process:messenger_process, page_id:page_id}
+              cron.crontab_loop.push(current_crontab_obj);
+              
+              await cron.save();
+
+              res.status(200).json({crontab_loop:cron.crontab_loop})
+
+            }
+
+
 
             console.log(cron);
 

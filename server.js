@@ -35,6 +35,7 @@ app.use("/api/messenger/check_in_user", require("./routes/api/check_in_user"));
 app.use("/api/messenger/messenger_user_details", require("./routes/api/messenger_user_details"));
 app.use("/api/messenger/messenger_log", require("./routes/api/messenger_log"));
 app.use("/api/messenger/messenger_processes", require("./routes/api/messenger_processes"));
+app.use("/api/messenger/add_userCrontab_loop", require("./routes/api/add_userCrontab_loop"));
 
 //API route for the messenger web_hooks
 app.use("/api/verify", require("./routes/api/webhook_verify"));

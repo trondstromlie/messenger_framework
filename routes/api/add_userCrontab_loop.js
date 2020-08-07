@@ -102,7 +102,7 @@ router.put("/", [
 
     let errors = validationResult(req);
 
-    if(errors.isEmpty()) {
+    if(!errors.isEmpty()) {
         console.log({errors:errors});
         return res.status(300).json({Errors:errors});
     }else {

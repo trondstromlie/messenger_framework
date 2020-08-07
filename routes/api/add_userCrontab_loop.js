@@ -98,7 +98,7 @@ router.put("/", [
     check("page_id","page_id is required").not().isEmpty(),
     check("field_name","field_name is required").not().isEmpty(),
     check("field_value","field_value is required").not().isEmpty(),
-], async () => {
+], async (req,res) => {
 
     let errors = validationResult(req);
 

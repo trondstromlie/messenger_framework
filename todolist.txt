@@ -2,54 +2,31 @@
 
 ***todo list ******
 
-//******* finnish the receipt image '*******
-
-	get a ordernumber from the checkout process, add itt to the orderfield,
-
-	calculate how long it wil take before the food is ready???
-	or is this a new product from the citchen.....
-
-
-
-
-
-
-/********** create a webview to show in the messenger window ***************
-
-	where the user can pay using wipps paypal or stripe set up a sandbox paypal integration.
-
-	One for a fake payment service, f.eks vips where the user opens the cart from the pizza order
-	and is sent to a payment vindow where he can type inn his phonenumber
-
-
-	second is a webview that shows the order in a structures list with puctures 
-	if user hits pay butten something happends if the user hits the shop more butten 
-	he is back in the messenger window using a new function...
-
-
 
 /*********** creata a crontab_loop that starts processes on demand **********
+
+	add a process loop that add a message to the cron-loop 
+
+	add a api to add a message to the loop 
+
+	to start a process on a given time ...
+
+	create a sitewide database, that is not connected to a user, for maintenace tasks, stats etc
 
 	create a special messenger process function that ads a new process to the crontab_loop to start on a spesific time
 	f.eks process start a course and then send the next section after 24 houres or on a spesific time...
 
-	wait for x numner of minutes houres days than >>>  
+	wait for x numner of minutes houres days than send a message
+
+	send on spesific timestamp
 
 
 /************ add user processses and facebook page token to the user profile.
 
-	creata and api to add all the user spesific data such as messenger processes, starter fraces etc to user db 
+	create aapi to add all the user spesific data such as messenger processes, starter frazes etc to user db 
 	this to make it faster to iplement the messenger backend to a fully functionin program in the future
 
 
-
-********* create a api where a logged in user can send a message to a selected messenger user.
-	creat a and API that acept a token to validate a user find the page toekn from user, a sender_PSID and a message, 
-
-
-	to to this you need to add the page token to the user profile,
-	when you send an api call you must include the user id, the facebook token and the psid, and the message.
-	optioanl walue should also be a custom field value, F.EX a webinar_may partisipant 
 
 
 

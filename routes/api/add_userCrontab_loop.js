@@ -46,7 +46,7 @@ router.post('/' , [
 
               let crontab_loop = [];
 
-              let current_crontab_obj = { sender_psid:sender_psid, timestamp:timestamp, field_name:field_name, field_value:field_value, messenger_process:messenger_process, page_id:page_id}
+              let current_crontab_obj = { sender_psid:sender_psid, timestamp:timestamp, custom_data_name:field_name, custom_data_value:field_value, messenger_process:messenger_process, page_id:page_id }
 
               crontab_loop.push(current_crontab_obj);
 

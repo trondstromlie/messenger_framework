@@ -5,8 +5,19 @@ const router = express.Router();
 const {check, validationResult} = require('express-validator');
 const GlobalOperation = require('../../models/GlobalOperations');
 
+// @ GET api / messenger / add_userCrontab_loop
+// @ desc   add a user to the crontab 
+// @ public function require sender_psid and page id
 
-router.get('/' , [ 
+router.get('/', ( req , res ) => {
+    res.send("@ GET api / messenger / add_userCrontab_loop");
+});
+
+
+// @ route  POST api / messenger / add_userCrontab_loop
+// @ desc   add a user to the crontab 
+// @ public function require sender_psid and page id
+router.post('/' , [ 
     check("sender_psid","sender_psid is required").not().isEmpty(),
     check("timestamp","timestamp is required").not().isEmpty(),
     check("field_name","field_name is required").not().isEmpty(),
@@ -36,7 +47,7 @@ router.get('/' , [
 
         }
     }
-} ) ;
+});
 
 
 module.exports = router;

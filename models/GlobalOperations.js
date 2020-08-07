@@ -31,6 +31,6 @@ const GlobalOperations = new mongoose.Schema({
 
         }
     ]
-})
+});
 
-module.exports = GlobalOperations = mongoose.model('GlobalOperations', GlobalOperations);
+module.exports = cron_tab = mongoose.model('cron_tab', GlobalOperations);

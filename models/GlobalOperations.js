@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const GlobalOperations = new mongoose .Schema({
+const GlobalOperations = new mongoose.Schema({
     page_id:{
         type:String,
         required:true
@@ -32,3 +32,5 @@ const GlobalOperations = new mongoose .Schema({
         }
     ]
 })
+
+module.exports = GlobalOperations = mongoose.model('GlobalOperations', GlobalOperations);

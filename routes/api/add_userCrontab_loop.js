@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const {check, validationResult} = require('express-validator');
 const GlobalOperations = require('../../models/GlobalOperations');
+const { put } = require('request-promise');
 
 // @ GET api / messenger / add_userCrontab_loop
 // @ desc   add a user to the crontab 
@@ -87,3 +88,53 @@ router.post('/' , [
 
 
 module.exports = router;
+
+
+//delete crontabs trigered by the tag hook function, when a users stops subscribing to a spesific tag etc 
+//api accepts the arguments page_id , sender_psid , tag_name , tag value
+
+router.put("/", [
+    check("sender_psid","sender_psid is required").not().isEmpty(),
+    check("page_id","page_id is required").not().isEmpty(),
+    check("field_name","field_name is required").not().isEmpty(),
+    check("field_value","field_value is required").not().isEmpty(),
+], async () => {
+
+    let errors = validationResult(req);
+
+    if(errors.isEmpty()) {
+        console.log({errors:errors});
+        return res.status(300).json({Errors:errors});
+    }else {
+        try { 
+         let {sender_psid,page_id,field_name,field_value} = req.body;
+
+         let cron = await GlobalOperations.findOne({page_id});
+
+          if(!cron) {
+            console.log({error: "no page with this id exists"})
+            res.status(300).json({"error":"there ar no outstanding jobs for this page id"});
+         } else {
+
+           let clean = cron.crontab_loop.filter( (item ) => {
+               if(sender_psid !== item.sender_psid && field_name !== item.custom_data_name && field_value !== item.custom_data_value) {
+                   return item;
+               }
+           }) 
+
+           cron.crontab_loop = clean;
+
+           await cron.save();
+
+           return res.status(200).json({cron_tab:crontab_loop});
+
+
+          }
+        } catch (e) {
+            console.error(e);
+            res.status(500).send("server error");
+        }  
+
+    }
+});
+

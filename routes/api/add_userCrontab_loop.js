@@ -22,7 +22,7 @@ router.get("/all_pages", async ( req , res ) => {
           if(item.page_id) pages.push(item.page_id);
       }
 
-      return res.status(200).json(pages);
+      return res.status(200).json({pages:pages});
 
 
     } catch (e) {

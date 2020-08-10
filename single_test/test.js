@@ -12,7 +12,7 @@ console.log({value:value});
 
 
 let value2 = arr.filter( (item )=> {
-    if(! item.value1 =="a" && item.value2 == "b") {
+    if(! (item.value1 =="a" && item.value2 == "b")) {
         return true
     }
 })

@@ -10,8 +10,41 @@ const { put } = require('request-promise');
 // @ desc  give a list of all active crontab, for page if sender_psid return all active crontab for user..
 // @ public function require  page id optional sender_psid 
 
-router.get('/', ( req , res ) => {
+router.get('/:page_id', ( req , res ) => {
     res.send("@ GET api / messenger / add_userCrontab_loop");
+
+    //we need some sort of acess controll here
+
+    //if sender psid return list of a specific users crontabs
+    //else return all active crontabs. 
+    //you need a function to retrieve all page id's that contains a crontab
+
+    try {
+
+        let cron = await GlobalOperations.findOne(page_id);
+
+        if(req.body.sender_psid ) {
+            //filter out a list containg crontabs for spesific user
+
+            let users_crontabs = cron.crontab_loop.filter(item => item.sender_psid == req.body.sender_psid);
+
+            return res.status(200).json(users_crontabs);
+
+        } else {
+
+            return res.status(200).json(cron.crontab_loop);
+            
+        }
+            
+
+    } catch (e) {
+
+        console.error(e);
+        res.status(500).send("server error");
+
+    }
+
+ 
 });
 
 

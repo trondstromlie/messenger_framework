@@ -11,7 +11,6 @@ const { put } = require('request-promise');
 // @ public function require  page id optional sender_psid 
 
 router.get('/:page_id', async ( req , res ) => {
-    res.send("@ GET api / messenger / add_userCrontab_loop");
 
     //we need some sort of acess controll here
 

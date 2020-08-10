@@ -73,7 +73,7 @@ router.get('/:page_id', async ( req , res ) => {
 
 
 // @ route  POST api / messenger / add_userCrontab_loop
-// @ desc   add a user to the crontab 
+// @ desc   add  a user to the crontab 
 // @ public function require sender_psid and page id
 router.post('/' , [ 
     check("sender_psid","sender_psid is required").not().isEmpty(),
@@ -154,7 +154,7 @@ router.post('/' , [
 // @ desc   add a user to the crontab 
 // @ public function require sender_psid and page id
 
-router.put("/", [
+router.delete("/", [
     check("sender_psid","sender_psid is required").not().isEmpty(),
     check("page_id","page_id is required").not().isEmpty(),
     check("field_name","field_name is required").not().isEmpty(),
@@ -206,6 +206,45 @@ router.put("/", [
         }  
 
     }
+});
+
+// @ route  PUT api / messenger / add_userCrontab_loop
+// @ desc   update the crontab-loop content send the updated array, the api updates the array in the the database. 
+// @ public function require page_id
+
+router.put("/", [
+    check("page_id", "page_id is required").not().isEmpty(),
+    check("cron_tab_loop", "cron_tab_loop").not().isEmpty()
+], async ( req , res) => {
+
+    let errors = validationResult(req);
+
+    if(validationResult.isEmpty()) {
+        console.log(errors);
+        res.status(300).json(errors);
+
+    } else {
+
+    let data = { page_id , cron_tab_loop } = req.body;
+
+    let page_cron_tab = await GlobalOperations.findOne({page_id:page_id});
+
+    if(page_cron_tab) {
+
+        page_cron_tab.cron_tab_loop = cron_tab_loop;
+
+        await page_cron_tab.save();
+
+        return res.status(200).json(page_cron_tab);
+
+    } else {
+
+        res.status(300).json({error:"No crontab for this page discovered "})
+
+    }
+
+    }
+
 });
 
 module.exports = router;

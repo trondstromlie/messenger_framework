@@ -10,7 +10,7 @@ const { put } = require('request-promise');
 // @ desc  give a list of all active crontab, for page if sender_psid return all active crontab for user..
 // @ public function require  page id optional sender_psid 
 
-router.get('/:page_id', ( req , res ) => {
+router.get('/:page_id', async ( req , res ) => {
     res.send("@ GET api / messenger / add_userCrontab_loop");
 
     //we need some sort of acess controll here

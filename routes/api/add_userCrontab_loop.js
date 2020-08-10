@@ -14,9 +14,9 @@ router.get("/all_pages", async ( req , res ) => {
 
     try {
 
-      let pages = await GlobalOperations.find();
+      let cron_db = await GlobalOperations.find();
       
-      console.log({pages:pages});
+      let pages = Object.values(cron_db.page_id);
 
       return res.status(200).json(pages);
 

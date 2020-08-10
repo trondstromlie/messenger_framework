@@ -8,4 +8,12 @@ let arr = [
 
 let value = arr.filter(item => !(item.value1 == "a" && item.value2 == "b"));
 
-console.log(value);
+console.log({value:value});
+
+
+let value2 = arr.filter( (item )=> {
+    if(! item.value1 =="a" && item.value2 == "b") {
+        return true
+    }
+})
+console.log({value2:value2});

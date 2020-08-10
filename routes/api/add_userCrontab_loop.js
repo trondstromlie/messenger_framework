@@ -10,7 +10,7 @@ const { put } = require('request-promise');
 // @ desc  get a list of all pages containg an active crontap
 // @ public function  
 
-router.get("/", async ( req , res ) => {
+router.get("/all_pages", async ( req , res ) => {
 
     try {
 

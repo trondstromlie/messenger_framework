@@ -7,8 +7,8 @@ const GlobalOperations = require('../../models/GlobalOperations');
 const { put } = require('request-promise');
 
 // @ GET api / messenger / add_userCrontab_loop
-// @ desc   add a user to the crontab 
-// @ public function require sender_psid and page id
+// @ desc  give a list of all active crontab, for page if sender_psid return all active crontab for user..
+// @ public function require  page id optional sender_psid 
 
 router.get('/', ( req , res ) => {
     res.send("@ GET api / messenger / add_userCrontab_loop");
@@ -127,7 +127,7 @@ router.put("/", [
 
            await cron.save();
 
-           return res.status(200).json({cron_tab:crontab_loop});
+           return res.status(200).json({cron_tab:cron.crontab_loop});
 
 
           }

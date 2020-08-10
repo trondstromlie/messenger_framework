@@ -87,18 +87,22 @@ router.post('/' , [
 });
 
 
-module.exports = router;
+
 
 
 //delete crontabs trigered by the tag hook function, when a users stops subscribing to a spesific tag etc 
 //api accepts the arguments page_id , sender_psid , tag_name , tag value
+
+// @ route  POST api / messenger / add_userCrontab_loop
+// @ desc   add a user to the crontab 
+// @ public function require sender_psid and page id
 
 router.put("/", [
     check("sender_psid","sender_psid is required").not().isEmpty(),
     check("page_id","page_id is required").not().isEmpty(),
     check("field_name","field_name is required").not().isEmpty(),
     check("field_value","field_value is required").not().isEmpty(),
-], async (req,res) => {
+], async ( req , res ) => {
 
     let errors = validationResult(req);
 
@@ -106,6 +110,7 @@ router.put("/", [
         console.log({errors:errors});
         return res.status(300).json({Errors:errors});
     }else {
+
         try { 
          let {sender_psid,page_id,field_name,field_value} = req.body;
 
@@ -114,14 +119,18 @@ router.put("/", [
           if(!cron) {
             console.log({error: "no page with this id exists"})
             res.status(300).json({"error":"there ar no outstanding jobs for this page id"});
+
          } else {
 
-           console.log(cron); 
+           console.log("*****************   PUT CRONTAB ****************");
+
            let clean = cron.crontab_loop.filter( (item ) => {
                if(sender_psid !== item.sender_psid && field_name !== item.custom_data_name && field_value !== item.custom_data_value) {
                    return item;
                }
-           }) 
+           });
+
+           console.log({after_filter_cron: clean })
 
            cron.crontab_loop = clean;
 
@@ -139,3 +148,4 @@ router.put("/", [
     }
 });
 
+module.exports = router;

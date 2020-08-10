@@ -6,6 +6,27 @@ const {check, validationResult} = require('express-validator');
 const GlobalOperations = require('../../models/GlobalOperations');
 const { put } = require('request-promise');
 
+// @ GET api / messenger / add_userCrontab_loop / all_pages
+// @ desc  get a list of all pages containg an active crontap
+// @ public function  
+
+router.get("/", async ( req , res ) => {
+
+    try {
+
+      let pages = await GlobalOperations.find();
+      
+      console.log({pages:pages});
+
+      return res.status(200).json(pages);
+
+
+    } catch (e) {
+        console.error(e);
+        res.status(500).send("server error");
+    }
+})
+
 // @ GET api / messenger / add_userCrontab_loop
 // @ desc  give a list of all active crontab, for page if sender_psid return all active crontab for user..
 // @ public function require  page id optional sender_psid 

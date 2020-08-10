@@ -20,7 +20,7 @@ router.get('/:page_id', async ( req , res ) => {
 
     try {
 
-        let cron = await GlobalOperations.findOne({sender_psid:req.params.page_id});
+        let cron = await GlobalOperations.findOne({page_id:req.params.page_id});
 
         if(req.body.sender_psid ) {
             //filter out a list containg crontabs for spesific user

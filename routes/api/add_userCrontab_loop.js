@@ -17,8 +17,8 @@ router.get("/all_pages", async ( req , res ) => {
       let cron_db = await GlobalOperations.find();
       
       let pages = [];
-      
-      for(let item in cron_db) {
+
+      for(let item of cron_db) {
           if(item.page_id) pages.push(item.page_id);
       }
 

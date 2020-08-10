@@ -1,4 +1,9 @@
 "use strict";
+//****************************************** */
+//todo:
+// create a api to delete pages with page_id to drop empty chemas
+
+//****************************************** */
 
 const express = require('express');
 const router = express.Router();

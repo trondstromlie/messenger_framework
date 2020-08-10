@@ -1,19 +1,17 @@
 "use strict";
-let arr = [
-    {value1 : "a", value2 : "b"},
-    {value1 : "a", value2 : "c"},
-    {value1 : "b", value2 : "b"},
-    {value1 : "a", value2 : "b"}
-];
 
-let value = arr.filter(item => !(item.value1 == "a" && item.value2 == "b"));
-
-console.log({value:value});
-
-
-let value2 = arr.filter( (item )=> {
-    if(! (item.value1 =="a" && item.value2 == "b")) {
-        return true
+let obj = {
+    name:"def",
+    age:50,
+    name_age: function () {
+       return this.name + " is already turning " + this.age;
     }
-})
-console.log({value2:value2});
+};
+
+console.log(obj.name_age());
+
+let bjarne = Object.create(obj, {name:{value:"bjørnar"},age:{value:154}});
+
+
+
+console.log(bjarne.name_age());

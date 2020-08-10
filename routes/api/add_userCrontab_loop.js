@@ -128,7 +128,7 @@ router.put("/", [
 
            let clean = cron.crontab_loop.filter( (item ) => {
                console.log(item);
-               if(sender_psid != item.sender_psid && field_name != item.custom_data_name && field_value != item.custom_data_value) {
+               if(field_value != item.custom_data_value) {
                    return true;
                }
            });

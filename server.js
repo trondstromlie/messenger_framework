@@ -49,7 +49,7 @@ app.use("/", require("./routes/pages/pages"));
 
 //start the crontab service here
 
-cron.schedule('*/2 * * * *', () => {
+cron.schedule('*/1 * * * *', () => {
     console.log('running a task every two minutes');
   });
 

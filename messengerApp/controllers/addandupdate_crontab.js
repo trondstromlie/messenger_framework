@@ -70,9 +70,9 @@ async function delete_user_crontab_on_unsubscribe (data) {
 //get all pages 
 
 
-async function get_all_crontab_pages (data) {
+async function get_all_crontab_pages () {
 
-    let {sender_psid, page_id, field_name, field_value} = data;
+    
 
     let options = {
         url : "https://phonestats.herokuapp.com/api/messenger/add_userCrontab_loop/all_pages",

@@ -112,7 +112,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       name:"Pause",
       steps: [
          {name:"get_email",func:process_functions.send_empty_message, msg:"Hei " + user.first_name + " jeg skal sende deg en melding om en time "},
-         {name:"send_to_crontab", func:process_functions.send_to_cron, cron_obj : {page_id: "104680997936481" ,timestamp:"timestamp", messenger_process: "Pizza", field_name:"subscripe", field_value:"true"} },
+         {name:"send_to_crontab", func:process_functions.send_to_cron, cron_obj : {page_id: "104680997936481" ,timestamp:null, messenger_process: "Pizza", field_name:"subscripe", field_value:"true"} },
          {name:"writing_action",func:process_functions.writing_action, pause:3},
 
       ]

@@ -16,6 +16,25 @@ const addandupdate_crontab = require('./addandupdate_crontab');
 async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   console.log("sending user to crontab");
+  if(cron_obj.timestamp === null) {
+
+    
+    let timeNow = Date.now();
+
+    //add milliseconds to the epoc timestamp
+
+    let milliseconds = 0;
+    let seconds = 0;
+    let minutes = 15;
+    let houres = 1;
+    let days = 0;
+
+    let new_time  = timestamp + milliseconds + (1000*seconds) + (1000*60*minutes) + (1000 * 60  * 60 * houres) + (1000 * 60 * 60 * 24 * days);
+  
+  
+
+    cron_obj.timestamp = new_time;
+  }
 
   //write something to the crontab 
   try {

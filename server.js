@@ -3,6 +3,7 @@ const connectDb = require('./config/db');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require("path");
+const cron = require('node-cron');
 
 const PORT = process.env.PORT || 3000;
 
@@ -45,6 +46,17 @@ app.use("/messengerapp/webview_webhook", require("./messengerApp/webview_webhook
 //Routes for views
 app.use("/", require("./routes/pages/pages"));
 
+
+//start the crontab service here
+
+
+cron.schedule('*/15****', () => {
+ 
+    //run cron functions here 
+    console.log("cron is running, looking for functions to run ");
+
+
+})
 
 
 //start server

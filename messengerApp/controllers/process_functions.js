@@ -10,21 +10,24 @@ const callSendAPI = require('./callSendAPI');
 const addandupdate_userfields = require('./addandupdate_userfields');
 const senderAction = require('./senderAction');
 const { response } = require('express');
+const addandupdate_crontab = require('./addandupdate_crontab');
 
 //a simple tester function to open a webview
-async function open_web_view(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
-  console.log("starting the webiew");
+  console.log("sending user to crontab");
 
+  //write something to the crontab 
+  let x = await addandupdate_crontab({sender_psid, cron_obj.page_id , cron_obj.timestamp, cron_obj.start_process });
   
-
+  return {status:true, step:"next"};
 
 }
 
 //function to show a the template menues this inclue buttons generic template media reciept and in the future bordingpass
 //the structure for this menu comes from the generic template 
 
-async function generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj , webview_obj) {
+async function generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj , webview_obj, cron_obj) {
 
   if (generic_template_obj.type === "media") {
     //do the logic for media content here.
@@ -356,7 +359,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
 //function to fetch the content of the cart, show a list of all items with price, 
 //calculate the total price including a set WAT.  
 
-async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj , webview_obj) {
+async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj , webview_obj, cron_obj) {
 
   //foreach item in the customfield 
   //send the name of the customfield in the customfield object
@@ -430,7 +433,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 //** a function to fetch data from an api and show the data in a generic template            */
 //** the object must contain an image some descriptive text, and can contain a webadress ?   */
 
-async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   let buttons = [
     {"title" : "les mer", "value" : "url", "type" : "web_url","messenger_extensions" : "true", "webview_height_ratio" :"compact","fallback_url":"https://trondstromlie.com"},
@@ -628,7 +631,7 @@ console.log({"responce_element": response})
 //********************************************************************* */
 //** listen for add to cart postback */
 
-async function listen_for_add_to_cart (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function listen_for_add_to_cart (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
  try {
   
@@ -711,7 +714,7 @@ async function listen_for_add_to_cart (sender_psid, user, message, custom_field_
 //** invisible function to read value of bool custom value */
 //** if value is true do someting if value is false do something else  */
 
-async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function read_bool_value_of_custom_field (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   try {
 
@@ -760,7 +763,7 @@ async function read_bool_value_of_custom_field (sender_psid, user, message, cust
 //** invisible function to add a custom field with a value 
 //** f.ex subscription data subscribing to field -- newsletter:true */
 
-async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function add_bool_custom_value(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   try {
 
@@ -780,7 +783,7 @@ async function add_bool_custom_value(sender_psid, user, message, custom_field_ob
 //*********************************************************************** */
 //******function Jump to process
 
-async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function jump_to_process(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   console.log("******* jump to process " + jump_to.process_link);
 
@@ -812,7 +815,7 @@ async function jump_to_process(sender_psid, user, message, custom_field_obj, qui
 //**************************************************************
 //send a string of text, include a quick reply object to add a quick reply
 
-async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function ask_for_custom_data (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   console.log("Ask for custom data and pause");
 
@@ -842,7 +845,7 @@ async function ask_for_custom_data (sender_psid, user, message, custom_field_obj
 //function som viser en input data , sender quick reply for å bekrefte
 //du skrev dette, er de riktig.
 
-async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function listen_for_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   console.log("Listen for quick_replies confirm_data");
 
@@ -882,7 +885,7 @@ async function listen_for_quick_reply(sender_psid, user, message, custom_field_o
 //f.eks navn epost, etc så du kan ha flere customfields i samme text.
 //regex for å finne innholdet av merger fields {<merger-fields>}
 
-async function send_empty_message(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function send_empty_message(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
   
   let string = message;
   let response = {text:message};
@@ -932,7 +935,7 @@ async function send_empty_message(sender_psid, user, message, custom_field_obj, 
 
 //quick reply can være innebygd i empty text funksjonen f.eks med et ektra the_user_object
 
-async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj) {
+async function send_quick_reply(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   console.log("send quick reply");
 
@@ -963,7 +966,7 @@ async function send_quick_reply(sender_psid, user, message, custom_field_obj, qu
 //***********************************************
 //function to wait for data from the user validate it and store it in the object appropriat field
 
-async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause, generic_template_obj, webview_obj) {
+async function listen_for_data(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause, generic_template_obj, webview_obj, cron_obj) {
   console.log(" listen for data ");
 
 
@@ -1074,7 +1077,7 @@ async function listen_for_data(sender_psid, user, message, custom_field_obj, qui
 //************************************************
 // show the user the dots to show writing_action specify lengt in seconds?
 
-async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause, generic_template_obj, webview_obj) {
+async function writing_action (sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause, generic_template_obj, webview_obj, cron_obj) {
 
 try {
 
@@ -1121,7 +1124,7 @@ module.exports = {
   listen_for_add_to_cart:listen_for_add_to_cart,
   fetch_and_show_cart:fetch_and_show_cart,
   generic_template:generic_template,
-  open_web_view:open_web_view
+  send_to_cron:send_to_cron
 };
 
 

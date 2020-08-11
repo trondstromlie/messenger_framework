@@ -64,7 +64,8 @@ try {
         {process_key: "Kjør på", process_name : "Getting_started"},
         {process_key: "Menu2", process_name : "Generic_menu"},
         {process_key: "Image", process_name : "Generic_image"},
-        {process_key: "Receipt", process_name : "Receipt"}
+        {process_key: "Receipt", process_name : "Receipt"},
+        {process_key: "Pause", process_name : "Pause"}
         ]
       }; 
 

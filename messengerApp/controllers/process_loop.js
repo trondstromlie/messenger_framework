@@ -109,9 +109,12 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
         ] },
     {
 
-      name:"Email",
+      name:"Pause",
       steps: [
-         {name:"get_email",func:process_functions.get_email, msg:"skriv din beste epost adresse her"}
+         {name:"get_email",func:process_functions.get_email, msg:"Hei " + user.first_name + " jeg skal sende deg en melding om en time "},
+         {name:"send_to_crontab", func:process_functions.send_to_cron, cron_obj : {page_id: "104680997936481" ,new_timestamp:"timestamp", start_process: "Pizza"} },
+         {name:"writing_action",func:process_functions.writing_action, pause:3},
+
       ]
     },
     {
@@ -247,6 +250,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
           let pause = null;
           let generic_template_obj = null;
           let webview_obj = null;
+          let cron_obj = null;
 
           console.log(in_message);
 
@@ -270,12 +274,14 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
 
           if (item.steps[step].webview_obj) webview_obj = item.steps[step].webview_obj;
 
+          if(item.steps[step].cron_obj) cron_obj = item.steps[step].cron_obj;
+
 
           let item_function = item.steps[step].func;
 
 
 
-          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message , pause, generic_template_obj, webview_obj);
+          let res = await item_function(user.sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message , pause, generic_template_obj, webview_obj, cron_obj);
 
           console.log({res:res});
 

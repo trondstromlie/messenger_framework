@@ -15,7 +15,7 @@ async function add_user_to_crontab (data) {
     //build the request options
     let options = {
         url:"https://phonestats.herokuapp.com/api/messenger/add_userCrontab_loop",
-        method = "POST",
+        method : "POST",
         json: data,
     };
 

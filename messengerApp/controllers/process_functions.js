@@ -18,8 +18,11 @@ async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_
   console.log("sending user to crontab");
 
   //write something to the crontab 
+  try {
   let x = await addandupdate_crontab({sender_psid : sender_psid, page_id : cron_obj.page_id , timestamp : cron_objtimestamp, messenger_process: cron_obj.messenger_process, field_name:cron_obj.field_name, field_value:cron_obj.field_value });
-  
+  } catch (e) {
+    console.log(e);
+  }
   return {status:true, step:"next"};
 
 }

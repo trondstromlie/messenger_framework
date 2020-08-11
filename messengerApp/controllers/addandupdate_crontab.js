@@ -17,7 +17,7 @@ async function add_user_to_crontab (data) {
         url:"https://phonestats.herokuapp.com/api/messenger/add_userCrontab_loop",
         method = "POST",
         json: data,
-    }
+    };
 
     //create the Promise
     return new Promise ( ( resolve , reject ) =>  {

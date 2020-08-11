@@ -50,7 +50,7 @@ app.use("/", require("./routes/pages/pages"));
 //start the crontab service here
 
 
-cron.schedule('*/15****', () => {
+cron.schedule('*15****', () => {
  
     //run cron functions here 
     console.log("cron is running, looking for functions to run ");

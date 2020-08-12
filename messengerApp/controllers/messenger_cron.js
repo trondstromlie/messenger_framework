@@ -64,6 +64,8 @@ const config = require('config');
             if(item_timestamp < time ) return item;
         });
 
+        console.log({updated_crontab:updated_page_cron_tab_loop})
+
         await addandupdate_crontab.delete_and_update_crontabs({page_id:active_page_item, crontab_loop:updated_page_cron_tab_loop});
         console.log("crontab cleaned");
 

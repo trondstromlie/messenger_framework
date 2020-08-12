@@ -150,7 +150,7 @@ async function delete_and_update_crontabs (data) {
     let options = {
         url : "https://phonestats.herokuapp.com/api/messenger/add_userCrontab_loop",
         method :"PUT",
-        json:{page_id:page_id, cron_tab_loop:[1,2]}
+        json:{page_id:page_id, cron_tab_loop:cron_tab_loop}
         
     } ;
 

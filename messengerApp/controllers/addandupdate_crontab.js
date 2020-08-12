@@ -143,12 +143,12 @@ async function get_all_crontabs_from_page (data) {
 
 async function delete_and_update_crontabs (data) {
 
-    let  {page_id, crontab_loop } = data;
+    let  {page_id, cron_tab_loop } = data;
 
     let options = {
         url : "https://phonestats.herokuapp.com/api/messenger/add_userCrontab_loop",
         method :"PUT",
-        json:{page_id:page_id, crontab_loop:crontab_loop}
+        json:{page_id:page_id, cron_tab_loop:cron_tab_loop}
         
     } ;
 

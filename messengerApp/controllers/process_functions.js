@@ -27,8 +27,8 @@ async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_
 
     let milliseconds = 0;
     let seconds = 0;
-    let minutes = +15;
-    let houres = +2;
+    let minutes = cron_obj.minutes;
+    let houres = cron_obj.houres;
     let days = 1;
 
     new_time  = (timeNow + milliseconds + (1000*seconds) + (1000*60*minutes) + (1000 * 60  * 60 * houres) + (1000 * 60 * 60 * 24 * days));

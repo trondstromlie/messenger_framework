@@ -61,6 +61,7 @@ const config = require('config');
 
         let updated_page_cron_tab_loop = page_cron_tab.filter(item => {
             let item_timestamp = new Date(item.timestamp).getTime();
+            console.log({item_time_stamp:item_timestamp})
             if(item_timestamp > time ) {
                 console.log({return : item});
                 return item};

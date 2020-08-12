@@ -59,9 +59,11 @@ const config = require('config');
         //delete all croontabs where timestamp is less the timestamp now
 
 
-        let updated_page_cron_tab_loop = page_cron_tab.filter(item => {
+        let updated_page_cron_tab_loop = page_cron_tab.filter( (item) => {
             let item_timestamp = new Date(item.timestamp).getTime();
-            console.log({item_time_stamp:item_timestamp})
+
+            console.log({item_time_stamp:item_timestamp, time_now: time})
+
             if(item_timestamp > time ) {
                 console.log({return : item});
                 return item};

@@ -15,7 +15,7 @@ const addandupdate_crontab = require('./addandupdate_crontab');
 //a simple tester function to open a webview
 async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
   try {
-    
+
   console.log("sending user to crontab");
   if(cron_obj.timestamp === null) {
 
@@ -32,14 +32,15 @@ async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_
 
     let new_time  = timeNow + milliseconds + (1000*seconds) + (1000*60*minutes) + (1000 * 60  * 60 * houres) + (1000 * 60 * 60 * 24 * days);
   
-  
+    console.log(timeNow +" new time " + new_time );
 
     cron_obj.timestamp = new_time;
+
   }
 
   //write something to the crontab 
   
-  let x = await addandupdate_crontab.add_user_to_crontab({sender_psid : sender_psid, page_id : cron_obj.page_id , timestamp : new_time, messenger_process: cron_obj.messenger_process, field_name:cron_obj.field_name, field_value:cron_obj.field_value });
+  let x = await addandupdate_crontab.add_user_to_crontab({sender_psid : sender_psid, page_id : cron_obj.page_id , timestamp : new_time , messenger_process: cron_obj.messenger_process, field_name:cron_obj.field_name, field_value:cron_obj.field_value });
   } catch (e) {
     console.log(e);
   }

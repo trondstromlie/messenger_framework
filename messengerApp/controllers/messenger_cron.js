@@ -61,13 +61,15 @@ const config = require('config');
 
         let updated_page_cron_tab_loop = page_cron_tab.filter(item => {
             let item_timestamp = new Date(item.timestamp).getTime();
-            if(item_timestamp > time ) return item;
+            if(item_timestamp > time ) {
+                console.log({return : item});
+                return item};
         });
 
         console.log({updated_crontab:updated_page_cron_tab_loop})
 
         let del = await addandupdate_crontab.delete_and_update_crontabs({page_id : active_page_item, cron_tab_loop : updated_page_cron_tab_loop});
-        
+
         console.log({delete:JSON.stringify(del)});
 
         console.log("crontab cleaned");

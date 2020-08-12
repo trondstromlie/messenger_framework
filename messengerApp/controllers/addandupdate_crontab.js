@@ -176,6 +176,6 @@ module.exports = {
     delete_user_crontab_on_unsubscribe:delete_user_crontab_on_unsubscribe,
     get_all_crontab_pages:get_all_crontab_pages,
     get_all_crontabs_from_page:get_all_crontabs_from_page,
-    delete_and_update_crontabs: delete_user_crontab_on_unsubscribe
+    delete_and_update_crontabs: delete_and_update_crontabs
 
 };

@@ -52,7 +52,7 @@ const messenger_cron = require('./messengerApp/controllers/messenger_cron')
 cron.schedule('*/1 * * * *', () => {
     console.log('running a task every 1 minutes');
     //run the messenger cron service
-    messenger_cron();
+    //messenger_cron();
   });
 
 

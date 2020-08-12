@@ -101,8 +101,7 @@ router.post('/' , [
 
             let {sender_psid , timestamp, field_name, field_value, messenger_process, page_id } = req.body;
 
-            let unix_time = Date.now();
-            console.log({unix_time:unix_time});
+            
 
             let cron = await GlobalOperations.findOne({page_id});
             
@@ -112,7 +111,7 @@ router.post('/' , [
 
               let crontab_loop = [];
 
-              let current_crontab_obj = { sender_psid:sender_psid, timestamp:unix_time, custom_data_name:field_name, custom_data_value:field_value, messenger_process:messenger_process, page_id:page_id }
+              let current_crontab_obj = { sender_psid:sender_psid, timestamp:timestamp, custom_data_name:field_name, custom_data_value:field_value, messenger_process:messenger_process, page_id:page_id }
 
               crontab_loop.push(current_crontab_obj);
 

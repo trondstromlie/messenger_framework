@@ -9,24 +9,19 @@ const GlobalOperations = new mongoose.Schema({
     crontab_loop: [
         {
             sender_psid:{
-                type:String,
-                
+                type:String                
             },
             timestamp:{
-                type:Date,
-                
+                type:Date                
             },
             messenger_process:{
-                type:String,
-               
+                type:String               
             },
             custom_data_name:{
-                type:String,
-                
+                type:String                
             },
             custom_data_value:{
-                type:String,
-                
+                type:String                
             }
 
         }

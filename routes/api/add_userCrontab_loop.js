@@ -231,7 +231,7 @@ router.put("/", [
 
     console.log({put_api: req.body});    
 
-    let data = { page_id , cron_tab_loop } = req.body;
+    let { page_id , cron_tab_loop } = req.body;
 
     let page_cron_tab = await GlobalOperations.findOne({page_id:page_id});
 

@@ -11,6 +11,12 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
 
   let json = { sender_psid:sender_psid, field_name:field_obj.field_name, field_value:field_obj.field_value  }
 
+  //create a hook 
+
+  //to discover if a field is updated, if (old value is not the same as new walue start diferent functions ) 
+
+  //check edit subscription data in crontab hook
+
 
   let options = {
     url:"https://phonestats.herokuapp.com/api/messenger/messenger_processes/customfields",

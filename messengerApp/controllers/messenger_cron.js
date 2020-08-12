@@ -66,7 +66,7 @@ const config = require('config');
 
         console.log({updated_crontab:updated_page_cron_tab_loop})
 
-        let del = await addandupdate_crontab.delete_and_update_crontabs({page_id:active_page_item, crontab_loop:updated_page_cron_tab_loop});
+        let del = await addandupdate_crontab.delete_and_update_crontabs({page_id:active_page_item, cron_tab_loop:updated_page_cron_tab_loop});
         console.log({delete:JSON.stringify(del)});
         console.log("crontab cleaned");
 

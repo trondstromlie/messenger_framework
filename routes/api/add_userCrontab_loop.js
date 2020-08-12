@@ -119,17 +119,17 @@ router.post('/' , [
 
               await cron.save();
 
-              res.status(200).json({crontab_loop:cron.crontab_loop})
+             return res.status(200).json({crontab_loop:cron.crontab_loop})
 
 
             } else {
 
-              let current_crontab_obj = { sender_psid:sender_psid, timestamp:unix_time, custom_data_name:field_name, custom_data_value:field_value, messenger_process:messenger_process, page_id:page_id}
+              let current_crontab_obj = { sender_psid:sender_psid, timestamp:timestamp, custom_data_name:field_name, custom_data_value:field_value, messenger_process:messenger_process, page_id:page_id}
               cron.crontab_loop.push(current_crontab_obj);
 
               await cron.save();
 
-              res.status(200).json({crontab_loop:cron.crontab_loop})
+              return res.status(200).json({crontab_loop:cron.crontab_loop})
 
             }
 

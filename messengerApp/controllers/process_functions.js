@@ -34,6 +34,7 @@ async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_
     new_time  = (timeNow + milliseconds + (1000*seconds) + (1000*60*minutes) + (1000 * 60  * 60 * houres) + (1000 * 60 * 60 * 24 * days));
   
     console.log(timeNow +" new time " + new_time );
+    console.log("time now " + Date(timeNow) + ", time to fire cron " + Date(new_time)) 
 
     
 

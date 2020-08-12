@@ -145,6 +145,8 @@ async function delete_and_update_crontabs (data) {
 
     let  {page_id, cron_tab_loop } = data;
 
+    console.log({delete_and_update: data})
+
     let options = {
         url : "https://phonestats.herokuapp.com/api/messenger/add_userCrontab_loop",
         method :"PUT",

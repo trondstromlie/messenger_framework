@@ -219,7 +219,7 @@ router.delete("/", [
 
 router.put("/", [
     check("page_id", "page_id is required").not().isEmpty(),
-    check("cron_tab_loop", "cron_tab_loop").not().isEmpty()
+    check("cron_tab_loop", "cron_tab_loop is requires").not().isEmpty()
 ], async ( req , res) => {
 
     let errors = validationResult(req);
@@ -229,6 +229,8 @@ router.put("/", [
         res.status(300).json(errors);
 
     } else {
+
+    console.log({put_api: req.body});    
 
     let data = { page_id , cron_tab_loop } = req.body;
 

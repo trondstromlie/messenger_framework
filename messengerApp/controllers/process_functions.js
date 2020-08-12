@@ -21,13 +21,14 @@ async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_
 
     
     let timeNow = Date.now();
+    let new_time = null;
 
     //add milliseconds to the epoc timestamp
 
     let milliseconds = 0;
     let seconds = 0;
-    let minutes = 15;
-    let houres = 1;
+    let minutes = cron_obj.minutes;
+    let houres = cron_obj.houres;
     let days = 0;
 
     let new_time  = timeNow + milliseconds + (1000*seconds) + (1000*60*minutes) + (1000 * 60  * 60 * houres) + (1000 * 60 * 60 * 24 * days);
@@ -36,15 +37,20 @@ async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_
 
     cron_obj.timestamp = new_time;
 
+    //write something to the crontab 
+
+    let x = await addandupdate_crontab.add_user_to_crontab({sender_psid : sender_psid, page_id : cron_obj.page_id , timestamp : new_time , messenger_process: cron_obj.messenger_process, field_name:cron_obj.field_name, field_value:cron_obj.field_value });
+
+    return {status:true, step:"next"};
   }
 
-  //write something to the crontab 
   
-  let x = await addandupdate_crontab.add_user_to_crontab({sender_psid : sender_psid, page_id : cron_obj.page_id , timestamp : new_time , messenger_process: cron_obj.messenger_process, field_name:cron_obj.field_name, field_value:cron_obj.field_value });
+  
+  
   } catch (e) {
     console.log(e);
   }
-  return {status:true, step:"next"};
+  
 
 }
 

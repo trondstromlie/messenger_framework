@@ -31,11 +31,11 @@ async function send_to_cron(sender_psid, user, message, custom_field_obj, quick_
     let houres = cron_obj.houres;
     let days = 0;
 
-    let new_time  = timeNow + milliseconds + (1000*seconds) + (1000*60*minutes) + (1000 * 60  * 60 * houres) + (1000 * 60 * 60 * 24 * days);
+    new_time  = timeNow + milliseconds + (1000*seconds) + (1000*60*minutes) + (1000 * 60  * 60 * houres) + (1000 * 60 * 60 * 24 * days);
   
     console.log(timeNow +" new time " + new_time );
 
-    cron_obj.timestamp = new_time;
+    
 
     //write something to the crontab 
 

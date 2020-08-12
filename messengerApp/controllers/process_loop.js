@@ -44,10 +44,11 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       ]
     },
     {
-      name:"Webview",
+      name:"Reminder",
       steps:[
-        {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" jeg sender deg til et webview nå, stay calm and relax:) "},
-        {name:"open_webview",func:process_functions.open_web_view,webview_obj:{uri:"https://phonestats.herokuapp.com",qs:{action:"Getting_started"}}, custom_field_obj:{name:"test"}}
+        {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" jeg sender deg til en liten meldfing nå <3 :) "},
+        {name:"writing_action2",func:process_functions.writing_action,pause:1}
+        
       ]
     },
     {
@@ -114,7 +115,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
          {name:"add_update_custom_field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"subscribe",value:"true"}},
          {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"ok du abonerer på dette kurset nå :) "},
          {name:"get_email",func:process_functions.send_empty_message, msg:"Hei " + user.first_name + " jeg skal sende deg en melding om en time "},
-         {name:"send_to_crontab", func:process_functions.send_to_cron, cron_obj : {page_id: "104680997936481" ,timestamp:null, messenger_process: "Pizza", field_name:"subscribe", field_value:"true"} },
+         {name:"send_to_crontab", func:process_functions.send_to_cron, cron_obj : {page_id: "104680997936481" ,timestamp:null, messenger_process: "Reminder", field_name:"subscribe", field_value:"true"} },
          {name:"writing_action",func:process_functions.writing_action, pause:1},
 
       ]

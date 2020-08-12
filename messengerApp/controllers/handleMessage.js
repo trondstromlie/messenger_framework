@@ -73,8 +73,8 @@ try {
 
       if(check.length > 0 ) {
 
-        let add_user_process =  await addandupdate_userfields.add_user_process(sender_psid, check[0].process_name , user);
-        await process_loop(check[0].process_name, add_user_process, 0 , received_message);
+        let added_user_process =  await addandupdate_userfields.add_user_process(sender_psid, check[0].process_name , user);
+        await process_loop(check[0].process_name, added_user_process, 0 , received_message);
         return NaN;
 
        } else {

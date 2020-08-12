@@ -105,12 +105,11 @@ async function get_all_crontab_pages () {
 async function get_all_crontabs_from_page (data) {
 
     let {page_id, sender_psid} = data;
+    let url = "https://phonestats.herokuapp.com/api/messenger/add_userCrontab_loop" + "/" + page_id
 
     let options = {
-        url : "https://phonestats.herokuapp.com/api/messenger/add_userCrontab_loop",
-        method :"GET",
-        qs:page_id
-        
+        url : url,        
+        method :"GET"       
     } ;
 
     //if sender_psid

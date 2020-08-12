@@ -224,7 +224,7 @@ router.put("/", [
 
     let errors = validationResult(req);
 
-    if(validationResult.isEmpty()) {
+    if(!errors.isEmpty()) {
         console.log(errors);
         res.status(300).json(errors);
 

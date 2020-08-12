@@ -218,7 +218,6 @@ router.delete("/", [
 // @ public function require page_id
 
 router.put("/", [
-    check("page_id", "page_id is required").not().isEmpty(),
     check("cron_tab_loop", "cron_tab_loop is requires").not().isEmpty()
 ], async ( req , res) => {
 

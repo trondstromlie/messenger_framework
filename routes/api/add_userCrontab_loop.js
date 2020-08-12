@@ -237,11 +237,12 @@ router.put("/", [
 
     if(page_cron_tab) {
 
-        page_cron_tab.cron_tab_loop = cron_tab_loop;
+        page_cron_tab.crontab_loop = cron_tab_loop;
 
         console.log({DELETE_add_user_crontab: page_cron_tab})
 
         let the_save = await page_cron_tab.save();
+
         console.log({"save": the_save})
 
         return res.status(200).json(page_cron_tab);

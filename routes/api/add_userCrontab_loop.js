@@ -218,7 +218,7 @@ router.delete("/", [
 // @ public function require page_id
 
 router.put("/", [
-    check("cron_tab_loop", "cron_tab_loop is requires").not().isEmpty()
+    check("page_id", "page_id is required").not().isEmpty()
 ], async ( req , res) => {
 
     let errors = validationResult(req);

@@ -12,10 +12,10 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
 
   let json = { sender_psid:sender_psid, field_name:field_obj.field_name, field_value:field_obj.field_value  }
 
-  //create a hook 
+  //*************** create a hook 
 
   //to discover if a field is updated, if (old value is not the same as new walue run throug the hook functions.
-  //event is change in customfield etc  ) 
+  
 
   console.log({add_update_user_obj:user_obj});
 
@@ -31,22 +31,23 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
     
     if (item.field_name == field_obj.field_name && item.field_value != field_obj.field_value) {
 
-      console.log("************** change is value discovered");
+      
+      //change in value of custom_field discovered. send to hook
       await custom_fields_hook({ sender_psid: user_obj.sender_psid , hook_type: "custom_field", event: "change_value", field_name:item.field_name, field_value: item.field_value});
 
     } else {
-      console.log(" *********** no changes has been discovered ************ ");
-      console.log(item.field_name + "s value = " + item.field_value );
+      //no change in custom field value discovered
+      // do something here 
 
     }
 
   });
 } else {
-  console.log("**************** new data discovered starting sending controll to the hook *************")
+  //new custom_data field added to the db 
   await custom_fields_hook({ sender_psid: user_obj.sender_psid , hook_type: "custom_field", event: "new_field", field_name:field_obj.field_name, field_value: field_obj.field_value});
 }
 
-  //check edit subscription data in crontab hook
+//main function to update the custom data starts here 
 
 
   let options = {

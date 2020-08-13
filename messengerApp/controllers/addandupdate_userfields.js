@@ -31,7 +31,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
     
     if (item.field_name == field_obj.field_name && item.field_value != field_obj.field_value) {
 
-      
+      console.log({customdata : { item_field_name: item.field_name , item_field_value: item_field_value}})
       //change in value of custom_field discovered. send to hook
       await custom_fields_hook({ sender_psid: user_obj.sender_psid , hook_type: "custom_field", event: "change_value", field_name:item.field_name, field_value: item.field_value});
 

@@ -25,4 +25,4 @@ async function custom_field_hooks ( hook_data_obj ) {
 
 }
 
-
+module.exports = custom_field_hooks;

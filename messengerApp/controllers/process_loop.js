@@ -122,7 +122,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     },
     {
 
-      name:"custom_field",
+      name:"Custom_field",
       steps: [
          {name:"add_update_custom_field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"subscribe",value:"test"}},
 

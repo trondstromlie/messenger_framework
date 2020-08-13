@@ -133,8 +133,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     //show button template
     console.log("button template discovered");
     
-    if(generic_template_obj.buttons_obj) buttons = generic_template_obj.button_obj;
-   
+     
     let buttons = [
       {type:"web_url",url:"https://www.trondstromlie.com", title:" les mer om meg her "},
       {type:"web_url",url:"https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field", title:"Open a web view","messenger_extensions":"true" , "webview_height_ratio" : "tall", "fallback_url":"https://trondstromlie.com"},

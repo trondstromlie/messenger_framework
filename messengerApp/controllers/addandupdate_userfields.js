@@ -18,17 +18,20 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
 
   console.log({add_update_user_obj:user_obj});
 
+  //first check if customfield exists 
+
+  let check_for_customfield = user_obj.custom_data.filter( item => item.field_name == field_obj.field_name);
+  if (check_for_customfield > 0) {
+
   user_obj.custom_data.forEach(item => {
+
+    
     
     if (item.field_name == field_obj.field_name && item.field_value != field_obj.field_value) {
 
       console.log(" ************field value has changed ************* ");
       console.log(item.field_name + " has current value " + item.field_value + " new value = " + field_obj.field_value );
 
-    } else if (!item.field_name == field_obj.field_name) {
-
-      console.log(" *********** new field  has been added ************ ");
-      console.log(item.field_name + " new value = " + field_obj.field_value );
     } else {
       console.log(" *********** no changes has been added ************ ");
       console.log(item.field_name + "s value = " + item.field_value );
@@ -36,6 +39,10 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
     }
 
   });
+} else {
+  console.log(" *********** new field  has been added ************ ");
+  console.log("new field_name " + field_obj.field_name + " new value = " + field_obj.field_value );
+}
 
   //check edit subscription data in crontab hook
 

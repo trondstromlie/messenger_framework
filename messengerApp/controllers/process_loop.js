@@ -227,7 +227,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
   {
   name:"PayOrShop",
   steps: [
-    {name:"Go_to_cart",func:process_functions.generic_template, generic_template_obj:{type:"buttons", name:"welcome",buttons:[
+    {name:"Go_to_cart",func:process_functions.generic_template, generic_template_obj:{type:"buttons", name:"welcome",buttons_obj:[
       {type:"web_url",url:"https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field", title:"Gå til kassen!","messenger_extensions":"true" , "webview_height_ratio" : "tall", "fallback_url":"https://trondstromlie.com"},
       {type:"postback", title:"Jeg vil handle mer!", payload:'{"messenger_process":"Pizza"}' }
     ]}},

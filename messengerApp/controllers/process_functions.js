@@ -140,7 +140,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
       {type:"postback", title:"Bestill Pizza!", payload:'{"messenger_process":"Pizza"}' }
     ];
 
-    if(generic_template_obj.buttons_obj) buttons = generic_template_obj.button_obj;
+    if(generic_template_obj.buttons_obj) buttons = generic_template_obj.buttons_obj;
  
     let text = "hva kan jeg hjelpe deg med "
 

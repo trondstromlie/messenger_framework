@@ -1,5 +1,6 @@
 
 const request = require('request');
+const custom_fields_hook = require('./custom_fields_hook');
 
 //****************************
 //Update userfield using the messenger_user_API
@@ -29,8 +30,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
     
     if (item.field_name == field_obj.field_name && item.field_value != field_obj.field_value) {
 
-      console.log(" ************field value has changed ************* ");
-      console.log(item.field_name + " has current value " + item.field_value + " new value = " + field_obj.field_value );
+      await custom_fields_hook({ sender_psid: user_obj.sender_psid , hook_type: "custom_field", event: "change_value", field_name:item.field_name, field_value: item.field_value});
 
     } else {
       console.log(" *********** no changes has been added ************ ");
@@ -40,8 +40,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
 
   });
 } else {
-  console.log(" *********** new field  has been added ************ ");
-  console.log("new field_name " + field_obj.field_name + " new value = " + field_obj.field_value );
+  await custom_fields_hook({ sender_psid: user_obj.sender_psid , hook_type: "custom_field", event: "new_field", field_name:field_obj.field_name, field_value: field_obj.field_value});
 }
 
   //check edit subscription data in crontab hook

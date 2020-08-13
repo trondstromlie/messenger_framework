@@ -122,9 +122,11 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     },
     {
 
-      name:"Custom_field",
+      name:"Unsubscribe",
       steps: [
          {name:"add_update_custom_field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"subscribe",value:"false"}},
+         {name:"writing_action",func:process_functions.writing_action, pause:1},
+         {name:"send_cofirmation",func:process_functions.send_empty_message,msg:"ok, du er avmeldt fra denne listen og kommer ikke til å motta meldinger lenger <3 ;)  :) "},
 
 
       ]

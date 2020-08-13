@@ -468,7 +468,7 @@ async function fetch_and_show_cart(sender_psid, user, message, custom_field_obj,
 async function fetch_generic_template(sender_psid, user, message, custom_field_obj, quick_reply_obj, in_message , bool_obj, jump_to ,err_message, pause , generic_template_obj, webview_obj, cron_obj) {
 
   let buttons = [
-    {"title" : "les mer", "value" : "url", "type" : "web_url","messenger_extensions" : "true", "webview_height_ratio" :"compact","fallback_url":"https://trondstromlie.com"},
+    {"title" : "les mer", "value" : "url", "type" : "web_url","messenger_extensions" : "false", "webview_height_ratio" :"compact","fallback_url":"https://trondstromlie.com"},
     {"title":"Bestill" ,"type": "postback", "payload":{"messenger_process":null,"fields":{"price":"price","currency":"currency","item":"item_number","title":"title","img_url":"img_url","sub_title":"sub_title"}}}
   ];
 
@@ -580,8 +580,8 @@ default_obj.forEach( ( item , i ) => {
     element.default_action = {};
     element.default_action.type = "web_url";
     element.default_action.url = item.url;
-    //element.default_action.messenger_extensions = "true";
-    //element.default_action.webview_height_ratio ="tall";
+    element.default_action.messenger_extensions = "false";
+    element.default_action.webview_height_ratio ="tall";
 
   };
 

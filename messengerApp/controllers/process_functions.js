@@ -67,6 +67,7 @@ async function generic_template(sender_psid, user, message, custom_field_obj, qu
     let buttons = [
       {type:"postback", title:"Bestill Pizza!", payload:'{"messenger_process":"Pizza"}' }
     ];
+    if(generic_template_obj.buttons_obj) buttons = generic_template_obj.buttons_obj;
 
     //if video mediatype is video else image
     //en for of loop som sjekker om det er knapper til dette bildet

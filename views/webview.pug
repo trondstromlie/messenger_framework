@@ -96,7 +96,7 @@ html(lang="en")
               img(src=profile_pic alt="Profile")
               
 
-            a#myButton() G&aring; videre  
+            a#myButton() Betaling  
             p
              |your sender_psid is #{sender_psid}
 
@@ -119,6 +119,8 @@ html(lang="en")
                 
                 var custom_field_url = "https://phonestats.herokuapp.com/api/messenger/messenger_processes/customfields";
                 var custom_data = {"sender_psid" : "#{sender_psid}", "field_name": "#{field_name}", "field_value": "click from webview"};
+
+                //update order field to include order_number
                 
 
                 $.ajax({

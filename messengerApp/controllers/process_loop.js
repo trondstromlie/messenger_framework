@@ -46,7 +46,7 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
     {
       name:"Reminder",
       steps:[
-        {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" jeg sender deg til en liten meldfing nå <3 :) "},
+        {name:"send_empty_message",func:process_functions.send_empty_message ,msg:"Hei "+ user.first_name +" din pizza er klar til å hentes <3 :) "},
         {name:"writing_action2",func:process_functions.writing_action,pause:1}
         
       ]
@@ -238,8 +238,12 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
   {
     name:"Pizza_confirm",
     steps:[
-      {name:"kasse ",func:process_functions.send_empty_message,msg:"Suupert! :) Din ordre er sendt til kjøkkenet "},
+      {name:"kasse ",func:process_functions.send_empty_message,msg:"Suupert! :) Din ordre er sendt til kjøkkenet"},
+      {name:"pizza_image",func:process_functions.generic_template, generic_template_obj:{type:"media", name:"welcome",buttons_obj:[]}},
       {name:"receiept",func:process_functions.generic_template,custom_field_obj:{name:"order"}, generic_template_obj:{type:"receipt", name:"welcome"}},
+      {name:"kasse ",func:process_functions.send_empty_message,msg:"Vi lager din pizza nå, du får en melding når den er ferdig"},
+      {name:"send_to_crontab", func:process_functions.send_to_cron, cron_obj : {page_id: "104680997936481" ,timestamp:null, messenger_process: "Reminder", field_name:"subscribe", field_value:"true", minutes:5, houres:0} },
+      {name:"writing_action",func:process_functions.writing_action, pause:1},
       {name:"clean order field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"order",value:'[]'}}
     ]
   }

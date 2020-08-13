@@ -24,7 +24,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
   let check_for_customfield = user_obj.custom_data.filter( item => item.field_name == field_obj.field_name);
   if (check_for_customfield > 0) {
 
-  user_obj.custom_data.forEach(item => {
+  user_obj.custom_data.forEach(async (item) => {
 
     
     

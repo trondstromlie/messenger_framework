@@ -20,7 +20,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
 
   user_obj.custom_data.forEach(item => {
     
-    if(item.field_name == field_obj.field_name && item.field_value != obj.field_value) {
+    if(item.field_name == field_obj.field_name && item.field_value != field_obj.field_value) {
 
       console.log("field value has changed ")
 

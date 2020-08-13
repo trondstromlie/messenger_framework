@@ -40,6 +40,7 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
 
   });
 } else {
+  console.log("**************** new data discovered starting sending controll to the hook *************")
   await custom_fields_hook({ sender_psid: user_obj.sender_psid , hook_type: "custom_field", event: "new_field", field_name:field_obj.field_name, field_value: field_obj.field_value});
 }
 

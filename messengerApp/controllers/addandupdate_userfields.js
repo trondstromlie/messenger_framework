@@ -22,7 +22,8 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
   //first check if customfield exists 
 
   let check_for_customfield = user_obj.custom_data.filter( item => item.field_name == field_obj.field_name);
-  if (check_for_customfield > 0) {
+  
+  if (check_for_customfield.length > 0) {
 
   user_obj.custom_data.forEach(async (item) => {
 
@@ -30,10 +31,11 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
     
     if (item.field_name == field_obj.field_name && item.field_value != field_obj.field_value) {
 
+      console.log("************** change is value discovered");
       await custom_fields_hook({ sender_psid: user_obj.sender_psid , hook_type: "custom_field", event: "change_value", field_name:item.field_name, field_value: item.field_value});
 
     } else {
-      console.log(" *********** no changes has been added ************ ");
+      console.log(" *********** no changes has been discovered ************ ");
       console.log(item.field_name + "s value = " + item.field_value );
 
     }

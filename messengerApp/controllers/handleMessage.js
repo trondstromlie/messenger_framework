@@ -66,7 +66,7 @@ try {
         {process_key: "Image", process_name : "Generic_image"},
         {process_key: "Receipt", process_name : "Receipt"},
         {process_key: "Pause", process_name : "Pause"},
-        {process_key: "Custom", process_name : "Custom_field"}
+        {process_key: "Unsubscribe", process_name : "Unsubscribe"},
         ]
       }; 
 

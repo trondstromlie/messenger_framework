@@ -13,7 +13,9 @@ async function custom_field_hooks ( hook_data_obj ) {
 
     if (hook_type = "custom_field"  && event == "change_value") {
        
-        //start the delete from crontab function here 
+        //start the delete from crontab function here, check if this user has anny waiting messeges beloning to this tag in the send_loop, 
+        //if messeges delete them..... 
+
         console.log("************* starting the hook for changed custom data************")
         hook_data_obj.page_id = page_id
 
@@ -23,6 +25,9 @@ async function custom_field_hooks ( hook_data_obj ) {
        
     } else if (hook_type = "custom_field"  && event == "new_field") {
         console.log("*********** starting the hook for new custom_data here **************");
+
+        //if a user subscribes to a new custom field or f.ex ads an email than do something here 
+
         return NaN;
     }
 

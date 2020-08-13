@@ -580,8 +580,8 @@ default_obj.forEach( ( item , i ) => {
     element.default_action = {};
     element.default_action.type = "web_url";
     element.default_action.url = item.url;
-    element.default_action.messenger_extensions = "true";
-    element.default_action.webview_height_ratio ="tall";
+    //element.default_action.messenger_extensions = "true";
+    //element.default_action.webview_height_ratio ="tall";
 
   };
 

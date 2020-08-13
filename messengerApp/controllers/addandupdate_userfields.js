@@ -22,8 +22,11 @@ async function add_or_update_custom_data ( sender_psid , user_obj , field_obj  )
     
     if(item.field_name == field_obj.field_name && item.field_value != field_obj.field_value) {
 
-      console.log("field value has changed ")
+      console.log(" ************field value has changed ************* ");
 
+    } else if (!item.field_name == field_obj.field_obj) {
+
+      console.log(" *********** new field  has been added ************ ");
     }
 
   });

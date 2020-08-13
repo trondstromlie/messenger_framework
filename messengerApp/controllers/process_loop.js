@@ -221,8 +221,23 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"bestille_mer_eller_go_to_cart",func:process_functions.send_quick_reply,msg:"Vill du bestille mer eller sende orderen til kjøkkenet? ",quick_reply_obj:[{"content_type":"text","title":"Bestille mer","payload":"til_kjøkken",link:5},{"content_type":"text","title":"Send til kjøkkenet","payload":"bestill_drikke",link:6}]},
       {name:"listen_for_hva vil du bestille",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"bestilling"}, msg:"velg med knappene under " , quick_reply_obj:[{"content_type":"text","title":"Bestille mer","payload":"til_kjøkken",link:5},{"content_type":"text","title":"Send til kjøkkenet","payload":"bestill_drikke",link:6}]},
       {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Pizza"}},
+      {name:"jump to function payorShop", func:process_functions.jump_to_process,jump_to:{process_link:"PayOrShop"}}
+    ]
+  },
+  {
+  name:"PayOrShop",
+  steps: [
+    {name:"Go_to_cart",func:process_functions.generic_template, generic_template_obj:{type:"buttons", name:"welcome",buttons:[
+      {type:"web_url",url:"https://phonestats.herokuapp.com/webview?message=hello&sender_psid=3486132838081978&field_name=new_field", title:"Gå til kassen!","messenger_extensions":"true" , "webview_height_ratio" : "tall", "fallback_url":"https://trondstromlie.com"},
+      {type:"postback", title:"Jeg vil handle mer!", payload:'{"messenger_process":"Pizza"}' }
+    ]}},
+  ]
+  },
+  {
+    name:"Pizza_confirm",
+    steps:[
       {name:"kasse ",func:process_functions.send_empty_message,msg:"Suupert! :) Din ordre er sendt til kjøkkenet "},
-      {name:"start_menu",func:process_functions.generic_template,custom_field_obj:{name:"order"}, generic_template_obj:{type:"receipt", name:"welcome"}},
+      {name:"receiept",func:process_functions.generic_template,custom_field_obj:{name:"order"}, generic_template_obj:{type:"receipt", name:"welcome"}},
       {name:"clean order field",func:process_functions.add_bool_custom_value,custom_field_obj:{name:"order",value:'[]'}}
     ]
   }

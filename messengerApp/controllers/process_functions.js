@@ -3,6 +3,7 @@
 // Du må lage en funkson for å hente ut customfield(mergerfields), of formatere de som text
 // navn bio etc ..... lag en hjelpefunksjon du kan kalle fra alle process funksoner....
 
+
 "use strict";
 
 const sleep = require('sleep-promise');

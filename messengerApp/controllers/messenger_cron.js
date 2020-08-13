@@ -8,7 +8,6 @@ const fetchUserData = require('./fetchUserData');
 const config = require('config');
 
 
-//get the timestamp right now
 
  async function messenger_cron () {
     
@@ -87,16 +86,3 @@ const config = require('config');
 
 module.exports = messenger_cron;
 
-
-//foreach active page 
-//fetch the cron_tab
-
-//run throug all crontabs, if crontab is less the time now crontab
-//run this crontab
-//add process to users db start process 
-
-
-//clean the db of all tabs where timestamp is less then time now....
-
-
-//return to the db 

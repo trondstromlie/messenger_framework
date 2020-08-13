@@ -221,7 +221,9 @@ async function user_loop ( process_name , user_obj, index , incoming_msg ) {
       {name:"bestille_mer_eller_go_to_cart",func:process_functions.send_quick_reply,msg:"Vill du bestille mer eller sende orderen til kjøkkenet? ",quick_reply_obj:[{"content_type":"text","title":"Bestille mer","payload":"til_kjøkken",link:5},{"content_type":"text","title":"Send til kjøkkenet","payload":"bestill_drikke",link:6}]},
       {name:"listen_for_hva vil du bestille",func:process_functions.listen_for_quick_reply,custom_field_obj:{name:"bestilling"}, msg:"velg med knappene under " , quick_reply_obj:[{"content_type":"text","title":"Bestille mer","payload":"til_kjøkken",link:5},{"content_type":"text","title":"Send til kjøkkenet","payload":"bestill_drikke",link:6}]},
       {name:"jump to function Order_drinks", func:process_functions.jump_to_process,jump_to:{process_link:"Pizza"}},
-      {name:"jump to function payorShop", func:process_functions.jump_to_process,jump_to:{process_link:"PayOrShop"}}
+      {name:"jump to function payorShop", func:process_functions.jump_to_process,jump_to:{process_link:"PayOrShop"}},
+      {name:"writing_action",func:process_functions.writing_action,pause:1}
+
     ]
   },
   {

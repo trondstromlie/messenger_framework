@@ -1,34 +1,15 @@
-//todo list
+FUlly working messaging bot
 
-//API SERVER SIDE
+connects to the Facebook API 
 
-//user
-Register user #public
-  write to mongodb
-  mongoose
-  express
+When a conversation starts we build a messaging loop that waits for the user response and take the next appropriate action .
 
+The user can start different "programs" in the bot by asking for the different programs F.eks "order pizza" or choose from a menu 
+when an order is placed the program opens a web view inside of messenger to process a credit card
 
-Login user and get token #public
-  jwtoken
+when the user clicks pay 
 
+The control is handed back to the bot that sends new messages.
 
+error 
 
-//Data
-
-get location data and and status
-  push message to appropriat service, trond is on his way notification
-  when status change to "en route" push message, when status change to "found kristina" send new message
-
-messenger integration
-  send message
-  ask for location
-
-google assistent
-  ask for location
-
-//DEVICE SIDE
-
-  Sniff for change in wifi
-  when wifi is no longer home-net and time is between 3.30 and 4.30 activate program
-  listen to bluethoot, when phone connects to kristinas bluethoot mac adress, deactivate push new status to service

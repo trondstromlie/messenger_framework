@@ -1,14 +1,11 @@
 {
- //mongo DB
- "mongoURI":"<your  uri>",
+ //mongo DB URI
+ 
  
 
  //jwttoken
  "jwtToken":"sfdhus403lrgj",
 
  //facebook messenger tokens
- "FBVERYFY_TOKEN":"<your  id>",
- "FbPageToken":"<your  id>",
- "FbappID":"<your id>",
- "FbpageID":"<your  id>"
+ 
 }
